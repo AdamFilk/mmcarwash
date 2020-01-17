@@ -91,16 +91,16 @@ app.post('/webhook', (req, res) => {
             "text":"Hello, welcome to MM carwash"
           }
           }
-          requestify.post(`https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageaccesstoken}`, 
-          welcomeMessage
-          ).then(response=>{
-            console.log(response)
-          }).fail(error=> {
-            console.log(error)
-          })
+         
 
         }
-        
+        requestify.post(`https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageaccesstoken}`, 
+        welcomeMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
 
           
       });
