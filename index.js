@@ -82,18 +82,10 @@ app.post('/webhook', (req, res) => {
         if(webhook_event.postback){
           var userButton = webhook_event.postback.payload
         }
-        if (userInput =='Hi' || userButton == 'Hi'){
-          let welcomeMessage ={
-            "reciepient":{
-              "id": webhook_event.id
-            },
-          "message":{
-            "text":"Hello, welcome to MM carwash"
-          }
-          }
+        
          
 
-        }
+        
         requestify.post(`https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageaccesstoken}`, 
         welcomeMessage
         ).then(response=>{
