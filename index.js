@@ -82,7 +82,15 @@ app.post('/webhook', (req, res) => {
         if(webhook_event.postback){
           var userButton = webhook_event.postback.payload
         }
-        
+        if (userInput == 'Hi' || userButton == 'Hi' ){
+          let welcomeMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text":"Hello, Welcome to MM Carwash!"
+            }
+          };
          
 
         
