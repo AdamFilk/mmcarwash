@@ -155,38 +155,22 @@ app.post('/webhook', (req, res) => {
                     {
                       //star book
                   
-                    "title":":bike: :bike: :bike:",
-                      {
-                        "type":"postback",
-                        "title":"Book Car Wash",let genericMessage = {
-            "recipient":{
-              "id": webhook_event.sender.id
-            },
-            "message":{
-              "attachment":{
-                "type":"template",
-                "payload":{
-                  "template_type":"generic",
-                  "elements":[
-                    {
-                      //star book
-                  
-                    "title":":Please choose the size of your car!",
+                    "title":":please choose the size of your car!",
                     "buttons":[
                       {
                         "type":"postback",
-                        "title":"small",
+                        "title":"Small",
                         "payload":"s"
                       },
                       {
                         "type":"postback",
-                        "title":"medium",
-                        "payload":"m",
+                        "title":"Medium",
+                        "payload":"m"
                       },
                       {
                         "type":"postback",
                         "title":"Large",
-                        "payload":"l",
+                        "payload":"l"
                       }
                     ]
   
@@ -197,18 +181,14 @@ app.post('/webhook', (req, res) => {
   
             }
           }
-                        "payload":"bcw"
-                      }
-                    ]
-  
-                  }
-                ]
-                }
-              }
-  
-            }
-          }
-          
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        genericMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+          //end of choose one
         }
 
           
