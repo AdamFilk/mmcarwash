@@ -90,6 +90,35 @@ app.post('/webhook', (req, res) => {
             "message":{
               "text":"Hi! Welcome from MM Car Wash. Tired of cleaning your car by yourself and don't want to go to the car wash service? Here we send our cleaners on bicycles to clean your car shine. You just need to book an appointment and they'll be on the way:grin:"
             }
+          };
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachement":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[{
+  
+                  
+                    "title":":bike: :bike: :bike:",
+                    "subtitle":"",
+                    "image_url":"https://focus2move.com/wp-content/uploads/2019/10/Tesla-Model3_2019.jpg",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"Book Car Wash",
+                        "payload":"bcw"
+                      }
+                    ]
+  
+                  }]
+                }
+              }
+  
+            }
           }
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
         welcomeMessage
@@ -98,40 +127,6 @@ app.post('/webhook', (req, res) => {
         }).fail(error=> {
           console.log(error)
         })
-        }
-        
-
-        let genericMessage = {
-          "recipient":{
-            "id": webhook_event.sender.id
-          },
-          "message":{
-            "attachement":{
-              "type":"template",
-              "payload":{
-                "template_type":"generic",
-                "elements":[{
-
-                
-                  "title":":bike: :bike: :bike:",
-                  "subtitle":"",
-                  "image_url":"https://focus2move.com/wp-content/uploads/2019/10/Tesla-Model3_2019.jpg",
-                  "buttons":[
-                    {
-                      "type":"postback",
-                      "title":"Book Car Wash",
-                      "payload":"bcw"
-                    }
-                  ]
-
-                }]
-              }
-            }
-
-          }
-        }  
-       
-
         requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
         genericMessage
         ).then(response=>{
@@ -139,6 +134,13 @@ app.post('/webhook', (req, res) => {
         }).fail(error=> {
           console.log(error)
         })
+        }
+        //end of lee 
+
+          
+       
+        
+       
 
       });
   
