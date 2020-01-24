@@ -104,7 +104,7 @@ app.post('/webhook', (req, res) => {
                     {
                       //star book
                   
-                    "title":":bike: :bike: :bike:",
+                    "title":":",
                     "subtitle":"",
                     "image_url":"https://focus2move.com/wp-content/uploads/2019/10/Tesla-Model3_2019.jpg",
                     "buttons":[
@@ -155,7 +155,7 @@ app.post('/webhook', (req, res) => {
                     {
                       //star book
                   
-                    "title":":please choose the size of your car!",
+                    "title":"please choose the size of your car!",
                     "buttons":[
                       {
                         "type":"postback",
@@ -191,6 +191,56 @@ app.post('/webhook', (req, res) => {
           //end of choose one
         }
 
+        //star of small
+        if (userButton == 'bcw'){
+
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Price for the small car is 3000ks haven't included transport fees.",
+                    "subtitle":"Please choose which part of your car you want to clean?",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"interior",
+                        "payload":"int1"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"exterior",
+                        "payload":"ext1"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"both",
+                        "payload":"bo1"
+                      }
+                    ]
+  
+                  }
+                ]
+                }
+              }
+  
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        genericMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+        }
+        //end of samll 
           
        
         
