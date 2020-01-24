@@ -137,7 +137,79 @@ app.post('/webhook', (req, res) => {
           console.log(error)
         })
         }
-        //end of lee 
+        //end of book 
+
+        //start of choose one
+        if (userButton == 'bcw'){
+
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      //star book
+                  
+                    "title":":bike: :bike: :bike:",
+                      {
+                        "type":"postback",
+                        "title":"Book Car Wash",let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      //star book
+                  
+                    "title":":Please choose the size of your car!",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"small",
+                        "payload":"s"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"medium",
+                        "payload":"m",
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Large",
+                        "payload":"l",
+                      }
+                    ]
+  
+                  }
+                ]
+                }
+              }
+  
+            }
+          }
+                        "payload":"bcw"
+                      }
+                    ]
+  
+                  }
+                ]
+                }
+              }
+  
+            }
+          }
+          
+        }
 
           
        
