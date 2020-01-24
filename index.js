@@ -96,12 +96,13 @@ app.post('/webhook', (req, res) => {
               "id": webhook_event.sender.id
             },
             "message":{
-              "attachement":{
+              "attachment":{
                 "type":"template",
                 "payload":{
                   "template_type":"generic",
-                  "elements":[{
-  
+                  "elements":[
+                    {
+                      //star book
                   
                     "title":":bike: :bike: :bike:",
                     "subtitle":"",
@@ -114,7 +115,8 @@ app.post('/webhook', (req, res) => {
                       }
                     ]
   
-                  }]
+                  }
+                ]
                 }
               }
   
