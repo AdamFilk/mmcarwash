@@ -7,7 +7,7 @@ const
   requestify = require('requestify'),
   app = express().use(bodyParser.json()); // creates express http server
 
-  const pageaccesstoken = 'EAAKGyWXj6KABAEWctoGADzQgZBCKmpqfhcxPYqvasGphAK6CYjuvc42ZCnHZBCjC6tqKGZAotsjKadLyRK0iX6qxI8kBDwPyTInwV17umvWBZC1mUa5m0ofKpZA8h2rrUA1qql9BI8F10N9BmaBDeqVW0U5yZB8vVizzwTaHsf7qMFsOqlSWuXdI8l7CRbJkh8ZD'
+  const pageaccesstoken = 'EAAKGyWXj6KABAEWctoGADzQgZBCK mpqfhcxPYqvasGphAK6CYjuvc42ZCnHZBCjC6tqKGZAotsjKadLyRK0iX6qxI8kBDwPyTInwV17umvWBZC1mUa5m0ofKpZA8h2rrUA1qql9BI8F10N9BmaBDeqVW0U5yZB8vVizzwTaHsf7qMFsOqlSWuXdI8l7CRbJkh8ZD'
 
   requestify.post(`https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageaccesstoken}`, 
   {
@@ -88,7 +88,7 @@ app.post('/webhook', (req, res) => {
               "id":webhook_event.sender.id
             },
             "message":{
-              "text":"Hello, Welcome to MM Carwash!"
+              "text":"Hi! Welcome from MM Car Wash. Tired of cleaning your car by yourself and don't want to go to the car wash service? Here we send our cleaners on bicycles to clean your car shine. You just need to book an appointment and they'll be on the way:grin:"
             }
           }
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
@@ -98,6 +98,34 @@ app.post('/webhook', (req, res) => {
           }).fail(error=> {
             console.log(error)
           })
+        }
+        let genericMessage = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachement":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "element":[{
+
+                
+                  "title":":bike: :bike: :bike:",
+                  "subtitle":"",
+                  "image":"https://focus2move.com/wp-content/uploads/2019/10/Tesla-Model3_2019.jpg",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Book Car Wash"
+                    }
+                  ]
+
+                }]
+              }
+            }
+
+          }
         }  
       });
   
