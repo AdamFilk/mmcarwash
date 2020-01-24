@@ -92,6 +92,7 @@ app.post('/webhook', (req, res) => {
             }
           }
         }
+
         let genericMessage = {
           "recipient":{
             "id": webhook_event.sender.id
@@ -101,12 +102,12 @@ app.post('/webhook', (req, res) => {
               "type":"template",
               "payload":{
                 "template_type":"generic",
-                "element":[{
+                "elements":[{
 
                 
                   "title":":bike: :bike: :bike:",
                   "subtitle":"",
-                  "image":"https://focus2move.com/wp-content/uploads/2019/10/Tesla-Model3_2019.jpg",
+                  "image_url":"https://focus2move.com/wp-content/uploads/2019/10/Tesla-Model3_2019.jpg",
                   "buttons":[
                     {
                       "type":"postback",
