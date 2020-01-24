@@ -192,7 +192,7 @@ app.post('/webhook', (req, res) => {
         }
 
         //star of small
-        if (userButton == 'bcw'){
+        if (userButton == 's'){
 
           let genericMessage = {
             "recipient":{
