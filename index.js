@@ -242,8 +242,107 @@ app.post('/webhook', (req, res) => {
         }
         //end of samll 
           
-       
-        
+       //start of medium
+       if (userButton == 'm'){
+
+        let genericMessage = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Price for the small car is 3000ks haven't included transport fees.",
+                  "subtitle":"Please choose which part of your car you want to clean?",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"interior",
+                      "payload":"int2"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"exterior",
+                      "payload":"ext2"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"both",
+                      "payload":"bo2"
+                    }
+                  ]
+
+                }
+              ]
+              }
+            }
+
+          }
+        }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      }
+       //end of medium 
+      
+       //stat of large
+       if (userButton == 'l'){
+
+        let genericMessage = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Price for the small car is 3000ks haven't included transport fees.",
+                  "subtitle":"Please choose which part of your car you want to clean?",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"interior",
+                      "payload":"int3"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"exterior",
+                      "payload":"ext3"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"both",
+                      "payload":"bo3"
+                    }
+                  ]
+
+                }
+              ]
+              }
+            }
+
+          }
+        }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      } 
+       //end of large 
        
 
       });
