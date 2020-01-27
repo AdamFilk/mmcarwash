@@ -104,7 +104,7 @@ app.post('/webhook', (req, res) => {
                     {
                       //star book
                   
-                    "title":":",
+                    "title":"🚲 🚲 🚲",
                     "subtitle":"",
                     "image_url":"https://focus2move.com/wp-content/uploads/2019/10/Tesla-Model3_2019.jpg",
                     "buttons":[
@@ -307,7 +307,7 @@ app.post('/webhook', (req, res) => {
                 "template_type":"generic",
                 "elements":[
                   {
-                  "title":"Price for the small car is 3000ks haven't included transport fees.",
+                  "title":"Price for the small car is 3000ks haven't included transport fees.",  
                   "subtitle":"Please choose which part of your car you want to clean?",
                   "buttons":[
                     {
