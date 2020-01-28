@@ -346,18 +346,21 @@ app.post('/webhook', (req, res) => {
             userName.unshift(response.first_name) 
            })
           if(userButton.includes('wl_')){
+            var title = 'Waterless Wash'
             var text = "Waterless washing method do not use water but it uses an organic and chemical liquids in a spray bottle to clean your glasses and wax your car. It can remove most stains and bird poops. But it can't handle heavy mud or dirt stains which require intense scrubbing" //waterless
             var image = 'https://image.shutterstock.com/image-vector/waterless-car-wash-260nw-1353847511.jpg' //waterless
             var rollback = userButton.split('_')
           rollback.shift()
           rollback = rollback.join('_')
           }else if(userButton.includes('hw_')){
+            var title = 'Handwash'
             var text = 'Handwash is a very traditional and common way to cleaning and washing your car. It only requires car washing soaps and uses the water which you will need to provide. It is effective for intense scrub downs of mud and dirt stains' //handwash
             var image = 'https://st2.depositphotos.com/1001951/7088/i/450/depositphotos_70888985-stock-photo-man-worker-washing-cars-alloy.jpg' //handwash
             var rollback = userButton.split('_')
           rollback.shift()
           rollback = rollback.join('_')
           }else {
+            var title = 'Waterless wash'
             var text = "Waterless washing method do not use water but it uses an organic and chemical liquids in a spray bottle to clean your glasses and wax your car. It can remove most stains and bird poops. But it can't handle heavy mud or dirt stains which require intense scrubbing" //waterless
             var image = 'https://image.shutterstock.com/image-vector/waterless-car-wash-260nw-1353847511.jpg' //waterless
             var rollback = userButton.split('_')
@@ -385,13 +388,13 @@ app.post('/webhook', (req, res) => {
                     {
                       //star book
                   
-                    "title":"provide water",
+                    "title":title,
+                    "image_url": image,
                     "buttons":[
                       {
                         "type":"web_url",
                         "title":"Yes",
                         "url": `mmcarwash.herokuapp.com/wash/${userButton}/${userName.join(' ')}`,
-                        "img-url":image,
                         "webview_height_ratio":"tall"
                       },
                       {
