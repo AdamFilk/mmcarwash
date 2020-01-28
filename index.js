@@ -9,29 +9,33 @@ const
 
   const pageaccesstoken = 'EAAKGyWXj6KABAEWctoGADzQgZBCK mpqfhcxPYqvasGphAK6CYjuvc42ZCnHZBCjC6tqKGZAotsjKadLyRK0iX6qxI8kBDwPyTInwV17umvWBZC1mUa5m0ofKpZA8h2rrUA1qql9BI8F10N9BmaBDeqVW0U5yZB8vVizzwTaHsf7qMFsOqlSWuXdI8l7CRbJkh8ZD'
 
-  requestify.post(`https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageaccesstoken}`, 
-  {
-    "get_started": {
-      "payload": "Hi"
-    },
-    "greeting": [
-      {
-        "locale":"default",
-        "text":"Hello {{user_first_name}}!" 
-      }, {
-        "locale":"en_US",
-        "text":"Timeless apparel for the masses."
-      }
-    ]
-  }
-).then( response => {
-  console.log(response)
-}).fail( error => {
-  console.log(error)
-})
 
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
+
+app.set('view engine', 'ejs');
+app.set('views', __dirname+'/views');
+
+app.get('/wash/:params/:name', (req, res) => {
+  var name = req.params.name;
+  var date = new Date();
+  var time = `${date.getHours}:${date.getMinutes}:${date.getSeconds}`
+  date = `${date.getDate}/${date.getMonth+1}/${date.getFullYear}`
+  var link = req.params.params
+  var usersettings = link.split('_')
+  if(link.includes('wl_') || link.includes('hw_')){
+    var washtype = usersettings[0];
+    var water = usersettings[1];
+    var mode = usersettings[2];
+    var carsize = usersettings[3] 
+  }else{
+    var washtype = 'wl';
+    var water = usersettings[0];
+    var mode = usersettings[1];
+    var carsize = usersettings[2]
+  }
+  res.render('index', {name: name, washtype: washtype, water: water, mode: mode, carsize: carsize, date: date, time: time})
+})
 
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
@@ -191,8 +195,7 @@ app.post('/webhook', (req, res) => {
           //end of choose one
         }
 
-        //star of small
-        if (userButton == 's'){
+        if (userButton == 's' || userButton == 'm' || userButton == 'l'){
 
           let genericMessage = {
             "recipient":{
@@ -205,22 +208,24 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                    "title":"Please choose which part of your car you want to clean?",
+                      //star book
+                  
+                    "title":"please choose interior/exterior ?",
                     "buttons":[
                       {
                         "type":"postback",
-                        "title":"interior",
-                        "payload":"int1"
+                        "title":"Interior",
+                        "payload":`int_${userButton}`
                       },
                       {
                         "type":"postback",
-                        "title":"exterior",
-                        "payload":"ext1"
+                        "title":"Exterior",
+                        "payload":`ext_${userButton}`
                       },
                       {
                         "type":"postback",
-                        "title":"both",
-                        "payload":"bo1"
+                        "title":"Both",
+                        "payload":`both_${userButton}`
                       }
                     ]
   
@@ -238,326 +243,181 @@ app.post('/webhook', (req, res) => {
         }).fail(error=> {
           console.log(error)
         })
+          //end of choose one
         }
-        //end of samll 
-          
-       //start of medium
-       if (userButton == 'm'){
 
-        let genericMessage = {
-          "recipient":{
-            "id": webhook_event.sender.id
-          },
-          "message":{
-            "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"generic",
-                "elements":[
-                  {
-                  "title":"Price for the small car is 3000ks haven't included transport fees.",
-                  "subtitle":"Please choose which part of your car you want to clean?",
-                  "buttons":[
-                    {
-                      "type":"postback",
-                      "title":"interior",
-                      "payload":"int2"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"exterior",
-                      "payload":"ext2"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"both",
-                      "payload":"bo2"
-                    }
-                  ]
+        if (userButton == 'int_s'|| userButton == 'ext_s' || userButton == 'both_s' || userButton == 'int_m'|| userButton == 'ext_m' || userButton == 'both_m' || userButton == 'int_l'|| userButton == 'ext_l' || userButton == 'both_l'){
 
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      //star book
+                  
+                    "title":"provide water",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"Yes",
+                        "payload":`y_${userButton}`
+                      },
+                      {
+                        "type":"postback",
+                        "title":"No",
+                        "payload":`n_${userButton}`
+                      }
+                    ]
+  
+                  }
+                ]
                 }
-              ]
               }
+  
             }
-
           }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        genericMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+          //end of choose one
         }
-        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-      genericMessage
-      ).then(response=>{
-        console.log(response)
-      }).fail(error=> {
-        console.log(error)
-      })
-      }
-       //end of medium 
-      
-       //stat of large
-       if (userButton == 'l'){
 
-        let genericMessage = {
-          "recipient":{
-            "id": webhook_event.sender.id
-          },
-          "message":{
-            "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"generic",
-                "elements":[
-                  {
-                  "title":"Price for the small car is 3000ks haven't included transport fees.",  
-                  "subtitle":"Please choose which part of your car you want to clean?",
-                  "buttons":[
-                    {
-                      "type":"postback",
-                      "title":"interior",
-                      "payload":"int3"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"exterior",
-                      "payload":"ext3"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"both",
-                      "payload":"bo3"
-                    }
-                  ]
+        if (userButton == 'y_int_s'|| userButton == 'y_ext_s' || userButton == 'y_both_s' || userButton == 'y_int_m'|| userButton == 'y_ext_m' || userButton == 'y_both_m' || userButton == 'y_int_l'|| userButton == 'y_ext_l' || userButton == 'y_both_l' || userButton == 'n_int_s'|| userButton == 'n_ext_s' || userButton == 'n_both_s' || userButton == 'n_int_m'|| userButton == 'n_ext_m' || userButton == 'n_both_m' || userButton == 'n_int_l'|| userButton == 'n_ext_l' || userButton == 'n_both_l'){
 
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      //star book
+                  
+                    "title":"provide water",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"Waterless wash",
+                        "payload":`wl_${userButton}`
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Handwash",
+                        "payload":`hw_${userButton}`
+                      }
+                    ]
+  
+                  }
+                ]
                 }
-              ]
               }
+  
             }
-
           }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        genericMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+          //end of choose one
         }
-        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-      genericMessage
-      ).then(response=>{
-        console.log(response)
-      }).fail(error=> {
-        console.log(error)
-      })
-      } 
-       //end of large 
-       //start of wreq1
-       if (userButton == 'int1'){
 
-        let genericMessage = {
-          "recipient":{
-            "id": webhook_event.sender.id
-          },
-          "message":{
-            "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"generic",
-                "elements":[
-                  {
-                  "title":"Will you be able to provide water",  
-                  "subtitle":"As in water buckets,hoes or pipes",
-                  "buttons":[
+        if (userButton == 'wl_y_int_s'|| userButton == 'wl_y_ext_s' || userButton == 'wl_y_both_s' || userButton == 'wl_y_int_m'|| userButton == 'wl_y_ext_m' || userButton == 'wl_y_both_m' || userButton == 'wl_y_int_l'|| userButton == 'wl_y_ext_l' || userButton == 'wl_y_both_l' || userButton == 'n_int_s'|| userButton == 'n_ext_s' || userButton == 'n_both_s' || userButton == 'n_int_m'|| userButton == 'n_ext_m' || userButton == 'n_both_m' || userButton == 'n_int_l'|| userButton == 'n_ext_l' || userButton == 'n_both_l' || userButton == 'hw_y_int_s'|| userButton == 'hw_y_ext_s' || userButton == 'hw_y_both_s' || userButton == 'hw_y_int_m'|| userButton == 'hw_y_ext_m' || userButton == 'hw_y_both_m' || userButton == 'hw_y_int_l'|| userButton == 'hw_y_ext_l' || userButton == 'hw_y_both_l'){
+          var userName = [] 
+          requestify.get(`https://graph.facebook.com/<PSID>?fields=first_name,last_name&access_token=${pageaccesstoken}`).then(success=>{
+            response = success.getBody();
+            userName.push(response.last_name)
+            userName.unshift(response.first_name) 
+           })
+          if(userButton.includes('wl_')){
+            var text = '' //waterless
+            var image = '' //waterless
+            var rollback = userButton.split('_')
+          rollback.shift()
+          rollback = rollback.join('_')
+          }else if(userButton.includes('hw_')){
+            var text = '' //handwash
+            var image = '' //handwash
+            var rollback = userButton.split('_')
+          rollback.shift()
+          rollback = rollback.join('_')
+          }else {
+            var text = '' //waterless
+            var image = '' //waterless
+            var rollback = userButton.split('_')
+          rollback.shift()
+          rollback = rollback.join('_')
+          }
+          let textMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text": text
+            }
+          };
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
                     {
-                      "type":"postback",
-                      "title":"Yes",
-                      "payload":"y1"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"No",
-                      "payload":"n1"
-                    },
-                  ]
-
+                      //star book
+                  
+                    "title":"provide water",
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "title":"Yes",
+                        "url": `mmcarwash.herokuapp.com/wash/${userButton}/${userName.join(' ')}`,
+                        "webview_height_ratio":"tall"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"No",
+                        "payload":`${rollback}`
+                      }
+                    ]
+  
+                  }
+                ]
                 }
-              ]
               }
+  
             }
-
           }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        textMessage
+        ).then(response=>{
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          )
+        }).fail(error=> {
+          console.log(error)
+        })
+          //end of choose one
         }
-        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-      genericMessage
-      ).then(response=>{
-        console.log(response)
-      }).fail(error=> {
-        console.log(error)
-      })
-      } 
-      //start of the ChooseCarwashMethod
-      if (userButton == 'y1'){
-
-        let genericMessage = {
-          "recipient":{
-            "id": webhook_event.sender.id
-          },
-          "message":{
-            "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"generic",
-                "elements":[
-                  {
-                  "title":"Choose which type of washing method you prefer.",  
-                  "subtitle":"Don't worry!! We'll tell you about them!",
-                  "image_url":"https://thewashingtonnote.com/wp-content/uploads/2017/02/Car-Wash-Soap-scaled-1-696x464.jpg",
-                  "buttons":[
-                    {
-                      "type":"postback",
-                      "title":"Waterless Wash",
-                      "payload":"wtl1"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"Handwash",
-                      "payload":"hw1"
-                    },
-
-                  ]
-
-                }
-              ]
-              }
-            }
-
-          }
-        }
-        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-      genericMessage
-      ).then(response=>{
-        console.log(response)
-      }).fail(error=> {
-        console.log(error)
-      })
-      } 
-      //end of the ChooseCarwashMethod
-      //start of the waterless
-      if (userButton == 'wtl1'){
-        let welcomeMessage = {
-          "recipient":{
-            "id":webhook_event.sender.id
-          },
-          "message":{
-            "text":"Waterless washing method do not use water but it uses an organic and chemical liquids in a spray bottle to clean your glasses and wax your car. It can remove most stains and bird poops. But it can't handle heavy mud or dirt stains which require intense scrubbing"
-          }
-        };
-        let genericMessage = {
-          "recipient":{
-            "id": webhook_event.sender.id
-          },
-          "message":{
-            "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"generic",
-                "elements":[
-                  {
-                  "title":"Do you want to use waterless washing method?",  
-                  "subtitle":"Click 'yes' to continue booking",
-                  "image_url":"https://image.shutterstock.com/image-vector/waterless-car-wash-260nw-1353847511.jpg",
-                  "buttons":[
-                    {
-                      "type":"postback",
-                      "title":"Yes",
-                      "payload":"yes1"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"No",
-                      "payload":"no1"
-                    },
-
-                  ]
-
-                }
-              ]
-              }
-            }
-
-          }
-        }
-        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-      welcomeMessage
-      ).then(response=>{
-        console.log(response)
-      }).fail(error=> {
-        console.log(error)
-      })
-      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-      genericMessage
-      ).then(response=>{
-        console.log(response)
-      }).fail(error=> {
-        console.log(error)
-      })
-      } 
-
-      //end of the waterless
-      //start of handwash
-      if (userButton == 'hw1'){
-        let welcomeMessage = {
-          "recipient":{
-            "id":webhook_event.sender.id
-          },
-          "message":{
-            "text":"Handwash is a very traditional and common way to cleaning and washing your car. It only requires car washing soaps and uses the water which you will need to provide. It is effective for intense scrub downs of mud and dirt stains"
-          }
-        };
-        let genericMessage = {
-          "recipient":{
-            "id": webhook_event.sender.id
-          },
-          "message":{
-            "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"generic",
-                "elements":[
-                  {
-                  "title":"Do you want to use handwash method?",  
-                  "subtitle":"Click 'yes' to continue booking",
-                  "image_url":"https://images.theconversation.com/files/76578/original/image-20150331-1231-1ttwii6.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip",
-                  "buttons":[
-                    {
-                      "type":"postback",
-                      "title":"Yes",
-                      "payload":"yes1"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"No",
-                      "payload":"no1"
-                    },
-
-                  ]
-
-                }
-              ]
-              }
-            }
-
-          }
-        }
-        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-      welcomeMessage
-      ).then(response=>{
-        console.log(response)
-      }).fail(error=> {
-        console.log(error)
-      })
-      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-      genericMessage
-      ).then(response=>{
-        console.log(response)
-      }).fail(error=> {
-        console.log(error)
-      })
-      } 
-      //end of handwash
-
-
 
 
 
