@@ -401,8 +401,9 @@ app.post('/webhook', (req, res) => {
                 "template_type":"generic",
                 "elements":[
                   {
-                  "title":"Choose which type of washing method you prefer",  
+                  "title":"Choose which type of washing method you prefer.",  
                   "subtitle":"Don't worry!! We'll tell you about them!",
+                  "image_url":"https://thewashingtonnote.com/wp-content/uploads/2017/02/Car-Wash-Soap-scaled-1-696x464.jpg",
                   "buttons":[
                     {
                       "type":"postback",
@@ -414,6 +415,7 @@ app.post('/webhook', (req, res) => {
                       "title":"Handwash",
                       "payload":"hw1"
                     },
+
                   ]
 
                 }
