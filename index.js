@@ -496,6 +496,67 @@ app.post('/webhook', (req, res) => {
       } 
 
       //end of the waterless
+      //start of handwash
+      if (userButton == 'hw1'){
+        let welcomeMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "text":"Handwash is a very traditional and common way to cleaning and washing your car. It only requires car washing soaps and uses the water which you will need to provide. It is effective for intense scrub downs of mud and dirt stains"
+          }
+        };
+        let genericMessage = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Do you want to use handwash method?",  
+                  "subtitle":"Click 'yes' to continue booking",
+                  "image_url":"https://images.theconversation.com/files/76578/original/image-20150331-1231-1ttwii6.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Yes",
+                      "payload":"yes1"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"No",
+                      "payload":"no1"
+                    },
+
+                  ]
+
+                }
+              ]
+              }
+            }
+
+          }
+        }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      welcomeMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      } 
+      //end of handwash
 
 
 
