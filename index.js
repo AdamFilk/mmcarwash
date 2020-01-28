@@ -420,6 +420,8 @@ app.post('/webhook', (req, res) => {
           }).fail(error=> {
             console.log(error)
           }) 
+           }).catch(error=>{
+             console.log(error)
            })
           
           //end of choose one
