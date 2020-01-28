@@ -444,9 +444,50 @@ app.post('/webhook', (req, res) => {
             "text":"Waterless washing method do not use water but it uses an organic and chemical liquids in a spray bottle to clean your glasses and wax your car. It can remove most stains and bird poops. But it can't handle heavy mud or dirt stains which require intense scrubbing"
           }
         };
-        
+        let genericMessage = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Do you want to use waterless washing method?",  
+                  "subtitle":"Click 'yes' to continue booking",
+                  "image_url":"https://thewashingtonnote.com/wp-content/uploads/2017/02/Car-Wash-Soap-scaled-1-696x464.jpg",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Yes",
+                      "payload":"yes1"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"No",
+                      "payload":"no1"
+                    },
+
+                  ]
+
+                }
+              ]
+              }
+            }
+
+          }
+        }
         requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
       welcomeMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
       ).then(response=>{
         console.log(response)
       }).fail(error=> {
