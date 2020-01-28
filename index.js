@@ -457,7 +457,7 @@ app.post('/webhook', (req, res) => {
                   {
                   "title":"Do you want to use waterless washing method?",  
                   "subtitle":"Click 'yes' to continue booking",
-                  "image_url":"https://thewashingtonnote.com/wp-content/uploads/2017/02/Car-Wash-Soap-scaled-1-696x464.jpg",
+                  "image_url":"https://image.shutterstock.com/image-vector/waterless-car-wash-260nw-1353847511.jpg",
                   "buttons":[
                     {
                       "type":"postback",
