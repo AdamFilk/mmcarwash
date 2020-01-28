@@ -387,7 +387,51 @@ app.post('/webhook', (req, res) => {
         console.log(error)
       })
       } 
+      //start of the ChooseCarwashMethod
+      if (userButton == 'y1'){
 
+        let genericMessage = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Choose which type of washing method you prefer",  
+                  "subtitle":"Don't worry!! We'll tell you about them!",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Waterless Wash",
+                      "payload":"wtl1"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Handwash",
+                      "payload":"hw1"
+                    },
+                  ]
+
+                }
+              ]
+              }
+            }
+
+          }
+        }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      } 
+      //end of the ChooseCarwashMethod
 
 
 
