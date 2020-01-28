@@ -434,6 +434,28 @@ app.post('/webhook', (req, res) => {
       })
       } 
       //end of the ChooseCarwashMethod
+      //start of the waterless
+      if (userButton == 'wtl1'){
+        let welcomeMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "text":"Waterless washing method do not use water but it uses an organic and chemical liquids in a spray bottle to clean your glasses and wax your car. It can remove most stains and bird poops. But it can't handle heavy mud or dirt stains which require intense scrubbing"
+          }
+        };
+        
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      welcomeMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      } 
+
+      //end of the waterless
+
 
 
 
