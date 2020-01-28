@@ -205,8 +205,7 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                    "title":"Price for the small car is 3000ks haven't included transport fees.",
-                    "subtitle":"Please choose which part of your car you want to clean?",
+                    "title":"Please choose which part of your car you want to clean?",
                     "buttons":[
                       {
                         "type":"postback",
