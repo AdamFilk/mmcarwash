@@ -341,7 +341,7 @@ app.post('/webhook', (req, res) => {
         if (userButton == 'wl_y_int_s'|| userButton == 'wl_y_ext_s' || userButton == 'wl_y_both_s' || userButton == 'wl_y_int_m'|| userButton == 'wl_y_ext_m' || userButton == 'wl_y_both_m' || userButton == 'wl_y_int_l'|| userButton == 'wl_y_ext_l' || userButton == 'wl_y_both_l' || userButton == 'n_int_s'|| userButton == 'n_ext_s' || userButton == 'n_both_s' || userButton == 'n_int_m'|| userButton == 'n_ext_m' || userButton == 'n_both_m' || userButton == 'n_int_l'|| userButton == 'n_ext_l' || userButton == 'n_both_l' || userButton == 'hw_y_int_s'|| userButton == 'hw_y_ext_s' || userButton == 'hw_y_both_s' || userButton == 'hw_y_int_m'|| userButton == 'hw_y_ext_m' || userButton == 'hw_y_both_m' || userButton == 'hw_y_int_l'|| userButton == 'hw_y_ext_l' || userButton == 'hw_y_both_l'){
           var userName = [] 
           requestify.get(`https://graph.facebook.com/${webhook_event.sender.id}?fields=first_name,last_name&access_token=${pageaccesstoken}`).then(function(success){
-            response = success.getBody();
+            var response = success.getBody();
             console.log(response)
             userName.push(response.first_name);
             userName.push(response.last_name);
