@@ -88,7 +88,7 @@ app.post('/webhook', (req, res) => {
               "id":webhook_event.sender.id
             },
             "message":{
-              "text":"Hi! Welcome from MM Car Wash. Tired of cleaning your car by yourself and don't want to go to the car wash service? Here we send our cleaners on bicycles to clean your car shine. You just need to book an appointment and they'll be on the way:grin:"
+              "text":"Hi! Welcome from MM Car Wash. Tired of cleaning your car by yourself and don't want to go to the car wash service? Here we send our cleaners on bicycles to clean your car shine. You just need to book an appointment and they'll be on the way 😄😄😄"
             }
           };
           let genericMessage = {
