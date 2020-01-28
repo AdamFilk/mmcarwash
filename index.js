@@ -343,7 +343,63 @@ app.post('/webhook', (req, res) => {
       })
       } 
        //end of large 
-       
+       //start of wreq1
+       if (userButton == 'int1'){
+
+        let genericMessage = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Will you be able to provide water",  
+                  "subtitle":"As in water buckets,hoes or pipes",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Yes",
+                      "payload":"y1"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"No",
+                      "payload":"n1"
+                    },
+                  ]
+
+                }
+              ]
+              }
+            }
+
+          }
+        }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      } 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       });
   
