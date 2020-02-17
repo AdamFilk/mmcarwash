@@ -37,6 +37,7 @@ app.get('/wash/:params/:name', (req, res) => {
   res.render('index', {name: name, washtype: washtype, water: water, mode: mode, carsize: carsize, date: date, time: time})
 })
 
+let userOrder = {};
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
 
@@ -117,6 +118,11 @@ app.post('/webhook', (req, res) => {
                         "title":"Book Car Wash",
                         "payload":"bcw"
                       }
+                      {
+                        "type":"postback",
+                        "title":"Check Prices",
+                        "payload":"prices"
+                      }
                     ]
   
                   }
@@ -142,7 +148,56 @@ app.post('/webhook', (req, res) => {
         })
         }
         //end of book 
+        //start check price
+        //small price
+        if (userButton == 'prices'){
 
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                  
+                    "title":"Small",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"Interior",
+                        "payload":"s_int_price"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Exterior",
+                        "payload":"s_ext_price"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Both",
+                        "payload":"both_price"
+                      }
+                    ]
+  
+                  }
+                ]
+                }
+              }
+  
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        genericMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+        //end check price
         //start of choose one
         if (userButton == 'bcw'){
 
@@ -196,6 +251,12 @@ app.post('/webhook', (req, res) => {
         }
 
         if (userButton == 's' || userButton == 'm' || userButton == 'l'){
+
+          if(userButton == 's'){
+            userOrder.car = 's';
+          }else if(userButton == 'm'){
+            userOrder.car = 'm';
+          }
 
           let genericMessage = {
             "recipient":{
