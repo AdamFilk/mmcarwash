@@ -150,7 +150,7 @@ app.post('/webhook', (req, res) => {
         }
         //end of book 
         //start check price
-        //small price
+        //price
         if (userButton == 'prices'){
 
           let genericMessage = {
@@ -166,21 +166,38 @@ app.post('/webhook', (req, res) => {
                     {
                   
                     "title":"Small",
+                    "image_url":"https://d1arsn5g9mfrlq.cloudfront.net/sites/default/files/resize/remote/71e6e35213a4e87abed4dc1620a3fd11-720x463.jpg",
                     "buttons":[
                       {
                         "type":"postback",
-                        "title":"Interior",
-                        "payload":"s_int_price"
-                      },
+                        "title":"View Prices",
+                        "payload":"s_v_price"
+                      }
+                    ]
+  
+                  },
+                  {
+                  
+                    "title":"Medium",
+                    "image_url":"https://www.autodevot.com/wp-content/uploads/2018/06/15th-generation-2018-Toyota-Crown.jpg",
+                    "buttons":[
                       {
                         "type":"postback",
-                        "title":"Exterior",
-                        "payload":"s_ext_price"
-                      },
+                        "title":"View Prices",
+                        "payload":"m_v_price"
+                      }
+                    ]
+  
+                  },
+                  {
+                  
+                    "title":"Large",
+                    "image_url":"https://static.bangkokpost.com/media/content/20190417/3164476.jpg",
+                    "buttons":[
                       {
                         "type":"postback",
-                        "title":"Both",
-                        "payload":"both_price"
+                        "title":"View Prices",
+                        "payload":"l_v_price"
                       }
                     ]
   
