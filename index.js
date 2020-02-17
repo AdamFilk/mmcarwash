@@ -117,7 +117,8 @@ app.post('/webhook', (req, res) => {
                         "type":"postback",
                         "title":"Book Car Wash",
                         "payload":"bcw"
-                      }
+                      },
+                
                       {
                         "type":"postback",
                         "title":"Check Prices",
@@ -197,6 +198,8 @@ app.post('/webhook', (req, res) => {
         }).fail(error=> {
           console.log(error)
         })
+          //end of choose one
+        }
         //end check price
         //start of choose one
         if (userButton == 'bcw'){
