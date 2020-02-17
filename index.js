@@ -221,7 +221,7 @@ app.post('/webhook', (req, res) => {
         //start small price
         if (userButton == 's_v_price'){
 
-          let welcomeMessage = {
+          let textMessage = {
             "recipient":{
               "id":webhook_event.sender.id
             },
@@ -230,7 +230,7 @@ app.post('/webhook', (req, res) => {
             }
           };
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        genericMessage
+        textMessage
         ).then(response=>{
           console.log(response)
         }).fail(error=> {
