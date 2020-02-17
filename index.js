@@ -226,7 +226,7 @@ app.post('/webhook', (req, res) => {
               "id":webhook_event.sender.id
             },
             "message":{
-              "text":"Interior: 4000Ks, \n Exterior: 3000Ks,\n Both: 6000Ks"
+              "text":"The prices for small size car are:\nInterior: 4000Ks,\nExterior: 3000Ks,\nBoth: 6000Ks"
             }
           };
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
@@ -239,6 +239,48 @@ app.post('/webhook', (req, res) => {
           //end of choose one
         }
         //end of small price
+        //start medium price
+        if (userButton == 'm_v_price'){
+
+          let textMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text":"The prices for medium size car are:\nInterior: 5000Ks,\nExterior: 4000Ks,\nBoth: 7000Ks"
+            }
+          };
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        textMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+          //end of choose one
+        }
+        //end of medium price
+        //start large price
+        if (userButton == 'l_v_price'){
+
+          let textMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text":"The prices for large size car are:\nInterior: 6000Ks,\nExterior: 5000Ks,\nBoth: 10000Ks"
+            }
+          };
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        textMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+          //end of choose one
+        }
+        //end of large price
         //start of choose one
         if (userButton == 'bcw'){
 
