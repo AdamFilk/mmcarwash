@@ -218,6 +218,27 @@ app.post('/webhook', (req, res) => {
           //end of choose one
         }
         //end check price
+        //start small price
+        if (userButton == 's_v_price'){
+
+          let welcomeMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text":"Interior: 4000Ks, \n Exterior: 3000Ks,\n Both: 6000Ks"
+            }
+          };
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        genericMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+          //end of choose one
+        }
+        //end of small price
         //start of choose one
         if (userButton == 'bcw'){
 
