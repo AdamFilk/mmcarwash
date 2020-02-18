@@ -296,8 +296,6 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                      //star menu
-                  
                     "title":"Menu",
                     "buttons":[
                       {
@@ -307,10 +305,7 @@ app.post('/webhook', (req, res) => {
                       },
                     ]
   
-                  }
-                ],
-
-                "elements":[
+                  },
                   {
                   "title":"Menu",
                   "buttons":[
@@ -322,7 +317,7 @@ app.post('/webhook', (req, res) => {
                   ]
 
                 }
-              ]
+                ],
                 
                 }
               }
