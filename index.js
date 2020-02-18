@@ -337,7 +337,55 @@ app.post('/webhook', (req, res) => {
         })
           //end of choose one
         }
+        //end of start booking
+        //start of washpkg
+        if (userButton == 'wpkg_view'){
 
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Wash Packages",
+                    "subtitle":"Packages for car wash",
+                    "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"Waterless Wash",
+                        "payload":"wtlw"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Hand Wash",
+                        "payload":"hndw"
+                      },
+                    ]
+  
+                  },
+                ],
+                
+                }
+              }
+  
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        genericMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+          //end of choose one
+        }
+        //end of washpkg
         if (userButton == 's' || userButton == 'm' || userButton == 'l'){
 
           if(userButton == 's'){
