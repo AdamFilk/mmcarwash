@@ -296,27 +296,27 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                    "title":"Menu",
+                    "title":"Wash Packages",
                     "subtitle":"Packages for car wash",
                     "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
                     "buttons":[
                       {
                         "type":"postback",
-                        "title":"Wash Packages",
-                        "payload":"wash_pkg"
+                        "title":"View",
+                        "payload":"wpkg_view"
                       },
                     ]
   
                   },
                   {
-                  "title":"Menu",
+                  "title":"Services",
                   "subtitle":"Browse Services",
                   "image_url":"https://www.logolynx.com/images/logolynx/e2/e21e3a4ae48ffb730a90fa51c63766d5.png",
                   "buttons":[
                     {
                       "type":"postback",
-                      "title":"Services",
-                      "payload":"service"
+                      "title":"View",
+                      "payload":"service_view"
                     },
                   ]
 
