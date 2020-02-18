@@ -297,7 +297,7 @@ app.post('/webhook', (req, res) => {
                   "elements":[
                     {
                     "title":"Menu",
-                    "sub_title":"Packages for car wash",
+                    "subtitle":"Packages for car wash",
                     "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
                     "buttons":[
                       {
@@ -310,7 +310,7 @@ app.post('/webhook', (req, res) => {
                   },
                   {
                   "title":"Menu",
-                  "sub_title":"Browse Services",
+                  "subtitle":"Browse Services",
                   "image_url":"https://www.logolynx.com/images/logolynx/e2/e21e3a4ae48ffb730a90fa51c63766d5.png",
                   "buttons":[
                     {
