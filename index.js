@@ -352,23 +352,46 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                    "title":"Wash Packages",
-                    "subtitle":"Packages for car wash",
-                    "image_url":"https://lh3.googleusercontent.com/proxy/qxAWmnL_mzZ8QuGx0mqkhYw8O64QWTPh7LMS28aC-41uPMRIhI3g1QcBOlOqWA7HHC0J6VZfGUVxXxcJMBFDF6OZ9Ww9gw-H1ufn0SjxnlqmmVDLOjnd_w0k5c-UWVPbhZxbYVV0NqY_",
+                    "title":"Hand Wash",
+                    "subtitle":"Hand Wash Packages",
+                    "image_url":"https://st2.depositphotos.com/1001951/7088/i/450/depositphotos_70888985-stock-photo-man-worker-washing-cars-alloy.jpg",
                     "buttons":[
                       {
                         "type":"postback",
-                        "title":"Waterless Wash",
-                        "payload":"wtlw"
+                        "title":"Basic Hand Wash",
+                        "payload":"bhw"
                       },
                       {
                         "type":"postback",
-                        "title":"Hand Wash",
-                        "payload":"hndw"
+                        "title":"Shining Hand Wash",
+                        "payload":"sbhw"
                       },
                     ]
   
                   },
+                  {
+                  "title":"Waterless Wash",
+                  "subtitle":"Waterless Wash Packages",
+                  "image_url":"https://image.shutterstock.com/image-vector/waterless-car-wash-260nw-1353847511.jpg",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Interior",
+                      "payload":"int_wtl"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Exterior",
+                      "payload":"ext_wtl"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"both",
+                      "payload":"both_wtl"
+                    },
+                  ]
+
+                }
                 ],
                 
                 }
