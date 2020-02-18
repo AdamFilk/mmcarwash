@@ -93,7 +93,7 @@ app.post('/webhook', (req, res) => {
               "id":webhook_event.sender.id
             },
             "message":{
-              "text":"Hi! Welcome from MM Car Wash. Tired of cleaning your car by yourself and don't want to go to the car wash service? Here we send our cleaners on bicycles to clean your car shine. You just need to book an appointment and they'll be on the way 😄😄😄"
+              "text":"Hi! Welcome from MM Car Wash 😄😄😄"
             }
           };
           let genericMessage = {
@@ -109,8 +109,8 @@ app.post('/webhook', (req, res) => {
                     {
                       //star book
                   
-                    "title":"🚲 🚲 🚲",
-                    "subtitle":"",
+                    "title":"🚲MM Carwash🚲",
+                    "subtitle":"Choose one",
                     "image_url":"https://focus2move.com/wp-content/uploads/2019/10/Tesla-Model3_2019.jpg",
                     "buttons":[
                       {
@@ -297,7 +297,7 @@ app.post('/webhook', (req, res) => {
                     {
                       //star book
                   
-                    "title":"please choose the size of your car!",
+                    "title":"Please select the size of your car",
                     "buttons":[
                       {
                         "type":"postback",
