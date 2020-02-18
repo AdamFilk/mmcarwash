@@ -115,7 +115,7 @@ app.post('/webhook', (req, res) => {
                     "buttons":[
                       {
                         "type":"postback",
-                        "title":"Book Car Wash",
+                        "title":"Start Booking",
                         "payload":"bcw"
                       },
                 
@@ -281,7 +281,8 @@ app.post('/webhook', (req, res) => {
           //end of choose one
         }
         //end of large price
-        //start of choose one
+
+        //start of menu
         if (userButton == 'bcw'){
 
           let genericMessage = {
@@ -295,29 +296,34 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                      //star book
+                      //star menu
                   
-                    "title":"Please select the size of your car",
+                    "title":"Menu",
                     "buttons":[
                       {
                         "type":"postback",
-                        "title":"Small",
-                        "payload":"s"
+                        "title":"Wash Packages",
+                        "payload":"wash_pkg"
                       },
-                      {
-                        "type":"postback",
-                        "title":"Medium",
-                        "payload":"m"
-                      },
-                      {
-                        "type":"postback",
-                        "title":"Large",
-                        "payload":"l"
-                      }
                     ]
   
                   }
-                ]
+                ],
+
+                "elements":[
+                  {
+                  "title":"Menu",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Services",
+                      "payload":"service"
+                    },
+                  ]
+
+                }
+              ]
+                
                 }
               }
   
