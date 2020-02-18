@@ -297,6 +297,7 @@ app.post('/webhook', (req, res) => {
                   "elements":[
                     {
                     "title":"Menu",
+                    "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
                     "buttons":[
                       {
                         "type":"postback",
@@ -308,6 +309,7 @@ app.post('/webhook', (req, res) => {
                   },
                   {
                   "title":"Menu",
+                  "image_url":"https://www.logolynx.com/images/logolynx/e2/e21e3a4ae48ffb730a90fa51c63766d5.png",
                   "buttons":[
                     {
                       "type":"postback",
