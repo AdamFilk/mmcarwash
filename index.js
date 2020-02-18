@@ -354,7 +354,7 @@ app.post('/webhook', (req, res) => {
                     {
                     "title":"Wash Packages",
                     "subtitle":"Packages for car wash",
-                    "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                    "image_url":"https://lh3.googleusercontent.com/proxy/qxAWmnL_mzZ8QuGx0mqkhYw8O64QWTPh7LMS28aC-41uPMRIhI3g1QcBOlOqWA7HHC0J6VZfGUVxXxcJMBFDF6OZ9Ww9gw-H1ufn0SjxnlqmmVDLOjnd_w0k5c-UWVPbhZxbYVV0NqY_",
                     "buttons":[
                       {
                         "type":"postback",
