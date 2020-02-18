@@ -303,6 +303,7 @@ app.post('/webhook', (req, res) => {
                       {
                         "type":"postback",
                         "title":"Wash Packages",
+                        "subtitle":"Browse our services",
                         "payload":"wash_pkg"
                       },
                     ]
@@ -315,7 +316,6 @@ app.post('/webhook', (req, res) => {
                     {
                       "type":"postback",
                       "title":"Services",
-                      "subtitle":"Browse our services",
                       "payload":"service"
                     },
                   ]
