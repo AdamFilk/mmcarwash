@@ -297,6 +297,7 @@ app.post('/webhook', (req, res) => {
                   "elements":[
                     {
                     "title":"Menu",
+                    "subtitle":"Packages for car wash",
                     "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
                     "buttons":[
                       {
@@ -314,6 +315,7 @@ app.post('/webhook', (req, res) => {
                     {
                       "type":"postback",
                       "title":"Services",
+                      "subtitle":"Browse our services",
                       "payload":"service"
                     },
                   ]
