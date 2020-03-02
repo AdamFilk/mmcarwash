@@ -107,25 +107,26 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                    "title":"Our services:",
-                    "subtitle":"choose one",
+                    "title":"Please Choose One",
+                    "subtitle":"as",
                     "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
                     "buttons":[
                       {
                         "type":"postback",
-                        "title":"Car Wash Packages",
-                        "payload":"cwpkg"
+                        "title":"View Services",
+                        "payload":"book"
                       },
                       {
                         "type":"postback",
-                        "title":"Other Services",
-                        "payload":"otpkg"
+                        "title":"Prices",
+                        "payload":"price"
                       },
                       {
                         "type":"postback",
-                        "title":"Self Customize Services",
-                        "payload":"adhoc"
+                        "title":"View Appointment",
+                        "payload":"View Appointment"
                       },
+
                     ]
   
                   },
