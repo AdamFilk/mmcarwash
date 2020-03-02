@@ -88,7 +88,6 @@ app.post('/webhook', (req, res) => {
           var userButton = webhook_event.postback.payload
         }
         if (userInput == 'Hi' || userButton == 'Hi' ){
-        
           let welcomeMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -98,7 +97,6 @@ app.post('/webhook', (req, res) => {
             }
           };
           let quickReply = {
-            
             "recipient":{
               "id": webhook_event.sender.id
             },
