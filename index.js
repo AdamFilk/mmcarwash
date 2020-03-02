@@ -346,370 +346,377 @@ app.post('/webhook', (req, res) => {
       console.log(error)
     })
   }
-
-        //start of menu
-        if (userButton == 'bcw'){
-
-          let genericMessage = {
-            "recipient":{
-              "id": webhook_event.sender.id
-            },
-            "message":{
-              "attachment":{
-                "type":"template",
-                "payload":{
-                  "template_type":"generic",
-                  "elements":[
-                    {
-                    "title":"Wash Packages",
-                    "subtitle":"Packages for car wash",
-                    "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
-                    "buttons":[
-                      {
-                        "type":"postback",
-                        "title":"View",
-                        "payload":"wpkg_view"
-                      },
-                    ]
-  
-                  },
-                  {
-                  "title":"Services",
-                  "subtitle":"Browse Services",
-                  "image_url":"https://www.logolynx.com/images/logolynx/e2/e21e3a4ae48ffb730a90fa51c63766d5.png",
-                  "buttons":[
-                    {
-                      "type":"postback",
-                      "title":"View",
-                      "payload":"service_view"
-                    },
-                  ]
-
-                }
-                ],
-                
-                }
-              }
-  
-            }
+  //end basic int
+  //start basic ext
+  if(userButton=="basic_ext"){
+    let textMessage = {
+      "recipient":{
+        "id":webhook_event.sender.id
+      },
+      "message":{
+        "text": "In the Package: Body Cleaning, Window Cleaning, Tire and Ally Cleaning"
+      }
+    };
+    let quickReply = {
+      "recipient":{
+        "id": webhook_event.sender.id
+      },
+      "message":{
+        "text": "Do you want to book this package?",
+        "quick_replies":[
+          {
+            "content_type":"text",
+            "title":"Yes",
+            "payload":"y_basic_ext",
+          },{
+            "content_type":"text",
+            "title":"No",
+            "payload":"n_basic_ext",
           }
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        genericMessage
-        ).then(response=>{
-          console.log(response)
-        }).fail(error=> {
-          console.log(error)
-        })
-        }
-        //end of start booking
-        //start of washpkg
-        if (userButton == 'wpkg_view'){
+        ]
+      }
 
-          let genericMessage = {
-            "recipient":{
-              "id": webhook_event.sender.id
-            },
-            "message":{
-              "attachment":{
-                "type":"template",
-                "payload":{
-                  "template_type":"generic",
-                  "elements":[
-                    {
-                    "title":"Hand Wash",
-                    "subtitle":"Hand Wash Packages",
-                    "image_url":"https://st2.depositphotos.com/1001951/7088/i/450/depositphotos_70888985-stock-photo-man-worker-washing-cars-alloy.jpg",
-                    "buttons":[
-                      {
-                        "type":"postback",
-                        "title":"Basic Hand Wash",
-                        "payload":"bhw"
-                      },
-                      {
-                        "type":"postback",
-                        "title":"Shining Hand Wash",
-                        "payload":"sbhw"
-                      },
-                    ]
-  
-                  },
-                  {
-                  "title":"Waterless Wash",
-                  "subtitle":"Waterless Wash Packages",
-                  "image_url":"https://image.shutterstock.com/image-vector/waterless-car-wash-260nw-1353847511.jpg",
-                  "buttons":[
-                    {
-                      "type":"postback",
-                      "title":"Interior",
-                      "payload":"int_wtl"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"Exterior",
-                      "payload":"ext_wtl"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"both",
-                      "payload":"both_wtl"
-                    },
-                  ]
-
-                }
-                ],
-                
-                }
-              }
-  
-            }
+}
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+quickReply
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+}
+  //end basic ext
+  //start basic both
+  if(userButton=="basic_both"){
+    let textMessage = {
+      "recipient":{
+        "id":webhook_event.sender.id
+      },
+      "message":{
+        "text": "In the Package: Body Cleaning, Window Cleaning, Tire and Ally Cleaning, /nDashboard Cleaning, Windows Cleaning, Vacuuming Interior"
+      }
+    };
+    let quickReply = {
+      "recipient":{
+        "id": webhook_event.sender.id
+      },
+      "message":{
+        "text": "Do you want to book this package?",
+        "quick_replies":[
+          {
+            "content_type":"text",
+            "title":"Yes",
+            "payload":"y_basic_both",
+          },{
+            "content_type":"text",
+            "title":"No",
+            "payload":"n_basic_both",
           }
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        genericMessage
-        ).then(response=>{
-          console.log(response)
-        }).fail(error=> {
-          console.log(error)
-        })
-          //end of choose one
-        }
-        //end of washpkg
-        if (userButton == 's' || userButton == 'm' || userButton == 'l'){
+        ]
+      }
 
-          if(userButton == 's'){
-            userOrder.car = 's';
-          }else if(userButton == 'm'){
-            userOrder.car = 'm';
+}
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+quickReply
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+}
+  //end basic both
+      //start shining interior
+      if(userButton=="shine_int"){
+        let textMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior, /n Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning"
+          }
+        };
+        let quickReply = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "text": "Do you want to book this package?",
+            "quick_replies":[
+              {
+                "content_type":"text",
+                "title":"Yes",
+                "payload":"y_shine_int",
+              },{
+                "content_type":"text",
+                "title":"No",
+                "payload":"n_shine_int",
+              }
+            ]
           }
 
-          let genericMessage = {
-            "recipient":{
-              "id": webhook_event.sender.id
-            },
-            "message":{
-              "attachment":{
-                "type":"template",
-                "payload":{
-                  "template_type":"generic",
-                  "elements":[
-                    {
-                      //star book
-                  
-                    "title":"please choose interior/exterior ?",
-                    "buttons":[
-                      {
-                        "type":"postback",
-                        "title":"Interior",
-                        "payload":`int_${userButton}`
-                      },
-                      {
-                        "type":"postback",
-                        "title":"Exterior",
-                        "payload":`ext_${userButton}`
-                      },
-                      {
-                        "type":"postback",
-                        "title":"Both",
-                        "payload":`both_${userButton}`
-                      }
-                    ]
-  
-                  }
-                ]
-                }
-              }
-  
-            }
+    }
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    textMessage
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    quickReply
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+  }
+  //end shining int
+  //start shining ext
+  if(userButton=="shine_ext"){
+    let textMessage = {
+      "recipient":{
+        "id":webhook_event.sender.id
+      },
+      "message":{
+        "text": "In the Package: Detail Cleaning, Stain Removal, Windows Cleaning, /nTire and Alloy Cleaning, Alloy Polishing, /nWaxing or polishing"
+      }
+    };
+    let quickReply = {
+      "recipient":{
+        "id": webhook_event.sender.id
+      },
+      "message":{
+        "text": "Do you want to book this package?",
+        "quick_replies":[
+          {
+            "content_type":"text",
+            "title":"Yes",
+            "payload":"y_shine_ext",
+          },{
+            "content_type":"text",
+            "title":"No",
+            "payload":"n_shine_ext",
           }
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        genericMessage
-        ).then(response=>{
-          console.log(response)
-        }).fail(error=> {
-          console.log(error)
-        })
-          //end of choose one
-        }
+        ]
+      }
 
-        if (userButton == 'int_s'|| userButton == 'ext_s' || userButton == 'both_s' || userButton == 'int_m'|| userButton == 'ext_m' || userButton == 'both_m' || userButton == 'int_l'|| userButton == 'ext_l' || userButton == 'both_l'){
-
-          let genericMessage = {
-            "recipient":{
-              "id": webhook_event.sender.id
-            },
-            "message":{
-              "attachment":{
-                "type":"template",
-                "payload":{
-                  "template_type":"generic",
-                  "elements":[
-                    {
-                      //star book
-                  
-                    "title":"provide water",
-                    "buttons":[
-                      {
-                        "type":"postback",
-                        "title":"Yes",
-                        "payload":`y_${userButton}`
-                      },
-                      {
-                        "type":"postback",
-                        "title":"No",
-                        "payload":`n_${userButton}`
-                      }
-                    ]
-  
-                  }
-                ]
-                }
-              }
-  
-            }
+}
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+quickReply
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+}
+  //end shining ext
+  //start shinging both
+  if(userButton=="shine_both"){
+    let textMessage = {
+      "recipient":{
+        "id":webhook_event.sender.id
+      },
+      "message":{
+        "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior, /n Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,/n Detail Cleaning, Stain Removal, Windows Cleaning, /nTire and Alloy Cleaning, Alloy Polishing, /nWaxing or polishing"
+      }
+    };
+    let quickReply = {
+      "recipient":{
+        "id": webhook_event.sender.id
+      },
+      "message":{
+        "text": "Do you want to book this package?",
+        "quick_replies":[
+          {
+            "content_type":"text",
+            "title":"Yes",
+            "payload":"y_shine_both",
+          },{
+            "content_type":"text",
+            "title":"No",
+            "payload":"n_shine_both",
           }
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        genericMessage
-        ).then(response=>{
-          console.log(response)
-        }).fail(error=> {
-          console.log(error)
-        })
-          //end of choose one
-        }
+        ]
+      }
 
-        if (userButton == 'y_int_s'|| userButton == 'y_ext_s' || userButton == 'y_both_s' || userButton == 'y_int_m'|| userButton == 'y_ext_m' || userButton == 'y_both_m' || userButton == 'y_int_l'|| userButton == 'y_ext_l' || userButton == 'y_both_l' || userButton == 'n_int_s'|| userButton == 'n_ext_s' || userButton == 'n_both_s' || userButton == 'n_int_m'|| userButton == 'n_ext_m' || userButton == 'n_both_m' || userButton == 'n_int_l'|| userButton == 'n_ext_l' || userButton == 'n_both_l'){
-
-          let genericMessage = {
-            "recipient":{
-              "id": webhook_event.sender.id
-            },
-            "message":{
-              "attachment":{
-                "type":"template",
-                "payload":{
-                  "template_type":"generic",
-                  "elements":[
-                    {
-                      //star book
-                  
-                    "title":"provide water",
-                    "buttons":[
-                      {
-                        "type":"postback",
-                        "title":"Waterless wash",
-                        "payload":`wl_${userButton}`
-                      },
-                      {
-                        "type":"postback",
-                        "title":"Handwash",
-                        "payload":`hw_${userButton}`
-                      }
-                    ]
-  
-                  }
-                ]
-                }
-              }
-  
-            }
+}
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+quickReply
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+}
+  //end shining both
+      //start premium interior
+      if(userButton=="prm_int"){
+        let textMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior,/n Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,/nPremium Dressing, Interior Sterilization "
           }
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        genericMessage
-        ).then(response=>{
-          console.log(response)
-        }).fail(error=> {
-          console.log(error)
-        })
-          //end of choose one
-        }
+        };
+        let quickReply = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "text": "Do you want to book this package?",
+            "quick_replies":[
+              {
+                "content_type":"text",
+                "title":"Yes",
+                "payload":"y_prm_int",
+              },{
+                "content_type":"text",
+                "title":"No",
+                "payload":"n_prm_int",
+              }
+            ]
+          }
 
-        if (userButton == 'wl_y_int_s'|| userButton == 'wl_y_ext_s' || userButton == 'wl_y_both_s' || userButton == 'wl_y_int_m'|| userButton == 'wl_y_ext_m' || userButton == 'wl_y_both_m' || userButton == 'wl_y_int_l'|| userButton == 'wl_y_ext_l' || userButton == 'wl_y_both_l' || userButton == 'n_int_s'|| userButton == 'n_ext_s' || userButton == 'n_both_s' || userButton == 'n_int_m'|| userButton == 'n_ext_m' || userButton == 'n_both_m' || userButton == 'n_int_l'|| userButton == 'n_ext_l' || userButton == 'n_both_l' || userButton == 'hw_y_int_s'|| userButton == 'hw_y_ext_s' || userButton == 'hw_y_both_s' || userButton == 'hw_y_int_m'|| userButton == 'hw_y_ext_m' || userButton == 'hw_y_both_m' || userButton == 'hw_y_int_l'|| userButton == 'hw_y_ext_l' || userButton == 'hw_y_both_l'){
-          var userName = [] 
-          requestify.get(`https://graph.facebook.com/${webhook_event.sender.id}?fields=first_name,last_name&access_token=${pageaccesstoken}`).then(function(success){
-            var response = success.getBody();
-            console.log(response)
-            userName.push(response.first_name);
-            userName.push(response.last_name);
-            if(userButton.includes('wl_')){
-              var title = 'Waterless Wash'
-              var text = "Waterless washing method do not use water but it uses an organic and chemical liquids in a spray bottle to clean your glasses and wax your car. It can remove most stains and bird poops. But it can't handle heavy mud or dirt stains which require intense scrubbing" //waterless
-              var image = 'https://image.shutterstock.com/image-vector/waterless-car-wash-260nw-1353847511.jpg' //waterless
-              var rollback = userButton.split('_')
-            rollback.shift()
-            rollback = rollback.join('_')
-            }else if(userButton.includes('hw_')){
-              var title = 'Handwash'
-              var text = 'Handwash is a very traditional and common way to cleaning and washing your car. It only requires car washing soaps and uses the water which you will need to provide. It is effective for intense scrub downs of mud and dirt stains' //handwash
-              var image = 'https://st2.depositphotos.com/1001951/7088/i/450/depositphotos_70888985-stock-photo-man-worker-washing-cars-alloy.jpg' //handwash
-              var rollback = userButton.split('_')
-            rollback.shift()
-            rollback = rollback.join('_')
-            }else {
-              var title = 'Waterless wash'
-              var text = "Waterless washing method do not use water but it uses an organic and chemical liquids in a spray bottle to clean your glasses and wax your car. It can remove most stains and bird poops. But it can't handle heavy mud or dirt stains which require intense scrubbing" //waterless
-              var image = 'https://image.shutterstock.com/image-vector/waterless-car-wash-260nw-1353847511.jpg' //waterless
-              var rollback = userButton.split('_')
-            rollback.shift()
-            rollback = rollback.join('_')
-            }
-            let textMessage = {
-              "recipient":{
-                "id":webhook_event.sender.id
-              },
-              "message":{
-                "text": text
-              }
-            };
-            let genericMessage = {
-              "recipient":{
-                "id": webhook_event.sender.id
-              },
-              "message":{
-                "attachment":{
-                  "type":"template",
-                  "payload":{
-                    "template_type":"generic",
-                    "elements":[
-                      {
-                        //star book
-                    
-                      "title":title,
-                      "image_url": image,
-                      "buttons":[
-                        {
-                          "type":"web_url",
-                          "title":"Yes",
-                          "url": `mmcarwash.herokuapp.com/wash/${userButton}/${userName.join(' ')}`,
-                          "webview_height_ratio":"full"
-                        },
-                        {
-                          "type":"postback",
-                          "title":"No",
-                          "payload":`${rollback}`
-                        }
-                      ]
-    
-                    }
-                  ]
-                  }
-                }
-    
-              }
-            }
-            requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-          textMessage
-          ).then(response=>{
-            requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-              genericMessage
-            )
-          }).fail(error=> {
-            console.log(error)
-          }) 
-           }).catch(error=>{
-             console.log(error)
-           })
-          
-          //end of choose one
-        }
+    }
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    textMessage
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    quickReply
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+  }
+  //end premium int
+  //start premium ext
+  if(userButton=="prm_ext"){
+    let textMessage = {
+      "recipient":{
+        "id":webhook_event.sender.id
+      },
+      "message":{
+        "text": "In the Package: Detail body cleaning, Stain Removal, Windows Cleaning and polishing,/n Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing, Waxing, /nPolishing"
+      }
+    };
+    let quickReply = {
+      "recipient":{
+        "id": webhook_event.sender.id
+      },
+      "message":{
+        "text": "Do you want to book this package?",
+        "quick_replies":[
+          {
+            "content_type":"text",
+            "title":"Yes",
+            "payload":"y_prm_ext",
+          },{
+            "content_type":"text",
+            "title":"No",
+            "payload":"n_prm_ext",
+          }
+        ]
+      }
+
+}
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+quickReply
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+}
+  //end premuim ext
+  //start premium both
+  if(userButton=="prm_both"){
+    let textMessage = {
+      "recipient":{
+        "id":webhook_event.sender.id
+      },
+      "message":{
+        "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior,/n Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,/nPremium Dressing, Interior Sterilization Detail body cleaning, Stain Removal, Windows Cleaning and polishing,/n Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing, Waxing, /nPolishing"
+      }
+    };
+    let quickReply = {
+      "recipient":{
+        "id": webhook_event.sender.id
+      },
+      "message":{
+        "text": "Do you want to book this package?",
+        "quick_replies":[
+          {
+            "content_type":"text",
+            "title":"Yes",
+            "payload":"y_prm_both",
+          },{
+            "content_type":"text",
+            "title":"No",
+            "payload":"n_prm_both",
+          }
+        ]
+      }
+
+}
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+quickReply
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+}
+  //end premium both      
+     
+       
 
 
 
