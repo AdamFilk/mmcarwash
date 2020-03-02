@@ -299,10 +299,53 @@ app.post('/webhook', (req, res) => {
         console.log(error)
       })
       }
-      
-  
+    
       //end of wash packages
-        
+      //start basic interior
+      if(userButton=="basic_int"){
+        let textMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior"
+          }
+        };
+        let quickReply = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "text": "Do you want to book this package?",
+            "quick_replies":[
+              {
+                "content_type":"text",
+                "title":"Yes",
+                "payload":"y_basic_int",
+              },{
+                "content_type":"text",
+                "title":"No",
+                "payload":"n_basic_int",
+              }
+            ]
+          }
+
+    }
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    textMessage
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    quickReply
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+  }
 
         //start of menu
         if (userButton == 'bcw'){
