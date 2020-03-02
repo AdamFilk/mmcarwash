@@ -107,33 +107,24 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                    "title":"Please Select One:",
-                    "subtitle":"Select one to start",
+                    "title":"Our services:",
+                    "subtitle":"choose one",
+                    "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
                     "buttons":[
                       {
                         "type":"postback",
-                        "title":"Book",
-                        "payload":"book"
+                        "title":"Car Wash Packages",
+                        "payload":"cwpkg"
                       },
                       {
                         "type":"postback",
-                        "title":"Price",
-                        "payload":"pricec"
+                        "title":"Other Services",
+                        "payload":"otpkg"
                       },
                       {
                         "type":"postback",
-                        "title":"View my appointment",
-                        "payload":"view_ap"
-                      },
-                      {
-                        "type":"postback",
-                        "title":"About",
-                        "payload":"about"
-                      },
-                      {
-                        "type":"postback",
-                        "title":"Contact",
-                        "payload":"contact"
+                        "title":"Self Customize Services",
+                        "payload":"adhoc"
                       },
                     ]
   
@@ -154,12 +145,12 @@ app.post('/webhook', (req, res) => {
           console.log(error)
         })
         requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        genericMessage
-        ).then(response=>{
-          console.log(response)
-        }).fail(error=> {
-          console.log(error)
-        })
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
         }
         //end of select
        //start of book
