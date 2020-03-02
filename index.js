@@ -93,9 +93,12 @@ app.post('/webhook', (req, res) => {
             "recipient":{
               "id":webhook_event.sender.id
             },
-            "message":{
-              "text":"Hi! {{user_first_name}} Welcome from MM Car Wash 😄😄😄"
-            }
+            "greeting":[
+              {
+                "locale":"default",
+                "text":"Hello {{user_full_name}}!"
+              }
+            ]
           };
           let quickReply = {
             
