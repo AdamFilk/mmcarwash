@@ -93,12 +93,9 @@ app.post('/webhook', (req, res) => {
             "recipient":{
               "id":webhook_event.sender.id
             },
-            "greeting":[
-              {
-                "locale":"default",
-                "text":"Hello {{user_full_name}}!"
-              }
-            ]
+            "message":{
+              "text":"Hi! Welcome from MM Car Wash 😄😄😄"
+            }
           };
           let quickReply = {
             
@@ -143,7 +140,7 @@ app.post('/webhook', (req, res) => {
   
             }
           }
-          requestify.post(`https://https://graph.facebook.com/v6.0/me/messenger_profile?access_token=${pageaccesstoken}`, 
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
         welcomeMessage
         ).then(response=>{
           console.log(response)
