@@ -109,7 +109,6 @@ app.post('/webhook', (req, res) => {
                     {
                     "title":"Please Select One:",
                     "subtitle":"Select one to start",
-                    "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
                     "buttons":[
                       {
                         "type":"postback",
