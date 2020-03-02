@@ -88,6 +88,7 @@ app.post('/webhook', (req, res) => {
           var userButton = webhook_event.postback.payload
         }
         if (userInput == 'Hi' || userButton == 'Hi' ){
+          let name = res.first_name +' '+res.last_name;
           let welcomeMessage = {
             "recipient":{
               "id":webhook_event.sender.id
