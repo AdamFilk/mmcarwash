@@ -152,139 +152,61 @@ app.post('/webhook', (req, res) => {
           console.log(error)
         })
         }
-        //end of book 
-        //start check price
-        //price
-        if (userButton == 'prices'){
+        //end of select
+       //start of book
+       if (userButton == 'book'){
 
-          let genericMessage = {
-            "recipient":{
-              "id": webhook_event.sender.id
-            },
-            "message":{
-              "attachment":{
-                "type":"template",
-                "payload":{
-                  "template_type":"generic",
-                  "elements":[
+        let genericMessage = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Our services:",
+                  "subtitle":"choose one",
+                  "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                  "buttons":[
                     {
-                  
-                    "title":"Small",
-                    "image_url":"https://d1arsn5g9mfrlq.cloudfront.net/sites/default/files/resize/remote/71e6e35213a4e87abed4dc1620a3fd11-720x463.jpg",
-                    "buttons":[
-                      {
-                        "type":"postback",
-                        "title":"View Prices",
-                        "payload":"s_v_price"
-                      }
-                    ]
-  
-                  },
-                  {
-                  
-                    "title":"Medium",
-                    "image_url":"https://www.autodevot.com/wp-content/uploads/2018/06/15th-generation-2018-Toyota-Crown.jpg",
-                    "buttons":[
-                      {
-                        "type":"postback",
-                        "title":"View Prices",
-                        "payload":"m_v_price"
-                      }
-                    ]
-  
-                  },
-                  {
-                  
-                    "title":"Large",
-                    "image_url":"https://static.bangkokpost.com/media/content/20190417/3164476.jpg",
-                    "buttons":[
-                      {
-                        "type":"postback",
-                        "title":"View Prices",
-                        "payload":"l_v_price"
-                      }
-                    ]
-  
-                  }
-                ]
-                }
+                      "type":"postback",
+                      "title":"Car Wash Packages",
+                      "payload":"cwpkg"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Other Services",
+                      "payload":"otpkg"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Self Customize Services",
+                      "payload":"adhoc"
+                    },
+                  ]
+
+                },
+              ],
+              
               }
-  
             }
+
           }
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        genericMessage
-        ).then(response=>{
-          console.log(response)
-        }).fail(error=> {
-          console.log(error)
-        })
-          //end of choose one
         }
-        //end check price
-        //start small price
-        if (userButton == 's_v_price'){
-
-          let textMessage = {
-            "recipient":{
-              "id":webhook_event.sender.id
-            },
-            "message":{
-              "text":"The prices for small size car are:\nInterior: 4000Ks,\nExterior: 3000Ks,\nBoth: 6000Ks"
-            }
-          };
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        textMessage
-        ).then(response=>{
-          console.log(response)
-        }).fail(error=> {
-          console.log(error)
-        })
-          //end of choose one
-        }
-        //end of small price
-        //start medium price
-        if (userButton == 'm_v_price'){
-
-          let textMessage = {
-            "recipient":{
-              "id":webhook_event.sender.id
-            },
-            "message":{
-              "text":"The prices for medium size car are:\nInterior: 5000Ks,\nExterior: 4000Ks,\nBoth: 7000Ks"
-            }
-          };
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        textMessage
-        ).then(response=>{
-          console.log(response)
-        }).fail(error=> {
-          console.log(error)
-        })
-          //end of choose one
-        }
-        //end of medium price
-        //start large price
-        if (userButton == 'l_v_price'){
-
-          let textMessage = {
-            "recipient":{
-              "id":webhook_event.sender.id
-            },
-            "message":{
-              "text":"The prices for large size car are:\nInterior: 6000Ks,\nExterior: 5000Ks,\nBoth: 10000Ks"
-            }
-          };
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        textMessage
-        ).then(response=>{
-          console.log(response)
-        }).fail(error=> {
-          console.log(error)
-        })
-          //end of choose one
-        }
-        //end of large price
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+        //end of choose one
+      }
+       //end of book
+        
 
         //start of menu
         if (userButton == 'bcw'){
