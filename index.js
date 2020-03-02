@@ -216,96 +216,99 @@ app.post('/webhook', (req, res) => {
       }
        //end of select
       //start of wash packages
-      let genericMessage = {
-        "recipient":{
-          "id": webhook_event.sender.id
-        },
-        "message":{
-          "attachment":{
-            "type":"template",
-            "payload":{
-              "template_type":"generic",
-              "elements":[
+      if (userButton== "cwpkg"){
+        let genericMessage = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Basic Wash Packages",
+                  "subtitle":"a",
+                  "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Interior",
+                      "payload":"basic_int"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Exterior",
+                      "payload":"basic_ext"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Both",
+                      "payload":"basic_both"
+                    },
+                  ]
+  
+                },
                 {
-                "title":"Basic Wash Packages",
-                "subtitle":"a",
-                "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
-                "buttons":[
-                  {
-                    "type":"postback",
-                    "title":"Interior",
-                    "payload":"basic_int"
-                  },
-                  {
-                    "type":"postback",
-                    "title":"Exterior",
-                    "payload":"basic_ext"
-                  },
-                  {
-                    "type":"postback",
-                    "title":"Both",
-                    "payload":"basic_both"
-                  },
-                ]
-
-              },
-              {
-                "title":"Shining Wash Packages",
-                "subtitle":"a",
-                "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
-                "buttons":[
-                  {
-                    "type":"postback",
-                    "title":"Interior",
-                    "payload":"shine_int"
-                  },
-                  {
-                    "type":"postback",
-                    "title":"Exterior",
-                    "payload":"shine_ext"
-                  },
-                  {
-                    "type":"postback",
-                    "title":"Both",
-                    "payload":"shine_both"
-                  },
-                ]
-              },
-                  {
-                    "title":"Premium Wash Packages",
-                    "subtitle":"a",
-                    "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
-                    "buttons":[
-                      {
-                        "type":"postback",
-                        "title":"Interior",
-                        "payload":"prm_int"
-                      },
-                      {
-                        "type":"postback",
-                        "title":"Exterior",
-                        "payload":"prm_ext"
-                      },
-                      {
-                        "type":"postback",
-                        "title":"Both",
-                        "payload":"prm_both"
-                      },
-                ]
-              }
-            ]
+                  "title":"Shining Wash Packages",
+                  "subtitle":"a",
+                  "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Interior",
+                      "payload":"shine_int"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Exterior",
+                      "payload":"shine_ext"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Both",
+                      "payload":"shine_both"
+                    },
+                  ]
+                },
+                    {
+                      "title":"Premium Wash Packages",
+                      "subtitle":"a",
+                      "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                      "buttons":[
+                        {
+                          "type":"postback",
+                          "title":"Interior",
+                          "payload":"prm_int"
+                        },
+                        {
+                          "type":"postback",
+                          "title":"Exterior",
+                          "payload":"prm_ext"
+                        },
+                        {
+                          "type":"postback",
+                          "title":"Both",
+                          "payload":"prm_both"
+                        },
+                  ]
+                }
+              ]
+            }
           }
         }
       }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
       }
-      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-    genericMessage
-    ).then(response=>{
-      console.log(response)
-    }).fail(error=> {
-      console.log(error)
-    })
-    
+      
+  
       //end of wash packages
         
 
