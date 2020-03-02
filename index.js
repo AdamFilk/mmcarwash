@@ -311,26 +311,40 @@ app.post('/webhook', (req, res) => {
             "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior"
           }
         };
-        let quickReply = {
+        let genericMessage = {
           "recipient":{
             "id": webhook_event.sender.id
           },
           "message":{
-            "text": "Do you want to book this package?",
-            "quick_replies":[
-              {
-                "content_type":"text",
-                "title":"Yes",
-                "payload":"y_basic_int",
-              },{
-                "content_type":"text",
-                "title":"No",
-                "payload":"n_basic_int",
-              }
-            ]
-          }
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Do you want to choose Basic Interior Package?:",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Yes",
+                      "payload":"y_b_int"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"No",
+                      "payload":"n_b_int"
+                    },
+                    
+                  ]
 
-    }
+                },
+              ],
+              
+              }
+            }
+
+          }
+        }
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
     textMessage
     ).then(response=>{
@@ -339,7 +353,7 @@ app.post('/webhook', (req, res) => {
       console.log(error)
     })
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-    quickReply
+    genericMessage
     ).then(response=>{
       console.log(response)
     }).fail(error=> {
@@ -357,26 +371,40 @@ app.post('/webhook', (req, res) => {
         "text": "In the Package: Body Cleaning, Window Cleaning, Tire and Ally Cleaning"
       }
     };
-    let quickReply = {
+    let genericMessage = {
       "recipient":{
         "id": webhook_event.sender.id
       },
       "message":{
-        "text": "Do you want to book this package?",
-        "quick_replies":[
-          {
-            "content_type":"text",
-            "title":"Yes",
-            "payload":"y_basic_ext",
-          },{
-            "content_type":"text",
-            "title":"No",
-            "payload":"n_basic_ext",
-          }
-        ]
-      }
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"generic",
+            "elements":[
+              {
+              "title":"Do you want to choose Basic Exterior Package?:",
+              "buttons":[
+                {
+                  "type":"postback",
+                  "title":"Yes",
+                  "payload":"y_b_ext"
+                },
+                {
+                  "type":"postback",
+                  "title":"No",
+                  "payload":"n_b_ext"
+                },
+                
+              ]
 
-}
+            },
+          ],
+          
+          }
+        }
+
+      }
+    }
 requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
 textMessage
 ).then(response=>{
@@ -385,7 +413,7 @@ textMessage
   console.log(error)
 })
 requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-quickReply
+genericMessage
 ).then(response=>{
   console.log(response)
 }).fail(error=> {
@@ -403,26 +431,40 @@ quickReply
         "text": "In the Package: Body Cleaning, Window Cleaning, Tire and Ally Cleaning, \nDashboard Cleaning, Windows Cleaning, Vacuuming Interior"
       }
     };
-    let quickReply = {
+    let genericMessage = {
       "recipient":{
         "id": webhook_event.sender.id
       },
       "message":{
-        "text": "Do you want to book this package?",
-        "quick_replies":[
-          {
-            "content_type":"text",
-            "title":"Yes",
-            "payload":"y_basic_both",
-          },{
-            "content_type":"text",
-            "title":"No",
-            "payload":"n_basic_both",
-          }
-        ]
-      }
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"generic",
+            "elements":[
+              {
+              "title":"Do you want to choose Basic Both Package?:",
+              "buttons":[
+                {
+                  "type":"postback",
+                  "title":"Yes",
+                  "payload":"y_b_both"
+                },
+                {
+                  "type":"postback",
+                  "title":"No",
+                  "payload":"n_b_both"
+                },
+                
+              ]
 
-}
+            },
+          ],
+          
+          }
+        }
+
+      }
+    }
 requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
 textMessage
 ).then(response=>{
@@ -431,7 +473,7 @@ textMessage
   console.log(error)
 })
 requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-quickReply
+genericMessage
 ).then(response=>{
   console.log(response)
 }).fail(error=> {
@@ -449,26 +491,40 @@ quickReply
             "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior, \n Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning"
           }
         };
-        let quickReply = {
+        let genericMessage = {
           "recipient":{
             "id": webhook_event.sender.id
           },
           "message":{
-            "text": "Do you want to book this package?",
-            "quick_replies":[
-              {
-                "content_type":"text",
-                "title":"Yes",
-                "payload":"y_shine_int",
-              },{
-                "content_type":"text",
-                "title":"No",
-                "payload":"n_shine_int",
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Do you want to choose Shining Interior Package?:",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Yes",
+                      "payload":"y_s_int"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"No",
+                      "payload":"n_s_int"
+                    },
+                    
+                  ]
+    
+                },
+              ],
+              
               }
-            ]
+            }
+    
           }
-
-    }
+        }
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
     textMessage
     ).then(response=>{
@@ -477,7 +533,7 @@ quickReply
       console.log(error)
     })
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-    quickReply
+    genericMessage
     ).then(response=>{
       console.log(response)
     }).fail(error=> {
@@ -495,26 +551,40 @@ quickReply
         "text": "In the Package: Detail Cleaning, Stain Removal, Windows Cleaning, \nTire and Alloy Cleaning, Alloy Polishing, \nWaxing or polishing"
       }
     };
-    let quickReply = {
+    let genericMessage = {
       "recipient":{
         "id": webhook_event.sender.id
       },
       "message":{
-        "text": "Do you want to book this package?",
-        "quick_replies":[
-          {
-            "content_type":"text",
-            "title":"Yes",
-            "payload":"y_shine_ext",
-          },{
-            "content_type":"text",
-            "title":"No",
-            "payload":"n_shine_ext",
-          }
-        ]
-      }
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"generic",
+            "elements":[
+              {
+              "title":"Do you want to choose Shining Exterior Package?:",
+              "buttons":[
+                {
+                  "type":"postback",
+                  "title":"Yes",
+                  "payload":"y_s_ext"
+                },
+                {
+                  "type":"postback",
+                  "title":"No",
+                  "payload":"n_s_ext"
+                },
+                
+              ]
 
-}
+            },
+          ],
+          
+          }
+        }
+
+      }
+    }
 requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
 textMessage
 ).then(response=>{
@@ -523,7 +593,7 @@ textMessage
   console.log(error)
 })
 requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-quickReply
+genericMessage
 ).then(response=>{
   console.log(response)
 }).fail(error=> {
@@ -541,26 +611,40 @@ quickReply
         "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior, \n Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,\n Detail Cleaning, Stain Removal, Windows Cleaning, \nTire and Alloy Cleaning, Alloy Polishing, \nWaxing or polishing"
       }
     };
-    let quickReply = {
+    let genericMessage = {
       "recipient":{
         "id": webhook_event.sender.id
       },
       "message":{
-        "text": "Do you want to book this package?",
-        "quick_replies":[
-          {
-            "content_type":"text",
-            "title":"Yes",
-            "payload":"y_shine_both",
-          },{
-            "content_type":"text",
-            "title":"No",
-            "payload":"n_shine_both",
-          }
-        ]
-      }
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"generic",
+            "elements":[
+              {
+              "title":"Do you want to choose Shining Both Package?:",
+              "buttons":[
+                {
+                  "type":"postback",
+                  "title":"Yes",
+                  "payload":"y_s_both"
+                },
+                {
+                  "type":"postback",
+                  "title":"No",
+                  "payload":"n_s_both"
+                },
+                
+              ]
 
-}
+            },
+          ],
+          
+          }
+        }
+
+      }
+    }
 requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
 textMessage
 ).then(response=>{
@@ -569,7 +653,7 @@ textMessage
   console.log(error)
 })
 requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-quickReply
+genericMessage
 ).then(response=>{
   console.log(response)
 }).fail(error=> {
@@ -587,26 +671,40 @@ quickReply
             "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior,\n Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,\nPremium Dressing, Interior Sterilization "
           }
         };
-        let quickReply = {
+        let genericMessage = {
           "recipient":{
             "id": webhook_event.sender.id
           },
           "message":{
-            "text": "Do you want to book this package?",
-            "quick_replies":[
-              {
-                "content_type":"text",
-                "title":"Yes",
-                "payload":"y_prm_int",
-              },{
-                "content_type":"text",
-                "title":"No",
-                "payload":"n_prm_int",
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Do you want to choose Premium Interior Package?:",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Yes",
+                      "payload":"y_p_int"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"No",
+                      "payload":"n_p_int"
+                    },
+                    
+                  ]
+    
+                },
+              ],
+              
               }
-            ]
+            }
+    
           }
-
-    }
+        }
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
     textMessage
     ).then(response=>{
@@ -615,7 +713,7 @@ quickReply
       console.log(error)
     })
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-    quickReply
+    genericMessage
     ).then(response=>{
       console.log(response)
     }).fail(error=> {
@@ -633,26 +731,40 @@ quickReply
         "text": "In the Package: Detail body cleaning, Stain Removal, Windows Cleaning and polishing,\n Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing, Waxing, \nPolishing"
       }
     };
-    let quickReply = {
+    let genericMessage = {
       "recipient":{
         "id": webhook_event.sender.id
       },
       "message":{
-        "text": "Do you want to book this package?",
-        "quick_replies":[
-          {
-            "content_type":"text",
-            "title":"Yes",
-            "payload":"y_prm_ext",
-          },{
-            "content_type":"text",
-            "title":"No",
-            "payload":"n_prm_ext",
-          }
-        ]
-      }
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"generic",
+            "elements":[
+              {
+              "title":"Do you want to choose Premium Exterior Package?:",
+              "buttons":[
+                {
+                  "type":"postback",
+                  "title":"Yes",
+                  "payload":"y_p_ext"
+                },
+                {
+                  "type":"postback",
+                  "title":"No",
+                  "payload":"n_p_ext"
+                },
+                
+              ]
 
-}
+            },
+          ],
+          
+          }
+        }
+
+      }
+    }
 requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
 textMessage
 ).then(response=>{
@@ -661,7 +773,7 @@ textMessage
   console.log(error)
 })
 requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-quickReply
+genericMessage
 ).then(response=>{
   console.log(response)
 }).fail(error=> {
@@ -679,26 +791,40 @@ quickReply
         "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior,\n Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,\nPremium Dressing, Interior Sterilization Detail body cleaning, Stain Removal, Windows Cleaning and polishing,\n Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing,\n Waxing,Polishing"
       }
     };
-    let quickReply = {
+    let genericMessage = {
       "recipient":{
         "id": webhook_event.sender.id
       },
       "message":{
-        "text": "Do you want to book this package?",
-        "quick_replies":[
-          {
-            "content_type":"text",
-            "title":"Yes",
-            "payload":"y_prm_both",
-          },{
-            "content_type":"text",
-            "title":"No",
-            "payload":"n_prm_both",
-          }
-        ]
-      }
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"generic",
+            "elements":[
+              {
+              "title":"Do you want to choose Premium Both Package?:",
+              "buttons":[
+                {
+                  "type":"postback",
+                  "title":"Yes",
+                  "payload":"y_p_both"
+                },
+                {
+                  "type":"postback",
+                  "title":"No",
+                  "payload":"n_p_both"
+                },
+                
+              ]
 
-}
+            },
+          ],
+          
+          }
+        }
+
+      }
+    }
 requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
 textMessage
 ).then(response=>{
@@ -707,7 +833,7 @@ textMessage
   console.log(error)
 })
 requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-quickReply
+genericMessage
 ).then(response=>{
   console.log(response)
 }).fail(error=> {
