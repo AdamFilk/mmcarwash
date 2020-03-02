@@ -96,66 +96,6 @@ app.post('/webhook', (req, res) => {
               "text":"Hi! Welcome from MM Car Wash 😄😄😄"
             }
           };
-<<<<<<< HEAD
-=======
-          let genericMessage = {
-            "recipient":{
-              "id": webhook_event.sender.id
-            },
-            "message":{
-              "attachment":{
-                "type":"template",
-                "payload":{
-                  "template_type":"generic",
-                  "elements":[
-                    {
-                      //star book
-                  
-                    "title":"🚲MM Carwash🚲",
-                    "subtitle":"Choose one",
-                    "image_url":"https://i.pinimg.com/236x/84/77/8e/84778ecda6db5a14c94883948af73262.jpg",
-                    "buttons":[
-                      {
-                        "type":"postback",
-                        "title":"Start Booking",
-                        "payload":"bcw"
-                      },
-                
-                      {
-                        "type":"postback",
-                        "title":"Check Prices",
-                        "payload":"prices"
-                      }
-                    ]
-  
-                  }
-                ]
-                }
-              }
-  
-            }
-          }
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        welcomeMessage
-        ).then(response=>{
-          console.log(response)
-        }).fail(error=> {
-          console.log(error)
-        })
-        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        genericMessage
-        ).then(response=>{
-          console.log(response)
-        }).fail(error=> {
-          console.log(error)
-        })
-        }
-        //end of book 
-        //start check price
-        //price
-        if (userButton == 'prices'){
-
->>>>>>> parent of aac1e00... Update index.js
           let genericMessage = {
             "recipient":{
               "id": webhook_event.sender.id
@@ -223,7 +163,7 @@ app.post('/webhook', (req, res) => {
         }
         //end of select
        //start of book
-       if (userButton == 'book123'){
+       if (userButton == 'book'){
 
         let genericMessage = {
           "recipient":{
@@ -274,7 +214,99 @@ app.post('/webhook', (req, res) => {
       })
     
       }
-       //end of book
+       //end of select
+      //start of wash packages
+      let genericMessage = {
+        "recipient":{
+          "id": webhook_event.sender.id
+        },
+        "message":{
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"generic",
+              "elements":[
+                {
+                "title":"Basic Wash Packages",
+                "subtitle":"a",
+                "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Interior",
+                    "payload":"basic_int"
+                  },
+                  {
+                    "type":"postback",
+                    "title":"Exterior",
+                    "payload":"basic_ext"
+                  },
+                  {
+                    "type":"postback",
+                    "title":"Both",
+                    "payload":"basic_both"
+                  },
+                ]
+
+              },
+              {
+                "title":"Shining Wash Packages",
+                "subtitle":"a",
+                "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                "buttons":[
+                  {
+                    "type":"postback",
+                    "title":"Interior",
+                    "payload":"shine_int"
+                  },
+                  {
+                    "type":"postback",
+                    "title":"Exterior",
+                    "payload":"shine_ext"
+                  },
+                  {
+                    "type":"postback",
+                    "title":"Both",
+                    "payload":"shine_both"
+                  },
+                ]
+              },
+                  {
+                    "title":"Premium Wash Packages",
+                    "subtitle":"a",
+                    "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"Interior",
+                        "payload":"prm_int"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Exterior",
+                        "payload":"prm_ext"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Both",
+                        "payload":"prm_both"
+                      },
+                ]
+              }
+            ]
+          }
+        }
+      }
+      }
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    genericMessage
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+    
+      //end of wash packages
         
 
         //start of menu
@@ -330,7 +362,6 @@ app.post('/webhook', (req, res) => {
         }).fail(error=> {
           console.log(error)
         })
-          //end of choose one
         }
         //end of start booking
         //start of washpkg
