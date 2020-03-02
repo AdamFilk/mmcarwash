@@ -96,47 +96,57 @@ app.post('/webhook', (req, res) => {
               "text":"Hi! Welcome from MM Car Wash 😄😄😄"
             }
           };
-          let quickReply = {
+          let genericMessage = {
             "recipient":{
               "id": webhook_event.sender.id
             },
             "message":{
-              "text": "Please Select One:",
-              "quick_replies":[
-                {
-                  "content_type":"text",
-                  "title":"Book",
-                  "payload":"book123",
-                  "image_url":"https://cdn0.iconfinder.com/data/icons/business-butterscotch-vol-2/512/Schedule-512.png"
-                },
-                {
-                  "content_type":"text",
-                  "title":"Prices",
-                  "payload":"prices",
-                  "image_url":"https://cdn3.vectorstock.com/i/1000x1000/89/87/bag-money-icon-blue-vector-19838987.jpg"
-                },
-                {
-                  "content_type":"text",
-                  "title":"View Appointment",
-                  "payload":"view_ap",
-                  "image_url":"https://cdn2.vectorstock.com/i/1000x1000/49/66/automatic-car-wash-icon-vector-11514966.jpg"
-                },
-                {
-                  "content_type":"text",
-                  "title":"About",
-                  "payload":"about",
-                  "image_url":"https://i.pinimg.com/originals/65/8f/c9/658fc9a628b7fb1996966cb07eccc33e.jpg"
-                },
-                {
-                  "content_type":"text",
-                  "title":"Contact",
-                  "payload":"contact",
-                  "image_url":"https://clipartart.com/images/contact-logo-clipart-6.jpg"
-                }
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Please Select One:",
+                    "subtitle":"Select one to start",
+                    "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"Book",
+                        "payload":"book"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Price",
+                        "payload":"pricec"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"View my appointment",
+                        "payload":"view_ap"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"About",
+                        "payload":"about"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Contact",
+                        "payload":"contact"
+                      },
+                    ]
   
-              ]
+                  },
+                ],
+                
+                }
+              }
+  
+            }
           }
-        }
+          
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
         welcomeMessage
         ).then(response=>{
@@ -145,7 +155,7 @@ app.post('/webhook', (req, res) => {
           console.log(error)
         })
         requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        quickReply
+        genericMessage
         ).then(response=>{
           console.log(response)
         }).fail(error=> {
