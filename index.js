@@ -96,6 +96,66 @@ app.post('/webhook', (req, res) => {
               "text":"Hi! Welcome from MM Car Wash 😄😄😄"
             }
           };
+<<<<<<< HEAD
+=======
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      //star book
+                  
+                    "title":"🚲MM Carwash🚲",
+                    "subtitle":"Choose one",
+                    "image_url":"https://i.pinimg.com/236x/84/77/8e/84778ecda6db5a14c94883948af73262.jpg",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"Start Booking",
+                        "payload":"bcw"
+                      },
+                
+                      {
+                        "type":"postback",
+                        "title":"Check Prices",
+                        "payload":"prices"
+                      }
+                    ]
+  
+                  }
+                ]
+                }
+              }
+  
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        welcomeMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        genericMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+        }
+        //end of book 
+        //start check price
+        //price
+        if (userButton == 'prices'){
+
+>>>>>>> parent of aac1e00... Update index.js
           let genericMessage = {
             "recipient":{
               "id": webhook_event.sender.id
