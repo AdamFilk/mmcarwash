@@ -88,16 +88,17 @@ app.post('/webhook', (req, res) => {
           var userButton = webhook_event.postback.payload
         }
         if (userInput == 'Hi' || userButton == 'Hi' ){
-          let name = res.first_name +' '+res.last_name;
+        
           let welcomeMessage = {
             "recipient":{
               "id":webhook_event.sender.id
             },
             "message":{
-              "text":"Hi! ${name} Welcome from MM Car Wash 😄😄😄"
+              "text":"Hi! {{user_first_name}} Welcome from MM Car Wash 😄😄😄"
             }
           };
           let quickReply = {
+            
             "recipient":{
               "id": webhook_event.sender.id
             },
