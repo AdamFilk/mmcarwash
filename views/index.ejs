@@ -44,15 +44,15 @@
                         <b>City:</b>
                       </td>
                       <td>
-                        <input class="form-control" type="text" placeholder="Only Yangon for now" readonly>
+                        <input class="form-control" type="text" placeholder="Only Yangon for now" id="city" readonly>
                       </td>
                     </tr>
                     <tr>
                         <td style="vertical-align: middle;"><b>Town:</b> </td>
                         <td>    
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Select Town</label>
-                                <select class="form-control" id="exampleFormControlSelect1" required>
+                                <label for="town">Select Town</label>
+                                <select class="form-control" id="town" required>
                                   <option>Ahlone</option>
                                   <option>Bahan</option>
                                   <option>Botahtaung</option>
@@ -107,7 +107,7 @@
                         <b>Car Parking Info</b>
                       </td>
                       <td>
-                        <textarea id="Textarea" placeholder="where?street?garage?home?" required></textarea>
+                        <textarea id="Textarea" placeholder="where?street?garage?home?" id="car_park_info" required></textarea>
                       </td>
                     </tr>
                     <tr>
@@ -116,15 +116,15 @@
                     </td>
                     <td>
                      <div class="custom-control custom-radio custom-control-inline">
-                      <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                      <input type="radio" id="carsize" name="customRadioInline1" class="custom-control-input">
                       <label class="custom-control-label" for="customRadioInline1">Small</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                      <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                      <input type="radio" id="carsize" name="customRadioInline1" class="custom-control-input">
                       <label class="custom-control-label" for="customRadioInline2">Medium</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                      <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
+                      <input type="radio" id="carsize" name="customRadioInline1" class="custom-control-input">
                       <label class="custom-control-label" for="customRadioInline3">Large</label>
                     </div>
                     </td>
@@ -141,7 +141,7 @@
                         <td><b>Date</b> </td>
                         <td>
                                 
-                            <input class="form-control" type="date" value="2011-08-19" id="example-date-input" required>
+                            <input class="form-control" type="date" value="2011-08-19" id="date-input" required>
                               
                         </td>
                     </tr>
@@ -149,7 +149,7 @@
                            <b>Time</b> 
                         </td>
                         <td>
-                            <input class="form-control" type="time" value="13:45:00" id="example-time-input" required>
+                            <input class="form-control" type="time" value="13:45:00" id="time-input" required>
                         </td>
                        
                     <tr>
@@ -203,13 +203,18 @@ function checkNumber() {
         db.collection('booking').add({
             name: '<%= name %>',
             phone: document.getElementById('phone').value,
-            address: document.getElementById('add').value,
-            washtype: '<%= washtype %>',
-            water: '<%= water %>',
-            washmode: '<%= mode %>',
-            carsize: '<%= carsize %>',
-            date: '<%= date %>',
-            time: '<%= time %>'
+            city: document.getElementById('city').value,
+            town: document.getElementById('town').value,
+            street: document.getElementById('street').value,
+            address: document.getElementById('address').value,
+            buildingnum:document.getElementById('buildingnum').value,
+            roomnum:document.getElementById('roomnum').value,
+            car_park_info:document.getElementById('car_park_info').value,
+            carsize:document.getElementById('carsize').value,
+            price:
+            date:document.getElementById('date-input').value,
+            time:document.getElementById('time-input').value,
+            package: '<%= package %>',
         }).then(success => {
             window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://i1.wp.com/www.watts-innovating.com/wp-content/uploads/2018/04/thankyou.jpg?fit=2160%2C2160&ssl=1&display_text=Thankyou')
         })
