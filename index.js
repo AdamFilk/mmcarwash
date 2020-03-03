@@ -319,31 +319,24 @@ app.post('/webhook', (req, res) => {
             "attachment":{
               "type":"template",
               "payload":{
-                "template_type":"generic",
-                "elements":[
+                "template_type":"button",
+                "text":"Try the URL button!",
+                "buttons":[
                   {
-                  "title":"Do you want to choose Basic Interior Package?:",
-                  "buttons":[
-                    {
-                      "type":"web_url",
-                      "url":"https://mmcarwash.herokuapp.com/index",
-                      "title":"Yes",
-                      "webview_height_ratio": "full"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"No",
-                      "payload":"n_b_int"
-                    },
-                    
-                  ]
-
-                },
-              ],
-              
+                    "type":"web_url",
+                    "url":" https://mmcarwash.herokuapp.com/index",
+                    "title":"Yes",
+                    "webview_height_ratio": "full"
+                  }
+                  {
+                    "type":"web_url",
+                    "url":" https://mmcarwash.herokuapp.com/index",
+                    "title":"No",
+                    "webview_height_ratio": "full"
+                  }
+                ]
               }
             }
-
           }
         }
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
