@@ -325,9 +325,10 @@ app.post('/webhook', (req, res) => {
                   "title":"Do you want to choose Basic Interior Package?:",
                   "buttons":[
                     {
-                      "type":"postback",
+                      "type":"web_url",
+                      "url":"https://mmcarwash.herokuapp.com/index",
                       "title":"Yes",
-                      "payload":"y_b_int"
+                      "webview_height_ratio": "full"
                     },
                     {
                       "type":"postback",
