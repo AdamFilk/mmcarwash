@@ -15,7 +15,7 @@
     <title>Booking Carwash</title>
 
 </head>
-<body>
+<body background="black">
     <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col-sm-4 w-100">
@@ -40,12 +40,20 @@
                         </td>
                     </tr>
                     <tr>
+                      <td>
+                        <b>City:</b>
+                      </td>
+                      <td>
+                        <input class="form-control" type="text" placeholder="Only Yangon for now" readonly>
+                      </td>
+                    </tr>
+                    <tr>
                         <td style="vertical-align: middle;"><b>Town:</b> </td>
                         <td>    
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Select Town</label>
                                 <select class="form-control" id="exampleFormControlSelect1" required>
-                                  <option>Ahlan</option>
+                                  <option>Ahlone</option>
                                   <option>Bahan</option>
                                   <option>Botahtaung</option>
                                   <option>Dagon</option>
@@ -76,7 +84,7 @@
                     </tr>   
                     <tr>
                         <td>
-                           <b>Road/Street:</b> 
+                           <b>Street</b> 
                         </td>
                         <td>
                             <input type="text" class="form-control" placeholder="Enter Your Street Name" id="street" aria-label="street" aria-describedby="basic-addon1" required>
@@ -87,13 +95,48 @@
                         <td> <input type="text" class="form-control" placeholder="Enter where You live" id="address" aria-label="address" aria-describedby="basic-addon1"></td>
                     </tr>
                     <tr>
-                        <td>Building No.span <span style="color:#ff2d00">(optional*)</span></td>
+                        <td>Building No. <span style="color:#ff2d00">(optional*)</span></td>
                         <td><input type="text" class="form-control" placeholder="Enter Your Building No" id="buildingnum" aria-label="buildingnum" aria-describedby="basic-addon1"></td>
                     </tr>
                     <tr>
                         <td>Room No.<span style="color:#ff2d00">(optional*)</span></td>
                         <td><input type="text" class="form-control" placeholder="Enter Your Room No" id="roomnum" aria-label="roomnum" aria-describedby="basic-addon1"></td>
                     </tr>
+                    <tr>
+                      <td>
+                        <b>Car Parking Info</b>
+                      </td>
+                      <td>
+                        <textarea id="Textarea" placeholder="where?street?garage?home?" required></textarea>
+                      </td>
+                    </tr>
+                    <tr>
+                    <td>
+                      <b>Car Type</b>
+                    </td>
+                    <td>
+                     <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadioInline1">Small</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadioInline2">Medium</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadioInline3">Large</label>
+                    </div>
+                    </td>
+                    </tr>
+                     <tr>
+                          <td>
+                            <b>Price</b>
+                          </td>
+                          <td>
+                            ????
+                          </td>
+                        </tr>
                     <tr>
                         <td><b>Date</b> </td>
                         <td>
@@ -108,7 +151,9 @@
                         <td>
                             <input class="form-control" type="time" value="13:45:00" id="example-time-input" required>
                         </td>
+                       
                     <tr>
+
                     <td>
                         <button type="button" onclick="submit()" class="btn btn-outline-light btn-secondary btn-lg btn-block">Submit</button>
                     </td>
