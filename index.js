@@ -319,26 +319,33 @@ app.post('/webhook', (req, res) => {
             "attachment":{
               "type":"template",
               "payload":{
-                "template_type":"button",
-                "text":"Try the URL button!",
-                "buttons":[
+                "template_type":"generic",
+                "elements":[
                   {
-                    "type":"web_url",
-                    "url":" https://mmcarwash.herokuapp.com/index",
-                    "title":"Yes",
-                    "webview_height_ratio": "full"
-                  }
-                  {
-                    "type":"web_url",
-                    "url":" https://mmcarwash.herokuapp.com/index",
-                    "title":"No",
-                    "webview_height_ratio": "full"
-                  }
-                ]
+                  "title":"Do you want to choose Basic Exterior Package?:",
+                  "buttons":[
+                    {
+                      "type":"web_url",
+                      "url":"https://mmcarwash.herokuapp.com/index",
+                      "payload":"y_b_ext"
+                    },
+                    {
+                      "type":"web_url",
+                      "url":"https://mmcarwash.herokuapp.com/index",
+                      "payload":"n_b_ext"
+                    },
+                    
+                  ]
+    
+                },
+              ],
+              
               }
             }
+    
           }
         }
+        
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
     textMessage
     ).then(response=>{
@@ -365,6 +372,7 @@ app.post('/webhook', (req, res) => {
         "text": "In the Package: Body Cleaning, Window Cleaning, Tire and Ally Cleaning"
       }
     };
+    
     let genericMessage = {
       "recipient":{
         "id": webhook_event.sender.id
