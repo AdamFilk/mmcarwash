@@ -309,7 +309,7 @@ app.post('/webhook', (req, res) => {
             "id":webhook_event.sender.id
           },
           "message":{
-            "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior"
+            "text": "In the Package: \nDashboard Cleaning, Windows Cleaning, Vacuuming Interior"
           }
         };
         let genericMessage = {
@@ -371,7 +371,7 @@ app.post('/webhook', (req, res) => {
         "id":webhook_event.sender.id
       },
       "message":{
-        "text": "In the Package: Body Cleaning, Window Cleaning, Tire and Ally Cleaning"
+        "text": "In the Package: \nBody Cleaning, Window Cleaning, Tire and Ally Cleaning"
       }
     };
     
@@ -432,7 +432,7 @@ genericMessage
         "id":webhook_event.sender.id
       },
       "message":{
-        "text": "In the Package: Body Cleaning, Window Cleaning, Tire and Ally Cleaning, \nDashboard Cleaning, Windows Cleaning, Vacuuming Interior"
+        "text": "In the Package: \nBody Cleaning, Window Cleaning, Tire and Ally Cleaning, Dashboard Cleaning, Windows Cleaning, Vacuuming Interior"
       }
     };
     let genericMessage = {
@@ -492,7 +492,7 @@ genericMessage
             "id":webhook_event.sender.id
           },
           "message":{
-            "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior, \n Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning"
+            "text": "In the Package:\n Dashboard Cleaning, Windows Cleaning, Vacuuming Interior, Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning"
           }
         };
         let genericMessage = {
@@ -552,7 +552,7 @@ genericMessage
         "id":webhook_event.sender.id
       },
       "message":{
-        "text": "In the Package: Detail Cleaning, Stain Removal, Windows Cleaning, \nTire and Alloy Cleaning, Alloy Polishing, \nWaxing or polishing"
+        "text": "In the Package:\n Detail Cleaning, Stain Removal, Windows Cleaning, Tire and Alloy Cleaning, Alloy Polishing, Waxing or polishing"
       }
     };
     let genericMessage = {
@@ -612,7 +612,7 @@ genericMessage
         "id":webhook_event.sender.id
       },
       "message":{
-        "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior, \n Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,\n Detail Cleaning, Stain Removal, Windows Cleaning, \nTire and Alloy Cleaning, Alloy Polishing, \nWaxing or polishing"
+        "text": "In the Package:\n Dashboard Cleaning, Windows Cleaning, Vacuuming Interior, Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning, Detail Cleaning, Stain Removal, Windows Cleaning, Tire and Alloy Cleaning, Alloy Polishing, Waxing or polishing"
       }
     };
     let genericMessage = {
@@ -672,7 +672,7 @@ genericMessage
             "id":webhook_event.sender.id
           },
           "message":{
-            "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior,\n Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,\nPremium Dressing, Interior Sterilization "
+            "text": "In the Package:\n Dashboard Cleaning, Windows Cleaning, Vacuuming Interior, Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning, Premium Dressing, Interior Sterilization "
           }
         };
         let genericMessage = {
@@ -732,7 +732,7 @@ genericMessage
         "id":webhook_event.sender.id
       },
       "message":{
-        "text": "In the Package: Detail body cleaning, Stain Removal, Windows Cleaning and polishing,\n Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing, Waxing, \nPolishing"
+        "text": "In the Package:\n Detail body cleaning, Stain Removal, Windows Cleaning and polishing, Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing, Waxing, Polishing"
       }
     };
     let genericMessage = {
@@ -792,7 +792,7 @@ genericMessage
         "id":webhook_event.sender.id
       },
       "message":{
-        "text": "In the Package: Dashboard Cleaning, Windows Cleaning, Vacuuming Interior,\n Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,\nPremium Dressing, Interior Sterilization Detail body cleaning, Stain Removal, Windows Cleaning and polishing,\n Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing,\n Waxing,Polishing"
+        "text": "In the Package:\n Dashboard Cleaning, Windows Cleaning, Vacuuming Interior,Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,Premium Dressing, Interior Sterilization Detail body cleaning, Stain Removal, Windows Cleaning and polishing,Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing, Waxing,Polishing"
       }
     };
     let genericMessage = {
