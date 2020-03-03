@@ -35,7 +35,7 @@ app.get('/wash/:params/:name', (req, res) => {
     var mode = usersettings[1];
     var carsize = usersettings[2]
   }
-  res.render('index', {name: name, washtype: washtype, water: water, mode: mode, carsize: carsize, date: date, time: time})
+  res.render('index', {name: name, carwashpkg : carwashpkg, service: service, mode: mode, carsize: carsize})
 })
 
 let userOrder = {};
@@ -108,13 +108,13 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                    "title":"Please Choose One",
-                    "subtitle":"as",
-                    "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                    "title":"MM Carwash's Chatbot",
+                    "subtitle":"Enjoy our fast and reliable service!",
+                    "image_url":"https://i.pinimg.com/originals/8e/ae/4e/8eae4e9c738013ac5bef63b8cbf9a328.jpg",
                     "buttons":[
                       {
                         "type":"postback",
-                        "title":"View Services",
+                        "title":"Start Booking",
                         "payload":"book"
                       },
                       {
@@ -124,8 +124,8 @@ app.post('/webhook', (req, res) => {
                       },
                       {
                         "type":"postback",
-                        "title":"View Appointment",
-                        "payload":"View Appointment"
+                        "title":"View My Appointment",
+                        "payload":"view_apn"
                       },
 
                     ]
@@ -171,7 +171,7 @@ app.post('/webhook', (req, res) => {
                   {
                   "title":"Our services:",
                   "subtitle":"choose one",
-                  "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                  "image_url":"https://i.pinimg.com/originals/4e/2e/bc/4e2ebcc3e908aa9bef55fa6667048eca.jpg",
                   "buttons":[
                     {
                       "type":"postback",
@@ -222,8 +222,8 @@ app.post('/webhook', (req, res) => {
                 "elements":[
                   {
                   "title":"Basic Wash Packages",
-                  "subtitle":"a",
-                  "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                  "subtitle":"These are the basic packages",
+                  "image_url":"https://i.pinimg.com/originals/ec/43/2c/ec432c1852f268a95aee064997964275.jpg",
                   "buttons":[
                     {
                       "type":"postback",
@@ -245,8 +245,8 @@ app.post('/webhook', (req, res) => {
                 },
                 {
                   "title":"Shining Wash Packages",
-                  "subtitle":"a",
-                  "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                  "subtitle":"These are the Shining Packages",
+                  "image_url":"https://i.pinimg.com/originals/24/8c/6f/248c6f595b1181e4fafb09cd51ed90e7.jpg",
                   "buttons":[
                     {
                       "type":"postback",
@@ -267,8 +267,8 @@ app.post('/webhook', (req, res) => {
                 },
                     {
                       "title":"Premium Wash Packages",
-                      "subtitle":"a",
-                      "image_url":"https://capistranowash.com/wp-content/uploads/2014/09/car-wash-icon.jpg",
+                      "subtitle":"These are the Premium Packages",
+                      "image_url":"https://i.pinimg.com/originals/d2/2b/31/d22b3117b17e5917dfca78130caa8272.jpgs",
                       "buttons":[
                         {
                           "type":"postback",
