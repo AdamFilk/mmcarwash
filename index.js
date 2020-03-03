@@ -331,8 +331,8 @@ app.post('/webhook', (req, res) => {
                       "webview_height_ratio": "tall",
                     },
                     {
-                      "type":"web_url",
-                      "url":"https://mmcarwash.herokuapp.com/index",
+                      "type":"postback",
+                      "title":"No",
                       "payload":"n_b_ext"
                     },
                     
