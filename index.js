@@ -268,7 +268,7 @@ app.post('/webhook', (req, res) => {
                     {
                       "title":"Premium Wash Packages",
                       "subtitle":"These are the Premium Packages",
-                      "image_url":"https://i.pinimg.com/originals/d2/2b/31/d22b3117b17e5917dfca78130caa8272.jpgs",
+                      "image_url":"https://i.pinimg.com/originals/d2/2b/31/d22b3117b17e5917dfca78130caa8272.jpg",
                       "buttons":[
                         {
                           "type":"postback",
