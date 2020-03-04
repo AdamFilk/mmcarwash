@@ -17,13 +17,11 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 app.set('view engine', 'ejs');
 app.set('views', __dirname+'/views');
 
-app.get('/index/:package/:wtype/:id', (req, res) => {
-  var id = req.params.id;
+app.get('/index/:package/:wtype/:name', (req, res) => {
+  var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
-  requestify.get(`https://graph.facebook.com/v6.0/${id}?fields=id%2Cname&access_token=EAAKGyWXj6KABAIOEZCG5N0vVtz3e5xFEKcWFzkMkEzvUZCkzwo0rxQjdku9swb22Ma7PCkccqZA4nmLc64cnVMDhIsyQME8zox82lNywVHWyZBH6PmrYzRo7UITZBENKst7DAUZCulpQDtjxFIFnTmqbYvNKSAwy6ApsaCBXmYrPFsAZC0wpRdU9RmOIRel2cckmB9cxbk5BwZDZD`).then(success=>{
-    res.render('index.ejs', {name:success.name, package:washpackage, wtype:wtype})  
-  })
+  res.render('index.ejs', {name:name, package:washpackage, wtype:wtype})
   
 })
  
@@ -293,64 +291,67 @@ app.post('/webhook', (req, res) => {
       //end of wash packages
       //start basic interior
       if(userInput.includes("basic_int")){
-        let textMessage = {
-          "recipient":{
-            "id":webhook_event.sender.id
-          },
-          "message":{
-            "text": "In the Package: \nDashboard Cleaning, Windows Cleaning, Vacuuming Interior"
-          }
-        };
-        let genericMessage = {
-          "recipient":{
-            "id": webhook_event.sender.id
-          },
-          "message":{
-            "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"generic",
-                "elements":[
-                  {
-                  "title":"Do you want to choose Basic Exterior Package?:",
-                  "buttons":[
-                    {
-                      "type":"web_url",
-                      "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+webhook_event.sender.id,
-                      "title":"Yes",
-                      "webview_height_ratio": "full",
-                    },
-                    {
-                      "type":"postback",
-                      "title":"No",
-                      "payload":"n_b_ext"
-                    },
-                    
-                  ]
-    
-                },
-              ],
-              
-              }
+        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=id%2Cname&access_token=EAAKGyWXj6KABAIOEZCG5N0vVtz3e5xFEKcWFzkMkEzvUZCkzwo0rxQjdku9swb22Ma7PCkccqZA4nmLc64cnVMDhIsyQME8zox82lNywVHWyZBH6PmrYzRo7UITZBENKst7DAUZCulpQDtjxFIFnTmqbYvNKSAwy6ApsaCBXmYrPFsAZC0wpRdU9RmOIRel2cckmB9cxbk5BwZDZD`).then(success=>{
+          let textMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text": "In the Package: \nDashboard Cleaning, Windows Cleaning, Vacuuming Interior"
             }
-    
+          };
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Do you want to choose Basic Exterior Package?:",
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+success.name,
+                        "title":"Yes",
+                        "webview_height_ratio": "full",
+                      },
+                      {
+                        "type":"postback",
+                        "title":"No",
+                        "payload":"n_b_ext"
+                      },
+                      
+                    ]
+      
+                  },
+                ],
+                
+                }
+              }
+      
+            }
           }
-        }
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      textMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+  })
         
-    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-    textMessage
-    ).then(response=>{
-      console.log(response)
-    }).fail(error=> {
-      console.log(error)
-    })
-    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-    genericMessage
-    ).then(response=>{
-      console.log(response)
-    }).fail(error=> {
-      console.log(error)
-    })
   }
   //end basic int
   //start basic ext
