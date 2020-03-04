@@ -219,7 +219,7 @@ function price() {
       var db = firebase.firestore();
       
         db.collection('booking').add({
-            id: '<%= id%>',
+            name: '<%= name%>',
             package: '<%= package %>',
             wtype: '<%=wtype %>',
             phone: document.getElementById('phone').value,

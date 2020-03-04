@@ -21,8 +21,12 @@ app.get('/index/:package/:wtype/:id', (req, res) => {
   var id = req.params.id;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
-  res.render('index.ejs', {id:id, package:washpackage, wtype:wtype})
+  requestify.get(`https://graph.facebook.com/v6.0/${id}?fields=id%2Cname&access_token=EAAKGyWXj6KABAIOEZCG5N0vVtz3e5xFEKcWFzkMkEzvUZCkzwo0rxQjdku9swb22Ma7PCkccqZA4nmLc64cnVMDhIsyQME8zox82lNywVHWyZBH6PmrYzRo7UITZBENKst7DAUZCulpQDtjxFIFnTmqbYvNKSAwy6ApsaCBXmYrPFsAZC0wpRdU9RmOIRel2cckmB9cxbk5BwZDZD`).then(success=>{
+    res.render('index.ejs', {name:success.name, package:washpackage, wtype:wtype})  
+  })
+  
 })
+ 
 
 let userOrder = {};
 // Adds support for GET requests to our webhook
