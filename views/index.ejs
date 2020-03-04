@@ -141,7 +141,7 @@
                         <td><b>Date</b> </td>
                         <td>
                                 
-                            <input class="form-control" type="date" value="2011-08-19" id="date-input" required>
+                            <input class="form-control" type="date" value="2020-08-19" id="date-input" required>
                               
                         </td>
                     </tr>
@@ -229,7 +229,7 @@ function price() {
             buildingnum:document.getElementById('buildingnum').value,
             roomnum:document.getElementById('roomnum').value,
             car_park_info:document.getElementById('car_park_info').value,
-            carsize:document.getElementById('carsize').value,
+            carsize:document.getElementsByName('carsize').value,
             price:document.getElementById("price").value,
             date:document.getElementById('date-input').value,
             time:document.getElementById('time-input').value,
