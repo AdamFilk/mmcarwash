@@ -77,12 +77,14 @@ app.post('/webhook', (req, res) => {
           var userInput = webhook_event.postback.payload
         }
         if (userInput == 'Hi'){
+          requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+            var udetails = JSON.parse(success.body)
           let welcomeMessage = {
             "recipient":{
               "id":webhook_event.sender.id
             },
             "message":{
-              "text":"Hi! Welcome from MM Car Wash 😄😄😄"
+              "text":"Hi!"+udetails.name+"Welcome from MM Car Wash 😄😄😄"
             }
           };
           let genericMessage = {
@@ -140,6 +142,10 @@ app.post('/webhook', (req, res) => {
           }).fail(error=> {
             console.log(error)
           })
+        }).catch(error=>{
+          console.log(error)
+        })
+        
         }
         //end of select
        //start of book
