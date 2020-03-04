@@ -17,25 +17,11 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 app.set('view engine', 'ejs');
 app.set('views', __dirname+'/views');
 
-app.get('/wash/:params/:name', (req, res) => {
-  var name = req.params.name;
-  var date = new Date();
-  var time = `${date.getHours}:${date.getMinutes}:${date.getSeconds}`
-  date = `${date.getDate}/${date.getMonth+1}/${date.getFullYear}`
-  var link = req.params.params
-  var usersettings = link.split('_')
-  if(link.includes('wl_') || link.includes('hw_')){
-    var washtype = usersettings[0];
-    var water = usersettings[1];
-    var mode = usersettings[2];
-    var carsize = usersettings[3] 
-  }else{
-    var washtype = 'wl';
-    var water = usersettings[0];
-    var mode = usersettings[1];
-    var carsize = usersettings[2]
-  }
-  res.render('index', {name: name, carwashpkg : carwashpkg, service: service, mode: mode, carsize: carsize})
+app.get('/index/:package/:wtype/:id', (req, res) => {
+  var id = req.params.id;
+  var package=req.params.package;
+  var wtype=req.params.wtype;
+  res.render('index', {id:id, package:package, wtype:wtype})
 })
 
 let userOrder = {};
@@ -228,17 +214,17 @@ app.post('/webhook', (req, res) => {
                     {
                       "type":"postback",
                       "title":"Interior",
-                      "payload":"basic_int"
+                      "payload":userButton+"/basic_int"
                     },
                     {
                       "type":"postback",
                       "title":"Exterior",
-                      "payload":"basic_ext"
+                      "payload":userButton+"/basic_ext"
                     },
                     {
                       "type":"postback",
                       "title":"Both",
-                      "payload":"basic_both"
+                      "payload":userButton+"/basic_both"
                     },
                   ]
   
@@ -251,17 +237,17 @@ app.post('/webhook', (req, res) => {
                     {
                       "type":"postback",
                       "title":"Interior",
-                      "payload":"shine_int"
+                      "payload":userButton+"/shine_int"
                     },
                     {
                       "type":"postback",
                       "title":"Exterior",
-                      "payload":"shine_ext"
+                      "payload":userButton+"/shine_ext"
                     },
                     {
                       "type":"postback",
                       "title":"Both",
-                      "payload":"shine_both"
+                      "payload":userButton+"/shine_both"
                     },
                   ]
                 },
@@ -273,17 +259,17 @@ app.post('/webhook', (req, res) => {
                         {
                           "type":"postback",
                           "title":"Interior",
-                          "payload":"prm_int"
+                          "payload":userButton+"/prm_int"
                         },
                         {
                           "type":"postback",
                           "title":"Exterior",
-                          "payload":"prm_ext"
+                          "payload":userButton+"/prm_ext"
                         },
                         {
                           "type":"postback",
                           "title":"Both",
-                          "payload":"prm_both"
+                          "payload":userButton+"/sprm_both"
                         },
                   ]
                 }
@@ -303,7 +289,7 @@ app.post('/webhook', (req, res) => {
     
       //end of wash packages
       //start basic interior
-      if(userButton=="basic_int"){
+      if(userButton.includes("basic_int")){
         let textMessage = {
           "recipient":{
             "id":webhook_event.sender.id
@@ -327,7 +313,7 @@ app.post('/webhook', (req, res) => {
                   "buttons":[
                     {
                       "type":"web_url",
-                      "url":"https://mmcarwash.herokuapp.com/index",
+                      "url":"https://mmcarwash.herokuapp.com/index/"+userButton+"/"+webhook_event.sender.id,
                       "title":"Yes",
                       "webview_height_ratio": "tall",
                     },

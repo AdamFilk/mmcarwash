@@ -115,26 +115,26 @@
                       <b>Car Type</b>
                     </td>
                     <td>
-                     <div class="custom-control custom-radio custom-control-inline">
-                      <input type="radio" id="carsize" name="customRadioInline1" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadioInline1">Small</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                      <input type="radio" id="carsize" name="customRadioInline1" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadioInline2">Medium</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                      <input type="radio" id="carsize" name="customRadioInline1" class="custom-control-input">
-                      <label class="custom-control-label" for="customRadioInline3">Large</label>
-                    </div>
+                     
+                      <input type="radio" name="carsize" onchange="price()" value="small">
+                      <label>Small</label>
+                    
+                    
+                      <input type="radio" name="carsize" onchange="price()" value="medium">
+                      <label>Medium</label>
+                    
+                    
+                      <input type="radio" name="carsize"  onchange="price()" value="large">
+                      <label>Large</label>
+                    
                     </td>
                     </tr>
                      <tr>
                           <td>
-                            <b>Price</b>
+                           <b>Price:</b> 
                           </td>
                           <td>
-                            ????
+                            <p id="price"></p>
                           </td>
                         </tr>
                     <tr>
@@ -175,6 +175,20 @@ function checkNumber() {
         document.getElementById('warningPhone').style.display = "none";
     }
 }
+
+function price() {
+  var value = document.querySelector('input[name="carsize"]:checked');
+  value = value.value;
+  console.log(value);
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "3000Ks"
+  }else if(value=="medium"){
+    document.getElementById("price").innerHTML="5000Ks"
+  }else if(value=="large"){
+    document.getElementById("price").innerHTML="7500Ks"
+  }
+  
+}
 </script>
 
 
@@ -201,7 +215,9 @@ function checkNumber() {
       var db = firebase.firestore
       function submit(){
         db.collection('booking').add({
-            name: '<%= name %>',
+            id: '<%= id%>',
+            package: '<%= package %>',
+            wtype: '<%=wtype %>',
             phone: document.getElementById('phone').value,
             city: document.getElementById('city').value,
             town: document.getElementById('town').value,
@@ -211,10 +227,10 @@ function checkNumber() {
             roomnum:document.getElementById('roomnum').value,
             car_park_info:document.getElementById('car_park_info').value,
             carsize:document.getElementById('carsize').value,
-            price:
+            price:document.getElementById("price").value,
             date:document.getElementById('date-input').value,
             time:document.getElementById('time-input').value,
-            package: '<%= package %>',
+           
         }).then(success => {
             window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://i1.wp.com/www.watts-innovating.com/wp-content/uploads/2018/04/thankyou.jpg?fit=2160%2C2160&ssl=1&display_text=Thankyou')
         })
