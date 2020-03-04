@@ -72,9 +72,9 @@ app.post('/webhook', (req, res) => {
           var userInput = webhook_event.message.text
         }
         if(webhook_event.postback){
-          var userButton = webhook_event.postback.payload
+          var userInput = webhook_event.postback.payload
         }
-        if (userInput == 'Hi' || userButton == 'Hi' ){
+        if (userInput == 'Hi'){
           let welcomeMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -141,7 +141,7 @@ app.post('/webhook', (req, res) => {
         }
         //end of select
        //start of book
-       if (userButton == 'book'){
+       if (userInput == 'book'){
 
         let genericMessage = {
           "recipient":{
@@ -194,7 +194,7 @@ app.post('/webhook', (req, res) => {
       }
        //end of select
       //start of wash packages
-      if (userButton== "cwpkg"){
+      if (userInput== "cwpkg"){
         let genericMessage = {
           "recipient":{
             "id": webhook_event.sender.id
@@ -213,17 +213,17 @@ app.post('/webhook', (req, res) => {
                     {
                       "type":"postback",
                       "title":"Interior",
-                      "payload":userButton+"/basic_int"
+                      "payload":userInput+"/basic_int"
                     },
                     {
                       "type":"postback",
                       "title":"Exterior",
-                      "payload":userButton+"/basic_ext"
+                      "payload":userInput+"/basic_ext"
                     },
                     {
                       "type":"postback",
                       "title":"Both",
-                      "payload":userButton+"/basic_both"
+                      "payload":userInput+"/basic_both"
                     },
                   ]
   
@@ -236,17 +236,17 @@ app.post('/webhook', (req, res) => {
                     {
                       "type":"postback",
                       "title":"Interior",
-                      "payload":userButton+"/shine_int"
+                      "payload":userInput+"/shine_int"
                     },
                     {
                       "type":"postback",
                       "title":"Exterior",
-                      "payload":userButton+"/shine_ext"
+                      "payload":userInput+"/shine_ext"
                     },
                     {
                       "type":"postback",
                       "title":"Both",
-                      "payload":userButton+"/shine_both"
+                      "payload":userInput+"/shine_both"
                     },
                   ]
                 },
@@ -258,17 +258,17 @@ app.post('/webhook', (req, res) => {
                         {
                           "type":"postback",
                           "title":"Interior",
-                          "payload":userButton+"/prm_int"
+                          "payload":userInput+"/prm_int"
                         },
                         {
                           "type":"postback",
                           "title":"Exterior",
-                          "payload":userButton+"/prm_ext"
+                          "payload":userInput+"/prm_ext"
                         },
                         {
                           "type":"postback",
                           "title":"Both",
-                          "payload":userButton+"/sprm_both"
+                          "payload":userInput+"/sprm_both"
                         },
                   ]
                 }
@@ -288,7 +288,7 @@ app.post('/webhook', (req, res) => {
     
       //end of wash packages
       //start basic interior
-      if(userButton.includes("basic_int")){
+      if(userInput.includes("basic_int")){
         let textMessage = {
           "recipient":{
             "id":webhook_event.sender.id
@@ -312,7 +312,7 @@ app.post('/webhook', (req, res) => {
                   "buttons":[
                     {
                       "type":"web_url",
-                      "url":"https://mmcarwash.herokuapp.com/index/"+userButton+"/"+webhook_event.sender.id,
+                      "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+webhook_event.sender.id,
                       "title":"Yes",
                       "webview_height_ratio": "full",
                     },
@@ -350,7 +350,7 @@ app.post('/webhook', (req, res) => {
   }
   //end basic int
   //start basic ext
-  if(userButton=="basic_ext"){
+  if(userInput=="basic_ext"){
     let textMessage = {
       "recipient":{
         "id":webhook_event.sender.id
@@ -411,7 +411,7 @@ genericMessage
 }
   //end basic ext
   //start basic both
-  if(userButton=="basic_both"){
+  if(userInput=="basic_both"){
     let textMessage = {
       "recipient":{
         "id":webhook_event.sender.id
@@ -471,7 +471,7 @@ genericMessage
 }
   //end basic both
       //start shining interior
-      if(userButton=="shine_int"){
+      if(userInput=="shine_int"){
         let textMessage = {
           "recipient":{
             "id":webhook_event.sender.id
@@ -531,7 +531,7 @@ genericMessage
   }
   //end shining int
   //start shining ext
-  if(userButton=="shine_ext"){
+  if(userInput=="shine_ext"){
     let textMessage = {
       "recipient":{
         "id":webhook_event.sender.id
@@ -591,13 +591,13 @@ genericMessage
 }
   //end shining ext
   //start shinging both
-  if(userButton=="shine_both"){
+  if(userInput=="shine_both"){
     let textMessage = {
       "recipient":{
         "id":webhook_event.sender.id
       },
       "message":{
-        "text": "In the Package:\n Dashboard Cleaning, Windows Cleaning, Vacuuming Interior, Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning, Detail Cleaning, Stain Removal, Windows Cleaning, Tire and Alloy Cleaning, Alloy Polishing, Waxing or polishing"
+        "text": "In the Package:\nDashboard Cleaning\nWindows Cleaning\nVacuuming Interior\nFloor mats cleaning\nSeat Cleaning\nStain Removing\nInstalling Air-fresher\nTrunk cleaning\nDetail Cleaning\nStain Removal\nWindows Cleaning\nTire and Alloy Cleaning\nAlloy Polishing\nWaxing or polishing"
       }
     };
     let genericMessage = {
@@ -651,7 +651,7 @@ genericMessage
 }
   //end shining both
       //start premium interior
-      if(userButton=="prm_int"){
+      if(userInput=="prm_int"){
         let textMessage = {
           "recipient":{
             "id":webhook_event.sender.id
@@ -711,7 +711,7 @@ genericMessage
   }
   //end premium int
   //start premium ext
-  if(userButton=="prm_ext"){
+  if(userInput=="prm_ext"){
     let textMessage = {
       "recipient":{
         "id":webhook_event.sender.id
@@ -771,7 +771,7 @@ genericMessage
 }
   //end premuim ext
   //start premium both
-  if(userButton=="prm_both"){
+  if(userInput=="prm_both"){
     let textMessage = {
       "recipient":{
         "id":webhook_event.sender.id
@@ -831,7 +831,7 @@ genericMessage
 }
   //end premium both      
 //start price
-if (userButton == 'price'){
+if (userInput == 'price'){
   let textMessage = {
     "recipient":{
       "id":webhook_event.sender.id
@@ -912,7 +912,7 @@ genericMessage
 }
 //end price
 //start s_v_price
-if (userButton == 'v_s_price'){
+if (userInput == 'v_s_price'){
   let textMessage = {
     "recipient":{
       "id":webhook_event.sender.id
@@ -931,7 +931,7 @@ textMessage
 }
 //end s_v_price
 //start m_v_price
-if (userButton == 'v_m_price'){
+if (userInput == 'v_m_price'){
   let textMessage = {
     "recipient":{
       "id":webhook_event.sender.id
@@ -950,7 +950,7 @@ textMessage
 }
 //end m_v_price
 //start v_l_price
-if (userButton == 'v_l_price'){
+if (userInput == 'v_l_price'){
   let textMessage = {
     "recipient":{
       "id":webhook_event.sender.id
