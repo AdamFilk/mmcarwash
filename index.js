@@ -315,7 +315,7 @@ app.post('/webhook', (req, res) => {
                       "type":"web_url",
                       "url":"https://mmcarwash.herokuapp.com/index/"+userButton+"/"+webhook_event.sender.id,
                       "title":"Yes",
-                      "webview_height_ratio": "tall",
+                      "webview_height_ratio": "full",
                     },
                     {
                       "type":"postback",
