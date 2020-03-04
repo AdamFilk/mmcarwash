@@ -291,7 +291,7 @@ app.post('/webhook', (req, res) => {
       //end of wash packages
       //start basic interior
       if(userInput.includes("basic_int")){
-        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=id%2Cname&access_token=${pageaccesstoken}`).then(success=>{
+        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
           let textMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -300,6 +300,8 @@ app.post('/webhook', (req, res) => {
               "text": "In the Package: \nDashboard Cleaning, Windows Cleaning, Vacuuming Interior"
             }
           };
+          console.log(success)
+          console.log(success.name)
           let genericMessage = {
             "recipient":{
               "id": webhook_event.sender.id
