@@ -831,16 +831,144 @@ genericMessage
 })
 }
   //end premium both      
-     
-       
+//start price
+if (userButton == 'price'){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "Prices for each package is vary according to the size of the car. \n You can find the prices for each car below"
+    }
+  };
+  let genericMessage = {
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+            "title":"Small",
+            "subtitle":"Prices for small-sized car such as hetchbacks, popular(Honda Fit, Suzuki Swift)",
+            "image_url":"https://i.pinimg.com/originals/79/45/76/794576dd184a34f479d8e503b0edc4af.jpg",
+            "buttons":[
+              {
+                "type":"postback",
+                "title":"View Prices",
+                "payload":"v_s_price"
+              },
+            ]
+          },
+          {
+            "title":"Medium",
+            "subtitle":"Prices for medium-sized car such as sedan, station wagons\nPopular(Honda Fit, Suzuki Swift)",
+            "image_url":"https://www.pinterest.com/pin/772719248552614734",
+            "buttons":[
+              {
+                "type":"postback",
+                "title":"View Prices",
+                "payload":"v_m_price"
+              },
+            ]
+          },
+          {
+            "title":"Large",
+            "subtitle":"Prices for large-sized car such as suv,mini vans, Light Truck\n Popular(Toyota Harrier, Landcruser...)",
+            "image_url":"https://i.pinimg.com/originals/74/27/c3/7427c35ae87f01fd89bf50f1b2a2c4f4.jpg",
+            "buttons":[
+              {
+                "type":"postback",
+                "title":"View Prices",
+                "payload":"v_l_price"
+              },
+            ]
+          },
 
+        ],
+        
+        }
+      }
 
+    }
+  }
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+genericMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
 
-
-
-
-
-
+}
+//end price
+//start s_v_price
+if (userButton == 'v_s_price'){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "Interior\nBasic-3000ks, Shining-6000ks, Premium-9000ks\nExterior\nBasic-3000ks, Shining-6000ks, Premium-9000ks\nBoth\nBaisc-5000ks, Shining-11000ks, Premium-16000ks"
+    }
+  };
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+}
+//end s_v_price
+//start m_v_price
+if (userButton == 'v_m_price'){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "Interior\nBasic-4000ks, Shining-8000ks, Premium-12000ks\nExterior\nBasic-4000ks, Shining-8000ks, Premium-12000ks\nBoth\nBaisc-7500ks, Shining-14000ks, Premium-20000ks"
+    }
+  };
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+}
+//end m_v_price
+//start v_l_price
+if (userButton == 'v_l_price'){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "Interior\nBasic-5000ks, Shining-9000ks, Premium-15000ks\nExterior\nBasic-5000ks, Shining-9000ks, Premium-15000ks\nBoth\nBaisc-9000ks, Shining-16000ks, Premium-25000ks"
+    }
+  };
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+}
+//end v_l_price
 
 
 
