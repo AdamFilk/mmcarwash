@@ -657,7 +657,7 @@ genericMessage
             "id":webhook_event.sender.id
           },
           "message":{
-            "text": "In the Package:\n Dashboard Cleaning, Windows Cleaning, Vacuuming Interior, Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning, Premium Dressing, Interior Sterilization "
+            "text": "In the Package:\nDashboard Cleaning\nWindows Cleaning\nVacuuming Interior\nFloor mats cleaning\nSeat Cleaning\nStain Removing\nInstalling Air-fresher\nTrunk cleaning\nPremium Dressing\nInterior Sterilization "
           }
         };
         let genericMessage = {
