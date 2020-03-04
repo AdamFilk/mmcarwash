@@ -84,7 +84,7 @@ app.post('/webhook', (req, res) => {
               "id":webhook_event.sender.id
             },
             "message":{
-              "text":"Hi!"+""+udetails.name+""+"Welcome from MM Car Wash 😄😄😄"
+              "text":"Hi!"+" "+udetails.name+" "+"Welcome from MM Car Wash 😄😄😄"
             }
           };
           let genericMessage = {
