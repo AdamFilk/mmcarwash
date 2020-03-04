@@ -21,7 +21,7 @@ app.get('/index/:package/:wtype/:id', (req, res) => {
   var id = req.params.id;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
-  res.render('index', {id:id, package:washpackage, wtype:wtype})
+  res.render('index.ejs', {id:id, package:washpackage, wtype:wtype})
 })
 
 let userOrder = {};
