@@ -217,7 +217,7 @@ function price() {
   firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
       var db = firebase.firestore();
       
-        db.collection('booking').add({
+        db.collection('booking').doc().add({
             id: '<%= id%>',
             package: '<%= package %>',
             wtype: '<%=wtype %>',
@@ -230,7 +230,7 @@ function price() {
             roomnum:document.getElementById('roomnum').value,
             car_park_info:document.getElementById('car_park_info').value,
             carsize:document.getElementsByName('carsize').value,
-            price:document.getElementById("price").value,
+            price:document.getElementById("price").innerHTML,
             date:document.getElementById('date-input').value,
             time:document.getElementById('time-input').value,
            
