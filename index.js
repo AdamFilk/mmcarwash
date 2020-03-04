@@ -300,8 +300,7 @@ app.post('/webhook', (req, res) => {
               "text": "In the Package: \nDashboard Cleaning, Windows Cleaning, Vacuuming Interior"
             }
           };
-          console.log(success)
-          console.log(success.name)
+          var udetails = JSON.parse(success.body)
           let genericMessage = {
             "recipient":{
               "id": webhook_event.sender.id
@@ -317,7 +316,7 @@ app.post('/webhook', (req, res) => {
                     "buttons":[
                       {
                         "type":"web_url",
-                        "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+success.name,
+                        "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
                         "title":"Yes",
                         "webview_height_ratio": "full",
                       },
