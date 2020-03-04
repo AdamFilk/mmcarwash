@@ -19,9 +19,9 @@ app.set('views', __dirname+'/views');
 
 app.get('/index/:package/:wtype/:id', (req, res) => {
   var id = req.params.id;
-  var package=req.params.package;
+  var washpackage=req.params.package;
   var wtype=req.params.wtype;
-  res.render('index', {id:id, package:package, wtype:wtype})
+  res.render('index', {id:id, package:washpackage, wtype:wtype})
 })
 
 let userOrder = {};
