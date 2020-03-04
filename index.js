@@ -838,7 +838,7 @@ if (userButton == 'price'){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "Prices for each package is vary according to the size of the car. \n You can find the prices for each car below"
+      "text": "Prices for each package is vary according to the size of the car.\nYou can find the prices for each car below"
     }
   };
   let genericMessage = {
@@ -865,7 +865,7 @@ if (userButton == 'price'){
           },
           {
             "title":"Medium",
-            "subtitle":"Prices for medium-sized car such as sedan, station wagons\nPopular(Honda Fit, Suzuki Swift)",
+            "subtitle":"Prices for medium-sized car such as sedan, station wagons\nPopular(Toyota Bela, Mark 2,Crown, Suzuki Ciaz)",
             "image_url":"https://www.pinterest.com/pin/772719248552614734",
             "buttons":[
               {
@@ -919,7 +919,7 @@ if (userButton == 'v_s_price'){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "Interior\nBasic-3000ks, Shining-6000ks, Premium-9000ks\nExterior\nBasic-3000ks, Shining-6000ks, Premium-9000ks\nBoth\nBaisc-5000ks, Shining-11000ks, Premium-16000ks"
+      "text": "Interior\n\nBasic-3000ks\nShining-6000ks\nPremium-9000ks\n\nExterior\n\nBasic-3000ks\nShining-6000ks\nPremium-9000ks\n\nBoth\n\nBaisc-5000ks\nShining-11000ks\nPremium-16000ks"
     }
   };
   requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
@@ -938,7 +938,7 @@ if (userButton == 'v_m_price'){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "Interior\nBasic-4000ks, Shining-8000ks, Premium-12000ks\nExterior\nBasic-4000ks, Shining-8000ks, Premium-12000ks\nBoth\nBaisc-7500ks, Shining-14000ks, Premium-20000ks"
+      "text": "Interior\n\nBasic-4000ks\nShining-8000ks\nPremium-12000ks\n\nExterior\n\nBasic-4000ks\nShining-8000ks\nPremium-12000ks\n\nBoth\n\nBaisc-7500ks, Shining-14000ks, Premium-20000ks"
     }
   };
   requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
@@ -957,7 +957,7 @@ if (userButton == 'v_l_price'){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "Interior\nBasic-5000ks, Shining-9000ks, Premium-15000ks\nExterior\nBasic-5000ks, Shining-9000ks, Premium-15000ks\nBoth\nBaisc-9000ks, Shining-16000ks, Premium-25000ks"
+      "text": "Interior\n\nBasic-5000ks\nShining-9000ks\nPremium-15000ks\n\nExterior\n\nBasic-5000ks\nShining-9000ks\nPremium-15000ks\n\nBoth\n\nBaisc-9000ks\nShining-16000ks\nPremium-25000ks"
     }
   };
   requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
