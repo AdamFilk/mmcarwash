@@ -123,7 +123,7 @@ app.post('/webhook', (req, res) => {
         // Gets the message. entry.messaging is an array, but 
         // will only ever contain one message, so we get index 0
         let webhook_event = entry.messaging[0];
-        console.log(webhook_event);
+        console.log("webhook event", webhook_event);
         if(webhook_event.message){
           var userInput = webhook_event.message.text
         }
