@@ -35,49 +35,49 @@ app.get('/b_both/:package/:wtype/:name', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
-  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  res.render('b_both.ejs', {name:name, package:washpackage, wtype:wtype})
   
 })
 app.get('/s_int/:package/:wtype/:name', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
-  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  res.render('s_int.ejs', {name:name, package:washpackage, wtype:wtype})
   
 })
 app.get('/s_ext/:package/:wtype/:name', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
-  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  res.render('s_ext.ejs', {name:name, package:washpackage, wtype:wtype})
   
 })
 app.get('/s_both/:package/:wtype/:name', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
-  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  res.render('s_both.ejs', {name:name, package:washpackage, wtype:wtype})
   
 })
 app.get('/prm_int/:package/:wtype/:name', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
-  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  res.render('prm_int.ejs', {name:name, package:washpackage, wtype:wtype})
   
 })
 app.get('/prm_ext/:package/:wtype/:name', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
-  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  res.render('prm_ext.ejs', {name:name, package:washpackage, wtype:wtype})
   
 })
 app.get('/prm_both/:package/:wtype/:name', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
-  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  res.render('prm_both.ejs', {name:name, package:washpackage, wtype:wtype})
   
 })
 let userOrder = {};
