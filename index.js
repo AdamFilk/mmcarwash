@@ -17,7 +17,7 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 app.set('view engine', 'ejs');
 app.set('views', __dirname+'/views');
 
-app.get('b_ext/index/:package/:wtype/:name', (req, res) => {
+app.get('/b_ext/index/:package/:wtype/:name', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
