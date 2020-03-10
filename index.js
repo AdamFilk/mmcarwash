@@ -17,14 +17,20 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 app.set('view engine', 'ejs');
 app.set('views', __dirname+'/views');
 
-app.get('/b_ext/index/:package/:wtype/:name', (req, res) => {
+app.get('/index/:package/:wtype/:name', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
   res.render('index.ejs', {name:name, package:washpackage, wtype:wtype})
   
 })
- 
+app.get('/b_ext/:package/:wtype/:name', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  
+})
 
 let userOrder = {};
 // Adds support for GET requests to our webhook
