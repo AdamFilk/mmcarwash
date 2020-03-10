@@ -372,7 +372,7 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                    "title":"Do you want to choose Basic Exterior Package?:",
+                    "title":"Do you want to choose Basic Interior Package?:",
                     "buttons":[
                       {
                         "type":"web_url",
@@ -508,7 +508,7 @@ console.log(error)
               "template_type":"generic",
               "elements":[
                 {
-                "title":"Do you want to choose Basic Exterior Package?:",
+                "title":"Do you want to choose Basic Both Package?:",
                 "buttons":[
                   {
                     "type":"web_url",
@@ -576,7 +576,7 @@ console.log(error)
                   "template_type":"generic",
                   "elements":[
                     {
-                    "title":"Do you want to choose Basic Exterior Package?:",
+                    "title":"Do you want to choose Standard Interior Package?:",
                     "buttons":[
                       {
                         "type":"web_url",
@@ -644,7 +644,7 @@ console.log(error)
               "template_type":"generic",
               "elements":[
                 {
-                "title":"Do you want to choose Basic Exterior Package?:",
+                "title":"Do you want to choose Standard Exterior Package?:",
                 "buttons":[
                   {
                     "type":"web_url",
@@ -712,7 +712,7 @@ console.log(error)
               "template_type":"generic",
               "elements":[
                 {
-                "title":"Do you want to choose Basic Exterior Package?:",
+                "title":"Do you want to choose Standard Both Package?:",
                 "buttons":[
                   {
                     "type":"web_url",
@@ -780,7 +780,7 @@ console.log(error)
                   "template_type":"generic",
                   "elements":[
                     {
-                    "title":"Do you want to choose Basic Exterior Package?:",
+                    "title":"Do you want to choose Premium Interior Package?:",
                     "buttons":[
                       {
                         "type":"web_url",
@@ -848,7 +848,7 @@ console.log(error)
               "template_type":"generic",
               "elements":[
                 {
-                "title":"Do you want to choose Basic Exterior Package?:",
+                "title":"Do you want to choose Premium Exterior Package?:",
                 "buttons":[
                   {
                     "type":"web_url",
@@ -916,7 +916,7 @@ console.log(error)
               "template_type":"generic",
               "elements":[
                 {
-                "title":"Do you want to choose Basic Exterior Package?:",
+                "title":"Do you want to choose Premium Both Package?:",
                 "buttons":[
                   {
                     "type":"web_url",
