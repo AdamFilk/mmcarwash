@@ -82,34 +82,16 @@
                               </div>
                         </td>
                     </tr>   
-                    <tr>
-                        <td>
-                           <b>Street</b> 
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" placeholder="Enter Your Street Name" id="street" aria-label="street" aria-describedby="basic-addon1" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b>Address Information</b> </td>
-                        <td> <input type="text" class="form-control" placeholder="Enter where You live" id="address" aria-label="address" aria-describedby="basic-addon1"></td>
-                    </tr>
-                    <tr>
-                        <td>Building No. <span style="color:#ff2d00">(optional)</span></td>
-                        <td><input type="text" class="form-control" placeholder="Enter Your Building No" id="buildingnum" aria-label="buildingnum" aria-describedby="basic-addon1"></td>
-                    </tr>
-                    <tr>
-                        <td>Room No.<span style="color:#ff2d00">(optional)</span></td>
-                        <td><input type="text" class="form-control" placeholder="Enter Your Room No" id="roomnum" aria-label="roomnum" aria-describedby="basic-addon1"></td>
-                    </tr>
+                
                     <tr>
                       <td>
-                        <b>Car Parking Info</b>
+                         <b>Address Information</b> 
                       </td>
                       <td>
-                        <textarea  placeholder="where?street?garage?home?" id="car_park_info" required></textarea>
+                        <textarea  placeholder="Street,Quarter,Hosuing,Condo,Building No.,Room No" id="address_info" required></textarea>
                       </td>
-                    </tr>
+                  </tr>
+                   
                     <tr>
                     <td>
                       <b>Car Type</b>
@@ -217,25 +199,36 @@ function price() {
   firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
     console.log(success);
       var db = firebase.firestore();
-      
+      var senderID = '<%= id %>';
         db.collection('booking').add({
             name: '<%= name%>',
             package: '<%= package %>',
             wtype: '<%=wtype %>',
             phone: document.getElementById('phone').value,
             town: document.getElementById('town').value,
-            street: document.getElementById('street').value,
-            address: document.getElementById('address').value,
-            buildingnum:document.getElementById('buildingnum').value,
-            roomnum:document.getElementById('roomnum').value,
-            car_park_info:document.getElementById('car_park_info').value,
+            address_info:document.getElementById('address_info').value,
             carsize:document.querySelector('input[name="carsize"]:checked').value,
             price:document.getElementById("price").innerHTML,
             date:document.getElementById('date-input').value,
             time:document.getElementById('time-input').value,
            
         }).then(success => {
-            window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://i1.wp.com/www.watts-innovating.com/wp-content/uploads/2018/04/thankyou.jpg?fit=2160%2C2160&ssl=1&display_text=Thankyou')
+            var textMessage = {
+            "recipient":{
+              "id":senderID
+            },
+            "message":{
+              "text": "Thank you"
+            }
+          }
+
+          var xhr = new XMLHttpRequest();
+            xhr.open("POST", 'https://graph.facebook.com/v5.0/me/messages?access_token=EAAKGyWXj6KABAEWctoGADzQgZBCK mpqfhcxPYqvasGphAK6CYjuvc42ZCnHZBCjC6tqKGZAotsjKadLyRK0iX6qxI8kBDwPyTInwV17umvWBZC1mUa5m0ofKpZA8h2rrUA1qql9BI8F10N9BmaBDeqVW0U5yZB8vVizzwTaHsf7qMFsOqlSWuXdI8l7CRbJkh8ZD', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify(textMessage));
+
+         
+        
         }).catch(error => {
           console.log(error);
         })
