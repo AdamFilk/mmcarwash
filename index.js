@@ -31,7 +31,55 @@ app.get('/b_ext/:package/:wtype/:name', (req, res) => {
   res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
   
 })
-
+app.get('/b_both/:package/:wtype/:name', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  
+})
+app.get('/s_int/:package/:wtype/:name', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  
+})
+app.get('/s_ext/:package/:wtype/:name', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  
+})
+app.get('/s_both/:package/:wtype/:name', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  
+})
+app.get('/prm_int/:package/:wtype/:name', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  
+})
+app.get('/prm_ext/:package/:wtype/:name', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  
+})
+app.get('/prm_both/:package/:wtype/:name', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  
+})
 let userOrder = {};
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
@@ -464,7 +512,7 @@ console.log(error)
                 "buttons":[
                   {
                     "type":"web_url",
-                    "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                    "url":"https://mmcarwash.herokuapp.com/b_both/"+userInput+"/"+udetails.name,
                     "title":"Yes",
                     "webview_height_ratio": "full",
                   },
@@ -532,7 +580,7 @@ console.log(error)
                     "buttons":[
                       {
                         "type":"web_url",
-                        "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                        "url":"https://mmcarwash.herokuapp.com/s_int/"+userInput+"/"+udetails.name,
                         "title":"Yes",
                         "webview_height_ratio": "full",
                       },
@@ -600,7 +648,7 @@ console.log(error)
                 "buttons":[
                   {
                     "type":"web_url",
-                    "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                    "url":"https://mmcarwash.herokuapp.com/s_ext/"+userInput+"/"+udetails.name,
                     "title":"Yes",
                     "webview_height_ratio": "full",
                   },
@@ -668,7 +716,7 @@ console.log(error)
                 "buttons":[
                   {
                     "type":"web_url",
-                    "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                    "url":"https://mmcarwash.herokuapp.com/s_both/"+userInput+"/"+udetails.name,
                     "title":"Yes",
                     "webview_height_ratio": "full",
                   },
@@ -736,7 +784,7 @@ console.log(error)
                     "buttons":[
                       {
                         "type":"web_url",
-                        "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                        "url":"https://mmcarwash.herokuapp.com/prm_int/"+userInput+"/"+udetails.name,
                         "title":"Yes",
                         "webview_height_ratio": "full",
                       },
@@ -804,7 +852,7 @@ console.log(error)
                 "buttons":[
                   {
                     "type":"web_url",
-                    "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                    "url":"https://mmcarwash.herokuapp.com/prm_ext/"+userInput+"/"+udetails.name,
                     "title":"Yes",
                     "webview_height_ratio": "full",
                   },
@@ -872,7 +920,7 @@ console.log(error)
                 "buttons":[
                   {
                     "type":"web_url",
-                    "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                    "url":"https://mmcarwash.herokuapp.com/prm_both/"+userInput+"/"+udetails.name,
                     "title":"Yes",
                     "webview_height_ratio": "full",
                   },
