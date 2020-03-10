@@ -204,6 +204,9 @@ app.post('/webhook', (req, res) => {
         }
         //end of select
        //start of book
+       if (userInput == "Thank you"){
+          console.log("back from webview");
+       }
        if (userInput == 'book'){
 
         let genericMessage = {
