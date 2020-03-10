@@ -216,6 +216,7 @@ function price() {
   function submit(){
   firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
     console.log(success);
+      var senderID = '<%= id %>';
       var db = firebase.firestore();
       
         db.collection('booking').add({
@@ -249,7 +250,7 @@ function price() {
         }
         var textMessage = {
             "recipient":{
-              "id":webhook_event.sender.id
+              "id":senderID
             },
             "message":{
               "text": "Thank you for choosing our services."

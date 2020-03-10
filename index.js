@@ -45,11 +45,12 @@ app.get('/s_int/:package/:wtype/:name', (req, res) => {
   res.render('s_int.ejs', {name:name, package:washpackage, wtype:wtype})
   
 })
-app.get('/s_ext/:package/:wtype/:name', (req, res) => {
+app.get('/s_ext/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
-  res.render('s_ext.ejs', {name:name, package:washpackage, wtype:wtype})
+  var senderID=req.params.id;
+  res.render('s_ext.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
   
 })
 app.get('/s_both/:package/:wtype/:name', (req, res) => {
@@ -632,7 +633,8 @@ console.log(error)
           "text": "In the Package:\n Detail Cleaning, Stain Removal, Windows Cleaning, Tire and Alloy Cleaning, Alloy Polishing, Waxing or polishing"
         }
       };
-      var udetails = JSON.parse(success.body)
+      var udetails = JSON.parse(success.body);
+      var senderID = webhook_event.sender.id;
       let genericMessage = {
         "recipient":{
           "id": webhook_event.sender.id
@@ -648,7 +650,7 @@ console.log(error)
                 "buttons":[
                   {
                     "type":"web_url",
-                    "url":"https://mmcarwash.herokuapp.com/s_ext/"+userInput+"/"+udetails.name,
+                    "url":"https://mmcarwash.herokuapp.com/s_ext/"+userInput+"/"+udetails.name+"/"+senderID,
                     "title":"Yes",
                     "webview_height_ratio": "full",
                   },
