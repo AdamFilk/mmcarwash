@@ -244,17 +244,17 @@ app.post('/webhook', (req, res) => {
                     {
                       "type":"postback",
                       "title":"Interior",
-                      "payload":userInput+"/shine_int"
+                      "payload":userInput+"/standard_int"
                     },
                     {
                       "type":"postback",
                       "title":"Exterior",
-                      "payload":userInput+"/shine_ext"
+                      "payload":userInput+"/standard_ext"
                     },
                     {
                       "type":"postback",
                       "title":"Both",
-                      "payload":userInput+"/shine_both"
+                      "payload":userInput+"/standard_both"
                     },
                   ]
                 },
@@ -276,7 +276,7 @@ app.post('/webhook', (req, res) => {
                         {
                           "type":"postback",
                           "title":"Both",
-                          "payload":userInput+"/sprm_both"
+                          "payload":userInput+"/prm_both"
                         },
                   ]
                 }
@@ -364,484 +364,547 @@ app.post('/webhook', (req, res) => {
   }
   //end basic int
   //start basic ext
-  if(userInput=="basic_ext"){
-    let textMessage = {
-      "recipient":{
-        "id":webhook_event.sender.id
-      },
-      "message":{
-        "text": "In the Package: \nBody Cleaning, Window Cleaning, Tire and Ally Cleaning"
-      }
-    };
-    
-    let genericMessage = {
-      "recipient":{
-        "id": webhook_event.sender.id
-      },
-      "message":{
-        "attachment":{
-          "type":"template",
-          "payload":{
-            "template_type":"generic",
-            "elements":[
-              {
-              "title":"Do you want to choose Basic Exterior Package?:",
-              "buttons":[
-                {
-                  "type":"postback",
-                  "title":"Yes",
-                  "payload":"y_b_ext"
-                },
-                {
-                  "type":"postback",
-                  "title":"No",
-                  "payload":"n_b_ext"
-                },
-                
-              ]
-
-            },
-          ],
-          
-          }
+  if(userInput.includes("basic_ext")){
+    requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+      let textMessage = {
+        "recipient":{
+          "id":webhook_event.sender.id
+        },
+        "message":{
+          "text": "In the Package: \nBody Cleaning, Window Cleaning, Tire and Ally Cleaning"
         }
-
+      };
+      var udetails = JSON.parse(success.body)
+      let genericMessage = {
+        "recipient":{
+          "id": webhook_event.sender.id
+        },
+        "message":{
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"generic",
+              "elements":[
+                {
+                "title":"Do you want to choose Basic Exterior Package?:",
+                "buttons":[
+                  {
+                    "type":"web_url",
+                    "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                    "title":"Yes",
+                    "webview_height_ratio": "full",
+                  },
+                  {
+                    "type":"postback",
+                    "title":"No",
+                    "payload":"n_b_ext"
+                  },
+                  
+                ]
+  
+              },
+            ],
+            
+            }
+          }
+  
+        }
       }
-    }
-requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-textMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
+      
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}).catch(error=>{
+console.log(error)
 })
-requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-genericMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
+    
 }
   //end basic ext
   //start basic both
-  if(userInput=="basic_both"){
-    let textMessage = {
-      "recipient":{
-        "id":webhook_event.sender.id
-      },
-      "message":{
-        "text": "In the Package: \nBody Cleaning, Window Cleaning, Tire and Ally Cleaning, Dashboard Cleaning, Windows Cleaning, Vacuuming Interior"
-      }
-    };
-    let genericMessage = {
-      "recipient":{
-        "id": webhook_event.sender.id
-      },
-      "message":{
-        "attachment":{
-          "type":"template",
-          "payload":{
-            "template_type":"generic",
-            "elements":[
-              {
-              "title":"Do you want to choose Basic Both Package?:",
-              "buttons":[
-                {
-                  "type":"postback",
-                  "title":"Yes",
-                  "payload":"y_b_both"
-                },
-                {
-                  "type":"postback",
-                  "title":"No",
-                  "payload":"n_b_both"
-                },
-                
-              ]
-
-            },
-          ],
-          
-          }
+  if(userInput.includes("basic_both")){
+    requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+      let textMessage = {
+        "recipient":{
+          "id":webhook_event.sender.id
+        },
+        "message":{
+          "text": "In the Package: \nBody Cleaning, Window Cleaning, Tire and Ally Cleaning, Dashboard Cleaning, Windows Cleaning, Vacuuming Interior"
         }
-
+      };
+      var udetails = JSON.parse(success.body)
+      let genericMessage = {
+        "recipient":{
+          "id": webhook_event.sender.id
+        },
+        "message":{
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"generic",
+              "elements":[
+                {
+                "title":"Do you want to choose Basic Exterior Package?:",
+                "buttons":[
+                  {
+                    "type":"web_url",
+                    "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                    "title":"Yes",
+                    "webview_height_ratio": "full",
+                  },
+                  {
+                    "type":"postback",
+                    "title":"No",
+                    "payload":"n_b_ext"
+                  },
+                  
+                ]
+  
+              },
+            ],
+            
+            }
+          }
+  
+        }
       }
-    }
-requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-textMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
+      
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}).catch(error=>{
+console.log(error)
 })
-requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-genericMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
+    
 }
   //end basic both
       //start shining interior
-      if(userInput=="shine_int"){
-        let textMessage = {
-          "recipient":{
-            "id":webhook_event.sender.id
-          },
-          "message":{
-            "text": "In the Package:\n Dashboard Cleaning, Windows Cleaning, Vacuuming Interior, Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning"
-          }
-        };
-        let genericMessage = {
-          "recipient":{
-            "id": webhook_event.sender.id
-          },
-          "message":{
-            "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"generic",
-                "elements":[
-                  {
-                  "title":"Do you want to choose Shining Interior Package?:",
-                  "buttons":[
-                    {
-                      "type":"postback",
-                      "title":"Yes",
-                      "payload":"y_s_int"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"No",
-                      "payload":"n_s_int"
-                    },
-                    
-                  ]
-    
-                },
-              ],
-              
-              }
+      if(userInput.includes("standard_int")){
+        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+          let textMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text": "In the Package:\n Dashboard Cleaning, Windows Cleaning, Vacuuming Interior, Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning"
             }
-    
+          };
+          var udetails = JSON.parse(success.body)
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Do you want to choose Basic Exterior Package?:",
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                        "title":"Yes",
+                        "webview_height_ratio": "full",
+                      },
+                      {
+                        "type":"postback",
+                        "title":"No",
+                        "payload":"n_b_ext"
+                      },
+                      
+                    ]
+      
+                  },
+                ],
+                
+                }
+              }
+      
+            }
           }
-        }
-    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-    textMessage
-    ).then(response=>{
-      console.log(response)
-    }).fail(error=> {
-      console.log(error)
-    })
-    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-    genericMessage
-    ).then(response=>{
-      console.log(response)
-    }).fail(error=> {
-      console.log(error)
-    })
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      textMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+  }).catch(error=>{
+    console.log(error)
+  })
+        
   }
   //end shining int
   //start shining ext
-  if(userInput=="shine_ext"){
-    let textMessage = {
-      "recipient":{
-        "id":webhook_event.sender.id
-      },
-      "message":{
-        "text": "In the Package:\n Detail Cleaning, Stain Removal, Windows Cleaning, Tire and Alloy Cleaning, Alloy Polishing, Waxing or polishing"
-      }
-    };
-    let genericMessage = {
-      "recipient":{
-        "id": webhook_event.sender.id
-      },
-      "message":{
-        "attachment":{
-          "type":"template",
-          "payload":{
-            "template_type":"generic",
-            "elements":[
-              {
-              "title":"Do you want to choose Shining Exterior Package?:",
-              "buttons":[
-                {
-                  "type":"postback",
-                  "title":"Yes",
-                  "payload":"y_s_ext"
-                },
-                {
-                  "type":"postback",
-                  "title":"No",
-                  "payload":"n_s_ext"
-                },
-                
-              ]
-
-            },
-          ],
-          
-          }
+  if(userInput.includes("standard_ext")){
+    requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+      let textMessage = {
+        "recipient":{
+          "id":webhook_event.sender.id
+        },
+        "message":{
+          "text": "In the Package:\n Detail Cleaning, Stain Removal, Windows Cleaning, Tire and Alloy Cleaning, Alloy Polishing, Waxing or polishing"
         }
-
+      };
+      var udetails = JSON.parse(success.body)
+      let genericMessage = {
+        "recipient":{
+          "id": webhook_event.sender.id
+        },
+        "message":{
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"generic",
+              "elements":[
+                {
+                "title":"Do you want to choose Basic Exterior Package?:",
+                "buttons":[
+                  {
+                    "type":"web_url",
+                    "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                    "title":"Yes",
+                    "webview_height_ratio": "full",
+                  },
+                  {
+                    "type":"postback",
+                    "title":"No",
+                    "payload":"n_b_ext"
+                  },
+                  
+                ]
+  
+              },
+            ],
+            
+            }
+          }
+  
+        }
       }
-    }
-requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-textMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
+      
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}).catch(error=>{
+console.log(error)
 })
-requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-genericMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
+    
 }
   //end shining ext
   //start shinging both
-  if(userInput=="shine_both"){
-    let textMessage = {
-      "recipient":{
-        "id":webhook_event.sender.id
-      },
-      "message":{
-        "text": "In the Package:\nDashboard Cleaning\nWindows Cleaning\nVacuuming Interior\nFloor mats cleaning\nSeat Cleaning\nStain Removing\nInstalling Air-fresher\nTrunk cleaning\nDetail Cleaning\nStain Removal\nWindows Cleaning\nTire and Alloy Cleaning\nAlloy Polishing\nWaxing or polishing"
-      }
-    };
-    let genericMessage = {
-      "recipient":{
-        "id": webhook_event.sender.id
-      },
-      "message":{
-        "attachment":{
-          "type":"template",
-          "payload":{
-            "template_type":"generic",
-            "elements":[
-              {
-              "title":"Do you want to choose Shining Both Package?:",
-              "buttons":[
-                {
-                  "type":"postback",
-                  "title":"Yes",
-                  "payload":"y_s_both"
-                },
-                {
-                  "type":"postback",
-                  "title":"No",
-                  "payload":"n_s_both"
-                },
-                
-              ]
-
-            },
-          ],
-          
-          }
+  if(userInput.includes("standard_both")){
+    requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+      let textMessage = {
+        "recipient":{
+          "id":webhook_event.sender.id
+        },
+        "message":{
+          "text": "In the Package:\nDashboard Cleaning\nWindows Cleaning\nVacuuming Interior\nFloor mats cleaning\nSeat Cleaning\nStain Removing\nInstalling Air-fresher\nTrunk cleaning\nDetail Cleaning\nStain Removal\nWindows Cleaning\nTire and Alloy Cleaning\nAlloy Polishing\nWaxing or polishing"
         }
-
+      };
+      var udetails = JSON.parse(success.body)
+      let genericMessage = {
+        "recipient":{
+          "id": webhook_event.sender.id
+        },
+        "message":{
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"generic",
+              "elements":[
+                {
+                "title":"Do you want to choose Basic Exterior Package?:",
+                "buttons":[
+                  {
+                    "type":"web_url",
+                    "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                    "title":"Yes",
+                    "webview_height_ratio": "full",
+                  },
+                  {
+                    "type":"postback",
+                    "title":"No",
+                    "payload":"n_b_ext"
+                  },
+                  
+                ]
+  
+              },
+            ],
+            
+            }
+          }
+  
+        }
       }
-    }
-requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-textMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
+      
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}).catch(error=>{
+console.log(error)
 })
-requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-genericMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
+    
 }
   //end shining both
       //start premium interior
-      if(userInput=="prm_int"){
-        let textMessage = {
-          "recipient":{
-            "id":webhook_event.sender.id
-          },
-          "message":{
-            "text": "In the Package:\nDashboard Cleaning\nWindows Cleaning\nVacuuming Interior\nFloor mats cleaning\nSeat Cleaning\nStain Removing\nInstalling Air-fresher\nTrunk cleaning\nPremium Dressing\nInterior Sterilization "
-          }
-        };
-        let genericMessage = {
-          "recipient":{
-            "id": webhook_event.sender.id
-          },
-          "message":{
-            "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"generic",
-                "elements":[
-                  {
-                  "title":"Do you want to choose Premium Interior Package?:",
-                  "buttons":[
-                    {
-                      "type":"postback",
-                      "title":"Yes",
-                      "payload":"y_p_int"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"No",
-                      "payload":"n_p_int"
-                    },
-                    
-                  ]
-    
-                },
-              ],
-              
-              }
+      if(userInput.includes("prm_int")){
+        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+          let textMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text": "In the Package:\nDashboard Cleaning\nWindows Cleaning\nVacuuming Interior\nFloor mats cleaning\nSeat Cleaning\nStain Removing\nInstalling Air-fresher\nTrunk cleaning\nPremium Dressing\nInterior Sterilization"
             }
-    
+          };
+          var udetails = JSON.parse(success.body)
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Do you want to choose Basic Exterior Package?:",
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                        "title":"Yes",
+                        "webview_height_ratio": "full",
+                      },
+                      {
+                        "type":"postback",
+                        "title":"No",
+                        "payload":"n_b_ext"
+                      },
+                      
+                    ]
+      
+                  },
+                ],
+                
+                }
+              }
+      
+            }
           }
-        }
-    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-    textMessage
-    ).then(response=>{
-      console.log(response)
-    }).fail(error=> {
-      console.log(error)
-    })
-    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-    genericMessage
-    ).then(response=>{
-      console.log(response)
-    }).fail(error=> {
-      console.log(error)
-    })
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      textMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+  }).catch(error=>{
+    console.log(error)
+  })
+        
   }
   //end premium int
   //start premium ext
-  if(userInput=="prm_ext"){
-    let textMessage = {
-      "recipient":{
-        "id":webhook_event.sender.id
-      },
-      "message":{
-        "text": "In the Package:\n Detail body cleaning, Stain Removal, Windows Cleaning and polishing, Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing, Waxing, Polishing"
-      }
-    };
-    let genericMessage = {
-      "recipient":{
-        "id": webhook_event.sender.id
-      },
-      "message":{
-        "attachment":{
-          "type":"template",
-          "payload":{
-            "template_type":"generic",
-            "elements":[
-              {
-              "title":"Do you want to choose Premium Exterior Package?:",
-              "buttons":[
-                {
-                  "type":"postback",
-                  "title":"Yes",
-                  "payload":"y_p_ext"
-                },
-                {
-                  "type":"postback",
-                  "title":"No",
-                  "payload":"n_p_ext"
-                },
-                
-              ]
-
-            },
-          ],
-          
-          }
+  if(userInput.includes("prm_ext")){
+    requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+      let textMessage = {
+        "recipient":{
+          "id":webhook_event.sender.id
+        },
+        "message":{
+          "text": "In the Package:\n Detail body cleaning, Stain Removal, Windows Cleaning and polishing, Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing, Waxing, Polishing"
         }
-
+      };
+      var udetails = JSON.parse(success.body)
+      let genericMessage = {
+        "recipient":{
+          "id": webhook_event.sender.id
+        },
+        "message":{
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"generic",
+              "elements":[
+                {
+                "title":"Do you want to choose Basic Exterior Package?:",
+                "buttons":[
+                  {
+                    "type":"web_url",
+                    "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                    "title":"Yes",
+                    "webview_height_ratio": "full",
+                  },
+                  {
+                    "type":"postback",
+                    "title":"No",
+                    "payload":"n_b_ext"
+                  },
+                  
+                ]
+  
+              },
+            ],
+            
+            }
+          }
+  
+        }
       }
-    }
-requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-textMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
+      
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}).catch(error=>{
+console.log(error)
 })
-requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-genericMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
+    
 }
   //end premuim ext
   //start premium both
-  if(userInput=="prm_both"){
-    let textMessage = {
-      "recipient":{
-        "id":webhook_event.sender.id
-      },
-      "message":{
-        "text": "In the Package:\n Dashboard Cleaning, Windows Cleaning, Vacuuming Interior,Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,Premium Dressing, Interior Sterilization Detail body cleaning, Stain Removal, Windows Cleaning and polishing,Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing, Waxing,Polishing"
-      }
-    };
-    let genericMessage = {
-      "recipient":{
-        "id": webhook_event.sender.id
-      },
-      "message":{
-        "attachment":{
-          "type":"template",
-          "payload":{
-            "template_type":"generic",
-            "elements":[
-              {
-              "title":"Do you want to choose Premium Both Package?:",
-              "buttons":[
-                {
-                  "type":"postback",
-                  "title":"Yes",
-                  "payload":"y_p_both"
-                },
-                {
-                  "type":"postback",
-                  "title":"No",
-                  "payload":"n_p_both"
-                },
-                
-              ]
-
-            },
-          ],
-          
-          }
+  if(userInput.includes("prm_both")){
+    requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+      let textMessage = {
+        "recipient":{
+          "id":webhook_event.sender.id
+        },
+        "message":{
+          "text": "In the Package:\n Dashboard Cleaning, Windows Cleaning, Vacuuming Interior,Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,Premium Dressing, Interior Sterilization Detail body cleaning, Stain Removal, Windows Cleaning and polishing,Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing, Waxing,Polishing"
         }
-
+      };
+      var udetails = JSON.parse(success.body)
+      let genericMessage = {
+        "recipient":{
+          "id": webhook_event.sender.id
+        },
+        "message":{
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"generic",
+              "elements":[
+                {
+                "title":"Do you want to choose Basic Exterior Package?:",
+                "buttons":[
+                  {
+                    "type":"web_url",
+                    "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name,
+                    "title":"Yes",
+                    "webview_height_ratio": "full",
+                  },
+                  {
+                    "type":"postback",
+                    "title":"No",
+                    "payload":"n_b_ext"
+                  },
+                  
+                ]
+  
+              },
+            ],
+            
+            }
+          }
+  
+        }
       }
-    }
-requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-textMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
+      
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}).catch(error=>{
+console.log(error)
 })
-requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-genericMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
+    
 }
   //end premium both      
 //start price
