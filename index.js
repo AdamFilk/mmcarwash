@@ -90,11 +90,16 @@ app.get('/prm_both/:package/:wtype/:name/:id', (req, res) => {
   
 })
 app.get('/cc_book/:package/:wtype/:name/:id', (req, res) => {
+  console.log(req.params.name);
+  console.log(req.params.package);
+  console.log(req.params.wtype);
+  console.log(req.params.id);
+
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
   var senderID=req.params.id;
-  res.render('cc_book.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  //res.render('cc_book.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
   
 })
 app.get('/wax_book/:package/:wtype/:name/:id', (req, res) => {
@@ -1187,7 +1192,7 @@ if (userInput=="otpkg"){
                 {
                   "type":"web_url",
                   "url":"https://mmcarwash.herokuapp.com/cc_book/"+userInput+"/"+udetails.name+"/"+senderID,
-                  "title":"Book for Ceramic Coating"
+                  "title":"Book Ceramic Coating"
                 },{
                   "type":"postback",
                   "title":"About Ceramic Coating?",
@@ -1203,7 +1208,7 @@ if (userInput=="otpkg"){
                 {
                   "type":"web_url",
                   "url":"https://mmcarwash.herokuapp.com/wax_book/"+userInput+"/"+udetails.name+"/"+senderID,
-                  "title":"Book for Waxing"
+                  "title":"Book Waxing"
                 },{
                   "type":"postback",
                   "title":"About Waxing?",
@@ -1219,7 +1224,7 @@ if (userInput=="otpkg"){
                 {
                   "type":"web_url",
                   "url":"https://mmcarwash.herokuapp.com/sealant_book/"+userInput+"/"+udetails.name+"/"+senderID,
-                  "title":"Book for Sealant Painting"
+                  "title":"Book Sealant Painting"
                 },{
                   "type":"postback",
                   "title":"About Sealant Painting?",
