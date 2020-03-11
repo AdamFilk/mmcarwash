@@ -89,17 +89,17 @@ app.get('/prm_both/:package/:wtype/:name/:id', (req, res) => {
   res.render('prm_both.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
   
 })
-app.get('/cc_book/:package/:wtype/:name/:id', (req, res) => {
+app.get('/cc_book/:package/:name/:id', (req, res) => {
   console.log(req.params.name);
   console.log(req.params.package);
-  console.log(req.params.wtype);
+ 
   console.log(req.params.id);
 
   var name = req.params.name;
   var washpackage=req.params.package;
-  var wtype=req.params.wtype;
+
   var senderID=req.params.id;
-  //res.render('cc_book.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  //res.render('cc_book.ejs', {name:name, package:washpackage,id:senderID})
   
 })
 app.get('/wax_book/:package/:wtype/:name/:id', (req, res) => {
