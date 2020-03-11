@@ -201,8 +201,7 @@ function price() {
       var senderID = '<%= id %>';
         db.collection('booking').add({
             name: '<%= name%>',
-            package: '<%= package %>',
-            wtype: '<%=wtype %>',
+            package: '<%= package %>',            
             phone: document.getElementById('phone').value,
             town: document.getElementById('town').value,
             address:document.getElementById('address_info').value,

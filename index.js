@@ -99,7 +99,7 @@ app.get('/cc_book/:package/:name/:id', (req, res) => {
   var washpackage=req.params.package;
 
   var senderID=req.params.id;
-  //res.render('cc_book.ejs', {name:name, package:washpackage,id:senderID})
+  res.render('cc_book.ejs', {name:name, package:washpackage,id:senderID})
   
 })
 app.get('/wax_book/:package/:wtype/:name/:id', (req, res) => {
