@@ -89,6 +89,54 @@ app.get('/prm_both/:package/:wtype/:name/:id', (req, res) => {
   res.render('prm_both.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
   
 })
+app.get('/cc_book/:package/:wtype/:name/:id', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  var senderID=req.params.id;
+  res.render('cc_book.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  
+})
+app.get('/wax_book/:package/:wtype/:name/:id', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  var senderID=req.params.id;
+  res.render('wax_book.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  
+})
+app.get('/sealant_book/:package/:wtype/:name/:id', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  var senderID=req.params.id;
+  res.render('sealant_book.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  
+})
+app.get('/rim_book/:package/:wtype/:name/:id', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  var senderID=req.params.id;
+  res.render('rim_book.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  
+})
+app.get('/egbay_book/:package/:wtype/:name/:id', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  var senderID=req.params.id;
+  res.render('egbay_book.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  
+})
+app.get('/headres_book/:package/:wtype/:name/:id', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  var senderID=req.params.id;
+  res.render('headres_book.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  
+})
 let userOrder = {};
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
@@ -241,11 +289,6 @@ app.post('/webhook', (req, res) => {
                       "type":"postback",
                       "title":"Other Services",
                       "payload":"otpkg"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"Self Customize Services",
-                      "payload":"adhoc"
                     },
                   ]
 
@@ -667,6 +710,7 @@ console.log(error)
                     "type":"web_url",
                     "url":"https://mmcarwash.herokuapp.com/s_ext/"+userInput+"/"+udetails.name+"/"+senderID,
                     "title":"Yes",
+                    "messenger_extensions": true,
                     "webview_height_ratio": "full",
                   },
                   {
@@ -1070,7 +1114,7 @@ if (userInput == 'v_s_price'){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "Interior\n\nBasic-3000ks\nShining-6000ks\nPremium-9000ks\n\nExterior\n\nBasic-3000ks\nShining-6000ks\nPremium-9000ks\n\nBoth\n\nBaisc-5000ks\nShining-11000ks\nPremium-16000ks"
+      "text": "Interior\nBasic-3000ks\nShining-6000ks\nPremium-9000ks\n\nExterior\n\nBasic-3000ks\nShining-6000ks\nPremium-9000ks\n\nBoth\n\nBaisc-5000ks\nShining-11000ks\nPremium-16000ks"
     }
   };
   requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
@@ -1120,7 +1164,139 @@ textMessage
 })
 }
 //end v_l_price
+//start otpkg
+if (userInput=="otpkg"){
+  requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+  var udetails = JSON.parse(success.body);
+  var senderID = webhook_event.sender.id;
+  let genericMessage={
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+             {
+              "title":"Ceramic Coating",
+              "image_url":"https://petersfancybrownhats.com/company_image.png",
+              "subtitle":"Product:Hydrocharge Ceramic Sparay Coating/\nEstimated Time:2 Hours",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/cc_book/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "title":"Book for Ceramic Coating"
+                },{
+                  "type":"postback",
+                  "title":"About Ceramic Coating?",
+                  "payload":"cc_about"
+                }              
+              ]      
+            },
+            {
+              "title":"Waxing",
+              "image_url":"https://petersfancybrownhats.com/company_image.png",
+              "subtitle":"Automotive Spray Shampoo+ Waxing/\nEstimated Time:2 Hours ",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/wax_book/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "title":"Book for Waxing"
+                },{
+                  "type":"postback",
+                  "title":"About Waxing?",
+                  "payload":"wax_about"
+                }              
+              ]      
+            },
+            {
+              "title":"Sealant Painting",
+              "image_url":"https://petersfancybrownhats.com/company_image.png",
+              "subtitle":"Automotive Spray Shampoo+ Waxing/\nEstimated Time:2 Hours",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/sealant_book/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "title":"Book for Sealant Painting"
+                },{
+                  "type":"postback",
+                  "title":"About Sealant Painting?",
+                  "payload":"sealant_about"
+                }              
+              ]      
+            },
+            {
+              "title":"Rim Detailing",
+              "image_url":"https://petersfancybrownhats.com/company_image.png",
+              "subtitle":"Estimated Time:1 hour 30 minutes · 15,000 Ks per Rim",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/rim_book/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "title":"Book for Rim Detailing"
+                },{
+                  "type":"postback",
+                  "title":"About Rim Detailing",
+                  "payload":"rim_about"
+                }              
+              ]      
+            },
+            {
+              "title":"Engine Bay cleaning",
+              "image_url":"https://petersfancybrownhats.com/company_image.png",
+              "subtitle":"Estimated Time:1 hour",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/egbay_book/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "title":"Book for Engine Bay Cleaning"
+                },{
+                  "type":"postback",
+                  "title":"About Engine Bay Cleaning?",
+                  "payload":"egbay_about"
+                }              
+              ]      
+            },
+            {
+              "title":"Headlight Restoration",
+              "image_url":"https://petersfancybrownhats.com/company_image.png",
+              "subtitle":"1 hour and up · 30,000 Ks",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/prm_both/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "title":"Book for Headlight Restoration"
+                },{
+                  "type":"postback",
+                  "title":"About Headlight Restoration?",
+                  "payload":"headres_about"
+                }              
+              ]      
+            }
 
+          ]
+        }
+      }
+    }
+  }
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+genericMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+}).fail(error=> {
+  console.log(error)
+})
+}).catch(error=>{
+console.log(error)
+})
+}
+
+    
+//end otpkg
 
 
 

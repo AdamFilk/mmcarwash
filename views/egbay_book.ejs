@@ -22,7 +22,7 @@
                 <table class="table table-dark table-striped" style="margin-top: 15px;">
                     <thead>
                         <tr>
-                            <td colspan="2" class="text-center"><h2> Standard Exterior Booking Confirm</h2></td>
+                            <td colspan="2" class="text-center"><h2>Booking Confirm</h2></td>
                         </tr>
                     </thead>
                     <tr>
@@ -44,7 +44,7 @@
                         <b>City:</b>
                       </td>
                       <td>
-                        <input class="form-control" type="text" placeholder="Only Yangon for now" id="city" readonly>
+                        <input class="form-control" type="text" placeholder="Available only in Yangon for now" id="city" readonly>
                       </td>
                     </tr>
                     <tr>
@@ -82,15 +82,14 @@
                               </div>
                         </td>
                     </tr>   
-                   
                     <tr>
-                      <td>
-                         <b>Address Information</b> 
-                      </td>
-                      <td>
-                        <textarea  placeholder="Street,Quarter,Hosuing,Condo,Building No.,Room No" id="address_info" required></textarea>
-                      </td>
-                  </tr>
+                        <td>
+                           <b>Address Information</b> 
+                        </td>
+                        <td>
+                          <textarea  placeholder="Street,Quarter,Hosuing,Condo,Building No.,Room No" id="address_info" required></textarea>
+                        </td>
+                    </tr>
                     
                     <tr>
                     <td>
@@ -163,11 +162,11 @@ function price() {
   value = value.value;
   console.log(value);
   if(value=="small"){
-    document.getElementById("price").innerHTML= "4500Ks"
+    document.getElementById("price").innerHTML= "15000Ks"
   }else if(value=="medium"){
-    document.getElementById("price").innerHTML="7000Ks"
+    document.getElementById("price").innerHTML="20000Ks"
   }else if(value=="large"){
-    document.getElementById("price").innerHTML="8500Ks"
+    document.getElementById("price").innerHTML="30000Ks"
   }
   
 }
@@ -180,8 +179,6 @@ function price() {
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
 
 <script>
-   
-  
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
@@ -208,81 +205,28 @@ function price() {
             wtype: '<%=wtype %>',
             phone: document.getElementById('phone').value,
             town: document.getElementById('town').value,
-            address: document.getElementById('address_info').value,
+            address:document.getElementById('address_info').value,
             carsize:document.querySelector('input[name="carsize"]:checked').value,
             price:document.getElementById("price").innerHTML,
             date:document.getElementById('date-input').value,
             time:document.getElementById('time-input').value,
            
         }).then(success => {
-            /*
-          var textMessage = {
-              "recipient":{
-                "id":senderID
-              },
-              "message":{
-                "text": "Thank you. You data has been save"
-              }
-              }
+            var textMessage = {
+            "recipient":{
+              "id":senderID
+            },
+            "message":{
+              "text": "Your booking has been is submitted.Thank you for choosing our serice. We'll contact you soon"
+            }
+          }
 
-              var xhr = new XMLHttpRequest();
-              xhr.open("POST", 'https://graph.facebook.com/v5.0/me/messages?access_token=EAAKGyWXj6KABAEWctoGADzQgZBCK mpqfhcxPYqvasGphAK6CYjuvc42ZCnHZBCjC6tqKGZAotsjKadLyRK0iX6qxI8kBDwPyTInwV17umvWBZC1mUa5m0ofKpZA8h2rrUA1qql9BI8F10N9BmaBDeqVW0U5yZB8vVizzwTaHsf7qMFsOqlSWuXdI8l7CRbJkh8ZD', true);
-              xhr.setRequestHeader('Content-Type', 'application/json');
-              xhr.send(JSON.stringify(textMessage));
+          var xhr = new XMLHttpRequest();
+            xhr.open("POST", 'https://graph.facebook.com/v5.0/me/messages?access_token=EAAKGyWXj6KABAEWctoGADzQgZBCK mpqfhcxPYqvasGphAK6CYjuvc42ZCnHZBCjC6tqKGZAotsjKadLyRK0iX6qxI8kBDwPyTInwV17umvWBZC1mUa5m0ofKpZA8h2rrUA1qql9BI8F10N9BmaBDeqVW0U5yZB8vVizzwTaHsf7qMFsOqlSWuXdI8l7CRbJkh8ZD', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify(textMessage));
 
-              window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://i1.wp.com/www.watts-innovating.com/wp-content/uploads/2018/04/thankyou.jpg?fit=2160%2C2160&ssl=1&display_text=Thankyou');
-              console.log('close window');
-
-              */
-
-              var p1 = new Promise((resolve, reject) => {
-                var textMessage = {
-              "recipient":{
-                "id":senderID
-              },
-              "message":{
-                "text": "Thank you. You data has been save"
-              }
-              }
-
-              var xhr = new XMLHttpRequest();
-              xhr.open("POST", 'https://graph.facebook.com/v5.0/me/messages?access_token=EAAKGyWXj6KABAEWctoGADzQgZBCK mpqfhcxPYqvasGphAK6CYjuvc42ZCnHZBCjC6tqKGZAotsjKadLyRK0iX6qxI8kBDwPyTInwV17umvWBZC1mUa5m0ofKpZA8h2rrUA1qql9BI8F10N9BmaBDeqVW0U5yZB8vVizzwTaHsf7qMFsOqlSWuXdI8l7CRbJkh8ZD', true);
-              xhr.setRequestHeader('Content-Type', 'application/json');
-              xhr.send(JSON.stringify(textMessage));
-
-              resolve("post");
-            }); 
-
-            var p2 = new Promise((resolve, reject) => {
-             window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://i1.wp.com/www.watts-innovating.com/wp-content/uploads/2018/04/thankyou.jpg?fit=2160%2C2160&ssl=1&display_text=Thankyou');                
-
-              resolve("close");
-            }); 
-
-            Promise.all([p1, p2]).then(values => { 
-              console.log(values); 
-              //window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://i1.wp.com/www.watts-innovating.com/wp-content/uploads/2018/04/thankyou.jpg?fit=2160%2C2160&ssl=1&display_text=Thankyou');   
-            });
-
-          
-            
-          
-          
-              
-
-             
-
-
-           
-             
-              
-              
-            
-
-           
-            
-          
-            
+         
         
         }).catch(error => {
           console.log(error);
