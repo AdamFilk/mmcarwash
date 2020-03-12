@@ -186,6 +186,7 @@ app.post('/webhook', (req, res) => {
         console.log("webhook event", webhook_event);
         if(webhook_event.message){
           var userInput = webhook_event.message.text;
+          console.log("WEBHOOK",webhook_event.message);
           console.log("USER INPUT",userInput);
         }
         if(webhook_event.postback){
