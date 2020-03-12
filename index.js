@@ -180,7 +180,6 @@ app.post('/webhook', (req, res) => {
   
       // Iterates over each entry - there may be multiple if batched
       body.entry.forEach(function(entry) {
-  
         // Gets the message. entry.messaging is an array, but 
         // will only ever contain one message, so we get index 0
         let webhook_event = entry.messaging[0];
@@ -410,6 +409,7 @@ app.post('/webhook', (req, res) => {
       //end of wash packages
       //start basic interior
       if(userInput.includes("basic_int")){
+        console.log(userInput);
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
           let textMessage = {
             "recipient":{
