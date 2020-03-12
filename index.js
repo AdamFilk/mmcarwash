@@ -192,7 +192,7 @@ app.post('/webhook', (req, res) => {
         if(webhook_event.postback){
           var userInput = webhook_event.postback.payload
         }
-        if (userInput == 'Hi'){
+        if (userInput =+= 'Hi'){
           requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
             var udetails = JSON.parse(success.body)
           let welcomeMessage = {
@@ -265,9 +265,6 @@ app.post('/webhook', (req, res) => {
         }
         //end of select
        //start of book
-       if (userInput == "Thank you"){
-          console.log("back from webview");
-       }
        if (userInput == 'book'){
 
         let genericMessage = {
