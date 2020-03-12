@@ -709,7 +709,7 @@ console.log(error)
                     "type":"web_url",
                     "url":"https://mmcarwash.herokuapp.com/s_ext/"+userInput+"/"+udetails.name+"/"+senderID,
                     "title":"Yes",
-                    "messenger_extensions": true,
+                    
                     "webview_height_ratio": "full",
                   },
                   {
