@@ -177,7 +177,8 @@ app.post('/webhook', (req, res) => {
 
 
         if(webhook_event.message){
-          var userInput = webhook_event.message.text;
+          //var userInput = webhook_event.message.text;
+          userInput = 'Hi';
         }
         
         if(webhook_event.postback){
@@ -466,7 +467,7 @@ app.post('/webhook', (req, res) => {
     console.log(error)
   })
         
-  }
+      }
   //end basic int
   //start basic ext
   
@@ -1302,11 +1303,7 @@ console.log(error)
   
       // Returns a '200 OK' response to all requests
       res.status(200).send('EVENT_RECEIVED');
-      if(webhook_event.message){ // ReferenceError cause is not defined
-        handleMessage(sender_psid, webhook_event.message);
-    }else if(webhook_event.postback){ // ReferenceError cause is not defined
-        handlePostback(sender_psid, webhook_event.postback);
-    }
+      
     } else {
       // Returns a '404 Not Found' if event is not from a page subscription
       res.sendStatus(404);
