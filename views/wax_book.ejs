@@ -199,10 +199,9 @@ function price() {
     console.log(success);
       var db = firebase.firestore();
       var senderID = '<%= id %>';
-        db.collection('booking').add({
+        db.collection('wax_book').add({
             name: '<%= name%>',
             package: '<%= package %>',
-            wtype: '<%=wtype %>',
             phone: document.getElementById('phone').value,
             town: document.getElementById('town').value,
             address:document.getElementById('address_info').value,

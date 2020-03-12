@@ -22,7 +22,7 @@
                 <table class="table table-dark table-striped" style="margin-top: 15px;">
                     <thead>
                         <tr>
-                            <td colspan="2" class="text-center"><h2>Booking Confirm</h2></td>
+                            <td colspan="2" class="text-center"><h2>Engine Bay Cleaning Package<br>Booking Form</h2></td>
                         </tr>
                     </thead>
                     <tr>
@@ -199,10 +199,9 @@ function price() {
     console.log(success);
       var db = firebase.firestore();
       var senderID = '<%= id %>';
-        db.collection('booking').add({
+        db.collection('enginebay_book').add({
             name: '<%= name%>',
             package: '<%= package %>',
-            wtype: '<%=wtype %>',
             phone: document.getElementById('phone').value,
             town: document.getElementById('town').value,
             address:document.getElementById('address_info').value,

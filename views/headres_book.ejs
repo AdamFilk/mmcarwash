@@ -90,7 +90,15 @@
                           <textarea  placeholder="Street,Quarter,Hosuing,Condo,Building No.,Room No" id="address_info" required></textarea>
                         </td>
                     </tr>
-                    
+                    <tr>
+                      <td>
+                       <b>Price:</b> 
+                      </td>
+                      <td>
+                        <p id="price">10000Ks</p>
+                      </td>
+                    </tr>
+                <tr>
                      
                     <tr>
                         <td><b>Date</b> </td>
@@ -160,13 +168,13 @@ function checkNumber() {
     console.log(success);
       var db = firebase.firestore();
       var senderID = '<%= id %>';
-        db.collection('booking').add({
+        db.collection('headlightrestore_book').add({
             name: '<%= name%>',
             package: '<%= package %>',
-            wtype: '<%=wtype %>',
             phone: document.getElementById('phone').value,
             town: document.getElementById('town').value,
             address:document.getElementById('address_info').value,
+            address:document.getElementById('price').innerText,
             date:document.getElementById('date-input').value,
             time:document.getElementById('time-input').value,
            

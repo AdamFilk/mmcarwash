@@ -102,36 +102,36 @@ app.get('/cc_book/:package/:name/:id', (req, res) => {
   res.render('cc_book.ejs', {name:name, package:washpackage,id:senderID})
   
 })
-app.get('/wax_book/:package/:wtype/:name/:id', (req, res) => {
+app.get('/wax_book/:package/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
   var senderID=req.params.id;
-  res.render('wax_book.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  res.render('wax_book.ejs', {name:name, package:washpackage,id:senderID})
   
 })
-app.get('/sealant_book/:package/:wtype/:name/:id', (req, res) => {
+app.get('/sealant_book/:package/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
   var senderID=req.params.id;
-  res.render('sealant_book.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  res.render('sealant_book.ejs', {name:name, package:washpackage,id:senderID})
   
 })
-app.get('/rim_book/:package/:wtype/:name/:id', (req, res) => {
+app.get('/rim_book/:package/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
   var senderID=req.params.id;
-  res.render('rim_book.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  res.render('rim_book.ejs', {name:name, package:washpackage,id:senderID})
   
 })
-app.get('/egbay_book/:package/:wtype/:name/:id', (req, res) => {
+app.get('/egbay_book/:package/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
   var senderID=req.params.id;
-  res.render('egbay_book.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  res.render('egbay_book.ejs', {name:name, package:washpackage,id:senderID})
   
 })
 app.get('/headres_book/:package/:wtype/:name/:id', (req, res) => {
@@ -139,8 +139,7 @@ app.get('/headres_book/:package/:wtype/:name/:id', (req, res) => {
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
   var senderID=req.params.id;
-  res.render('headres_book.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
-  
+  res.render('headres_book.ejs', {name:name, package:washpackage,id:senderID})
 })
 let userOrder = {};
 // Adds support for GET requests to our webhook
@@ -1186,7 +1185,7 @@ if (userInput=="otpkg"){
           "elements":[
              {
               "title":"Ceramic Coating",
-              "image_url":"https://petersfancybrownhats.com/company_image.png",
+              "image_url":"https://www.chemicalguys.com/dw/image/v2/BCPT_PRD/on/demandware.static/-/Library-Sites-chemicalguys-shared-content/default/dw897da551/blog/WAC230FAQBLOGFULL.jpg?sw=1116",
               "subtitle":"Product:Hydrocharge Ceramic Sparay Coating/\nEstimated Time:2 Hours",
               "buttons":[
                 {
@@ -1202,7 +1201,7 @@ if (userInput=="otpkg"){
             },
             {
               "title":"Waxing",
-              "image_url":"https://petersfancybrownhats.com/company_image.png",
+              "image_url":"https://blog.carjunction.com/wp-content/uploads/2018/03/car-wax-990x557.jpg",
               "subtitle":"Automotive Spray Shampoo+ Waxing/\nEstimated Time:2 Hours ",
               "buttons":[
                 {
@@ -1218,7 +1217,7 @@ if (userInput=="otpkg"){
             },
             {
               "title":"Sealant Painting",
-              "image_url":"https://petersfancybrownhats.com/company_image.png",
+              "image_url":"https://images-na.ssl-images-amazon.com/images/I/51VfqfklClL.jpg",
               "subtitle":"Automotive Spray Shampoo+ Waxing/\nEstimated Time:2 Hours",
               "buttons":[
                 {
@@ -1234,7 +1233,7 @@ if (userInput=="otpkg"){
             },
             {
               "title":"Rim Detailing",
-              "image_url":"https://petersfancybrownhats.com/company_image.png",
+              "image_url":"https://cdn.shopify.com/s/files/1/2805/4116/products/natural-boar-hair-car-auto-cleaning-detailing-brushes-set-for-wheel-air-vent-trim-nicerin-best-goods-free-shipping_778_1024x1024.jpg?v=1579070968",
               "subtitle":"Estimated Time:1 hour 30 minutes · 15,000 Ks per Rim",
               "buttons":[
                 {
@@ -1250,7 +1249,7 @@ if (userInput=="otpkg"){
             },
             {
               "title":"Engine Bay cleaning",
-              "image_url":"https://petersfancybrownhats.com/company_image.png",
+              "image_url":"https://lh3.googleusercontent.com/proxy/MHOEYpy0q9c0zEhgM13X-GvYSit4fkij1GHbtVcjqTBBBtd7BcpXhj6n2qxUc3_6e3DROKg4R2f9xtLUciyJ7_CDmkpaptBdpcBnofWpVeH5rynk6kIQ_Xzlcyu1k4Ug3h9hASb4bI6JkyVGIbCPZ2BU",
               "subtitle":"Estimated Time:1 hour",
               "buttons":[
                 {
@@ -1266,7 +1265,7 @@ if (userInput=="otpkg"){
             },
             {
               "title":"Headlight Restoration",
-              "image_url":"https://petersfancybrownhats.com/company_image.png",
+              "image_url":"https://lh3.googleusercontent.com/proxy/gu8AIYM8LMBaLY_C21QctdcOCQ73KWAx06Y3CIZyj8_ePncH39v-LmCKAZD8oLYJwOQBTvg87grqNBWYG5lJp1tuXSIWsQ",
               "subtitle":"1 hour and up · 30,000 Ks",
               "buttons":[
                 {

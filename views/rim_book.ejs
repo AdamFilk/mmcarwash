@@ -110,7 +110,15 @@
                     
                     </td>
                     </tr>
-                     
+                    <tr>
+                      <td>
+                       <b>Price:</b> 
+                      </td>
+                      <td>
+                        <p id="price"></p>
+                      </td>
+                    </tr>
+                <tr>
                     <tr>
                         <td><b>Date</b> </td>
                         <td>
@@ -149,7 +157,19 @@ function checkNumber() {
         document.getElementById('warningPhone').style.display = "none";
     }
 }
-
+function price() {
+  var value = document.querySelector('input[name="carsize"]:checked');
+  value = value.value;
+  console.log(value);
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "10000Ks"
+  }else if(value=="medium"){
+    document.getElementById("price").innerHTML="15000Ks"
+  }else if(value=="large"){
+    document.getElementById("price").innerHTML="20000Ks"
+  }
+  
+}
 </script>
 
 
@@ -179,7 +199,7 @@ function checkNumber() {
     console.log(success);
       var db = firebase.firestore();
       var senderID = '<%= id %>';
-        db.collection('booking').add({
+        db.collection('rimdetail_book').add({
             name: '<%= name%>',
             package: '<%= package %>',
             wtype: '<%=wtype %>',
