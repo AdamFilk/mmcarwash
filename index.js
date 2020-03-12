@@ -408,6 +408,7 @@ app.post('/webhook', (req, res) => {
     
       //end of wash packages
       //start basic interior
+      /*
       if(userInput.includes("basic_int")){
         console.log(userInput);
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
@@ -475,7 +476,7 @@ app.post('/webhook', (req, res) => {
     console.log(error)
   })
         
-  }
+  }*/
   //end basic int
   //start basic ext
   if(userInput.includes("basic_ext")){
