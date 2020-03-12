@@ -90,14 +90,9 @@ app.get('/prm_both/:package/:wtype/:name/:id', (req, res) => {
   
 })
 app.get('/cc_book/:package/:name/:id', (req, res) => {
-  console.log(req.params.name);
-  console.log(req.params.package);
- 
-  console.log(req.params.id);
 
   var name = req.params.name;
   var washpackage=req.params.package;
-
   var senderID=req.params.id;
   res.render('cc_book.ejs', {name:name, package:washpackage,id:senderID})
   
@@ -105,7 +100,6 @@ app.get('/cc_book/:package/:name/:id', (req, res) => {
 app.get('/wax_book/:package/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
-  var wtype=req.params.wtype;
   var senderID=req.params.id;
   res.render('wax_book.ejs', {name:name, package:washpackage,id:senderID})
   
@@ -113,7 +107,6 @@ app.get('/wax_book/:package/:name/:id', (req, res) => {
 app.get('/sealant_book/:package/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
-  var wtype=req.params.wtype;
   var senderID=req.params.id;
   res.render('sealant_book.ejs', {name:name, package:washpackage,id:senderID})
   
@@ -121,7 +114,6 @@ app.get('/sealant_book/:package/:name/:id', (req, res) => {
 app.get('/rim_book/:package/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
-  var wtype=req.params.wtype;
   var senderID=req.params.id;
   res.render('rim_book.ejs', {name:name, package:washpackage,id:senderID})
   
@@ -129,7 +121,6 @@ app.get('/rim_book/:package/:name/:id', (req, res) => {
 app.get('/egbay_book/:package/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
-  var wtype=req.params.wtype;
   var senderID=req.params.id;
   res.render('egbay_book.ejs', {name:name, package:washpackage,id:senderID})
   
@@ -137,7 +128,6 @@ app.get('/egbay_book/:package/:name/:id', (req, res) => {
 app.get('/headres_book/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
-  var wtype=req.params.wtype;
   var senderID=req.params.id;
   res.render('headres_book.ejs', {name:name, package:washpackage,id:senderID})
 })
@@ -183,12 +173,17 @@ app.post('/webhook', (req, res) => {
         // Gets the message. entry.messaging is an array, but 
         // will only ever contain one message, so we get index 0
         let webhook_event = entry.messaging[0];
-        console.log("webhook event", webhook_event);
+        console.log(webhook_event);
+        let sender_psid = webhook_event.sender.id;
+        console.log('Sender PSID: ' + sender_psid);
+
         if(webhook_event.message){
           var userInput = webhook_event.message.text;
           console.log("WEBHOOK",webhook_event.message.text);
           console.log("USER INPUT",userInput);
         }
+        
+        
         if(webhook_event.postback){
           var userInput = webhook_event.postback.payload
         }
