@@ -137,7 +137,7 @@
                     <tr>
 
                     <td>
-                        <button type="button" onclick="submit()" class="btn btn-outline-light btn-secondary btn-lg btn-block">Submit</button>
+                        <button type="button" id="btn_submit" class="btn btn-outline-light btn-secondary btn-lg btn-block">Submit</button>
                     </td>
                     </tr>
 
@@ -181,6 +181,16 @@ function price() {
 
 <script>
    
+   const btn_submit = document.getElementById("btn_submit");
+
+   btn_submit.addEventListener("Click", function(){
+    const senderID = '<%= id %>';
+    //saveToDatabase();
+    
+    postBotMessage(senderID);
+    windowClose();
+
+   });
   
   // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -196,15 +206,7 @@ function price() {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   
-  
-  function submit(){
-    let senderID = '<%= id %>';
-    //saveToDatabase();
-    
-    postBotMessage(senderID);
-    windowClose();
 
-  }// submit function
 
   function saveToDatabase(){
 
