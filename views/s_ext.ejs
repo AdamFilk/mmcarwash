@@ -228,8 +228,8 @@ function price() {
           
       }).then(success => {  
         console.log('success');
-        postBotMessage();
-        //windowClose();
+        postBotMessage().then(success=> windowClose())
+       
         
         
       }).catch(error => {
