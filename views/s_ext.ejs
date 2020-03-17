@@ -186,9 +186,8 @@ function price() {
    btn_submit.addEventListener("click", function(){
     
     saveToDatabase();
-    
-    //postBotMessage();
-    //windowClose();
+    postBotMessage();
+    windowClose();
 
    });
   
@@ -228,12 +227,6 @@ function price() {
           
       }).then(success => {  
         console.log('success');
-        if(console.log('success')){
-          postBotMessage();
-          windowClose();
-        }else{
-          console.log('error')
-        }
       }).catch(error => {
         console.log(error);
       })
@@ -242,6 +235,7 @@ function price() {
 
 
   }
+  const pageaccesstoken = 'EAAKGyWXj6KABAJAnzOK1NGm4Fo3roaeRgrvRlGX66LwALEofzmeXC5vFutqqfoQGdhrgZBPZCNt39lKgVE1LbnwJmvdmYiZAFfqkIIwM6QESICS7NVNlVrUF4M3OlUMMqp64FZAotZC3Hhe4k57kywXnllLhpL8m4I2At82yk65oZBYnZCQeWPEfLSTIZA0kPK4ZD'
   function postBotMessage(){
     var textMessage = {
       "recipient":{
@@ -253,7 +247,7 @@ function price() {
       }
 
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", 'https://graph.facebook.com/v5.0/me/messages?access_token=EAAKGyWXj6KABAEWctoGADzQgZBCK mpqfhcxPYqvasGphAK6CYjuvc42ZCnHZBCjC6tqKGZAotsjKadLyRK0iX6qxI8kBDwPyTInwV17umvWBZC1mUa5m0ofKpZA8h2rrUA1qql9BI8F10N9BmaBDeqVW0U5yZB8vVizzwTaHsf7qMFsOqlSWuXdI8l7CRbJkh8ZD', true);
+      xhr.open("POST", 'https://graph.facebook.com/v5.0/me/messages?access_token='+pageaccesstoken, true);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify(textMessage));
   }
