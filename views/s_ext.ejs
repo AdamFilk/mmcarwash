@@ -149,6 +149,91 @@
     
 </body>
 <script>
+  var senderID = '<%= id %>';
+  const pageaccesstoken = 'EAAKGyWXj6KABAJAnzOK1NGm4Fo3roaeRgrvRlGX66LwALEofzmeXC5vFutqqfoQGdhrgZBPZCNt39lKgVE1LbnwJmvdmYiZAFfqkIIwM6QESICS7NVNlVrUF4M3OlUMMqp64FZAotZC3Hhe4k57kywXnllLhpL8m4I2At82yk65oZBYnZCQeWPEfLSTIZA0kPK4ZD'
+  const testbutton = document.getElementById("testbutton");
+
+  testbutton.addEventListener("click", function(){
+   
+   //saveToDatabase();
+   
+   postBotMessage();
+   //windowClose();
+
+  });
+ 
+ // Your web app's Firebase configuration
+ var firebaseConfig = {
+   apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
+   authDomain: "mm-carwash.firebaseapp.com",
+   databaseURL: "https://mm-carwash.firebaseio.com",
+   projectId: "mm-carwash",
+   storageBucket: "mm-carwash.appspot.com",
+   messagingSenderId: "478002772636",
+   appId: "1:478002772636:web:f82fa2e926632accb10b59",
+   measurementId: "G-BFPKPTE060"
+ };
+ // Initialize Firebase
+ firebase.initializeApp(firebaseConfig);
+ 
+
+
+ function saveToDatabase(){
+
+   firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
+   
+   var db = firebase.firestore();
+   var senderID = '<%= id %>';
+     db.collection('booking').add({
+         name: '<%= name%>',
+         package: '<%= package %>',
+         wtype: '<%=wtype %>',
+         phone: document.getElementById('phone').value,
+         town: document.getElementById('town').value,
+         address: document.getElementById('address_info').value,
+         carsize:document.querySelector('input[name="carsize"]:checked').value,
+         price:document.getElementById("price").innerHTML,
+         date:document.getElementById('date-input').value,
+         time:document.getElementById('time-input').value,
+         
+     }).then(success => {  
+       console.log('success');
+
+     }).catch(error => {
+       console.log(error);
+     })
+     
+   });
+
+
+ }
+ 
+ function postBotMessage(){
+   var textMessage = {
+     "recipient":{
+       "id":senderID
+     },
+     "message":{
+       "text": "Thank you for submitting data"
+     }
+     }
+
+     var xhr = new XMLHttpRequest();
+     xhr.open("POST", 'https://graph.facebook.com/v5.0/me/messages?access_token='+pageaccesstoken, true);
+     xhr.setRequestHeader('Content-Type', 'application/json');
+     xhr.send(JSON.stringify(textMessage));
+ }
+ function windowClose(){
+   window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://i1.wp.com/www.watts-innovating.com/wp-content/uploads/2018/04/thankyou.jpg?fit=2160%2C2160&ssl=1&display_text=Thankyou');
+ }
+
+
+
+
+
+</script>
+
+<script>
 function checkNumber() {
     var phone = document.getElementById('phone').value;
     var relt = isNaN(phone)
@@ -180,88 +265,5 @@ function price() {
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
 
-<script>
-   var senderID = '<%= id %>';
-   const pageaccesstoken = 'EAAKGyWXj6KABAJAnzOK1NGm4Fo3roaeRgrvRlGX66LwALEofzmeXC5vFutqqfoQGdhrgZBPZCNt39lKgVE1LbnwJmvdmYiZAFfqkIIwM6QESICS7NVNlVrUF4M3OlUMMqp64FZAotZC3Hhe4k57kywXnllLhpL8m4I2At82yk65oZBYnZCQeWPEfLSTIZA0kPK4ZD'
-   const testbutton = document.getElementById("testbutton");
 
-   testbutton.addEventListener("click", function(){
-    
-    //saveToDatabase();
-    
-    postBotMessage();
-    //windowClose();
-
-   });
-  
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
-    authDomain: "mm-carwash.firebaseapp.com",
-    databaseURL: "https://mm-carwash.firebaseio.com",
-    projectId: "mm-carwash",
-    storageBucket: "mm-carwash.appspot.com",
-    messagingSenderId: "478002772636",
-    appId: "1:478002772636:web:f82fa2e926632accb10b59",
-    measurementId: "G-BFPKPTE060"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  
-
-
-  function saveToDatabase(){
-
-    firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
-    
-    var db = firebase.firestore();
-    var senderID = '<%= id %>';
-      db.collection('booking').add({
-          name: '<%= name%>',
-          package: '<%= package %>',
-          wtype: '<%=wtype %>',
-          phone: document.getElementById('phone').value,
-          town: document.getElementById('town').value,
-          address: document.getElementById('address_info').value,
-          carsize:document.querySelector('input[name="carsize"]:checked').value,
-          price:document.getElementById("price").innerHTML,
-          date:document.getElementById('date-input').value,
-          time:document.getElementById('time-input').value,
-          
-      }).then(success => {  
-        console.log('success');
-
-      }).catch(error => {
-        console.log(error);
-      })
-      
-    });
-
-
-  }
-  
-  function postBotMessage(){
-    var textMessage = {
-      "recipient":{
-        "id":senderID
-      },
-      "message":{
-        "text": "Thank you for submitting data"
-      }
-      }
-
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", 'https://graph.facebook.com/v5.0/me/messages?access_token='+pageaccesstoken, true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify(textMessage));
-  }
-  function windowClose(){
-    window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://i1.wp.com/www.watts-innovating.com/wp-content/uploads/2018/04/thankyou.jpg?fit=2160%2C2160&ssl=1&display_text=Thankyou');
-  }
-
-
-
-
-
-</script>
 </html>
