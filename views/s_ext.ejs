@@ -228,7 +228,7 @@ function price() {
           
       }).then(success => {  
         console.log('success');
-        postBotMessage();
+        postBotMessage().then(success=>windowClose());
       }).catch(error => {
         console.log(error);
       })
