@@ -1244,7 +1244,7 @@ if (userInput=="otpkg"){
             },
             {
               "title":"Engine Bay cleaning",
-              "image_url":"https://lh3.googleusercontent.com/proxy/MHOEYpy0q9c0zEhgM13X-GvYSit4fkij1GHbtVcjqTBBBtd7BcpXhj6n2qxUc3_6e3DROKg4R2f9xtLUciyJ7_CDmkpaptBdpcBnofWpVeH5rynk6kIQ_Xzlcyu1k4Ug3h9hASb4bI6JkyVGIbCPZ2BU",
+              "image_url":"https://lh3.googleusercontent.com/proxy/AJAEbBxDgcdY5LPDltNhiVaWwp2zZ_N66_wg0KXtDIywZArrsmH7cHV2qSGjVJCvZYyL-xyTL9LyXlwEHIOEvhp8YKpR5aZLg51XSe7TJJtYtabJwaGf3GMJS_Cj7jY99XFmnvSdcmOpWrxZyfGe3s1b",
               "subtitle":"Estimated Time:1 hour",
               "buttons":[
                 {
@@ -1260,7 +1260,7 @@ if (userInput=="otpkg"){
             },
             {
               "title":"Headlight Restoration",
-              "image_url":"https://lh3.googleusercontent.com/proxy/gu8AIYM8LMBaLY_C21QctdcOCQ73KWAx06Y3CIZyj8_ePncH39v-LmCKAZD8oLYJwOQBTvg87grqNBWYG5lJp1tuXSIWsQ",
+              "image_url":"https://www.daohingtrading.com/wp-content/uploads/2017/12/before-after-headlight-e14211114447681.jpg",
               "subtitle":"1 hour and up · 30,000 Ks",
               "buttons":[
                 {
