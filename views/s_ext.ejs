@@ -180,15 +180,15 @@ function price() {
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
 
 <script>
-   
+   var senderID = '<%= id %>';
    const btn_submit = document.getElementById("btn_submit");
 
    btn_submit.addEventListener("click", function(){
-    const senderID = '<%= id %>';
+    
     //saveToDatabase();
     
-    postBotMessage(senderID);
-    windowClose();
+    postBotMessage();
+    //windowClose();
 
    });
   
@@ -242,7 +242,7 @@ function price() {
     window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://i1.wp.com/www.watts-innovating.com/wp-content/uploads/2018/04/thankyou.jpg?fit=2160%2C2160&ssl=1&display_text=Thankyou');
   }
 
-  function postBotMessage(senderID){
+  function postBotMessage(){
     var textMessage = {
       "recipient":{
         "id":senderID
