@@ -19,6 +19,7 @@
     <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col-sm-4 w-100">
+                 <button id="testbutton">Test</button>
                 <table class="table table-dark table-striped" style="margin-top: 15px;">
                     <thead>
                         <tr>
@@ -181,12 +182,14 @@ function price() {
 
 <script>
    var senderID = '<%= id %>';
-   const btn_submit = document.getElementById("btn_submit");
+   const pageaccesstoken = 'EAAKGyWXj6KABAJAnzOK1NGm4Fo3roaeRgrvRlGX66LwALEofzmeXC5vFutqqfoQGdhrgZBPZCNt39lKgVE1LbnwJmvdmYiZAFfqkIIwM6QESICS7NVNlVrUF4M3OlUMMqp64FZAotZC3Hhe4k57kywXnllLhpL8m4I2At82yk65oZBYnZCQeWPEfLSTIZA0kPK4ZD'
+   const testbutton = document.getElementById("testbutton");
 
-   btn_submit.addEventListener("click", function(){
+   testbutton.addEventListener("click", function(){
     
     saveToDatabase();
-    postBotMessage();
+    
+    //postBotMessage();
     windowClose();
 
    });
@@ -227,6 +230,7 @@ function price() {
           
       }).then(success => {  
         console.log('success');
+
       }).catch(error => {
         console.log(error);
       })
@@ -235,7 +239,7 @@ function price() {
 
 
   }
-  const pageaccesstoken = 'EAAKGyWXj6KABAJAnzOK1NGm4Fo3roaeRgrvRlGX66LwALEofzmeXC5vFutqqfoQGdhrgZBPZCNt39lKgVE1LbnwJmvdmYiZAFfqkIIwM6QESICS7NVNlVrUF4M3OlUMMqp64FZAotZC3Hhe4k57kywXnllLhpL8m4I2At82yk65oZBYnZCQeWPEfLSTIZA0kPK4ZD'
+  
   function postBotMessage(){
     var textMessage = {
       "recipient":{
