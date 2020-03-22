@@ -712,11 +712,7 @@ console.log(error)
                     "messenger_extensions": true,
                     "webview_height_ratio": "full",
                   },
-                  {
-                    "type":"postback",
-                    "title":"No",
-                    "payload":"n_b_ext"
-                  },
+          
                   
                 ]
   
