@@ -79,7 +79,7 @@ app.get('/s_ext/:package/:wtype/:name/:id', (req, res) => {
   res.render('s_ext.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
   
 });
-app.post('/s_ext',upload.single('file'),function(req,res){
+app.post('/s_ext',function(req,res){
        
   let name  = req.body.name;
   let phone = req.body.phone;
