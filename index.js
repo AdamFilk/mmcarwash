@@ -7,10 +7,27 @@ const
   requestify = require('requestify'),
   app = express().use(bodyParser.json()), // creates express http server
   ejs = require("ejs");
+  
 
+  
   const pageaccesstoken = 'EAAKGyWXj6KABAJAnzOK1NGm4Fo3roaeRgrvRlGX66LwALEofzmeXC5vFutqqfoQGdhrgZBPZCNt39lKgVE1LbnwJmvdmYiZAFfqkIIwM6QESICS7NVNlVrUF4M3OlUMMqp64FZAotZC3Hhe4k57kywXnllLhpL8m4I2At82yk65oZBYnZCQeWPEfLSTIZA0kPK4ZD'
+  
+var firebaseConfig = {
+     credential: firebase.credential.cert({
+    "private_key": process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    "client_email": process.env.FIREBASE_CLIENT_EMAIL,
+    "project_id": process.env.FIREBASE_PROJECT_ID,    
+    }),
+    databaseURL: process.env.FIREBASE_DB_URL, 
+    storageBucket: process.env.FIREBASE_SB_URL
+  };
 
 
+
+firebase.initializeApp(firebaseConfig);
+
+let db = firebase.firestore(); 
+let bucket = firebase.storage().bucket();
 
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -18,7 +35,6 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 app.set('view engine', 'ejs');
 app.set('views', __dirname+'/views');
 
-//whitelist domains
 app.get('/whitelists',function(req,res){    
   whitelistDomains(res);
 });
@@ -62,7 +78,47 @@ app.get('/s_ext/:package/:wtype/:name/:id', (req, res) => {
   var senderID=req.params.id;
   res.render('s_ext.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
   
-})
+});
+app.post('/s_ext',upload.single('file'),function(req,res){
+       
+  let name  = req.body.name;
+  let phone = req.body.phone;
+  let town = req.body.town;
+  let address = req.body.address_info
+  let carsize=req.body.carsize
+  let price= req.body.price
+  let sender = req.body.sender;    
+  let date= req.body.date;
+  let time= req.body.time;
+
+
+
+  /*
+  bucket.upload(img_url).then(data => {
+  console.log('upload success');
+  }).catch(err => {
+      console.log('error uploading to storage', err);
+  });
+  */  
+  
+  db.collection('booking').add({
+        name: name,
+        phone: email,
+        town: town,
+        address:address,
+        carsize: carsize,
+        price: price,
+        sender: sender,
+        date: date,
+        time:time
+      }).then(success => {   
+         console.log("DATA SAVED")
+         thankyouReply(sender, name);    
+      }).catch(error => {
+        console.log(error);
+  });        
+});
+
 app.get('/s_both/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
@@ -1312,3 +1368,28 @@ console.log(error)
     }
   
   });
+  /***********************************
+FUNCTION TO ADD WHITELIST DOMAIN
+************************************/
+
+const whitelistDomains = (res) => {
+  var messageData = {
+          "whitelisted_domains": [
+             "https://mmcarwash.herokuapp.com" , 
+             "https://herokuapp.com"                           
+          ]               
+  };  
+  request({
+      url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ pageaccesstoken,
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      form: messageData
+  },
+  function (error, response, body) {
+      if (!error && response.statusCode == 200) {          
+          res.send(body);
+      } else {           
+          res.send(body);
+      }
+  });
+}
