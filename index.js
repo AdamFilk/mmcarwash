@@ -603,7 +603,7 @@ app.post('/webhook', (req, res) => {
       //end of premium wash packages
       //start basic interior
       
-      if(userInput.includes("basic_int")){
+      if(userInput.includes("b_int")){
         console.log(userInput);
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
           let textMessage = {
@@ -674,7 +674,7 @@ app.post('/webhook', (req, res) => {
   //end basic int
   //start basic ext
   
-  if(userInput.includes("basic_ext")){
+  if(userInput.includes("b_ext")){
     requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
       let textMessage = {
         "recipient":{
@@ -744,7 +744,7 @@ console.log(error)
   //end basic ext
   //start basic both
   
-  if(userInput.includes("basic_both")){
+  if(userInput.includes("b_both")){
     requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
       let textMessage = {
         "recipient":{
@@ -814,7 +814,7 @@ console.log(error)
 
   //end basic both
       //start shining interior
-      if(userInput.includes("standard_int")){
+      if(userInput.includes("s_int")){
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
           let textMessage = {
             "recipient":{
@@ -883,7 +883,7 @@ console.log(error)
   }
   //end shining int
   //start shining ext
-  if(userInput.includes("standard_ext")){
+  if(userInput.includes("s_ext")){
     requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
       let textMessage = {
         "recipient":{
@@ -948,7 +948,7 @@ console.log(error)
 }
   //end shining ext
   //start shinging both
-  if(userInput.includes("standard_both")){
+  if(userInput.includes("s_both")){
     requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
       let textMessage = {
         "recipient":{
