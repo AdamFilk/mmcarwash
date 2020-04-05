@@ -99,7 +99,7 @@ app.post('/s_ext',function(req,res){
   });
   */  
   
-  db.collection('booking').add({
+  db.collection('standard_exterior_booking').add({
         name: name,
         phone: email,
         town: town,
