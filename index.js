@@ -341,7 +341,7 @@ app.post('/webhook', (req, res) => {
                     },
                     {
                       "type":"postback",
-                      "title":"Other Services",
+                      "title":"Car Detailing Services",
                       "payload":"otpkg"
                     },
                   ]
@@ -364,8 +364,16 @@ app.post('/webhook', (req, res) => {
     
       }
        //end of select
-      //start of wash packages
+      //start of car wash packages
       if (userInput== "cwpkg"){
+        let textMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "text": "These are our Package Categories"
+          }
+        };
         let genericMessage = {
           "recipient":{
             "id": webhook_event.sender.id
@@ -377,72 +385,106 @@ app.post('/webhook', (req, res) => {
                 "template_type":"generic",
                 "elements":[
                   {
-                  "title":"Basic Wash Packages",
-                  "subtitle":"These are the basic packages",
+                  "title":"Basic Pakage",
+                  "subtitle":"Affordable, Fast and clean",
+                  "image_url":"https://i.pinimg.com/originals/ec/43/2c/ec432c1852f268a95aee064997964275.jpg",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"View Package",
+                      "payload":"b"
+                    },
+                    
+                  ]
+  
+                },
+                {
+                  "title":"Standard Pakage",
+                  "subtitle":"Clean your car shine!",
+                  "image_url":"https://i.pinimg.com/originals/ec/43/2c/ec432c1852f268a95aee064997964275.jpg",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"View Package",
+                      "payload":"s"
+                    },
+                    
+                  ]
+  
+                },
+                {
+                  "title":"Premium Pakage",
+                  "subtitle":"Affordable, Fast and clean",
+                  "image_url":"https://i.pinimg.com/originals/ec/43/2c/ec432c1852f268a95aee064997964275.jpg",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"View Page",
+                      "payload":"prm"
+                    },
+                    
+                  ]
+                },
+                
+              ]
+            }
+          }
+        }
+      }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      textMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      }
+
+      //end of car wash packages
+      //start of basic wash packages
+ if (userInput== "b"){
+
+        let genericMessage = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Basic Package",
+                  "subtitle":"Choose one of below",
                   "image_url":"https://i.pinimg.com/originals/ec/43/2c/ec432c1852f268a95aee064997964275.jpg",
                   "buttons":[
                     {
                       "type":"postback",
                       "title":"Interior",
-                      "payload":userInput+"/basic_int"
+                      "payload":userInput+"/b_int"
                     },
                     {
                       "type":"postback",
                       "title":"Exterior",
-                      "payload":userInput+"/basic_ext"
+                      "payload":userInput+"/b_ext"
                     },
                     {
                       "type":"postback",
-                      "title":"Both",
-                      "payload":userInput+"/basic_both"
+                      "title":"Premium",
+                      "payload":userInput+"/b_both"
                     },
                   ]
   
                 },
-                {
-                  "title":"Shining Wash Packages",
-                  "subtitle":"These are the Shining Packages",
-                  "image_url":"https://i.pinimg.com/originals/24/8c/6f/248c6f595b1181e4fafb09cd51ed90e7.jpg",
-                  "buttons":[
-                    {
-                      "type":"postback",
-                      "title":"Interior",
-                      "payload":userInput+"/standard_int"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"Exterior",
-                      "payload":userInput+"/standard_ext"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"Both",
-                      "payload":userInput+"/standard_both"
-                    },
-                  ]
-                },
-                    {
-                      "title":"Premium Wash Packages",
-                      "subtitle":"These are the Premium Packages",
-                      "image_url":"https://i.pinimg.com/originals/d2/2b/31/d22b3117b17e5917dfca78130caa8272.jpg",
-                      "buttons":[
-                        {
-                          "type":"postback",
-                          "title":"Interior",
-                          "payload":userInput+"/prm_int"
-                        },
-                        {
-                          "type":"postback",
-                          "title":"Exterior",
-                          "payload":userInput+"/prm_ext"
-                        },
-                        {
-                          "type":"postback",
-                          "title":"Both",
-                          "payload":userInput+"/prm_both"
-                        },
-                  ]
-                }
+                
               ]
             }
           }
@@ -456,8 +498,109 @@ app.post('/webhook', (req, res) => {
         console.log(error)
       })
       }
-    
-      //end of wash packages
+      //end of basic wash packages
+      //start of standard warsh packages
+      if (userInput== "s"){
+
+        let genericMessage = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Standard Package",
+                  "subtitle":"Choose one of below",
+                  "image_url":"https://i.pinimg.com/originals/ec/43/2c/ec432c1852f268a95aee064997964275.jpg",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Interior",
+                      "payload":userInput+"/s_int"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Exterior",
+                      "payload":userInput+"/s_ext"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Premium",
+                      "payload":userInput+"/s_both"
+                    },
+                  ]
+  
+                },
+                
+              ]
+            }
+          }
+        }
+      }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      }
+      //end of standard wash packages
+      //start of premium warsh packages
+      if (userInput== "prm"){
+
+        let genericMessage = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Standard Package",
+                  "subtitle":"Choose one of below",
+                  "image_url":"https://i.pinimg.com/originals/ec/43/2c/ec432c1852f268a95aee064997964275.jpg",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Interior",
+                      "payload":userInput+"/prm_int"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Exterior",
+                      "payload":userInput+"/prm_ext"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Premium",
+                      "payload":userInput+"/prm_both"
+                    },
+                  ]
+  
+                },
+                
+              ]
+            }
+          }
+        }
+      }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      }
+      //end of premium wash packages
       //start basic interior
       
       if(userInput.includes("basic_int")){
