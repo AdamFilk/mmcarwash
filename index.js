@@ -341,7 +341,7 @@ app.post('/webhook', (req, res) => {
                     },
                     {
                       "type":"postback",
-                      "title":"Car Detailing Services",
+                      "title":"Other Services",
                       "payload":"otpkg"
                     },
                   ]
@@ -364,8 +364,9 @@ app.post('/webhook', (req, res) => {
     
       }
        //end of select
-      //start of car wash packages
+      //start of wash packages
       if (userInput== "cwpkg"){
+<<<<<<< HEAD
         let textMessage = {
           "recipient":{
             "id":webhook_event.sender.id
@@ -451,6 +452,8 @@ app.post('/webhook', (req, res) => {
       //start of basic wash packages
  if (userInput== "b"){
 
+=======
+>>>>>>> parent of 62773d9... Update index.js
         let genericMessage = {
           "recipient":{
             "id": webhook_event.sender.id
@@ -462,28 +465,35 @@ app.post('/webhook', (req, res) => {
                 "template_type":"generic",
                 "elements":[
                   {
+<<<<<<< HEAD
                   "title":"Basic Package",
                   "subtitle":"Choose one of below",
                   "image_url":"https://us.123rf.com/450wm/scyther5/scyther51707/scyther5170700130/82172155-car-detailing-man-holds-a-polisher-in-the-hand-and-polishes-the-car-selective-focus-.jpg?ver=6",
+=======
+                  "title":"Basic Wash Packages",
+                  "subtitle":"These are the basic packages",
+                  "image_url":"https://i.pinimg.com/originals/ec/43/2c/ec432c1852f268a95aee064997964275.jpg",
+>>>>>>> parent of 62773d9... Update index.js
                   "buttons":[
                     {
                       "type":"postback",
                       "title":"Interior",
-                      "payload":userInput+"/b_int"
+                      "payload":userInput+"/basic_int"
                     },
                     {
                       "type":"postback",
                       "title":"Exterior",
-                      "payload":userInput+"/b_ext"
+                      "payload":userInput+"/basic_ext"
                     },
                     {
                       "type":"postback",
-                      "title":"Premium",
-                      "payload":userInput+"/b_both"
+                      "title":"Both",
+                      "payload":userInput+"/basic_both"
                     },
                   ]
   
                 },
+<<<<<<< HEAD
                 
               ]
             }
@@ -516,25 +526,31 @@ app.post('/webhook', (req, res) => {
                   "title":"Standard Package",
                   "subtitle":"Choose one of below",
                   "image_url":"https://www.riverdalecarwashnj.com/images/Home-img.jpg",
+=======
+                {
+                  "title":"Shining Wash Packages",
+                  "subtitle":"These are the Shining Packages",
+                  "image_url":"https://i.pinimg.com/originals/24/8c/6f/248c6f595b1181e4fafb09cd51ed90e7.jpg",
+>>>>>>> parent of 62773d9... Update index.js
                   "buttons":[
                     {
                       "type":"postback",
                       "title":"Interior",
-                      "payload":userInput+"/s_int"
+                      "payload":userInput+"/standard_int"
                     },
                     {
                       "type":"postback",
                       "title":"Exterior",
-                      "payload":userInput+"/s_ext"
+                      "payload":userInput+"/standard_ext"
                     },
                     {
                       "type":"postback",
-                      "title":"Premium",
-                      "payload":userInput+"/s_both"
+                      "title":"Both",
+                      "payload":userInput+"/standard_both"
                     },
                   ]
-  
                 },
+<<<<<<< HEAD
                 
               ]
             }
@@ -578,15 +594,30 @@ app.post('/webhook', (req, res) => {
                       "title":"Exterior",
                       "payload":userInput+"/prm_ext"
                     },
+=======
+>>>>>>> parent of 62773d9... Update index.js
                     {
-                      "type":"postback",
-                      "title":"Premium",
-                      "payload":userInput+"/prm_both"
-                    },
+                      "title":"Premium Wash Packages",
+                      "subtitle":"These are the Premium Packages",
+                      "image_url":"https://i.pinimg.com/originals/d2/2b/31/d22b3117b17e5917dfca78130caa8272.jpg",
+                      "buttons":[
+                        {
+                          "type":"postback",
+                          "title":"Interior",
+                          "payload":userInput+"/prm_int"
+                        },
+                        {
+                          "type":"postback",
+                          "title":"Exterior",
+                          "payload":userInput+"/prm_ext"
+                        },
+                        {
+                          "type":"postback",
+                          "title":"Both",
+                          "payload":userInput+"/prm_both"
+                        },
                   ]
-  
-                },
-                
+                }
               ]
             }
           }
@@ -600,7 +631,8 @@ app.post('/webhook', (req, res) => {
         console.log(error)
       })
       }
-      //end of premium wash packages
+    
+      //end of wash packages
       //start basic interior
       
       if(userInput.includes("b_int")){
