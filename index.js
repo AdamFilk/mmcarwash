@@ -384,17 +384,17 @@ app.post('/webhook', (req, res) => {
                     {
                       "type":"postback",
                       "title":"Interior",
-                      "payload":userInput+"/basic_int"
+                      "payload":userInput+"/b_int"
                     },
                     {
                       "type":"postback",
                       "title":"Exterior",
-                      "payload":userInput+"/basic_ext"
+                      "payload":userInput+"/b_ext"
                     },
                     {
                       "type":"postback",
                       "title":"Both",
-                      "payload":userInput+"/basic_both"
+                      "payload":userInput+"/b_both"
                     },
                   ]
   
@@ -407,17 +407,17 @@ app.post('/webhook', (req, res) => {
                     {
                       "type":"postback",
                       "title":"Interior",
-                      "payload":userInput+"/standard_int"
+                      "payload":userInput+"/s_int"
                     },
                     {
                       "type":"postback",
                       "title":"Exterior",
-                      "payload":userInput+"/standard_ext"
+                      "payload":userInput+"/s_ext"
                     },
                     {
                       "type":"postback",
                       "title":"Both",
-                      "payload":userInput+"/standard_both"
+                      "payload":userInput+"/s_both"
                     },
                   ]
                 },
