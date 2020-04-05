@@ -8,7 +8,6 @@ const
   app = express().use(bodyParser.json()), // creates express http server
   ejs = require("ejs"),
   firebase = require("firebase-admin"),
-  multer  = require('multer');
 
   const pageaccesstoken = 'EAAKGyWXj6KABAJAnzOK1NGm4Fo3roaeRgrvRlGX66LwALEofzmeXC5vFutqqfoQGdhrgZBPZCNt39lKgVE1LbnwJmvdmYiZAFfqkIIwM6QESICS7NVNlVrUF4M3OlUMMqp64FZAotZC3Hhe4k57kywXnllLhpL8m4I2At82yk65oZBYnZCQeWPEfLSTIZA0kPK4ZD'
   
@@ -341,8 +340,8 @@ app.post('/webhook', (req, res) => {
                     },
                     {
                       "type":"postback",
-                      "title":"Other Services",
-                      "payload":"otpkg"
+                      "title":"Car detail services",
+                      "payload":"cds"
                     },
                   ]
 
@@ -769,6 +768,7 @@ console.log(error)
                     "type":"web_url",
                     "url":"https://mmcarwash.herokuapp.com/s_ext/"+userInput+"/"+udetails.name+"/"+senderID,
                     "title":"Yes",
+                    "messenger_extensions":true,
                     "webview_height_ratio": "full",
                   },
           
@@ -1219,7 +1219,7 @@ textMessage
 }
 //end v_l_price
 //start otpkg
-if (userInput=="otpkg"){
+if (userInput=="cds"){
   requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
   var udetails = JSON.parse(success.body);
   var senderID = webhook_event.sender.id;
