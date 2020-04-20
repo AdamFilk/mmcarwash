@@ -437,17 +437,17 @@ if (userInput== "cw"){
               {
                 "type":"postback",
                 "title":"Small",
-                "payload":"s"
+                "payload":"sm"
               },
               {
                 "type":"postback",
                 "title":"Medium",
-                "payload":"m"
+                "payload":"md"
               },
               {
                 "type":"postback",
                 "title":"Large",
-                "payload":"l"
+                "payload":"lg"
               },
             ]
           },
@@ -473,8 +473,8 @@ genericMessage
 })
 }
 //start car size
-//start small
-if (userButton == 's' || userButton == 'm' || userButton == 'l'){
+//start sm,md,lg
+if (userButton == 'sm' || userButton == 'md' || userButton == 'lg'){
 
   let genericMessage = {
     "recipient":{
@@ -529,8 +529,169 @@ genericMessage
   console.log(error)
 })
 }
-//end small
+//end sm,md,lg
 //end of car size
+//start 
+if (userButton == 'int_sm'|| userButton == 'ext_sm' || userButton == 'both_sm' || userButton == 'int_md'|| userButton == 'ext_md' || userButton == 'both_md' || userButton == 'int_lg'|| userButton == 'ext_lg' || userButton == 'both_lg'){
+  let genericMessage = {
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+              "title":"Can you Provide water?",
+              "buttons":[
+                {
+                  "type":"postback",
+                  "title":"Yes",
+                  "payload":`y_${userButton}`
+                },
+                {
+                  "type":"postback",
+                  "title":"No",
+                  "payload":`n_${userButton}`
+                }
+            ]
+          },
+        ]
+      }
+    }
+  }
+}
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+genericMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+} 
+//end
+if (userButton == 'y_int_sm'|| userButton == 'y_ext_sm' || userButton == 'y_both_sm' || userButton == 'y_int_md'|| userButton == 'y_ext_md' || userButton == 'y_both_md' || userButton == 'y_int_lg'|| userButton == 'y_ext_lg' || userButton == 'y_both_lg' || userButton == 'n_int_sm'|| userButton == 'n_ext_sm' || userButton == 'n_both_sm' || userButton == 'n_int_md'|| userButton == 'n_ext_md' || userButton == 'n_both_md' || userButton == 'n_int_lg'|| userButton == 'n_ext_lg' || userButton == 'n_both_lg'){
+  let genericMessage = {
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+              "title":"provide water",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"Waterless wash",
+                        "payload":`wl_${userButton}`
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Regular wash",
+                        "payload":`hw_${userButton}`
+                      }
+            ]
+          },
+        ]
+      }
+    }
+  }
+}
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+genericMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+} 
+if (userButton == 'wl_y_int_sm'|| userButton == 'wl_y_ext_sm' || userButton == 'wl_y_both_sm' || userButton == 'wl_y_int_md'|| userButton == 'wl_y_ext_md' || userButton == 'wl_y_both_md' || userButton == 'wl_y_int_lg'|| userButton == 'wl_y_ext_lg' || userButton == 'wl_y_both_lg' || userButton == 'n_int_sm'|| userButton == 'n_ext_sm' || userButton == 'n_both_sm' || userButton == 'n_int_md'|| userButton == 'n_ext_md' || userButton == 'n_both_md' || userButton == 'n_int_lg'|| userButton == 'n_ext_lg' || userButton == 'n_both_lg' || userButton == 'hw_y_int_sm'|| userButton == 'hw_y_ext_sm' || userButton == 'hw_y_both_sm' || userButton == 'hw_y_int_md'|| userButton == 'hw_y_ext_md' || userButton == 'hw_y_both_md' || userButton == 'hw_y_int_lg'|| userButton == 'hw_y_ext_lg' || userButton == 'hw_y_both_lg'){
+  var userName = [] 
+  requestify.get(`https://graph.facebook.com/<PSID>?fields=first_name,last_name&access_token=${pageaccesstoken}`).then(success=>{
+    response = success.getBody();
+    userName.push(response.last_name)
+    userName.unshift(response.first_name) 
+   })
+  if(userButton.includes('wl_')){
+    var text = '' //waterless
+    var image = '' //waterless
+    var rollback = userButton.split('_')
+  rollback.shift()
+  rollback = rollback.join('_')
+  }else if(userButton.includes('hw_')){
+    var text = '' //handwash
+    var image = '' //handwash
+    var rollback = userButton.split('_')
+  rollback.shift()
+  rollback = rollback.join('_')
+  }else {
+    var text = '' //waterless
+    var image = '' //waterless
+    var rollback = userButton.split('_')
+  rollback.shift()
+  rollback = rollback.join('_')
+  }
+
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": text
+    }
+  };
+  let genericMessage = {
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+              "title":"provide water",
+                "buttons":[
+                    {
+                      "type":"web_url",
+                      "title":"Yes",
+                      "url": `mmcarwash.herokuapp.com/wash/${userButton}/${userName.join(' ')}`,
+                      "webview_height_ratio":"tall"
+                      },
+                      {
+                      "type":"postback",
+                      "title":"No",
+                      "payload":`${rollback}`
+                      }
+                    ]
+  
+                  }
+                ]
+                }
+              }
+            }
+          }
+                requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+                textMessage
+                ).then(response=>{
+                  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+                    genericMessage
+                  )
+                }).fail(error=> {
+                  console.log(error)
+                })
+                  //end of choose one
+              }
+            
+    
+
 //end of car wash
       //start of  packages
       if (userInput== "cwpkg"){
