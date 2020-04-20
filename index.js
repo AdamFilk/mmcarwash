@@ -522,26 +522,30 @@ genericMessage
 } 
 if (userInput == 'wl_y_int_sm'|| userInput == 'wl_y_ext_sm' || userInput == 'wl_y_both_sm' || userInput == 'wl_y_int_md'|| userInput == 'wl_y_ext_md' || userInput == 'wl_y_both_md' || userInput == 'wl_y_int_lg'|| userInput == 'wl_y_ext_lg' || userInput == 'wl_y_both_lg' || userInput == 'n_int_sm'|| userInput == 'n_ext_sm' || userInput == 'n_both_sm' || userInput == 'n_int_md'|| userInput == 'n_ext_md' || userInput == 'n_both_md' || userInput == 'n_int_lg'|| userInput == 'n_ext_lg' || userInput == 'n_both_lg' || userInput == 'hw_y_int_sm'|| userInput == 'hw_y_ext_sm' || userInput == 'hw_y_both_sm' || userInput == 'hw_y_int_md'|| userInput == 'hw_y_ext_md' || userInput == 'hw_y_both_md' || userInput == 'hw_y_int_lg'|| userInput == 'hw_y_ext_lg' || userInput == 'hw_y_both_lg'){
   var userName = [] 
-  requestify.get(`https://graph.facebook.com/<PSID>?fields=first_name,last_name&access_token=${pageaccesstoken}`).then(success=>{
-    response = success.getBody();
+  requestify.get(`https://graph.facebook.com/${webhook_event.sender.id}?fields=first_name,last_name&access_token=${pageaccesstoken}`).then(success=>{
+   var response = success.getBody();
+    console.log(response)
+    userName.push(response.first_name)
     userName.push(response.last_name)
-    userName.unshift(response.first_name) 
    })
   if(userInput.includes('wl_')){
-    var text = '' //waterless
-    var image = '' //waterless
+    var title = 'Waterless Wash'
+    var text = "Waterless washing method do not use water but it uses an organic and chemical liquids in a spray bottle to clean your glasses and wax your car. It can remove most stains and bird poops. But it can't handle heavy mud or dirt stains which require intense scrubbing" //waterless
+    var image = 'https://image.shutterstock.com/image-vector/waterless-car-wash-260nw-1353847511.jpg'//waterless
     var rollback = userInput.split('_')
   rollback.shift()
   rollback = rollback.join('_')
   }else if(userInput.includes('hw_')){
-    var text = '' //handwash
-    var image = '' //handwash
+    var title = 'Hand wash'
+    var text = 'Handwash is a very traditional and common way to cleaning and washing your car. It only requires car washing soaps and uses the water which you will need to provide. It is effective for intense scrub downs of mud and dirt stains'//handwash
+    var image = 'https://st2.depositphotos.com/1001951/7088/i/450/depositphotos_70888985-stock-photo-man-worker-washing-cars-alloy.jpg'//handwash
     var rollback = userInput.split('_')
   rollback.shift()
   rollback = rollback.join('_')
   }else {
-    var text = '' //waterless
-    var image = '' //waterless
+    var title = 'Waterless wash'
+    var text = "Waterless washing method do not use water but it uses an organic and chemical liquids in a spray bottle to clean your glasses and wax your car. It can remove most stains and bird poops. But it can't handle heavy mud or dirt stains which require intense scrubbing" //waterless
+    var image =  'https://image.shutterstock.com/image-vector/waterless-car-wash-260nw-1353847511.jpg'  //waterless
     var rollback = userInput.split('_')
   rollback.shift()
   rollback = rollback.join('_')
@@ -566,7 +570,8 @@ if (userInput == 'wl_y_int_sm'|| userInput == 'wl_y_ext_sm' || userInput == 'wl_
           "template_type":"generic",
           "elements":[
             {
-              "title":"provide water",
+              "title":title,
+              "img-url":image,
                 "buttons":[
                     {
                       "type":"web_url",
@@ -587,15 +592,17 @@ if (userInput == 'wl_y_int_sm'|| userInput == 'wl_y_ext_sm' || userInput == 'wl_
               }
             }
           }
-                requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-                textMessage
-                ).then(response=>{
-                  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-                    genericMessage
-                  )
-                }).fail(error=> {
-                  console.log(error)
-                })
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+          textMessage
+          ).then(response=>{
+            requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+              genericMessage
+            )
+          }).fail(error=> {
+            console.log(error)
+          }) 
+           
+    
                   //end of choose one
               }
             
