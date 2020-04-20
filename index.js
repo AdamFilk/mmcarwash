@@ -682,7 +682,7 @@ if (userInput == 'wl_y_int_sm'|| userInput == 'wl_y_ext_sm' || userInput == 'wl_
           "id":webhook_event.sender.id
         },
         "message":{
-          "text": "The following services are included in this package: \nBody Cleaning, Window Cleaning ✔️\nTire and Ally Cleaning✔️\nDashboard Cleaning✔️\nWindows Cleaning✔️\nVacuuming Interior✔️"
+          "text": "The following services are included in this package: \nBody Cleaning, Window Cleaning ✔️\nTire and Ally Cleaning✔️\nDashboard Cleaning✔️\nWindows Cleaning✔️\nVacuuming Interior"
         }
       };
       var udetails = JSON.parse(success.body);
@@ -753,7 +753,7 @@ console.log(error)
           "id":webhook_event.sender.id
         },
         "message":{
-          "text": "The following services are inclued in this package:\nDashboard Cleaning✔️\nWindows Cleaning✔️\nVacuuming Interior✔️\nFloor mats cleaning✔️\nSeat Cleaning✔️\nStain Removing✔️\nInstalling Air-fresher✔️\nTrunk cleaning✔️\nDetail Cleaning✔️\nStain Removal✔️\nWindows Cleaning✔️\nTire and Alloy Cleaning✔️\nAlloy Polishing✔️\nWaxing or polishing✔️\n"
+          "text": "The following services are inclued in this package:\nDashboard Cleaning\nWindows Cleaning\nVacuuming Interior\nFloor mats cleaning\nSeat Cleaning\nStain Removing\nInstalling Air-fresher\nTrunk cleaning\nDetail Cleaning\nStain Removal\nWindows Cleaning\nTire and Alloy Cleaning\nAlloy Polishing\nWaxing or polishing"
         }
       };
       var udetails = JSON.parse(success.body);
@@ -822,7 +822,7 @@ console.log(error)
           "id":webhook_event.sender.id
         },
         "message":{
-          "text": "The follwing services are included in this package:\n Dashboard Cleaning✔️\nWindows Cleaning✔️\nVacuuming Interior✔️\nFloor mats cleaning✔️\nSeat Cleaning✔️\nStain Removing✔️\nInstalling Air-fresher✔️\nTrunk cleaning✔️\nPremium Dressing✔️\nInterior Sterilization✔️\n Detail body cleaning✔️\nStain Removal✔️\nWindows Cleaning and polishing✔️\nTire and Alloy Cleaning✔️\n Tire protection Dressing✔️\n Alloy Detailing✔️\n Waxing✔️\nPolishing"
+          "text": "The follwing services are included in this package:\n Dashboard Cleaning, Windows Cleaning, Vacuuming Interior,Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,Premium Dressing, Interior Sterilization Detail body cleaning, Stain Removal, Windows Cleaning and polishing,Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing, Waxing,Polishing"
         }
       };
       var udetails = JSON.parse(success.body);
