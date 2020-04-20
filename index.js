@@ -389,7 +389,7 @@ genericMessage
 }
 //start car size
 //start sm,md,lg
-if (userButton == 'sm' || userButton == 'md' || userButton == 'lg'){
+if (userInput == 'sm' || userInput == 'md' || userInput == 'lg'){
 
   let genericMessage = {
     "recipient":{
@@ -407,17 +407,17 @@ if (userButton == 'sm' || userButton == 'md' || userButton == 'lg'){
               {
                 "type":"postback",
                 "title":"Interior",
-                "payload":`int_${userButton}`
+                "payload":`int_${userInput}`
               },
               {
                 "type":"postback",
                 "title":"Exterior",
-                "payload":`s_${userButton}`
+                "payload":`s_${userInput}`
               },
               {
                 "type":"postback",
                 "title":"Both",
-                "payload":`both_${userButton}`
+                "payload":`both_${userInput}`
               },
             ]
           },
@@ -441,7 +441,7 @@ genericMessage
 //end sm,md,lg
 //end of car size
 //start 
-if (userButton == 'int_sm'|| userButton == 'ext_sm' || userButton == 'both_sm' || userButton == 'int_md'|| userButton == 'ext_md' || userButton == 'both_md' || userButton == 'int_lg'|| userButton == 'ext_lg' || userButton == 'both_lg'){
+if (userInput == 'int_sm'|| userInput == 'ext_sm' || userInput == 'both_sm' || userInput == 'int_md'|| userInput == 'ext_md' || userInput == 'both_md' || userInput == 'int_lg'|| userInput == 'ext_lg' || userInput == 'both_lg'){
   let genericMessage = {
     "recipient":{
       "id": webhook_event.sender.id
@@ -458,12 +458,12 @@ if (userButton == 'int_sm'|| userButton == 'ext_sm' || userButton == 'both_sm' |
                 {
                   "type":"postback",
                   "title":"Yes",
-                  "payload":`y_${userButton}`
+                  "payload":`y_${userInput}`
                 },
                 {
                   "type":"postback",
                   "title":"No",
-                  "payload":`n_${userButton}`
+                  "payload":`n_${userInput}`
                 }
             ]
           },
@@ -481,7 +481,7 @@ genericMessage
 })
 } 
 //end
-if (userButton == 'y_int_sm'|| userButton == 'y_ext_sm' || userButton == 'y_both_sm' || userButton == 'y_int_md'|| userButton == 'y_ext_md' || userButton == 'y_both_md' || userButton == 'y_int_lg'|| userButton == 'y_ext_lg' || userButton == 'y_both_lg' || userButton == 'n_int_sm'|| userButton == 'n_ext_sm' || userButton == 'n_both_sm' || userButton == 'n_int_md'|| userButton == 'n_ext_md' || userButton == 'n_both_md' || userButton == 'n_int_lg'|| userButton == 'n_ext_lg' || userButton == 'n_both_lg'){
+if (userInput == 'y_int_sm'|| userInput == 'y_ext_sm' || userInput == 'y_both_sm' || userInput == 'y_int_md'|| userInput == 'y_ext_md' || userInput == 'y_both_md' || userInput == 'y_int_lg'|| userInput == 'y_ext_lg' || userInput == 'y_both_lg' || userInput == 'n_int_sm'|| userInput == 'n_ext_sm' || userInput == 'n_both_sm' || userInput == 'n_int_md'|| userInput == 'n_ext_md' || userInput == 'n_both_md' || userInput == 'n_int_lg'|| userInput == 'n_ext_lg' || userInput == 'n_both_lg'){
   let genericMessage = {
     "recipient":{
       "id": webhook_event.sender.id
@@ -498,12 +498,12 @@ if (userButton == 'y_int_sm'|| userButton == 'y_ext_sm' || userButton == 'y_both
                       {
                         "type":"postback",
                         "title":"Waterless wash",
-                        "payload":`wl_${userButton}`
+                        "payload":`wl_${userInput}`
                       },
                       {
                         "type":"postback",
                         "title":"Regular wash",
-                        "payload":`hw_${userButton}`
+                        "payload":`hw_${userInput}`
                       }
             ]
           },
@@ -520,29 +520,29 @@ genericMessage
   console.log(error)
 })
 } 
-if (userButton == 'wl_y_int_sm'|| userButton == 'wl_y_ext_sm' || userButton == 'wl_y_both_sm' || userButton == 'wl_y_int_md'|| userButton == 'wl_y_ext_md' || userButton == 'wl_y_both_md' || userButton == 'wl_y_int_lg'|| userButton == 'wl_y_ext_lg' || userButton == 'wl_y_both_lg' || userButton == 'n_int_sm'|| userButton == 'n_ext_sm' || userButton == 'n_both_sm' || userButton == 'n_int_md'|| userButton == 'n_ext_md' || userButton == 'n_both_md' || userButton == 'n_int_lg'|| userButton == 'n_ext_lg' || userButton == 'n_both_lg' || userButton == 'hw_y_int_sm'|| userButton == 'hw_y_ext_sm' || userButton == 'hw_y_both_sm' || userButton == 'hw_y_int_md'|| userButton == 'hw_y_ext_md' || userButton == 'hw_y_both_md' || userButton == 'hw_y_int_lg'|| userButton == 'hw_y_ext_lg' || userButton == 'hw_y_both_lg'){
+if (userInput == 'wl_y_int_sm'|| userInput == 'wl_y_ext_sm' || userInput == 'wl_y_both_sm' || userInput == 'wl_y_int_md'|| userInput == 'wl_y_ext_md' || userInput == 'wl_y_both_md' || userInput == 'wl_y_int_lg'|| userInput == 'wl_y_ext_lg' || userInput == 'wl_y_both_lg' || userInput == 'n_int_sm'|| userInput == 'n_ext_sm' || userInput == 'n_both_sm' || userInput == 'n_int_md'|| userInput == 'n_ext_md' || userInput == 'n_both_md' || userInput == 'n_int_lg'|| userInput == 'n_ext_lg' || userInput == 'n_both_lg' || userInput == 'hw_y_int_sm'|| userInput == 'hw_y_ext_sm' || userInput == 'hw_y_both_sm' || userInput == 'hw_y_int_md'|| userInput == 'hw_y_ext_md' || userInput == 'hw_y_both_md' || userInput == 'hw_y_int_lg'|| userInput == 'hw_y_ext_lg' || userInput == 'hw_y_both_lg'){
   var userName = [] 
   requestify.get(`https://graph.facebook.com/<PSID>?fields=first_name,last_name&access_token=${pageaccesstoken}`).then(success=>{
     response = success.getBody();
     userName.push(response.last_name)
     userName.unshift(response.first_name) 
    })
-  if(userButton.includes('wl_')){
+  if(userInput.includes('wl_')){
     var text = '' //waterless
     var image = '' //waterless
-    var rollback = userButton.split('_')
+    var rollback = userInput.split('_')
   rollback.shift()
   rollback = rollback.join('_')
-  }else if(userButton.includes('hw_')){
+  }else if(userInput.includes('hw_')){
     var text = '' //handwash
     var image = '' //handwash
-    var rollback = userButton.split('_')
+    var rollback = userInput.split('_')
   rollback.shift()
   rollback = rollback.join('_')
   }else {
     var text = '' //waterless
     var image = '' //waterless
-    var rollback = userButton.split('_')
+    var rollback = userInput.split('_')
   rollback.shift()
   rollback = rollback.join('_')
   }
@@ -571,7 +571,7 @@ if (userButton == 'wl_y_int_sm'|| userButton == 'wl_y_ext_sm' || userButton == '
                     {
                       "type":"web_url",
                       "title":"Yes",
-                      "url": `mmcarwash.herokuapp.com/wash/${userButton}/${userName.join(' ')}`,
+                      "url": `mmcarwash.herokuapp.com/wash/${userInput}/${userName.join(' ')}`,
                       "webview_height_ratio":"tall"
                       },
                       {
@@ -599,8 +599,6 @@ if (userButton == 'wl_y_int_sm'|| userButton == 'wl_y_ext_sm' || userButton == '
                   //end of choose one
               }
             
-    
-
 //end of car wash
       //start of  packages
       if (userInput== "cwpkg"){
