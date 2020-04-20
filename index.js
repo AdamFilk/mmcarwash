@@ -289,6 +289,30 @@ app.post('/webhook', (req, res) => {
                     ]
   
                   },
+                  {
+                    "title":"MM Carwash's Chatbot",
+                    "subtitle":"Enjoy our fast and reliable service!",
+                    "image_url":"https://i.pinimg.com/originals/8e/ae/4e/8eae4e9c738013ac5bef63b8cbf9a328.jpg",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"About",
+                        "payload":"ab"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Contact",
+                        "payload":"con"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Report Bug",
+                        "payload":"rp"
+                      },
+
+                    ]
+  
+                  },
                 ],
                 
                 }
@@ -1352,7 +1376,48 @@ console.log(error)
 
     
 //end otpkg
+if (userInput== "con"){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "You can contact us to: \nEmail-adsltheprescence@gmail.com\nPhone:+95765333508"
+    }
+  };
+  let genericMessage = {
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"button",
+            "text":"Need further assistance? Talk to representative",
+            "buttons":[
+              {
+                "type":"phone_number",
+                "title":"Call Customer Service",
+                "payload":"+95765333508"
+              }
+            ]
 
+          
+          
+        
+      }
+    }
+  }
+}
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+genericMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+}
 
 
       });
