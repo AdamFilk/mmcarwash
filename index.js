@@ -593,14 +593,19 @@ if (userInput == 'wl_y_int_sm'|| userInput == 'wl_y_ext_sm' || userInput == 'wl_
             }
           }
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-          textMessage
-          ).then(response=>{
-            requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-              genericMessage
-            )
-          }).fail(error=> {
-            console.log(error)
-          }) 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+genericMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
            
     
                   //end of choose one
