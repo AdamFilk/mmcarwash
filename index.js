@@ -523,7 +523,7 @@ genericMessage
 if (userInput == 'wl_y_int_sm'|| userInput == 'wl_y_ext_sm' || userInput == 'wl_y_both_sm' || userInput == 'wl_y_int_md'|| userInput == 'wl_y_ext_md' || userInput == 'wl_y_both_md' || userInput == 'wl_y_int_lg'|| userInput == 'wl_y_ext_lg' || userInput == 'wl_y_both_lg' || userInput == 'n_int_sm'|| userInput == 'n_ext_sm' || userInput == 'n_both_sm' || userInput == 'n_int_md'|| userInput == 'n_ext_md' || userInput == 'n_both_md' || userInput == 'n_int_lg'|| userInput == 'n_ext_lg' || userInput == 'n_both_lg' || userInput == 'hw_y_int_sm'|| userInput == 'hw_y_ext_sm' || userInput == 'hw_y_both_sm' || userInput == 'hw_y_int_md'|| userInput == 'hw_y_ext_md' || userInput == 'hw_y_both_md' || userInput == 'hw_y_int_lg'|| userInput == 'hw_y_ext_lg' || userInput == 'hw_y_both_lg'){
   var userName = [] 
   requestify.get(`https://graph.facebook.com/${webhook_event.sender.id}?fields=first_name,last_name&access_token=${pageaccesstoken}`).then(success=>{
-   var response = success.getBody();
+    response = success.getBody();
     console.log(response)
     userName.push(response.first_name)
     userName.push(response.last_name)
@@ -593,19 +593,14 @@ if (userInput == 'wl_y_int_sm'|| userInput == 'wl_y_ext_sm' || userInput == 'wl_
             }
           }
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-textMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-genericMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
+          textMessage
+          ).then(response=>{
+            requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+              genericMessage
+            )
+          }).fail(error=> {
+            console.log(error)
+          }) 
            
     
                   //end of choose one
