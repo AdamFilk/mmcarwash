@@ -414,7 +414,7 @@ app.post('/webhook', (req, res) => {
                     {
                       "type":"postback",
                       "title":"Book Basic package",
-                      "payload":userInput+"/b"
+                      "payload":userInput+"/basic"
                     },
                   ]
   
