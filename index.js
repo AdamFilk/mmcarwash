@@ -290,9 +290,7 @@ app.post('/webhook', (req, res) => {
   
                   },
                   {
-                    "title":"MM Carwash's Chatbot",
-                    "subtitle":"Enjoy our fast and reliable service!",
-                    "image_url":"https://i.pinimg.com/originals/8e/ae/4e/8eae4e9c738013ac5bef63b8cbf9a328.jpg",
+                    "title":"MM Carwash",
                     "buttons":[
                       {
                         "type":"postback",
@@ -427,7 +425,7 @@ app.post('/webhook', (req, res) => {
                     {
                       "type":"postback",
                       "title":"Book Standard package",
-                      "payload":userInput+"/s"
+                      "payload":userInput+"/st"
                     },
                   ]
                 },
@@ -533,7 +531,7 @@ console.log(error)
   //end basic 
 
   //start standard 
-  if(userInput.includes("s")){
+  if(userInput.includes("st")){
     requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
       let textMessage = {
         "recipient":{
