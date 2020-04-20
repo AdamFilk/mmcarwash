@@ -462,7 +462,7 @@ app.post('/webhook', (req, res) => {
       
   //start basic 
   
-  if(userInput.includes("b")){
+  if(userInput.includes("basic")){
     requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
       let textMessage = {
         "recipient":{
