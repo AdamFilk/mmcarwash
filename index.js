@@ -191,6 +191,26 @@ app.get('/headres_book/:package/:wtype/:name/:id', (req, res) => {
   var senderID=req.params.id;
   res.render('headres_book.ejs', {name:name, package:washpackage,id:senderID})
 })
+app.get('/wash/:params/:name', (req, res) => {
+  var name = req.params.name;
+  var date = new Date();
+  var time = `${date.getHours}:${date.getMinutes}:${date.getSeconds}`
+  date = `${date.getDate}/${date.getMonth+1}/${date.getFullYear}`
+  var link = req.params.params
+  var usersettings = link.split('_')
+  if(link.includes('wl_') || link.includes('hw_')){
+    var washtype = usersettings[0];
+    var water = usersettings[1];
+    var mode = usersettings[2];
+    var carsize = usersettings[3] 
+  }else{
+    var washtype = 'wl';
+    var water = usersettings[0];
+    var mode = usersettings[1];
+    var carsize = usersettings[2]
+  }
+  res.render('index', {name: name, washtype: washtype, water: water, mode: mode, carsize: carsize, date: date, time: time})
+})
 let userOrder = {};
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
@@ -391,7 +411,127 @@ app.post('/webhook', (req, res) => {
     
       }
        //end of select
+//start of car wash
+if (userInput== "cw"){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "Okay! Let’s get that dirty car washed!"
+    }
+  };
+  let genericMessage = {
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+            "title":"Please choose size of the car",
+            "buttons":[
+              {
+                "type":"postback",
+                "title":"Small",
+                "payload":"s"
+              },
+              {
+                "type":"postback",
+                "title":"Medium",
+                "payload":"m"
+              },
+              {
+                "type":"postback",
+                "title":"Large",
+                "payload":"l"
+              },
+            ]
+          },
+              
+        ]
+      }
+    }
+  }
+}
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+genericMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+}
+//start car size
+//start small
+if (userButton == 's' || userButton == 'm' || userButton == 'l'){
 
+  let genericMessage = {
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+            "title":"Select one:",
+            "buttons":[
+              {
+                "type":"postback",
+                "title":"Interior",
+                "payload":`int_${userButton}`
+              },
+              {
+                "type":"postback",
+                "title":"Exterior",
+                "payload":`ext_${userButton}`
+              },
+              {
+                "type":"postback",
+                "title":"Both",
+                "payload":`both_${userButton}`
+              },
+            ]
+          },
+          
+          
+              
+        ]
+      }
+    }
+  }
+}
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+genericMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+}
+//end small
+//end of car size
+//end of car wash
       //start of  packages
       if (userInput== "cwpkg"){
         let genericMessage = {
@@ -436,7 +576,7 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type":"postback",
-                          "title":"Interior",
+                          "title":"Book Premium package",
                           "payload":userInput+"/prm"
                         },
                   ]
