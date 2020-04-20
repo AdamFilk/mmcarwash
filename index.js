@@ -273,7 +273,7 @@ app.post('/webhook', (req, res) => {
                       {
                         "type":"postback",
                         "title":"Start Booking",
-                        "payload":"book"
+                        "payload":"sb"
                       },
                       {
                         "type":"postback",
@@ -341,7 +341,7 @@ app.post('/webhook', (req, res) => {
         }
         //end of select
        //start of book
-       if (userInput == 'book'){
+       if (userInput == 'sb'){
 
         let genericMessage = {
           "recipient":{
