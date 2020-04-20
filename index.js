@@ -467,7 +467,7 @@ app.post('/webhook', (req, res) => {
           "id":webhook_event.sender.id
         },
         "message":{
-          "text": "The following services are included in this package: \nBody Cleaning, Window Cleaning, Tire and Ally Cleaning, Dashboard Cleaning, Windows Cleaning, Vacuuming Interior"
+          "text": "The following services are included in this package: \nBody Cleaning, Window Cleaning ✔️\nTire and Ally Cleaning✔️\nDashboard Cleaning✔️\nWindows Cleaning✔️\nVacuuming Interior"
         }
       };
       var udetails = JSON.parse(success.body);
