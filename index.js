@@ -457,6 +457,13 @@ if (userInput== "cw"){
     }
   }
 }
+requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
   requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
 genericMessage
 ).then(response=>{
@@ -490,7 +497,7 @@ if (userButton == 's' || userButton == 'm' || userButton == 'l'){
               {
                 "type":"postback",
                 "title":"Exterior",
-                "payload":`ext_${userButton}`
+                "payload":`s_${userButton}`
               },
               {
                 "type":"postback",
