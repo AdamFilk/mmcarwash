@@ -37,22 +37,7 @@ app.get('/whitelists',function(req,res){
   whitelistDomains(res);
 });
 
-app.get('/index/:package/:wtype/:name/:id', (req, res) => {
-  var name = req.params.name;
-  var washpackage=req.params.package;
-  var wtype=req.params.wtype;
-  var senderID=req.params.id;
-  res.render('index.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
-  
-})
-app.get('/b_ext/:package/:wtype/:name/:id', (req, res) => {
-  var name = req.params.name;
-  var washpackage=req.params.package;
-  var wtype=req.params.wtype;
-  var senderID=req.params.id;
-  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
-  
-})
+
 app.get('/b_both/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
@@ -61,61 +46,6 @@ app.get('/b_both/:package/:wtype/:name/:id', (req, res) => {
   res.render('b_both.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
   
 })
-app.get('/s_int/:package/:wtype/:name/:id', (req, res) => {
-  var name = req.params.name;
-  var washpackage=req.params.package;
-  var wtype=req.params.wtype;
-  var senderID=req.params.id;
-  res.render('s_int.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
-  
-})
-app.get('/s_ext/:package/:wtype/:name/:id', (req, res) => {
-  var name = req.params.name;
-  var washpackage=req.params.package;
-  var wtype=req.params.wtype;
-  var senderID=req.params.id;
-  res.render('s_ext.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
-  
-});
-app.post('/s_ext',function(req,res){
-       
-  let name  = req.body.name;
-  let phone = req.body.phone;
-  let town = req.body.town;
-  let address = req.body.address_info
-  let carsize=req.body.carsize
-  let price= req.body.price
-  let sender = req.body.sender;    
-  let date= req.body.date;
-  let time= req.body.time;
-
-
-
-  /*
-  bucket.upload(img_url).then(data => {
-  console.log('upload success');
-  }).catch(err => {
-      console.log('error uploading to storage', err);
-  });
-  */  
-  
-  db.collection('standard_exterior_booking').add({
-        name: name,
-        phone: email,
-        town: town,
-        address:address,
-        carsize: carsize,
-        price: price,
-        sender: sender,
-        date: date,
-        time:time
-      }).then(success => {   
-         console.log("DATA SAVED")
-         thankyouReply(sender, name);    
-      }).catch(error => {
-        console.log(error);
-  });        
-});
 
 app.get('/s_both/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
@@ -125,29 +55,14 @@ app.get('/s_both/:package/:wtype/:name/:id', (req, res) => {
   res.render('s_both.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
   
 })
-app.get('/prm_int/:package/:wtype/:name/:id', (req, res) => {
-  var name = req.params.name;
-  var washpackage=req.params.package;
-  var wtype=req.params.wtype;
-  var senderID=req.params.id;
-  res.render('prm_int.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
-  
-})
-app.get('/prm_ext/:package/:wtype/:name/:id', (req, res) => {
-  var name = req.params.name;
-  var washpackage=req.params.package;
-  var wtype=req.params.wtype;
-  var senderID=req.params.id;
-  res.render('prm_ext.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
-  
-})
+
 app.get('/prm_both/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
   var senderID=req.params.id;
   res.render('prm_both.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
-  
+
 })
 app.get('/cc_book/:package/:name/:id', (req, res) => {
 
@@ -701,7 +616,7 @@ if (userButton == 'wl_y_int_sm'|| userButton == 'wl_y_ext_sm' || userButton == '
                 "elements":[
                   {
                   "title":"Basic Wash Package",
-                  "subtitle":"These are the basic packages",
+                  "subtitle":"Carsize:\nSmall=6000Ks\nMedium=8000Ks\nLarge=10000Ks",
                   "image_url":"https://i.pinimg.com/originals/1d/2e/0c/1d2e0ca0da9badd9e5c705a106797c09.png",
                   "buttons":[
                     {
@@ -714,7 +629,7 @@ if (userButton == 'wl_y_int_sm'|| userButton == 'wl_y_ext_sm' || userButton == '
                 },
                 {
                   "title":"Standard Wash Package",
-                  "subtitle":"This is standard Packages",
+                  "subtitle":"Carsize:\nSmall=8000Ks\nMedium=10000Ks\nLarge=12000Ks",
                   "image_url":"https://i.pinimg.com/originals/e4/7c/f5/e47cf5bf53908e2864287ff7a09727c8.png",
                   "buttons":[
                     {
@@ -726,7 +641,7 @@ if (userButton == 'wl_y_int_sm'|| userButton == 'wl_y_ext_sm' || userButton == '
                 },
                     {
                       "title":"Premium Wash Packages",
-                      "subtitle":"This is premium package",
+                      "subtitle":"Carsize:\nSmall=10000Ks\nMedium=12000Ks\nLarge=15000Ks",
                       "image_url":"https://i.pinimg.com/564x/3e/ed/d9/3eedd967b902ffbf9c4b3b5fba59413c.jpg",
                       "buttons":[
                         {
