@@ -37,7 +37,22 @@ app.get('/whitelists',function(req,res){
   whitelistDomains(res);
 });
 
-
+app.get('/index/:package/:wtype/:name/:id', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  var senderID=req.params.id;
+  res.render('index.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  
+})
+app.get('/b_ext/:package/:wtype/:name/:id', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  var senderID=req.params.id;
+  res.render('b_ext.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  
+})
 app.get('/b_both/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
@@ -46,6 +61,61 @@ app.get('/b_both/:package/:wtype/:name/:id', (req, res) => {
   res.render('b_both.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
   
 })
+app.get('/s_int/:package/:wtype/:name/:id', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  var senderID=req.params.id;
+  res.render('s_int.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  
+})
+app.get('/s_ext/:package/:wtype/:name/:id', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  var senderID=req.params.id;
+  res.render('s_ext.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  
+});
+app.post('/s_ext',function(req,res){
+       
+  let name  = req.body.name;
+  let phone = req.body.phone;
+  let town = req.body.town;
+  let address = req.body.address_info
+  let carsize=req.body.carsize
+  let price= req.body.price
+  let sender = req.body.sender;    
+  let date= req.body.date;
+  let time= req.body.time;
+
+
+
+  /*
+  bucket.upload(img_url).then(data => {
+  console.log('upload success');
+  }).catch(err => {
+      console.log('error uploading to storage', err);
+  });
+  */  
+  
+  db.collection('standard_exterior_booking').add({
+        name: name,
+        phone: email,
+        town: town,
+        address:address,
+        carsize: carsize,
+        price: price,
+        sender: sender,
+        date: date,
+        time:time
+      }).then(success => {   
+         console.log("DATA SAVED")
+         thankyouReply(sender, name);    
+      }).catch(error => {
+        console.log(error);
+  });        
+});
 
 app.get('/s_both/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
@@ -55,14 +125,29 @@ app.get('/s_both/:package/:wtype/:name/:id', (req, res) => {
   res.render('s_both.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
   
 })
-
+app.get('/prm_int/:package/:wtype/:name/:id', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  var senderID=req.params.id;
+  res.render('prm_int.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  
+})
+app.get('/prm_ext/:package/:wtype/:name/:id', (req, res) => {
+  var name = req.params.name;
+  var washpackage=req.params.package;
+  var wtype=req.params.wtype;
+  var senderID=req.params.id;
+  res.render('prm_ext.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
+  
+})
 app.get('/prm_both/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
   var wtype=req.params.wtype;
   var senderID=req.params.id;
   res.render('prm_both.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
-
+  
 })
 app.get('/cc_book/:package/:name/:id', (req, res) => {
 
@@ -105,26 +190,6 @@ app.get('/headres_book/:package/:wtype/:name/:id', (req, res) => {
   var washpackage=req.params.package;
   var senderID=req.params.id;
   res.render('headres_book.ejs', {name:name, package:washpackage,id:senderID})
-})
-app.get('/wash/:params/:name', (req, res) => {
-  var name = req.params.name;
-  var date = new Date();
-  var time = `${date.getHours}:${date.getMinutes}:${date.getSeconds}`
-  date = `${date.getDate}/${date.getMonth+1}/${date.getFullYear}`
-  var link = req.params.params
-  var usersettings = link.split('_')
-  if(link.includes('wl_') || link.includes('hw_')){
-    var washtype = usersettings[0];
-    var water = usersettings[1];
-    var mode = usersettings[2];
-    var carsize = usersettings[3] 
-  }else{
-    var washtype = 'wl';
-    var water = usersettings[0];
-    var mode = usersettings[1];
-    var carsize = usersettings[2]
-  }
-  res.render('index', {name: name, washtype: washtype, water: water, mode: mode, carsize: carsize, date: date, time: time})
 })
 let userOrder = {};
 // Adds support for GET requests to our webhook
@@ -208,7 +273,7 @@ app.post('/webhook', (req, res) => {
                       {
                         "type":"postback",
                         "title":"Start Booking",
-                        "payload":"sb"
+                        "payload":"book"
                       },
                       {
                         "type":"postback",
@@ -219,28 +284,6 @@ app.post('/webhook', (req, res) => {
                         "type":"postback",
                         "title":"View My Appointment",
                         "payload":"view_apn"
-                      },
-
-                    ]
-  
-                  },
-                  {
-                    "title":"MM Carwash",
-                    "buttons":[
-                      {
-                        "type":"postback",
-                        "title":"About",
-                        "payload":"ab"
-                      },
-                      {
-                        "type":"postback",
-                        "title":"Contact",
-                        "payload":"con"
-                      },
-                      {
-                        "type":"postback",
-                        "title":"Report Bug",
-                        "payload":"rp"
                       },
 
                     ]
@@ -274,7 +317,7 @@ app.post('/webhook', (req, res) => {
         }
         //end of select
        //start of book
-       if (userInput == 'sb'){
+       if (userInput == 'book'){
 
         let genericMessage = {
           "recipient":{
@@ -293,17 +336,12 @@ app.post('/webhook', (req, res) => {
                   "buttons":[
                     {
                       "type":"postback",
-                      "title":"Book Car wash",
-                      "payload":"cw"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"Book Packages",
+                      "title":"Car Wash Packages",
                       "payload":"cwpkg"
                     },
                     {
                       "type":"postback",
-                      "title":"Single add-on services",
+                      "title":"Car detail services",
                       "payload":"cds"
                     },
                   ]
@@ -326,374 +364,7 @@ app.post('/webhook', (req, res) => {
     
       }
        //end of select
-//start of car wash
-if (userInput== "cw"){
-  let textMessage = {
-    "recipient":{
-      "id":webhook_event.sender.id
-    },
-    "message":{
-      "text": "Okay! Let’s get that dirty car washed!"
-    }
-  };
-  let genericMessage = {
-    "recipient":{
-      "id": webhook_event.sender.id
-    },
-    "message":{
-      "attachment":{
-        "type":"template",
-        "payload":{
-          "template_type":"generic",
-          "elements":[
-            {
-            "title":"Please choose size of the car",
-            "buttons":[
-              {
-                "type":"postback",
-                "title":"Small",
-                "payload":"sm"
-              },
-              {
-                "type":"postback",
-                "title":"Medium",
-                "payload":"md"
-              },
-              {
-                "type":"postback",
-                "title":"Large",
-                "payload":"lg"
-              },
-            ]
-          },
-              
-        ]
-      }
-    }
-  }
-}
-requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-textMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-genericMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
-}
-//start car size
-//start sm,md,lg
-if (userInput == 'sm' || userInput == 'md' || userInput == 'lg'){
-
-  let genericMessage = {
-    "recipient":{
-      "id": webhook_event.sender.id
-    },
-    "message":{
-      "attachment":{
-        "type":"template",
-        "payload":{
-          "template_type":"generic",
-          "elements":[
-            {
-            "title":"Select one:",
-            "buttons":[
-              {
-                "type":"postback",
-                "title":"Interior",
-                "payload":`int_${userInput}`
-              },
-              {
-                "type":"postback",
-                "title":"Exterior",
-                "payload":`s_${userInput}`
-              },
-              {
-                "type":"postback",
-                "title":"Both",
-                "payload":`both_${userInput}`
-              },
-            ]
-          },
-          
-          
-              
-        ]
-      }
-    }
-  }
-}
-
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-genericMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
-}
-//end sm,md,lg
-//end of car size
-//start 
-if (userInput == 'int_sm'|| userInput == 'ext_sm' || userInput == 'both_sm' || userInput == 'int_md'|| userInput == 'ext_md' || userInput == 'both_md' || userInput == 'int_lg'|| userInput == 'ext_lg' || userInput == 'both_lg'){
-  let genericMessage = {
-    "recipient":{
-      "id": webhook_event.sender.id
-    },
-    "message":{
-      "attachment":{
-        "type":"template",
-        "payload":{
-          "template_type":"generic",
-          "elements":[
-            {
-              "title":"Can you Provide water?",
-              "buttons":[
-                {
-                  "type":"postback",
-                  "title":"Yes",
-                  "payload":`y_${userInput}`
-                },
-                {
-                  "type":"postback",
-                  "title":"No",
-                  "payload":`n_${userInput}`
-                }
-            ]
-          },
-        ]
-      }
-    }
-  }
-}
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-genericMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
-} 
-//end
-if (userInput == 'y_int_sm'|| userInput == 'y_ext_sm' || userInput == 'y_both_sm' || userInput == 'y_int_md'|| userInput == 'y_ext_md' || userInput == 'y_both_md' || userInput == 'y_int_lg'|| userInput == 'y_ext_lg' || userInput == 'y_both_lg' || userInput == 'n_int_sm'|| userInput == 'n_ext_sm' || userInput == 'n_both_sm' || userInput == 'n_int_md'|| userInput == 'n_ext_md' || userInput == 'n_both_md' || userInput == 'n_int_lg'|| userInput == 'n_ext_lg' || userInput == 'n_both_lg'){
-  let genericMessage = {
-    "recipient":{
-      "id": webhook_event.sender.id
-    },
-    "message":{
-      "attachment":{
-        "type":"template",
-        "payload":{
-          "template_type":"generic",
-          "elements":[
-            {
-              "title":"provide water",
-                    "buttons":[
-                      {
-                        "type":"postback",
-                        "title":"Waterless wash",
-                        "payload":`wl_${userInput}`
-                      },
-                      {
-                        "type":"postback",
-                        "title":"Regular wash",
-                        "payload":`hw_${userInput}`
-                      }
-            ]
-          },
-        ]
-      }
-    }
-  }
-}
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-genericMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
-} 
-if (userInput == 'wl_y_int_sm'|| userInput == 'wl_y_ext_sm' || userInput == 'wl_y_both_sm' || userInput == 'wl_y_int_md'|| userInput == 'wl_y_ext_md' || userInput == 'wl_y_both_md' || userInput == 'wl_y_int_lg'|| userInput == 'wl_y_ext_lg' || userInput == 'wl_y_both_lg' || userInput == 'n_int_sm'|| userInput == 'n_ext_sm' || userInput == 'n_both_sm' || userInput == 'n_int_md'|| userInput == 'n_ext_md' || userInput == 'n_both_md' || userInput == 'n_int_lg'|| userInput == 'n_ext_lg' || userInput == 'n_both_lg' || userInput == 'hw_y_int_sm'|| userInput == 'hw_y_ext_sm' || userInput == 'hw_y_both_sm' || userInput == 'hw_y_int_md'|| userInput == 'hw_y_ext_md' || userInput == 'hw_y_both_md' || userInput == 'hw_y_int_lg'|| userInput == 'hw_y_ext_lg' || userInput == 'hw_y_both_lg'){
-  var userName = [] 
-  requestify.get(`https://graph.facebook.com/${webhook_event.sender.id}?fields=first_name,last_name&access_token=${pageaccesstoken}`).then(success=>{
-    response = success.getBody();
-    console.log(response)
-    userName.push(response.first_name)
-    userName.push(response.last_name)
-   })
-  if(userInput.includes('wl_')){
-    var title = 'Waterless Wash'
-    var text = "Waterless washing method do not use water but it uses an organic and chemical liquids in a spray bottle to clean your glasses and wax your car. It can remove most stains and bird poops. But it can't handle heavy mud or dirt stains which require intense scrubbing" //waterless
-    var image = 'https://image.shutterstock.com/image-vector/waterless-car-wash-260nw-1353847511.jpg'//waterless
-    var rollback = userInput.split('_')
-  rollback.shift()
-  rollback = rollback.join('_')
-  }else if(userInput.includes('hw_')){
-    var title = 'Hand wash'
-    var text = 'Handwash is a very traditional and common way to cleaning and washing your car. It only requires car washing soaps and uses the water which you will need to provide. It is effective for intense scrub downs of mud and dirt stains'//handwash
-    var image = 'https://st2.depositphotos.com/1001951/7088/i/450/depositphotos_70888985-stock-photo-man-worker-washing-cars-alloy.jpg'//handwash
-    var rollback = userInput.split('_')
-  rollback.shift()
-  rollback = rollback.join('_')
-  }else {
-    var title = 'Waterless wash'
-    var text = "Waterless washing method do not use water but it uses an organic and chemical liquids in a spray bottle to clean your glasses and wax your car. It can remove most stains and bird poops. But it can't handle heavy mud or dirt stains which require intense scrubbing" //waterless
-    var image =  'https://image.shutterstock.com/image-vector/waterless-car-wash-260nw-1353847511.jpg'  //waterless
-    var rollback = userInput.split('_')
-  rollback.shift()
-  rollback = rollback.join('_')
-  }
-
-  let textMessage = {
-    "recipient":{
-      "id":webhook_event.sender.id
-    },
-    "message":{
-      "text": text
-    }
-  };
-  let genericMessage = {
-    "recipient":{
-      "id": webhook_event.sender.id
-    },
-    "message":{
-      "attachment":{
-        "type":"template",
-        "payload":{
-          "template_type":"generic",
-          "elements":[
-            {
-              "title":title,
-              "img-url":image,
-                "buttons":[
-                    {
-                      "type":"web_url",
-                      "title":"Yes",
-                      "url": `mmcarwash.herokuapp.com/wash/${userInput}/${userName.join(' ')}`,
-                      "webview_height_ratio":"tall"
-                      },
-                      {
-                      "type":"postback",
-                      "title":"No",
-                      "payload":`${rollback}`
-                      }
-                    ]
-  
-                  }
-                ]
-                }
-              }
-            }
-          }
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-<<<<<<< HEAD
-=======
-        genericMessage
-        ).then(response=>{
-          console.log(response)
-        }).fail(error=> {
-          console.log(error)
-        })
-          //end of choose one
-        }
-
-        if (userButton == 'wl_y_int_s'|| userButton == 'wl_y_ext_s' || userButton == 'wl_y_both_s' || userButton == 'wl_y_int_m'|| userButton == 'wl_y_ext_m' || userButton == 'wl_y_both_m' || userButton == 'wl_y_int_l'|| userButton == 'wl_y_ext_l' || userButton == 'wl_y_both_l' || userButton == 'n_int_s'|| userButton == 'n_ext_s' || userButton == 'n_both_s' || userButton == 'n_int_m'|| userButton == 'n_ext_m' || userButton == 'n_both_m' || userButton == 'n_int_l'|| userButton == 'n_ext_l' || userButton == 'n_both_l' || userButton == 'hw_y_int_s'|| userButton == 'hw_y_ext_s' || userButton == 'hw_y_both_s' || userButton == 'hw_y_int_m'|| userButton == 'hw_y_ext_m' || userButton == 'hw_y_both_m' || userButton == 'hw_y_int_l'|| userButton == 'hw_y_ext_l' || userButton == 'hw_y_both_l'){
-          var userName = [] 
-          requestify.get(`https://graph.facebook.com/${webhook_event.sender.id}?fields=first_name,last_name&access_token=${pageaccesstoken}`).then(function(success){
-            response = success.getBody();
-            console.log(response)
-            userName.push(response.first_name);
-            userName.push(response.last_name);
-            if(userButton.includes('wl_')){
-              var title = 'Waterless Wash'
-              var text = "Waterless washing method do not use water but it uses an organic and chemical liquids in a spray bottle to clean your glasses and wax your car. It can remove most stains and bird poops. But it can't handle heavy mud or dirt stains which require intense scrubbing" //waterless
-              var image = 'https://image.shutterstock.com/image-vector/waterless-car-wash-260nw-1353847511.jpg' //waterless
-              var rollback = userButton.split('_')
-            rollback.shift()
-            rollback = rollback.join('_')
-            }else if(userButton.includes('hw_')){
-              var title = 'Handwash'
-              var text = 'Handwash is a very traditional and common way to cleaning and washing your car. It only requires car washing soaps and uses the water which you will need to provide. It is effective for intense scrub downs of mud and dirt stains' //handwash
-              var image = 'https://st2.depositphotos.com/1001951/7088/i/450/depositphotos_70888985-stock-photo-man-worker-washing-cars-alloy.jpg' //handwash
-              var rollback = userButton.split('_')
-            rollback.shift()
-            rollback = rollback.join('_')
-            }else {
-              var title = 'Waterless wash'
-              var text = "Waterless washing method do not use water but it uses an organic and chemical liquids in a spray bottle to clean your glasses and wax your car. It can remove most stains and bird poops. But it can't handle heavy mud or dirt stains which require intense scrubbing" //waterless
-              var image = 'https://image.shutterstock.com/image-vector/waterless-car-wash-260nw-1353847511.jpg' //waterless
-              var rollback = userButton.split('_')
-            rollback.shift()
-            rollback = rollback.join('_')
-            }
-            let textMessage = {
-              "recipient":{
-                "id":webhook_event.sender.id
-              },
-              "message":{
-                "text": text
-              }
-            };
-            let genericMessage = {
-              "recipient":{
-                "id": webhook_event.sender.id
-              },
-              "message":{
-                "attachment":{
-                  "type":"template",
-                  "payload":{
-                    "template_type":"generic",
-                    "elements":[
-                      {
-                        //star book
-                    
-                      "title":title,
-                      "image_url": image,
-                      "buttons":[
-                        {
-                          "type":"web_url",
-                          "title":"Yes",
-                          "url": `mmcarwash.herokuapp.com/wash/${userButton}/${userName.join(' ')}`,
-                          "webview_height_ratio":"tall"
-                        },
-                        {
-                          "type":"postback",
-                          "title":"No",
-                          "payload":`${rollback}`
-                        }
-                      ]
-    
-                    }
-                  ]
-                  }
-                }
-    
-              }
-            }
-            requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
->>>>>>> parent of 9b58bf5... Update index.js
-          textMessage
-          ).then(response=>{
-            requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-              genericMessage
-            )
-          }).fail(error=> {
-            console.log(error)
-          }) 
-           
-    
-                  //end of choose one
-              }
-            
-//end of car wash
-      //start of  packages
+      //start of wash packages
       if (userInput== "cwpkg"){
         let genericMessage = {
           "recipient":{
@@ -706,39 +377,69 @@ if (userInput == 'wl_y_int_sm'|| userInput == 'wl_y_ext_sm' || userInput == 'wl_
                 "template_type":"generic",
                 "elements":[
                   {
-                  "title":"Basic Wash Package",
-                  "subtitle":"Carsize:\nSmall=6000Ks\nMedium=8000Ks\nLarge=10000Ks",
-                  "image_url":"https://i.pinimg.com/originals/1d/2e/0c/1d2e0ca0da9badd9e5c705a106797c09.png",
+                  "title":"Basic Wash Packages",
+                  "subtitle":"These are the basic packages",
+                  "image_url":"https://i.pinimg.com/originals/ec/43/2c/ec432c1852f268a95aee064997964275.jpg",
                   "buttons":[
                     {
                       "type":"postback",
-                      "title":"Book Basic package",
-                      "payload":userInput+"/basic"
+                      "title":"Interior",
+                      "payload":userInput+"/b_int"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Exterior",
+                      "payload":userInput+"/b_ext"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Both",
+                      "payload":userInput+"/b_both"
                     },
                   ]
   
                 },
                 {
-                  "title":"Standard Wash Package",
-                  "subtitle":"Carsize:\nSmall=8000Ks\nMedium=10000Ks\nLarge=12000Ks",
-                  "image_url":"https://i.pinimg.com/originals/e4/7c/f5/e47cf5bf53908e2864287ff7a09727c8.png",
+                  "title":"Shining Wash Packages",
+                  "subtitle":"These are the Shining Packages",
+                  "image_url":"https://i.pinimg.com/originals/24/8c/6f/248c6f595b1181e4fafb09cd51ed90e7.jpg",
                   "buttons":[
                     {
                       "type":"postback",
-                      "title":"Book Standard package",
-                      "payload":userInput+"/st"
+                      "title":"Interior",
+                      "payload":userInput+"/s_int"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Exterior",
+                      "payload":userInput+"/s_ext"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Both",
+                      "payload":userInput+"/s_both"
                     },
                   ]
                 },
                     {
                       "title":"Premium Wash Packages",
-                      "subtitle":"Carsize:\nSmall=10000Ks\nMedium=12000Ks\nLarge=15000Ks",
-                      "image_url":"https://i.pinimg.com/564x/3e/ed/d9/3eedd967b902ffbf9c4b3b5fba59413c.jpg",
+                      "subtitle":"These are the Premium Packages",
+                      "image_url":"https://i.pinimg.com/originals/d2/2b/31/d22b3117b17e5917dfca78130caa8272.jpg",
                       "buttons":[
                         {
                           "type":"postback",
-                          "title":"Book Premium package",
-                          "payload":userInput+"/prm"
+                          "title":"Interior",
+                          "payload":userInput+"/prm_int"
+                        },
+                        {
+                          "type":"postback",
+                          "title":"Exterior",
+                          "payload":userInput+"/prm_ext"
+                        },
+                        {
+                          "type":"postback",
+                          "title":"Both",
+                          "payload":userInput+"/prm_both"
                         },
                   ]
                 }
@@ -756,19 +457,88 @@ if (userInput == 'wl_y_int_sm'|| userInput == 'wl_y_ext_sm' || userInput == 'wl_
       })
       }
     
-      //end of  packages
-    
+      //end of wash packages
+      //start basic interior
       
-  //start basic 
+      if(userInput.includes("b_int")){
+        console.log(userInput);
+        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+          let textMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text": "In the Package: \nDashboard Cleaning, Windows Cleaning, Vacuuming Interior"
+            }
+          };
+          var udetails = JSON.parse(success.body);
+          var senderID = webhook_event.sender.id;
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Do you want to choose Basic Interior Package?:",
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name+"/"+senderID,
+                        "title":"Yes",
+                        "webview_height_ratio": "full",
+                      },
+                      {
+                        "type":"postback",
+                        "title":"No",
+                        "payload":"n_b_ext"
+                      },
+                      
+                    ]
+      
+                  },
+                ],
+                
+                }
+              }
+      
+            }
+          }
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      textMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+  }).catch(error=>{
+    console.log(error)
+  })
+        
+      }
+  //end basic int
+  //start basic ext
   
-  if(userInput.includes("basic")){
+  if(userInput.includes("b_ext")){
     requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
       let textMessage = {
         "recipient":{
           "id":webhook_event.sender.id
         },
         "message":{
-          "text": "The following services are included in this package: \nBody Cleaning, Window Cleaning ✔️\nTire and Ally Cleaning✔️\nDashboard Cleaning✔️\nWindows Cleaning✔️\nVacuuming Interior✔️"
+          "text": "In the Package: \nBody Cleaning, Window Cleaning, Tire and Ally Cleaning"
         }
       };
       var udetails = JSON.parse(success.body);
@@ -784,7 +554,77 @@ if (userInput == 'wl_y_int_sm'|| userInput == 'wl_y_ext_sm' || userInput == 'wl_
               "template_type":"generic",
               "elements":[
                 {
-                "title":"Book basic Package?:",
+                "title":"Do you want to choose Basic Exterior Package?:",
+                "buttons":[
+                  {
+                    "type":"web_url",
+                    "url":"https://mmcarwash.herokuapp.com/b_ext/"+userInput+"/"+udetails.name+"/"+senderID,
+                    "title":"Yes",
+                    "webview_height_ratio": "full",
+                  },
+                  {
+                    "type":"postback",
+                    "title":"No",
+                    "payload":"n_b_ext"
+                  },
+                  
+                ]
+  
+              },
+            ],
+            
+            }
+          }
+  
+        }
+      }
+      
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}).catch(error=>{
+console.log(error)
+})
+    
+} 
+  //end basic ext
+  //start basic both
+  
+  if(userInput.includes("b_both")){
+    requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+      let textMessage = {
+        "recipient":{
+          "id":webhook_event.sender.id
+        },
+        "message":{
+          "text": "In the Package: \nBody Cleaning, Window Cleaning, Tire and Ally Cleaning, Dashboard Cleaning, Windows Cleaning, Vacuuming Interior"
+        }
+      };
+      var udetails = JSON.parse(success.body);
+      var senderID = webhook_event.sender.id;
+      let genericMessage = {
+        "recipient":{
+          "id": webhook_event.sender.id
+        },
+        "message":{
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"generic",
+              "elements":[
+                {
+                "title":"Do you want to choose Basic Both Package?:",
                 "buttons":[
                   {
                     "type":"web_url",
@@ -795,7 +635,7 @@ if (userInput == 'wl_y_int_sm'|| userInput == 'wl_y_ext_sm' || userInput == 'wl_
                   {
                     "type":"postback",
                     "title":"No",
-                    "payload":"n_b"
+                    "payload":"n_b_ext"
                   },
                   
                 ]
@@ -829,17 +669,85 @@ console.log(error)
     
 }
 
-  //end basic 
-
-  //start standard 
-  if(userInput.includes("st")){
+  //end basic both
+      //start shining interior
+      if(userInput.includes("s_int")){
+        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+          let textMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text": "In the Package:\n Dashboard Cleaning, Windows Cleaning, Vacuuming Interior, Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning"
+            }
+          };
+          var udetails = JSON.parse(success.body);
+          var senderID = webhook_event.sender.id;
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Do you want to choose Standard Interior Package?:",
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url":"https://mmcarwash.herokuapp.com/s_int/"+userInput+"/"+udetails.name+"/"+senderID,
+                        "title":"Yes",
+                        "webview_height_ratio": "full",
+                      },
+                      {
+                        "type":"postback",
+                        "title":"No",
+                        "payload":"n_b_ext"
+                      },
+                      
+                    ]
+      
+                  },
+                ],
+                
+                }
+              }
+      
+            }
+          }
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      textMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+  }).catch(error=>{
+    console.log(error)
+  })
+        
+  }
+  //end shining int
+  //start shining ext
+  if(userInput.includes("s_ext")){
     requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
       let textMessage = {
         "recipient":{
           "id":webhook_event.sender.id
         },
         "message":{
-          "text": "The following services are inclued in this package:\nDashboard Cleaning✔️\nWindows Cleaning✔️\nVacuuming Interior✔️\nFloor mats cleaning✔️\nSeat Cleaning✔️\nStain Removing✔️\nInstalling Air-fresher✔️\nTrunk cleaning✔️\nDetail Cleaning✔️\nStain Removal✔️\nWindows Cleaning✔️\nTire and Alloy Cleaning✔️\nAlloy Polishing✔️\nWaxing or polishing✔️\n"
+          "text": "In the Package:\n Detail Cleaning, Stain Removal, Windows Cleaning, Tire and Alloy Cleaning, Alloy Polishing, Waxing or polishing"
         }
       };
       var udetails = JSON.parse(success.body);
@@ -855,7 +763,73 @@ console.log(error)
               "template_type":"generic",
               "elements":[
                 {
-                "title":"Do you want to choose Standard Package?:",
+                "title":"Do you want to choose Standard Exterior Package?:",
+                "buttons":[
+                  {
+                    "type":"web_url",
+                    "url":"https://mmcarwash.herokuapp.com/s_ext/"+userInput+"/"+udetails.name+"/"+senderID,
+                    "title":"Yes",
+                    "messenger_extensions":true,
+                    "webview_height_ratio": "full",
+                  },
+          
+                  
+                ]
+  
+              },
+            ],
+            
+            }
+          }
+  
+        }
+      }
+      
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}).catch(error=>{
+console.log(error)
+})
+    
+}
+  //end shining ext
+  //start shinging both
+  if(userInput.includes("s_both")){
+    requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+      let textMessage = {
+        "recipient":{
+          "id":webhook_event.sender.id
+        },
+        "message":{
+          "text": "In the Package:\nDashboard Cleaning\nWindows Cleaning\nVacuuming Interior\nFloor mats cleaning\nSeat Cleaning\nStain Removing\nInstalling Air-fresher\nTrunk cleaning\nDetail Cleaning\nStain Removal\nWindows Cleaning\nTire and Alloy Cleaning\nAlloy Polishing\nWaxing or polishing"
+        }
+      };
+      var udetails = JSON.parse(success.body);
+      var senderID = webhook_event.sender.id;
+      let genericMessage = {
+        "recipient":{
+          "id": webhook_event.sender.id
+        },
+        "message":{
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"generic",
+              "elements":[
+                {
+                "title":"Do you want to choose Standard Both Package?:",
                 "buttons":[
                   {
                     "type":"web_url",
@@ -899,16 +873,154 @@ console.log(error)
 })
     
 }
-  //end standard
-  //start premium both
-  if(userInput.includes("prm")){
+  //end shining both
+      //start premium interior
+      if(userInput.includes("prm_int")){
+        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+          let textMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text": "In the Package:\nDashboard Cleaning\nWindows Cleaning\nVacuuming Interior\nFloor mats cleaning\nSeat Cleaning\nStain Removing\nInstalling Air-fresher\nTrunk cleaning\nPremium Dressing\nInterior Sterilization"
+            }
+          };
+          var udetails = JSON.parse(success.body);
+          var senderID = webhook_event.sender.id;
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Do you want to choose Premium Interior Package?:",
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url":"https://mmcarwash.herokuapp.com/prm_int/"+userInput+"/"+udetails.name+"/"+senderID,
+                        "title":"Yes",
+                        "webview_height_ratio": "full",
+                      },
+                      {
+                        "type":"postback",
+                        "title":"No",
+                        "payload":"n_b_ext"
+                      },
+                      
+                    ]
+      
+                  },
+                ],
+                
+                }
+              }
+      
+            }
+          }
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      textMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+  }).catch(error=>{
+    console.log(error)
+  })
+        
+  }
+  //end premium int
+  //start premium ext
+  if(userInput.includes("prm_ext")){
     requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
       let textMessage = {
         "recipient":{
           "id":webhook_event.sender.id
         },
         "message":{
-          "text": "The follwing services are included in this package:\n Dashboard Cleaning✔️\nWindows Cleaning✔️\nVacuuming Interior✔️\nFloor mats cleaning✔️\nSeat Cleaning✔️\nStain Removing✔️\nInstalling Air-fresher✔️\nTrunk cleaning✔️\nPremium Dressing✔️\nInterior Sterilization✔️\n Detail body cleaning✔️\nStain Removal✔️\nWindows Cleaning and polishing✔️\nTire and Alloy Cleaning✔️\n Tire protection Dressing✔️\n Alloy Detailing✔️\n Waxing✔️\nPolishing"
+          "text": "In the Package:\n Detail body cleaning, Stain Removal, Windows Cleaning and polishing, Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing, Waxing, Polishing"
+        }
+      };
+      var udetails = JSON.parse(success.body);
+      var senderID = webhook_event.sender.id;
+      let genericMessage = {
+        "recipient":{
+          "id": webhook_event.sender.id
+        },
+        "message":{
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"generic",
+              "elements":[
+                {
+                "title":"Do you want to choose Premium Exterior Package?:",
+                "buttons":[
+                  {
+                    "type":"web_url",
+                    "url":"https://mmcarwash.herokuapp.com/prm_ext/"+userInput+"/"+udetails.name+"/"+senderID,
+                    "title":"Yes",
+                    "webview_height_ratio": "full",
+                  },
+                  {
+                    "type":"postback",
+                    "title":"No",
+                    "payload":"n_b_ext"
+                  },
+                  
+                ]
+  
+              },
+            ],
+            
+            }
+          }
+  
+        }
+      }
+      
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}).catch(error=>{
+console.log(error)
+})
+    
+}
+  //end premuim ext
+  //start premium both
+  if(userInput.includes("prm_both")){
+    requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+      let textMessage = {
+        "recipient":{
+          "id":webhook_event.sender.id
+        },
+        "message":{
+          "text": "In the Package:\n Dashboard Cleaning, Windows Cleaning, Vacuuming Interior,Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,Premium Dressing, Interior Sterilization Detail body cleaning, Stain Removal, Windows Cleaning and polishing,Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing, Waxing,Polishing"
         }
       };
       var udetails = JSON.parse(success.body);
@@ -1240,51 +1352,7 @@ console.log(error)
 
     
 //end otpkg
-if (userInput== "con"){
-  let textMessage = {
-    "recipient":{
-      "id":webhook_event.sender.id
-    },
-    "message":{
-      "text": "You can contact us to: \nEmail-adsltheprescence@gmail.com\nPhone:+95765333508"
-    }
-  };
-  let genericMessage = {
-    "recipient":{
-      "id": webhook_event.sender.id
-    },
-    "message":{
-      "attachment":{
-        "type":"template",
-        "payload":{
-          "template_type":"button",
-            "text":"Need further assistance? Talk to representative",
-            "buttons":[
-              {
-                "type":"phone_number",
-                "title":"Call Customer Service",
-                "payload":"+95765333508"
-              }
-            ]
-      }
-    }
-  }
-}
-requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-textMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-genericMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
-}
+
 
 
       });
