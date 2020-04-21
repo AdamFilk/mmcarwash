@@ -136,12 +136,13 @@ app.get('/prm_int/:package/:wtype/:name/:id', (req, res) => {
   res.render('prm_int.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
   
 })
-app.get('/carwash/:washtype/:wid/:name/;id',(req, res) =>{
-  var name=req.params.name;
-  var washType=req.params.washType;
-  var w_id=req.params.wid;
+app.get('/carwash/:package/:name/:id', (req, res) => {
+
+  var name = req.params.name;
+  var washpackage=req.params.package;
   var senderID=req.params.id;
-  res.render('carwash.ejs',{name:name,type:washType,wid:w_id,id:senderID})
+  res.render('carwash.ejs', {name:name, package:washpackage,id:senderID})
+  
 })
 app.get('/prm_ext/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
@@ -406,7 +407,7 @@ app.post('/webhook', (req, res) => {
                     {
                       "type":"postback",
                       "title":"Select",
-                      "payload":"ww"
+                      "payload":"waterless"
                     }
                   ]
                 },
@@ -417,7 +418,7 @@ app.post('/webhook', (req, res) => {
                     {
                       "type":"postback",
                       "title":"Select",
-                      "payload":"rw"
+                      "payload":"regular"
                     },
                    
                   ]
@@ -442,7 +443,7 @@ app.post('/webhook', (req, res) => {
         console.log(error)
       })
       }
-      if(userInput=="ww"){
+      if(userInput=="waterless"){
         console.log(userInput);
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
           let textMessage = {
@@ -471,7 +472,7 @@ app.post('/webhook', (req, res) => {
                     "buttons":[
                       {
                         "type":"web_url",
-                        "url":"https://mmcarwash.herokuapp.com/carwash/"+washType+"/"+userInput+"/"+udetails.name+"/"+senderID,
+                        "url":"https://mmcarwash.herokuapp.com/carwash/"+userInput+"/"+udetails.name+"/"+senderID,
                         "title":"Book",
                         "webview_height_ratio": "full",
                       },
