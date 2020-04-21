@@ -110,18 +110,6 @@
                     
                     </td>
                     </tr>
-                    <tr>
-                        <input type="radio" name="part" onchange="price()" value="Interior">
-                      <label>Interior</label>
-                    
-                    
-                      <input type="radio" name="part" onchange="price()" value="Exterior">
-                      <label>Exterior</label>
-                    
-                    
-                      <input type="radio" name="part"  onchange="price()" value="Both">
-                      <label>Both</label>
-                    </tr>
                      <tr>
                           <td>
                            <b>Price:</b> 
@@ -130,7 +118,7 @@
                             <p id="price"></p>
                           </td>
                         </tr>
-                    <tr>
+                      <tr>
                         <td><b>Date</b> </td>
                         <td>
                                 
@@ -173,26 +161,14 @@ function price() {
   var value = document.querySelector('input[name="carsize"]:checked') && document.querySelector('input[name="part"]:checked');
   value = value.value;
   console.log(value);
-  if(value=="small" && value=="Interior"){
+  if(value=="small"){
     document.getElementById("price").innerHTML= "3000Ks"
-  }else if(value=="small" && value=="Exterior"){
-    document.getElementById("price").innerHTML="3000Ks"
-  }else if(value=="small" && value=="Both"){
-    document.getElementById("price").innerHTML="5000Ks"
   }
-  else if(value=="medium"&& value=="Interior"){
+  else if(value=="medium"){
     document.getElementById("price").innerHTML="4000Ks"
-  }else if(value=="medium"&& value=="Exterior"){
-    document.getElementById("price").innerHTML="4000Ks"
-  }else if(value=="medium"&& value=="Both"){
-    document.getElementById("price").innerHTML="7000Ks"
   }
-  else if(value=="large"&& value=="Interior"){
+  else if(value=="large"){
     document.getElementById("price").innerHTML="5000Ks"
-  }else if(value=="large"&& value=="Exterior"){
-    document.getElementById("price").innerHTML="5000Ks"
-  }else if(value=="large"&& value=="Both"){
-    document.getElementById("price").innerHTML="9000Ks"
   }
   
 }
