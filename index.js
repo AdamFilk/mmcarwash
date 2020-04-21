@@ -136,6 +136,12 @@ app.get('/prm_int/:package/:wtype/:name/:id', (req, res) => {
   res.render('prm_int.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
   
 })
+app.get('/carwash/:washtype/:name/;id',(req, res) =>{
+  var name=req.params.name;
+  var washType=req.params.washType;
+  var senderID=req.params.id;
+  res.render('carwash_booking.ejs',{name:name,type:washType,id:senderID})
+})
 app.get('/prm_ext/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
@@ -186,7 +192,6 @@ app.get('/egbay_book/:package/:name/:id', (req, res) => {
   var washpackage=req.params.package;
   var senderID=req.params.id;
   res.render('egbay_book.ejs', {name:name, package:washpackage,id:senderID})
-  
 })
 app.get('/headres_book/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
@@ -449,6 +454,7 @@ app.post('/webhook', (req, res) => {
           };
           var udetails = JSON.parse(success.body);
           var senderID = webhook_event.sender.id;
+          var washType= "Waterless Wash"
           let genericMessage = {
             "recipient":{
               "id": webhook_event.sender.id
@@ -464,7 +470,7 @@ app.post('/webhook', (req, res) => {
                     "buttons":[
                       {
                         "type":"web_url",
-                        "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name+"/"+senderID,
+                        "url":"https://mmcarwash.herokuapp.com/index/"+washType+userInput+"/"+udetails.name+"/"+senderID,
                         "title":"Book",
                         "webview_height_ratio": "full",
                       },
