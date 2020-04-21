@@ -436,7 +436,7 @@ app.post('/webhook', (req, res) => {
         console.log(error)
       })
       }
-      if(userInput.includes("ww")){
+      if(userInput=="ww"){
         console.log(userInput);
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
           let textMessage = {
@@ -499,7 +499,7 @@ app.post('/webhook', (req, res) => {
   })
         
       }
-      if(userInput.includes("rw")){
+      if(userInput=="rw"){
         console.log(userInput);
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
           let textMessage = {
@@ -522,7 +522,7 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                    "title":"Book Waterless wash?",
+                    "title":"Book Regular wash?",
                     "buttons":[
                       {
                         "type":"postback",
@@ -559,8 +559,8 @@ app.post('/webhook', (req, res) => {
     console.log(error)
   })
       }
-      if(userInput.includes("b_rw")){
-        console.log(userInput);
+      if(userInput=="b_rw"){
+     
  
           let genericMessage = {
             "recipient":{
@@ -605,7 +605,7 @@ app.post('/webhook', (req, res) => {
         console.log(error)
       })
       }
-      if(userInput.includes("n_w")){
+      if(userInput=="n_w"){
         console.log(userInput);
  
           let genericMessage = {
@@ -650,7 +650,7 @@ app.post('/webhook', (req, res) => {
         console.log(error)
       })
       }
-      if(userInput.includes("n_ww")){
+      if(userInput=="n_ww"){
         console.log(userInput);
  
         let textMessage = {
@@ -670,7 +670,7 @@ app.post('/webhook', (req, res) => {
         console.log(error)
       })
       }
-      if(userInput.includes("y_w")){
+      if(userInput=="y_w"){
         console.log(userInput);
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
 
