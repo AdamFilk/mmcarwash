@@ -7,17 +7,24 @@ const
   requestify = require('requestify'),
   app = express().use(bodyParser.json()), // creates express http server
   ejs = require("ejs");
- const admin = require("firebase-admin");
+ const firebase = require("firebase-admin");
   
 
   const pageaccesstoken = 'EAAKGyWXj6KABAB4s5bmcCuMvrdpKW1S0fnoYezGNAtA022SiQZAOwTBeng7cjs79hPYl3pknZCTGWDPPIhBqsKOZAokIGEpjqtFT4AqV6yaZAZBPYtS5VmUsDayUVkZCloQRipJouy3ReZBfUkonLYwH8TO1BXTHVxBu1aTbKIpZB1O4kZC9e7QCXMtJNdfC0MXkZD';
-  var serviceAccount = JSON.parse(process.env.serviceAccount);
+  var firebaseConfig = {
+    credential: firebase.credential.cert({
+   "private_key": process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+   "client_email": process.env.FIREBASE_CLIENT_EMAIL,
+   "project_id": process.env.FIREBASE_PROJECT_ID,    
+   }),
+   databaseURL: process.env.FIREBASE_DB_URL, 
+ };
 
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-  });
+ 
+  firebase.initializeApp(firebaseConfig);
 
-  const db = admin.firestore();
+  
+  const db = firebase.firestore();
 
 
 
