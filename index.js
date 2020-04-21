@@ -450,7 +450,7 @@ app.post('/webhook', (req, res) => {
         console.log(error)
       })
       }
-      if(userInput.includes("w_int")||userInput.includes("w_ext")||userInput.includes("w_both")){
+      if(userInput.includes("w_int")){
         console.log(userInput);
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
           var udetails = JSON.parse(success.body);
