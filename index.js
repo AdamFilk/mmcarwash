@@ -456,7 +456,6 @@ app.post('/webhook', (req, res) => {
           };
           var udetails = JSON.parse(success.body);
           var senderID = webhook_event.sender.id;
-          var washType= "Waterless Wash"
           let genericMessage = {
             "recipient":{
               "id": webhook_event.sender.id
