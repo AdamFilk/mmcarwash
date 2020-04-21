@@ -136,11 +136,12 @@ app.get('/prm_int/:package/:wtype/:name/:id', (req, res) => {
   res.render('prm_int.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
   
 })
-app.get('/carwash/:washtype/:name/;id',(req, res) =>{
+app.get('/carwash/:washtype/:wid/:name/;id',(req, res) =>{
   var name=req.params.name;
   var washType=req.params.washType;
+  var w_id=req.params.wid;
   var senderID=req.params.id;
-  res.render('carwash_booking.ejs',{name:name,type:washType,id:senderID})
+  res.render('carwash_booking.ejs',{name:name,type:washType,wid:w_id,id:senderID})
 })
 app.get('/prm_ext/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
@@ -470,7 +471,7 @@ app.post('/webhook', (req, res) => {
                     "buttons":[
                       {
                         "type":"web_url",
-                        "url":"https://mmcarwash.herokuapp.com/carwash_booking/"+washType+"/"+userInput+"/"+udetails.name+"/"+senderID,
+                        "url":"https://mmcarwash.herokuapp.com/carwash/"+washType+"/"+userInput+"/"+udetails.name+"/"+senderID,
                         "title":"Book",
                         "webview_height_ratio": "full",
                       },

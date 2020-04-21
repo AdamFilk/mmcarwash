@@ -226,7 +226,8 @@ function price() {
       var senderID = '<%= id %>';
         db.collection('Car Wash Book').add({
             name: '<%= name%>',
-            washType:'<%= type%>',            
+            washType:'<%= type%>',    
+            washID:'<%= wid%>', 
             phone: document.getElementById('phone').value,
             town: document.getElementById('town').value,
             address:document.getElementById('address_info').value,
