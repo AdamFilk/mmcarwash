@@ -348,7 +348,7 @@ app.post('/webhook', (req, res) => {
                     {
                       "type":"postback",
                       "title":"Book Car wash",
-                      "payload":"warterless"
+                      "payload":"wash"
                     },
                     {
                       "type":"postback",
@@ -381,7 +381,7 @@ app.post('/webhook', (req, res) => {
       }
        //end of select
        //start car wash
-       if (userInput== "waterless"){
+       if (userInput== "wash"){
         let genericMessage = {
           "recipient":{
             "id": webhook_event.sender.id
