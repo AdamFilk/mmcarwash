@@ -470,7 +470,7 @@ app.post('/webhook', (req, res) => {
                     "buttons":[
                       {
                         "type":"web_url",
-                        "url":"https://mmcarwash.herokuapp.com/index/"+washType+userInput+"/"+udetails.name+"/"+senderID,
+                        "url":"https://mmcarwash.herokuapp.com/carwash_booking/"+washType+userInput+"/"+udetails.name+"/"+senderID,
                         "title":"Book",
                         "webview_height_ratio": "full",
                       },
