@@ -7,25 +7,21 @@ const
   requestify = require('requestify'),
   app = express().use(bodyParser.json()), // creates express http server
   ejs = require("ejs");
- const firebase = require("firebase-admin");
+ const admin = require("firebase-admin");
   
 
   const pageaccesstoken = 'EAAKGyWXj6KABAB4s5bmcCuMvrdpKW1S0fnoYezGNAtA022SiQZAOwTBeng7cjs79hPYl3pknZCTGWDPPIhBqsKOZAokIGEpjqtFT4AqV6yaZAZBPYtS5VmUsDayUVkZCloQRipJouy3ReZBfUkonLYwH8TO1BXTHVxBu1aTbKIpZB1O4kZC9e7QCXMtJNdfC0MXkZD';
-  
-var firebaseConfig = {
-     credential: firebase.credential.cert({
-    "private_key": process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    "client_email": process.env.FIREBASE_CLIENT_EMAIL,
-    "project_id": process.env.FIREBASE_PROJECT_ID,    
-    }),
-    databaseURL: process.env.FIREBASE_DB_URL, 
-  };
+  var serviceAccount = JSON.parse(process.env.serviceAccount);
+
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+  });
+
+  const db = admin.firestore();
 
 
 
-firebase.initializeApp(firebaseConfig);
 
-let db = firebase.firestore(); 
 
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -336,12 +332,17 @@ app.post('/webhook', (req, res) => {
                   "buttons":[
                     {
                       "type":"postback",
-                      "title":"Car Wash Packages",
+                      "title":"Book Car wash",
+                      "payload":"wash"
+                    },
+                    {
+                      "type":"postback",
+                      "title":"Book Package",
                       "payload":"cwpkg"
                     },
                     {
                       "type":"postback",
-                      "title":"Car detail services",
+                      "title":"Other Services",
                       "payload":"cds"
                     },
                   ]
@@ -364,6 +365,361 @@ app.post('/webhook', (req, res) => {
     
       }
        //end of select
+       //start car wash
+       if (userInput== "wash"){
+        let textMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "text": "Let's get that dirty car washed"
+          }
+        };
+        let genericMessage = {
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                  "title":"Waterless Wash",
+                  "subtitle":"Eco-friendly and good for outdoor parkings",
+            
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Select",
+                      "payload":"ww"
+                    }
+                  ]
+                },
+                {
+                  "title":"Regular Wash",
+                  "subtitle":"Cheaper\nCan get stains, heavy muds and dirts off\nGood for home parking and\ncustomer who can provide water",
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Select",
+                      "payload":"rw"
+                    },
+                   
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      textMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      }
+      if(userInput.includes("ww")){
+        console.log(userInput);
+        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+          let textMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text": "About Waterless wash"
+            }
+          };
+          var udetails = JSON.parse(success.body);
+          var senderID = webhook_event.sender.id;
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Book Waterless wash?",
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name+"/"+senderID,
+                        "title":"Book",
+                        "webview_height_ratio": "full",
+                      },
+                      
+                    ]
+      
+                  },
+                ],
+                
+                }
+              }
+      
+            }
+          }
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      textMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+  }).catch(error=>{
+    console.log(error)
+  })
+        
+      }
+      if(userInput.includes("rw")){
+        console.log(userInput);
+        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+          let textMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text": "About Regular Wash"
+            }
+          };
+         
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Book Waterless wash?",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"Book",
+                        "payload":"b_rw"
+                      },
+                      
+                    ]
+      
+                  },
+                ],
+                
+                }
+              }
+      
+            }
+          }
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      textMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+  }).catch(error=>{
+    console.log(error)
+  })
+      }
+      if(userInput.includes("b_rw")){
+        console.log(userInput);
+ 
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Will you be able to provide water?",
+                    "subtitle":"To book Regular wash, you'll need to provide our washers with water\nDon't worry about equipment",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"Yes",
+                        "payload":"y_w"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"No",
+                        "payload":"n_w"
+                      },
+                      
+                    ]
+                  },
+                ],
+                
+                }
+              }
+      
+            }
+          }
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      }
+      if(userInput.includes("n_w")){
+        console.log(userInput);
+ 
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Sorry can't book regular wash if you can't provide water. Want to book Waterless Wash?",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"Yes",
+                        "payload":"ww"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"No",
+                        "payload":"n_ww"
+                      },
+                      
+                    ]
+                  },
+                ],
+                
+                }
+              }
+      
+            }
+          }
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      }
+      if(userInput.includes("n_ww")){
+        console.log(userInput);
+ 
+        let textMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "text": "Sorry to hear that. You can start booking by click Start Booking on the menu or button above.\nFeel free to browse other plans and services either "
+          }
+        };
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      textMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      }
+      if(userInput.includes("y_w")){
+        console.log(userInput);
+        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+
+          var udetails = JSON.parse(success.body);
+          var senderID = webhook_event.sender.id;
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Book Regular wash?",
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url":"https://mmcarwash.herokuapp.com/index/"+userInput+"/"+udetails.name+"/"+senderID,
+                        "title":"Book",
+                        "webview_height_ratio": "full",
+                      },
+                      
+                    ]
+      
+                  },
+                ],
+                
+                }
+              }
+      
+            }
+          }
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      textMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+  }).catch(error=>{
+    console.log(error)
+  })
+        
+      }
+       //end car wash
       //start of wash packages
       if (userInput== "cwpkg"){
         let genericMessage = {
