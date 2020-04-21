@@ -141,7 +141,7 @@ app.get('/carwash/:washtype/:wid/:name/;id',(req, res) =>{
   var washType=req.params.washType;
   var w_id=req.params.wid;
   var senderID=req.params.id;
-  res.render('carwash_booking.ejs',{name:name,type:washType,wid:w_id,id:senderID})
+  res.render('carwash.ejs',{name:name,type:washType,wid:w_id,id:senderID})
 })
 app.get('/prm_ext/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
