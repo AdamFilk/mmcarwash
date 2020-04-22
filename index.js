@@ -398,7 +398,7 @@ app.post('/webhook', (req, res) => {
                 "elements":[
                   {
                     "title":"Can you provide water for the car wash",
-                    "subtitle":"Example: water buckets,pipes,hoes\nDon't worry About equipment",
+                    "subtitle":"Example: water buckets,pipes,hoes\nDon't worry about equipment",
                     "buttons":[
                       {
                       "type":"postback",
@@ -426,7 +426,55 @@ app.post('/webhook', (req, res) => {
         })
       }
       //end provide water?
+      //start choose wash type
+      if(userInput=="y_w"){
 
+        let genericMessage ={
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "title":"Regular Wash",
+                    "subtitle":"Good for cars at home or good parking space and can provide water\nand heavy dirt and mud scrub down",
+                    "buttons":[
+                      {
+                      "type":"postback",
+                      "title":"Select",
+                      "payload":"rw"
+                      },
+                    ]
+                  },
+                  {
+                    "title":"Waterless Wash",
+                    "subtitle":"Good for cars anywhere,home,street,office,shopping center\nand Eco-friendly",
+                    "buttons":[
+                      {
+                      "type":"postback",
+                      "title":"Select",
+                      "payload":"ww"
+                      },
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        genericMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+      }
+      //end choose wash type
      //end booking
        //end car wash
       //start of wash packages
