@@ -347,8 +347,8 @@ app.post('/webhook', (req, res) => {
                   "buttons":[
                     {
                       "type":"postback",
-                      "title":"Book Car wash",
-                      "payload":"wash"
+                      "title":"Book Car Wash",
+                      "payload":"book"
                     },
                     {
                       "type":"postback",
@@ -380,9 +380,17 @@ app.post('/webhook', (req, res) => {
     
       }
        //end of select
-       //start car wash
-       if (userInput== "wash"){
-        let genericMessage = {
+     //start car wash booking
+      if(userInput=="book"){
+        let textMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "text": "Lets get this dirty car washed!"
+          }
+        };
+        let genericMessage ={
           "recipient":{
             "id": webhook_event.sender.id
           },
@@ -393,123 +401,41 @@ app.post('/webhook', (req, res) => {
                 "template_type":"generic",
                 "elements":[
                   {
-                  "title":"Waterless Wash",
-                  "subtitle":"This is waterless wash",
-                  "image_url":"https://i.pinimg.com/originals/ec/43/2c/ec432c1852f268a95aee064997964275.jpg",
-                  "buttons":[
-                    {
+                    "title":"Lets start booking by choosing one from below",
+                    "buttons":[
+                      {
                       "type":"postback",
-                      "title":"Interior",
-                      "payload":userInput+"/w_int"
-                    },
-                    {
+                      "title":"Book Now",
+                      "payload":"now"
+                      },
+                      {
                       "type":"postback",
-                      "title":"Exterior",
-                      "payload":userInput+"/w_ext"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"Both",
-                      "payload":userInput+"/w_both"
-                    },
-                  ]
-  
-                },
-                {
-                  "title":"Regular Wash",
-                  "subtitle":"These is regular wash",
-                  "image_url":"https://i.pinimg.com/originals/24/8c/6f/248c6f595b1181e4fafb09cd51ed90e7.jpg",
-                  "buttons":[
-                    {
-                      "type":"postback",
-                      "title":"Interior",
-                      "payload":userInput+"/r_int"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"Exterior",
-                      "payload":userInput+"/r_ext"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"Both",
-                      "payload":userInput+"/r_both"
-                    },
-                  ]
-                },
-              ]
+                      "title":"View Plans and Packages",
+                      "payload":"cwpkg"
+                      }
+                    ]
+                  }
+                ]
+              }
             }
           }
         }
-      }
         requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-      genericMessage
-      ).then(response=>{
-        console.log(response)
-      }).fail(error=> {
-        console.log(error)
-      })
+        textMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        genericMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
       }
-      if(userInput.includes("w_int")){
-        console.log(userInput);
-        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
-          var udetails = JSON.parse(success.body);
-          var senderID = webhook_event.sender.id;
-          let genericMessage = {
-            "recipient":{
-              "id": webhook_event.sender.id
-            },
-            "message":{
-              "attachment":{
-                "type":"template",
-                "payload":{
-                  "template_type":"generic",
-                  "elements":[
-                    {
-                    "title":"Do you want to choose Basic Interior Package?:",
-                    "buttons":[
-                      {
-                        "type":"web_url",
-                        "url":"https://mmcarwash.herokuapp.com/carwash/"+userInput+"/"+udetails.name+"/"+senderID,
-                        "title":"Yes",
-                        "webview_height_ratio": "full",
-                      },
-                      {
-                        "type":"postback",
-                        "title":"No",
-                        "payload":"n_b_ext"
-                      },
-                      
-                    ]
-      
-                  },
-                ],
-                
-                }
-              }
-      
-            }
-          }
-          
-      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-      textMessage
-      ).then(response=>{
-        console.log(response)
-      }).fail(error=> {
-        console.log(error)
-      })
-      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-      genericMessage
-      ).then(response=>{
-        console.log(response)
-      }).fail(error=> {
-        console.log(error)
-      })
-  }).catch(error=>{
-    console.log(error)
-  })
-        
-      }
+     //end car wash booking
        //end car wash
       //start of wash packages
       if (userInput== "cwpkg"){
