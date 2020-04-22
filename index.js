@@ -328,7 +328,7 @@ app.post('/webhook', (req, res) => {
         }
         //end of select
 
-     //start car wash booking
+     //start booking
       if(userInput=="book"){
         let textMessage = {
           "recipient":{
@@ -383,7 +383,51 @@ app.post('/webhook', (req, res) => {
           console.log(error)
         })
       }
-     //end car wash booking
+      //start provide water?
+      if(userInput=="pw"){
+
+        let genericMessage ={
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "title":"Can you provide water for the car wash",
+                    "subtitle":"Example: water buckets,pipes,hoes\nDon't worry About equipment",
+                    "buttons":[
+                      {
+                      "type":"postback",
+                      "title":"Yes",
+                      "payload":"y_w"
+                      },
+                      {
+                      "type":"postback",
+                      "title":"No",
+                      "payload":"n_w"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        genericMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+      }
+      //end provide water?
+
+     //end booking
        //end car wash
       //start of wash packages
       if (userInput== "cwpkg"){
