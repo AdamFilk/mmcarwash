@@ -441,7 +441,7 @@ app.post('/webhook', (req, res) => {
                 "elements":[
                   {
                     "title":"Regular Wash",
-                    "subtitle":"Good for cars at home or good parking space and can provide water and heavy dirt and mud scrub down",
+                    "subtitle":"⚠️Must provide water⚠️\nGood for cars that have good parking space and want heavy mud and dirt scrub down",
                     "buttons":[
                       {
                       "type":"postback",
@@ -452,7 +452,7 @@ app.post('/webhook', (req, res) => {
                   },
                   {
                     "title":"Waterless Wash",
-                    "subtitle":"Good for cars anywhere,home,street,office,shopping center\nand Eco-friendly",
+                    "subtitle":"Good for cars anywhere,home,street,office,shopping center and Eco-friendly",
                     "buttons":[
                       {
                       "type":"postback",
