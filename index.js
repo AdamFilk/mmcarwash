@@ -327,59 +327,7 @@ app.post('/webhook', (req, res) => {
         
         }
         //end of select
-       //start of book
-       if (userInput == 'book'){
 
-        let genericMessage = {
-          "recipient":{
-            "id": webhook_event.sender.id
-          },
-          "message":{
-            "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"generic",
-                "elements":[
-                  {
-                  "title":"Our services:",
-                  "subtitle":"choose one",
-                  "image_url":"https://i.pinimg.com/originals/4e/2e/bc/4e2ebcc3e908aa9bef55fa6667048eca.jpg",
-                  "buttons":[
-                    {
-                      "type":"postback",
-                      "title":"Book Car Wash",
-                      "payload":"book"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"Book Package",
-                      "payload":"cwpkg"
-                    },
-                    {
-                      "type":"postback",
-                      "title":"Other Services",
-                      "payload":"cds"
-                    },
-                  ]
-
-                },
-              ],
-              
-              }
-            }
-
-          }
-        }
-        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-      genericMessage
-      ).then(response=>{
-        console.log(response)
-      }).fail(error=> {
-        console.log(error)
-      })
-    
-      }
-       //end of select
      //start car wash booking
       if(userInput=="book"){
         let textMessage = {
