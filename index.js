@@ -384,7 +384,7 @@ app.post('/webhook', (req, res) => {
         })
       }
       //start provide water?
-      if(userInput=="pw"){
+      if(userInput=="now"){
 
         let genericMessage ={
           "recipient":{
