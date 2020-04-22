@@ -441,12 +441,12 @@ app.post('/webhook', (req, res) => {
                 "elements":[
                   {
                     "title":"Regular Wash",
-                    "subtitle":"⚠️Must provide water⚠️\nGood for cars that have good parking space and want heavy mud and dirt scrub down",
+                    "subtitle":"Good for cars that have good parking space and want heavy mud and dirt scrub down",
                     "buttons":[
                       {
                       "type":"postback",
                       "title":"Select",
-                      "payload":"rw"
+                      "payload":"regular"
                       },
                     ]
                   },
@@ -457,7 +457,7 @@ app.post('/webhook', (req, res) => {
                       {
                       "type":"postback",
                       "title":"Select",
-                      "payload":"ww"
+                      "payload":"waterless"
                       },
                     ]
                   }
@@ -475,6 +475,54 @@ app.post('/webhook', (req, res) => {
         })
       }
       //end choose wash type
+      //start choose int or ext
+      if(userInput=="rw" || userInput=="ww"){
+
+        let genericMessage ={
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "title":"Which one do you want clean and wash",
+                    "buttons":[
+                      {
+                      "type":"postback",
+                      "title":"Interior",
+                      "payload":userInput+"/int"
+                      },
+                      {
+                      "type":"postback",
+                      "title":"Exterior",
+                      "payload":userInput+"ext"
+                      },
+                      {
+                      "type":"postback",
+                      "title":"Both",
+                      "payload":userInput+"both"
+                      }
+                    ]
+                  },
+                  
+                ]
+              }
+            }
+          }
+        }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        genericMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+      }
+      //end choose int or ext
      //end booking
        //end car wash
       //start of wash packages
