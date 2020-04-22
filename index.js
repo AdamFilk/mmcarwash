@@ -441,7 +441,7 @@ app.post('/webhook', (req, res) => {
                 "elements":[
                   {
                     "title":"Regular Wash",
-                    "subtitle":"Good for cars at home or good parking space and can provide water\nand heavy dirt and mud scrub down",
+                    "subtitle":"Good for cars at home or good parking space and can provide water and heavy dirt and mud scrub down",
                     "buttons":[
                       {
                       "type":"postback",
