@@ -182,7 +182,62 @@ function price() {
     document.getElementById("price").innerHTML="5000Ks"
   }
  }
-  
+ else if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="ext"){
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "3000Ks"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").innerHTML="4000Ks"
+  }
+  else if(value=="large"){
+    document.getElementById("price").innerHTML="5000Ks"
+  }
+ }
+ else if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="both"){
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "5000Ks"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").innerHTML="7000Ks"
+  }
+  else if(value=="large"){
+    document.getElementById("price").innerHTML="9000Ks"
+  }
+ }
+ else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="int"){
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "4000Ks"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").innerHTML="5000Ks"
+  }
+  else if(value=="large"){
+    document.getElementById("price").innerHTML="6000Ks"
+  }
+ }
+ else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="ext"){
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "4000Ks"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").innerHTML="5000Ks"
+  }
+  else if(value=="large"){
+    document.getElementById("price").innerHTML="6000Ks"
+  }
+ }
+ else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="both"){
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "7000Ks"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").innerHTML="9000Ks"
+  }
+  else if(value=="large"){
+    document.getElementById("price").innerHTML="11000Ks"
+  }
+ }
+
 }
 </script>
 
@@ -220,7 +275,6 @@ function price() {
             town: document.getElementById('town').value,
             address:document.getElementById('address_info').value,
             carsize:document.querySelector('input[name="carsize"]:checked').value,
-          
             price:document.getElementById("price").innerHTML,
             date:document.getElementById('date-input').value,
             time:document.getElementById('time-input').value,
