@@ -573,6 +573,100 @@ app.post('/webhook', (req, res) => {
   })
         
       }
+      if(userInput.includes("/ext")){
+        console.log(userInput);
+        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+
+          var udetails = JSON.parse(success.body);
+          var senderID = webhook_event.sender.id;
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Fill the form to book the car wash",
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url":"https://mmcarwash.herokuapp.com/carwash/"+userInput+"/"+udetails.name+"/"+senderID,
+                        "title":"Fill the Form",
+                        "webview_height_ratio": "full",
+                      },
+                      
+                    ]
+      
+                  },
+                ],
+                
+                }
+              }
+      
+            }
+          }
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+  })
+        
+      }
+      if(userInput.includes("/both")){
+        console.log(userInput);
+        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+
+          var udetails = JSON.parse(success.body);
+          var senderID = webhook_event.sender.id;
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Fill the form to book the car wash",
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url":"https://mmcarwash.herokuapp.com/carwash/"+userInput+"/"+udetails.name+"/"+senderID,
+                        "title":"Fill the Form",
+                        "webview_height_ratio": "full",
+                      },
+                      
+                    ]
+      
+                  },
+                ],
+                
+                }
+              }
+      
+            }
+          }
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+  })
+        
+      }
       //end booking form
      //end booking
        //end car wash
