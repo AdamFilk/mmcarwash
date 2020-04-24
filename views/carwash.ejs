@@ -173,8 +173,8 @@ function price() {
   var intorext= document.getElementById("intorext").innerHTML
   value = value.value;
   console.log(value);
- 
-    if(value=="small" && washtype=="regular" && intorext=="int"){
+ if ( washtype=="regular" && intorext=="int"){
+  if(value=="small"){
     document.getElementById("price").innerHTML= "3000Ks"
   }
   else if(value=="medium"){
@@ -183,8 +183,8 @@ function price() {
   else if(value=="large"){
     document.getElementById("price").innerHTML="5000Ks"
   }
+ }
   
-
 }
 </script>
 
