@@ -549,6 +549,7 @@ app.post('/webhook', (req, res) => {
                         "type":"web_url",
                         "url":"https://mmcarwash.herokuapp.com/carwash/"+userInput+"/"+udetails.name+"/"+senderID,
                         "title":"Fill the Form",
+                        "messenger_extensions": true, 
                         "webview_height_ratio": "full",
                       },
                       
@@ -1679,6 +1680,7 @@ FUNCTION TO ADD WHITELIST DOMAIN
 const whitelistDomains = (res) => {
   var messageData = {
           "whitelisted_domains": [
+           "https://mmcarwash.herokuapp.com/carwash/",
              "https://mmcarwash.herokuapp.com" , 
              "https://herokuapp.com"                           
           ]               
