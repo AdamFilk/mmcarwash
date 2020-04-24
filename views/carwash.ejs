@@ -173,7 +173,7 @@ function price() {
   var intorext= document.getElementById("intorext").innerHTML
   value = value.value;
   console.log(value);
-  if(('<%= washtype%>'=='regular' && '<%=intorext%>'=='int')||('<%= washtype%>'=='regular' && '<%=intorext%>'=='ext')){
+ 
     if(value=="small" && washtype=="regular" && intorext=="int"){
     document.getElementById("price").innerHTML= "3000Ks"
   }
@@ -183,7 +183,7 @@ function price() {
   else if(value=="large"){
     document.getElementById("price").innerHTML="5000Ks"
   }
-  }
+  
 
 }
 </script>
