@@ -169,11 +169,9 @@ function checkNumber() {
 
 function price() {
   var value = document.querySelector('input[name="carsize"]:checked');
-  var washtype= document.getElementById("washtype").innerHTML
-  var intorext= document.getElementById("intorext").innerHTML
   value = value.value;
   console.log(value);
- if ( washtype=="regular" && intorext=="int"){
+ if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="int"){
   if(value=="small"){
     document.getElementById("price").innerHTML= "3000Ks"
   }
