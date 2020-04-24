@@ -82,6 +82,7 @@
                               </div>
                         </td>
                     </tr>   
+
                     <tr>
                         <td>
                            <b>Address Information</b> 
@@ -110,6 +111,7 @@
                     
                     </td>
                     </tr>
+
                      <tr>
                           <td>
                            <b>Price:</b> 
@@ -118,6 +120,7 @@
                             <p id="price"></p>
                           </td>
                         </tr>
+
                       <tr>
                         <td><b>Date</b> </td>
                         <td>
@@ -126,15 +129,22 @@
                               
                         </td>
                     </tr>
-                        <td>
-                           <b>Time</b> 
-                        </td>
-                        <td>
-                            <input class="form-control" type="time" value="13:45:00" id="time-input" required>
-                        </td>
-                       
                     <tr>
+                      <td>
+                        <b>Time</b> 
+                     </td>
+                     <td>
+                         <input class="form-control" type="time" value="13:45:00" id="time-input" required>
+                     </td>
+                    </tr>
 
+                    <tr>
+                      <input type="hidden"  id="washtype" name="washtype" value="<%= washtype %>">
+                    </tr>
+                    <tr>
+                      <input type="hidden"  id="intorext" name="intorext" value="<%= intorext %>">
+                    </tr>
+                    <tr>
                     <td>
                         <button type="button" onclick="submit()" class="btn btn-outline-light btn-secondary btn-lg btn-block">Submit</button>
                     </td>
@@ -159,10 +169,12 @@ function checkNumber() {
 
 function price() {
   var value = document.querySelector('input[name="carsize"]:checked') && document.querySelector('input[name="part"]:checked');
+  var washtype= document.getElementById("washtype").innerHTML
+  var intorext= document.getElementById("intorext").innerHTML
   value = value.value;
   console.log(value);
   if(('<%= washtype%>'=='regular' && '<%=intorext%>'=='int')||('<%= washtype%>'=='regular' && '<%=intorext%>'=='ext')){
-    if(value=="small"){
+    if(value=="small" && washtype=="regular" && intorext=="int"){
     document.getElementById("price").innerHTML= "3000Ks"
   }
   else if(value=="medium"){
