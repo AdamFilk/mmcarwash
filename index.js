@@ -36,9 +36,7 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 app.set('view engine', 'ejs');
 app.set('views', __dirname+'/views');
 
-app.get('/whitelists',function(req,res){    
-  whitelistDomains(res);
-});
+
 
 app.get('/index/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
@@ -204,7 +202,9 @@ app.get('/headres_book/:package/:wtype/:name/:id', (req, res) => {
   var senderID=req.params.id;
   res.render('headres_book.ejs', {name:name, package:washpackage,id:senderID})
 })
-let userOrder = {};
+app.get('/whitelists',function(req,res){    
+  whitelistDomains(res);
+});
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
 
@@ -1681,7 +1681,8 @@ const whitelistDomains = (res) => {
   var messageData = {
           "whitelisted_domains": [
            "https://mmcarwash.herokuapp.com" , 
-             "https://herokuapp.com"                           
+           "https://herokuapp.com" ,
+           "https://mmcarwash.herokuapp.com/carwash"                  
           ]               
   };  
   request({
