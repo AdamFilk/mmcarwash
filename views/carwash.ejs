@@ -161,7 +161,8 @@ function price() {
   var value = document.querySelector('input[name="carsize"]:checked') && document.querySelector('input[name="part"]:checked');
   value = value.value;
   console.log(value);
-  if(value=="small"){
+  if(('<%= washtype%>'=='regular' && '<%=intorext%>'=='int')||('<%= washtype%>'=='regular' && '<%=intorext%>'=='ext')){
+    if(value=="small"){
     document.getElementById("price").innerHTML= "3000Ks"
   }
   else if(value=="medium"){
@@ -170,7 +171,8 @@ function price() {
   else if(value=="large"){
     document.getElementById("price").innerHTML="5000Ks"
   }
-  
+  }
+
 }
 </script>
 
@@ -203,7 +205,7 @@ function price() {
         db.collection('Car Wash Book').add({
             name: '<%= name%>',
             WashType:'<%= washtype%>', 
-            Place:'<%= place%>', 
+            Interior_or_Exterior:'<%= intorext%>', 
             phone: document.getElementById('phone').value,
             town: document.getElementById('town').value,
             address:document.getElementById('address_info').value,

@@ -136,13 +136,13 @@ app.get('/prm_int/:package/:wtype/:name/:id', (req, res) => {
   res.render('prm_int.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
   
 })
-app.get('/carwash/:washtype/:place/:name/:id', (req, res) => {
+app.get('/carwash/:washtype/:intorext/:name/:id', (req, res) => {
 
   var name = req.params.name;
   var washType=req.params.washtype;
-  var place=req.params.place;
+  var intorext=req.params.intorext;
   var senderID=req.params.id;
-  res.render('carwash.ejs', {name:name, washtype:washType,place:place, id:senderID})
+  res.render('carwash.ejs', {name:name, washtype:washType,intorext:intorext, id:senderID})
   
 })
 app.get('/prm_ext/:package/:wtype/:name/:id', (req, res) => {
@@ -183,6 +183,8 @@ app.get('/sealant_book/:package/:name/:id', (req, res) => {
   res.render('sealant_book.ejs', {name:name, package:washpackage,id:senderID})
   
 })
+
+
 app.get('/rim_book/:package/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
@@ -476,7 +478,7 @@ app.post('/webhook', (req, res) => {
       }
       //end choose wash type
       //start choose int or ext
-      if(userInput=="rw" || userInput=="ww"){
+      if(userInput=="regular" || userInput=="waterless"){
 
         let genericMessage ={
           "recipient":{
@@ -499,12 +501,12 @@ app.post('/webhook', (req, res) => {
                       {
                       "type":"postback",
                       "title":"Exterior",
-                      "payload":userInput+"ext"
+                      "payload":userInput+"/ext"
                       },
                       {
                       "type":"postback",
                       "title":"Both",
-                      "payload":userInput+"both"
+                      "payload":userInput+"/both"
                       }
                     ]
                   },
@@ -523,6 +525,64 @@ app.post('/webhook', (req, res) => {
         })
       }
       //end choose int or ext
+      //start booking form
+      if(userInput.includes("/int")||userInput.includes("/ext")||userInput.includes("/both")){
+        console.log(userInput);
+        requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+
+          var udetails = JSON.parse(success.body);
+          var senderID = webhook_event.sender.id;
+          let genericMessage = {
+            "recipient":{
+              "id": webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                    "title":"Fill the form to book the car wash",
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url":"https://mmcarwash.herokuapp.com/carwash/"+userInput+"/"+udetails.name+"/"+senderID,
+                        "title":"Yes",
+                        "webview_height_ratio": "full",
+                      },
+                      
+                    ]
+      
+                  },
+                ],
+                
+                }
+              }
+      
+            }
+          }
+          
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      textMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+  }).catch(error=>{
+    console.log(error)
+  })
+        
+      }
+      //end booking form
      //end booking
        //end car wash
       //start of wash packages
