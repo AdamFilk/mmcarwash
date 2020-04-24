@@ -526,7 +526,7 @@ app.post('/webhook', (req, res) => {
       }
       //end choose int or ext
       //start booking form
-      if(userInput.includes("/int")||userInput.includes("/ext")||userInput.includes("/both")){
+      if(userInput.includes("int")||userInput.includes("ext")||userInput.includes("both")){
         console.log(userInput);
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
 
