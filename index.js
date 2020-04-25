@@ -27,9 +27,6 @@ const
   const db = firebase.firestore();
 
 
-
-
-
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -37,7 +34,23 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname+'/views');
 
 
-
+const thankyouReply =(name,phone,city,town,address,car_info,carsize,price,date,time,washtype,intorext) => {
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "Name:"+name+"\n"+"Phone:"+phone+"\n"+"Address Info"+city+","+town+","+address+"\n"+"Car:"+car_info+"\n"+"Car-Size:"+carsize+"\n"+"Date and Time:"+date+","+time+"Car Wash Info:"+washtype+intorext+"\n"+"Price:"+price+"\n"+"Car Wash Booking is submitted. We will contact you soon"
+    }
+  };
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+textMessage
+).then(response=>{
+  console.log(response)
+}).fail(error=> {
+  console.log(error)
+})
+}
 app.get('/index/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
@@ -143,6 +156,42 @@ app.get('/carwash/:washtype/:intorext/:name/:id', (req, res) => {
   res.render('carwash.ejs', {name:name, washtype:washType,intorext:intorext, id:senderID})
   
 })
+app.post('/carwash',function(req,res){
+       
+  let name  = req.body.name;
+  let phone = req.body.phone;
+  let city = req.body.city;
+  let town = req.body.town;
+  let address = req.body.address;
+  let car_info= req.body.car_info;
+  let carsize = req.body.carsize;
+  let price= req.body.price;
+  let date = req.body.date-input;
+  let time = req.body.time-input;
+  let sender = req.body.sender;
+  let washtype= req.body.washtype;
+  let intorext= req.body.intorext;
+  
+  db.collection('carwash_booking').add({
+        name: name,
+        phone: phone,
+        city: city,
+        town: town,
+        address: address,
+        car_info: car_info,
+        carsize: carsize,
+        price: price,
+        date: date,
+        time: time,
+        washtype: washtype,
+        intorext: intorext
+      }).then(success => {   
+         console.log("DATA SAVED")
+         thankyouReply(sender, name,phone,city,town,address,car_info,carsize,price,date,time,washtype,intorext);    
+      }).catch(error => {
+        console.log(error);
+  });        
+});
 app.get('/prm_ext/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
   var washpackage=req.params.package;
@@ -1659,6 +1708,8 @@ console.log(error)
 
     
 //end otpkg
+
+  
 
 
 

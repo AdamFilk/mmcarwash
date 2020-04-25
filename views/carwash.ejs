@@ -15,6 +15,19 @@
     <title>Booking Carwash</title>
 
 </head>
+<style>
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+  </style>
 <body background="black">
   <script>
     (function(d, s, id){
@@ -41,85 +54,67 @@
     <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col-sm-4 w-100">
-                <table class="table table-dark table-striped" style="margin-top: 15px;">
-                    <thead>
-                        <tr>
-                            <td colspan="2" class="text-center"><h2>Car Wash Booking Form</h2></td>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td colspan="2" class="alert alert-danger" id="warningPhone" style="display: none;">Phone Number cannot contain letters!!</td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: middle;"><b>Phone:</b> </td>
-                        <td>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text" id="basic-addon1">+95</span>
-                                </div>
-                                <input onkeyup="checkNumber()" type="text" class="form-control" placeholder="Enter Phone Number" id="phone" aria-label="phone_number" aria-describedby="basic-addon1" required>
-                              </div>
-                        </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <b>City:</b>
-                      </td>
-                      <td>
-                        <input class="form-control" type="text" placeholder="Available only in Yangon for now" id="city" readonly>
-                      </td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: middle;"><b>Town:</b> </td>
-                        <td>    
-                            <div class="form-group">
-                                <label for="town">Select Town</label>
-                                <select class="form-control" id="town" required>
-                                  <option>Ahlone</option>
-                                  <option>Bahan</option>
-                                  <option>Botahtaung</option>
-                                  <option>Dagon</option>
-                                  <option>Dawbon</option>
-                                  <option>Hlaing</option>
-                                  <option>Kamaryurt</option>
-                                  <option>Kyauktadar</option>
-                                  <option>Kyeemyintdine</option>
-                                  <option>Lanmadaw</option>
-                                  <option>Mayangon</option>
-                                  <option>Mingalar</option>
-                                  <option>Pabedan</option>
-                                  <option>Pazundaung</option>
-                                  <option>Sanchaung</option>
-                                  <option>South Okalapa</option>
-                                  <option>Tamwe</option>
-                                  <option>Thaketa</option>
-                                  <option>Thingankyun</option>
-                                  <option>Yankin</option>
-                                  <option>Yangon Airport</option>
-                                  <option>FMI and Pun Hlaing</option>
-                                  <option>MICT</option>
-                                  <option>Hlaingtharyar(FMI,Nawaday,Industry)</option>
-                                  <option>Gyo Gone(Insein)</option>
-                                </select>
-                              </div>
-                        </td>
-                    </tr>   
 
-                    <tr>
-                        <td>
-                           <b>Address Information</b> 
-                        </td>
-                        <td>
-                          <textarea  placeholder="Street,Quarter,Hosuing,Condo,Building No.,Room No" id="address_info" required></textarea>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                    <td>
-                      <b>Car Type</b>
-                    </td>
-                    <td>
-                     
+              <form id="form"  method="post" action="https://mmcarwash.herokuapp.com/carwash/">
+                <div class="form-group row">
+                  <label for="phone" class="col-sm-2 col-form-label">Phone:</label>
+                  <div class="col-sm-10">
+                    <input type="number" name="phone" id="phone" placeholder="Please Enter Phone Number">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="city" class="col-sm-2 col-form-label">City</label>
+                  <div class="col-sm-10">
+                    <input type="number" name="city" id="city" readonly value="Only available in Yangon for Now">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="town" class="col-sm-2 col-form-label">Town</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" name="town" id="town" required>
+                      <option>Ahlone</option>
+                      <option>Bahan</option>
+                      <option>Botahtaung</option>
+                      <option>Dagon</option>
+                      <option>Dawbon</option>
+                      <option>Hlaing</option>
+                      <option>Kamaryurt</option>
+                      <option>Kyauktadar</option>
+                      <option>Kyeemyintdine</option>
+                      <option>Lanmadaw</option>
+                      <option>Mayangon</option>
+                      <option>Mingalar</option>
+                      <option>Pabedan</option>
+                      <option>Pazundaung</option>
+                      <option>Sanchaung</option>
+                      <option>South Okalapa</option>
+                      <option>Tamwe</option>
+                      <option>Thaketa</option>
+                      <option>Thingankyun</option>
+                      <option>Yankin</option>
+                      <option>Yangon Airport</option>
+                      <option>FMI and Pun Hlaing</option>
+                      <option>MICT</option>
+                      <option>Hlaingtharyar(FMI,Nawaday,Industry)</option>
+                      <option>Gyo Gone(Insein)</option>
+                    </select>
+                  </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="address" class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-10">
+                      <textarea  placeholder="Street,Quarter,Hosuing,Condo,Building No.,Room No" name="address" id="address" required></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="car_info" class="col-sm-2 col-form-label">Enter your Car:</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="car_info" id="car_info" placeholder="Example: Honda Fit">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="carsize" class="col-sm-2 col-form-label">Car Size:</label>
+                    <div class="col-sm-10">
                       <input type="radio" name="carsize" onchange="price()" value="small">
                       <label>Small</label>
                     
@@ -130,49 +125,32 @@
                     
                       <input type="radio" name="carsize"  onchange="price()" value="large">
                       <label>Large</label>
-                    
-                    </td>
-                    </tr>
-
-                     <tr>
-                          <td>
-                           <b>Price:</b> 
-                          </td>
-                          <td>
-                            <p id="price"></p>
-                          </td>
-                        </tr>
-
-                      <tr>
-                        <td><b>Date</b> </td>
-                        <td>
-                                
-                            <input class="form-control" type="date" value="2020-08-19" id="date-input" required>
-                              
-                        </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <b>Time</b> 
-                     </td>
-                     <td>
-                         <input class="form-control" type="time" value="13:45:00" id="time-input" required>
-                     </td>
-                    </tr>
-
-                    <tr>
-                      <input type="hidden"  id="washtype" name="washtype" value="<%= washtype %>">
-                    </tr>
-                    <tr>
-                      <input type="hidden"  id="intorext" name="intorext" value="<%= intorext %>">
-                    </tr>
-                    <tr>
-                    <td>
-                        <button type="button" onclick="submit()" class="btn btn-outline-light btn-secondary btn-lg btn-block">Submit</button>
-                    </td>
-                    </tr>
-
-                </table>  
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="price" class="col-sm-2 col-form-label">Price:</label>
+                    <div class="col-sm-10">
+                      <p name="price" id="price"></p>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="date" class="col-sm-2 col-form-label">Date</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="date" value="2020-08-19" name="date-input" id="date-input" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="time" class="col-sm-2 col-form-label">Time:</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="time" value="13:45:00" name="time-input" id="time-input" required>
+                    </div>
+                  </div>
+                  <input type="hidden"  id="name" name="name" value="<%= name %>">
+                  <input type="hidden"  id="washtype" name="washtype" value="<%= washtype %>">
+                  <input type="hidden"  id="intorext" name="intorext" value="<%= intorext %>">
+                  <input type="hidden"  id="sender" name="sender" value="<%= id %>">
+                  <input class="btn btn-primary" type="submit" value="Submit">
+              </form>
             </div>
         </div>
     </div>
@@ -270,51 +248,14 @@ function price() {
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
 
 <script>
-        const windowShut = () => {
+      const windowShut = () => {
         MessengerExtensions.requestCloseBrowser(function success() {
           console.log("success");          
         }, function error(err) {
           console.log(err);
         });
       }
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
-    authDomain: "mm-carwash.firebaseapp.com",
-    databaseURL: "https://mm-carwash.firebaseio.com",
-    projectId: "mm-carwash",
-    storageBucket: "mm-carwash.appspot.com",
-    messagingSenderId: "478002772636",
-    appId: "1:478002772636:web:f82fa2e926632accb10b59",
-    measurementId: "G-BFPKPTE060"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  
-  function submit(){
-  firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
-    console.log(success);
-      var db = firebase.firestore();
-      var senderID = '<%= id %>';
-        db.collection('Car Wash Book').add({
-            name: '<%= name%>',
-            WashType:'<%= washtype%>', 
-            Interior_or_Exterior:'<%= intorext%>', 
-            phone: document.getElementById('phone').value,
-            town: document.getElementById('town').value,
-            address:document.getElementById('address_info').value,
-            carsize:document.querySelector('input[name="carsize"]:checked').value,
-            price:document.getElementById("price").innerHTML,
-            date:document.getElementById('date-input').value,
-            time:document.getElementById('time-input').value,
-           
-        }).then(success => {
-          windowShut
-        }).catch(error => {
-          console.log(error);
-        })
       
-});
-  }
+      document.getElementById("form").addEventListener("submit", windowShut);    
 </script>
 </html>
