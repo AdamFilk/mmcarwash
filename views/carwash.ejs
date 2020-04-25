@@ -279,7 +279,7 @@ function price() {
             time:document.getElementById('time-input').value,
            
         }).then(success => {
-          window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://image.shutterstock.com/image-vector/thankyou-word-text-handwritten-rainbow-260nw-1319893574.jpg&display_text=Thankyou')
+         setTimeout(window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://image.shutterstock.com/image-vector/thankyou-word-text-handwritten-rainbow-260nw-1319893574.jpg&display_text=Thankyou'),500 )
         }).catch(error => {
           console.log(error);
         })
