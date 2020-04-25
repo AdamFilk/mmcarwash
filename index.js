@@ -419,7 +419,6 @@ app.post('/webhook', (req, res) => {
                         "type":"web_url",
                         "url":"https://mmcarwash.herokuapp.com/carwash/"+userInput+"/"+udetails.name+"/"+senderID,
                         "title":"Fill the Form",
-                        "messenger_extensions": true, 
                         "webview_height_ratio": "full",
                       },
                       
