@@ -20,7 +20,7 @@
     <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col-sm-4 w-100">
-                <table class="table table-borderless">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <td colspan="2" class="text-center"><h2>Car Wash Booking Form</h2></td>
@@ -40,7 +40,7 @@
                               </div>
                         </td>
                     </tr>
-                    <hr>
+                    
                     <tr>
                       <td>
                         <b>City:</b>
@@ -49,7 +49,7 @@
                         <input class="form-control" type="text" placeholder="Only in Yangon for now" id="city" readonly>
                       </td>
                     </tr>
-                    <hr>
+                    
                     <tr>
                         <td style="vertical-align: middle;"><b>Town:</b> </td>
                         <td>    
@@ -85,7 +85,7 @@
                               </div>
                         </td>
                     </tr>   
-                    <hr>
+                    
                     <tr>
                         <td>
                            <b>Address Information</b> 
@@ -123,7 +123,7 @@
                             <p id="price"></p>
                           </td>
                         </tr>
-                        <hr>
+                        
                       <tr>
                         <td><b>Date</b> </td>
                         <td>
@@ -132,7 +132,7 @@
                               
                         </td>
                     </tr>
-                    <hr>
+                    
                     <tr>
                       <td>
                         <b>Time</b> 
@@ -141,13 +141,7 @@
                          <input class="form-control" type="time" value="13:45:00" id="time-input" required>
                      </td>
                     </tr>
-                    <hr>
-                    <tr>
-                      <input type="hidden"  id="washtype" name="washtype" value="<%= washtype %>">
-                    </tr>
-                    <tr>
-                      <input type="hidden"  id="intorext" name="intorext" value="<%= intorext %>">
-                    </tr>
+                    
                     <tr>
                     <td>
                         <button type="button" onclick="submit()" class="btn btn-outline-light btn-primary btn-lg btn-block">Submit</button>
@@ -273,6 +267,7 @@ function price() {
       var db = firebase.firestore();
       var senderID = '<%= id %>';
         db.collection('Car Wash Book').add({
+            customerID:'<%= id %>',
             name: '<%= name%>',
             WashType:'<%= washtype%>', 
             Interior_or_Exterior:'<%= intorext%>', 
@@ -285,7 +280,7 @@ function price() {
             time:document.getElementById('time-input').value,
            
         }).then(success => {
-          window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://i.pinimg.com/originals/e1/1d/e1/e11de1377c3c436f9b66d4a31d1bd798.png&display_text=<DISPLAY_TEXT>')
+          window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://contenthub-static.grammarly.com/blog/wp-content/uploads/2019/02/thank-you.jpg&display_text=<DISPLAY_TEXT>')
         }).catch(error => {
           console.log(error);
         })
