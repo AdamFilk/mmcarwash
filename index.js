@@ -348,8 +348,54 @@ app.post('/webhook', (req, res) => {
       }
       //end choose wash type
       //start choose int or ext
-      if(userInput=="regular" || userInput=="waterless"){
-
+      if(userInput=="regular"){
+      
+        let genericMessage ={
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "title":"Which one do you want clean and wash",
+                    "buttons":[
+                      {
+                      "type":"postback",
+                      "title":"Interior",
+                      "payload":userInput+"/int"
+                      },
+                      {
+                      "type":"postback",
+                      "title":"Exterior",
+                      "payload":userInput+"/ext"
+                      },
+                      {
+                      "type":"postback",
+                      "title":"Both",
+                      "payload":userInput+"/both"
+                      }
+                    ]
+                  },
+                  
+                ]
+              }
+            }
+          }
+        }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        genericMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+      }
+      if(userInput=="warterless"){
+      
         let genericMessage ={
           "recipient":{
             "id": webhook_event.sender.id
