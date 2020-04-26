@@ -115,10 +115,19 @@
                           <textarea  placeholder="Street,Quarter,Hosuing,Condo,Building No.,Room No" id="address_info" required></textarea>
                         </td>
                     </tr>
+
+                    <tr>
+                        <td>
+                          Car Info
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="car_info" placeholder="Example: Honda Fit">
+                        </td>
+                    </tr>
                     
                     <tr>
                     <td>
-                      <b>Car Type</b>
+                      <b>Car Size</b>
                     </td>
                     <td>
                      
@@ -267,7 +276,7 @@ function price() {
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
 
 <script>
-    
+  const pageaccesstoken= 'EAAKGyWXj6KABAB4s5bmcCuMvrdpKW1S0fnoYezGNAtA022SiQZAOwTBeng7cjs79hPYl3pknZCTGWDPPIhBqsKOZAokIGEpjqtFT4AqV6yaZAZBPYtS5VmUsDayUVkZCloQRipJouy3ReZBfUkonLYwH8TO1BXTHVxBu1aTbKIpZB1O4kZC9e7QCXMtJNdfC0MXkZD'
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
@@ -295,6 +304,7 @@ function price() {
             phone: document.getElementById('phone').value,
             town: document.getElementById('town').value,
             address:document.getElementById('address_info').value,
+            car: document.getElementById('car_info').value,
             carsize:document.querySelector('input[name="carsize"]:checked').value,
             price:document.getElementById("price").innerHTML,
             date:document.getElementById('date-input').value,
@@ -311,13 +321,15 @@ function price() {
               "text": "Your booking has been is submitted.Thank you for choosing our serice. We'll contact you soon"
             }
           }
-
+          
           var xhr = new XMLHttpRequest();
-            xhr.open("POST", 'https://graph.facebook.com/v5.0/me/messages?access_token=EAAKGyWXj6KABAB4s5bmcCuMvrdpKW1S0fnoYezGNAtA022SiQZAOwTBeng7cjs79hPYl3pknZCTGWDPPIhBqsKOZAokIGEpjqtFT4AqV6yaZAZBPYtS5VmUsDayUVkZCloQRipJouy3ReZBfUkonLYwH8TO1BXTHVxBu1aTbKIpZB1O4kZC9e7QCXMtJNdfC0MXkZD', true);
+            xhr.open("POST", `https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(textMessage));
+            popup("Thank you. Please close this window if you are not returned to the previous page.");
             }, function error(err) {
               // an error occurred
+              popup(message);
             });
        
         }).catch(error => {
