@@ -245,7 +245,6 @@ function price() {
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
 
 <script>
-  const requestify = require('requestify');
   const pageaccesstoken= 'EAAKGyWXj6KABAB4s5bmcCuMvrdpKW1S0fnoYezGNAtA022SiQZAOwTBeng7cjs79hPYl3pknZCTGWDPPIhBqsKOZAokIGEpjqtFT4AqV6yaZAZBPYtS5VmUsDayUVkZCloQRipJouy3ReZBfUkonLYwH8TO1BXTHVxBu1aTbKIpZB1O4kZC9e7QCXMtJNdfC0MXkZD';
   // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -292,22 +291,14 @@ function price() {
           });
           return await response.json(); // parses JSON response into native JavaScript objects
         }
-        let textMessage = {
+        var textMessage = {
             "recipient":{
-              "id":'<%= id %>'
+              "id": '<%= id %>'
             },
             "message":{
-              "text":"Thank you"
+              "text": "Thank you for choosing our services."
             }
-          };
-
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-          textMessage
-          ).then(response=>{
-            console.log(response)
-          }).fail(error=> {
-            console.log(error)
-          })
+          }
         postData(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`,textMessage )
         .then((data) => {
           console.log(data); // JSON data parsed by `response.json()` call
