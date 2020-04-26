@@ -62,49 +62,6 @@ app.get('/carwash/:washtype/:intorext/:name/:id', (req, res) => {
   res.render('carwash.ejs', {name:name, washtype:washType,intorext:intorext, id:senderID})
   
 })
-const thankyouReply = (sender_psid, ref) => { 
-  let response = {
-  "text": `Your data is saved`,    
-  };
-  callSend(sender_psid, response); 
-}
-app.post('/carwash',function(req,res){
-       
-  let name  = req.body.name;
-  let washtype = req.body.washtype;
-  let intorext = req.body.intorext;
-  let phone = req.body.phone;
-  let city = req.body.city;
-  let town = req.body.town;
-  let address = req.body.address;
-  let carinfo = req.body.carinfo;
-  let carsize = req.body.carsize;
-  let price = req.body.price;
-  let date = req.body.date;
-  let time = req.body.time;
-  let sender = req.body.sender;    
-
-  db.collection('Car Wash Booking').add({
-        
-        washtype:washtype,
-        intorext:intorext,
-        phone:phone,
-        city:city,
-        town:town,
-        address:address,
-        carinfo:carinfo,
-        carsize:carsize,
-        price:price,
-        date:date,
-        time:time,
-        sender:sender
-      }).then(success => {   
-         console.log("DATA SAVED")
-         thankyouReply(sender, name);    
-      }).catch(error => {
-        console.log(error);
-  });        
-});
 
 app.get('/prm_both/:package/:wtype/:name/:id', (req, res) => {
   var name = req.params.name;
@@ -242,7 +199,7 @@ app.post('/webhook', (req, res) => {
         
         }
         //end of select
-     
+
      //start booking
       if(userInput=="book"){
         let textMessage = {
@@ -372,7 +329,7 @@ app.post('/webhook', (req, res) => {
                       {
                       "type":"postback",
                       "title":"Select",
-                      "payload":"warterless"
+                      "payload":"waterless"
                       },
                     ]
                   }
@@ -391,8 +348,8 @@ app.post('/webhook', (req, res) => {
       }
       //end choose wash type
       //start choose int or ext
-      if(userInput=="regular" || userInput=="warterless"){
-      
+      if(userInput=="regular" || userInput=="waterless"){
+
         let genericMessage ={
           "recipient":{
             "id": webhook_event.sender.id
