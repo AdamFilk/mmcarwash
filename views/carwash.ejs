@@ -302,19 +302,36 @@ function price() {
            
         }).then(success => {
           MessengerExtensions.requestCloseBrowser(function success() {
-            var textMessage = {
+            var genericMessage = {
             "recipient":{
               "id":senderID
             },
             "message":{
-              "text": "Your booking has been is submitted.Thank you for choosing our serice. We'll contact you soon"
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "title":"Your booking form is submited. We will contact you soon",
+                    "buttons":[
+                      {
+                      "type":"postback",
+                      "title":"View Your Booking",
+                      "payload":"vb"
+                      },
+                    ]
+                  }
+                ]
+              }
             }
+          }
           }
 
           var xhr = new XMLHttpRequest();
             xhr.open("POST", `https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(textMessage));
+            xhr.send(JSON.stringify(genericMessage));
             popup("Thank you. Please close this window if you are not returned to the previous page.");
             }, function error(err) {
               popup(message);
