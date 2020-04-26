@@ -267,7 +267,7 @@ function price() {
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
 
 <script>
-     const pageaccesstoken = 'EAAKGyWXj6KABAB4s5bmcCuMvrdpKW1S0fnoYezGNAtA022SiQZAOwTBeng7cjs79hPYl3pknZCTGWDPPIhBqsKOZAokIGEpjqtFT4AqV6yaZAZBPYtS5VmUsDayUVkZCloQRipJouy3ReZBfUkonLYwH8TO1BXTHVxBu1aTbKIpZB1O4kZC9e7QCXMtJNdfC0MXkZD';
+      const pageaccesstoken = 'EAAKGyWXj6KABAB4s5bmcCuMvrdpKW1S0fnoYezGNAtA022SiQZAOwTBeng7cjs79hPYl3pknZCTGWDPPIhBqsKOZAokIGEpjqtFT4AqV6yaZAZBPYtS5VmUsDayUVkZCloQRipJouy3ReZBfUkonLYwH8TO1BXTHVxBu1aTbKIpZB1O4kZC9e7QCXMtJNdfC0MXkZD';
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
@@ -302,20 +302,38 @@ function price() {
            
         }).then(success => {
           MessengerExtensions.requestCloseBrowser(function success() {
-            var textMessage = {
-            "recipient":{
-              "id":senderID
-            },
-            "message":{
-              "text": 'Your booking has been is submitted. Go to "View Booking" in menu to review your booking\nThank you for choosing our service. we will contact you soon.'
+            var genericMessage ={
+          "recipient":{
+            "id": senderID
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "title":"Thank you",
+                    "buttons":[
+                      {
+                      "type":"postback",
+                      "title":"View Booking",
+                      "payload":"vb"
+                      },
+                    ]
+                  }
+                ]
+              }
             }
           }
+        }
           var xhr = new XMLHttpRequest();
             xhr.open("POST",`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(textMessage));
+            xhr.send(JSON.stringify(genericMessage));
             popup("Thank you. Please close this window if you are not returned to the previous page.");
             }, function error(err) {
+              // an error occurred
               popup(message);
             });
        
