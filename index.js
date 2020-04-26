@@ -514,8 +514,8 @@ app.post('/webhook', (req, res) => {
                       {
                         "type":"web_url",
                         "url":"https://mmcarwash.herokuapp.com/carwash/"+userInput+"/"+udetails.name+"/"+senderID,
-                        "messenger_extensions":true,
                         "title":"Fill the Form",
+                        "messenger_extensions":true,
                         "webview_height_ratio": "full",
                       },
                       
@@ -541,6 +541,42 @@ app.post('/webhook', (req, res) => {
         
       }
       //end booking form
+      if(userInput=="n_w"){
+
+        let genericMessage ={
+          "recipient":{
+            "id": webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "title":"Waterless Wash",
+                    "subtitle":"Good for cars anywhere,home,street,office,shopping center and Eco-friendly",
+                    "buttons":[
+                      {
+                      "type":"postback",
+                      "title":"Select",
+                      "payload":"waterless"
+                      },
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+        genericMessage
+        ).then(response=>{
+          console.log(response)
+        }).fail(error=> {
+          console.log(error)
+        })
+      }
      //end booking
        //end car wash
 
