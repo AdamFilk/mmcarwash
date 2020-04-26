@@ -579,7 +579,48 @@ app.post('/webhook', (req, res) => {
       }
      //end booking
        //end car wash
+//start plans
+if(userInput=="plans"){
+  
+  let genericMessage ={
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+              "title":"These are plans we offer",
+              "buttons":[
+                {
+                "type":"postback",
+                "title":"Book Now",
+                "payload":"now"
+                },
+                {
+                "type":"postback",
+                "title":"View Plans and Packages",
+                "payload":"cwpkg"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
 
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}
       //start basic interior
       
       
