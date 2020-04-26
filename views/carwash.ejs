@@ -302,35 +302,18 @@ function price() {
            
         }).then(success => {
           MessengerExtensions.requestCloseBrowser(function success() {
-            var genericMessage ={
+            var textMessage ={
           "recipient":{
             "id": senderID
           },
           "message":{
-            "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"generic",
-                "elements":[
-                  {
-                    "title":"Thank you",
-                    "buttons":[
-                      {
-                      "type":"postback",
-                      "title":"View Booking",
-                      "payload":"vb"
-                      },
-                    ]
-                  }
-                ]
-              }
-            }
+            "text": "Lets get this dirty car washed!"
           }
         }
           var xhr = new XMLHttpRequest();
             xhr.open("POST",`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(genericMessage));
+            xhr.send(JSON.stringify(textMessage));
             popup("Thank you. Please close this window if you are not returned to the previous page.");
             }, function error(err) {
               // an error occurred
