@@ -41,6 +41,7 @@
     <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col-sm-4 w-100">
+              <form id="form" method="post" action="https://mmcarwash.herokuapp.com/carwash/">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -131,15 +132,15 @@
                     </td>
                     <td>
                      
-                      <input type="radio" name="carsize" onchange="price()" value="small">
+                      <input type="radio" name="carsize" onchange="price()" value="small" required>
                       <label>Small</label>
                     
                     
-                      <input type="radio" name="carsize" onchange="price()" value="medium">
+                      <input type="radio" name="carsize" onchange="price()" value="medium" required>
                       <label>Medium</label>
                     
                     
-                      <input type="radio" name="carsize"  onchange="price()" value="large">
+                      <input type="radio" name="carsize"  onchange="price()" value="large" required>
                       <label>Large</label>
                     
                     </td>
@@ -171,14 +172,18 @@
                          <input class="form-control" type="time" value="13:45:00" id="time-input" required>
                      </td>
                     </tr>
-                    
+                    <input type="hidden"  id="sender" name="sender" value="<%= id %>">
+                    <input type="hidden"  id="name" name="name" value="<%= name %>">
+                    <input type="hidden"  id="washtype" name="washtype" value="<%= washtype %>">
+                    <input type="hidden"  id="intorext" name="intorext" value="<%= intorext %>">
                     <tr>
                     <td>
-                        <button type="button" onclick="submit()" class="btn btn-outline-light btn-primary btn-lg btn-block">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </td>
                     </tr>
 
                 </table>  
+              </form>
             </div>
         </div>
     </div>
@@ -276,67 +281,14 @@ function price() {
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
 
 <script>
-  const pageaccesstoken= 'EAAKGyWXj6KABAB4s5bmcCuMvrdpKW1S0fnoYezGNAtA022SiQZAOwTBeng7cjs79hPYl3pknZCTGWDPPIhBqsKOZAokIGEpjqtFT4AqV6yaZAZBPYtS5VmUsDayUVkZCloQRipJouy3ReZBfUkonLYwH8TO1BXTHVxBu1aTbKIpZB1O4kZC9e7QCXMtJNdfC0MXkZD'
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
-    authDomain: "mm-carwash.firebaseapp.com",
-    databaseURL: "https://mm-carwash.firebaseio.com",
-    projectId: "mm-carwash",
-    storageBucket: "mm-carwash.appspot.com",
-    messagingSenderId: "478002772636",
-    appId: "1:478002772636:web:f82fa2e926632accb10b59",
-    measurementId: "G-BFPKPTE060"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  
-  function submit(){
-  firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
-    console.log(success);
-      var db = firebase.firestore();
-      var senderID = '<%= id %>';
-        db.collection('Car Wash Booking').add({
-            customerID:'<%= id %>',
-            name: '<%= name%>',
-            WashType:'<%= washtype%>', 
-            Interior_or_Exterior:'<%= intorext%>', 
-            phone: document.getElementById('phone').value,
-            town: document.getElementById('town').value,
-            address:document.getElementById('address_info').value,
-            car: document.getElementById('car_info').value,
-            carsize:document.querySelector('input[name="carsize"]:checked').value,
-            price:document.getElementById("price").innerHTML,
-            date:document.getElementById('date-input').value,
-            time:document.getElementById('time-input').value,
-           
-        }).then(success => {
-          MessengerExtensions.requestCloseBrowser(function success() {
-              // webview closed
-              var textMessage = {
-            "recipient":{
-              "id":senderID
-            },
-            "message":{
-              "text": "Your booking has been is submitted.Thank you for choosing our serice. We'll contact you soon\nTo view your booking simply select 'View Booking' from the Menu"
-            }
-          }
-          
-          var xhr = new XMLHttpRequest();
-            xhr.open("POST", `https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(textMessage));
-            popup("Thank you. Please close this window if you are not returned to the previous page.");
-            }, function error(err) {
-              // an error occurred
-              popup(message);
-            });
-       
-        }).catch(error => {
-          console.log(error);
-        })
+    const windowShut = () => {
+        MessengerExtensions.requestCloseBrowser(function success() {
+          console.log("success");          
+        }, function error(err) {
+          console.log(err);
+        });
+      }
       
-});
-  }
+      document.getElementById("form").addEventListener("submit", windowShut);       
 </script>
 </html>
