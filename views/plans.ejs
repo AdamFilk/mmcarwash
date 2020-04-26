@@ -44,7 +44,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <td colspan="2" class="text-center"><h2>Car Wash Booking Form</h2></td>
+                            <td colspan="2" class="text-center"><h2>Car Wash Plan Booking Form</h2></td>
                         </tr>
                     </thead>
                     <tr>
@@ -155,11 +155,25 @@
                         </tr>
                         
                       <tr>
-                        <td><b>Date</b> </td>
+                        <td><b>Start Date</b> </td>
                         <td>
                                 
-                            <input class="form-control" type="date" value="2020-08-19" id="date-input" required>
+                            <input class="form-control" type="date" value="2020-08-19" id="startdate" onchange="getEndDate()" required>
                               
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Period</b></td>
+                        <td>
+                            Warranty period : <input id="period" value="4" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>End Date</b>
+                        </td>
+                        <td>
+                            <input class="form-control" readonly type="date" id="enddate" required>
                         </td>
                     </tr>
                     
@@ -184,6 +198,51 @@
     </div>
     
 </body>
+<script>
+    function getEndDate(){
+
+    var period = $('#period').val();
+    var value = parseInt(period); 
+    var StartDate = $('#startdate').val();
+    var StartDate = StartDate.split('-');
+    var StartDate = StartDate[0]+'/'+StartDate[1]+'/'+StartDate[2];
+    var dateString = StartDate; // date string
+    var actualDate = new Date(dateString); // convert to actual date
+    var newDate = new Date(actualDate.getFullYear(), actualDate.getMonth()+value, actualDate.getDate());
+    var myDate = new Date(newDate);
+    var myDate = myDate.toLocaleString();
+    var myDate = myDate.split(',');
+    var myDate = myDate[0];
+    var myDate = myDate.split('/');
+    var year = myDate[2];
+    var month = '';
+    var date = '';
+
+    if(myDate[0].length < 2){
+
+        month = '0'+myDate[0];
+    }else{
+        month = myDate[0];
+
+    }
+
+
+    if(myDate[1].length < 2){
+
+        date = '0'+myDate[1];
+    }else{
+        date = myDate[1];
+
+    }
+
+    var EndDate = year+'-'+month+'-'+date;
+
+
+    $( "#enddate" ).val(EndDate);
+
+
+    }
+</script>
 <script>
 function checkNumber() {
     var phone = document.getElementById('phone').value;
@@ -296,7 +355,7 @@ function price() {
     console.log(success);
       var db = firebase.firestore();
       var senderID = '<%= id %>';
-        db.collection('Booking/CarWashBook').add({
+        db.collection('Car Wash Book').add({
             customerID:'<%= id %>',
             name: '<%= name%>',
             WashType:'<%= washtype%>', 
