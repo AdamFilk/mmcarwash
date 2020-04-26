@@ -85,7 +85,7 @@ app.post('/carwash',function(req,res){
   let sender = req.body.sender;    
 
   db.collection('Car Wash Booking').add({
-        name: name,
+        
         washtype:washtype,
         intorext:intorext,
         phone:phone,
