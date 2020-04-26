@@ -296,7 +296,7 @@ function price() {
     console.log(success);
       var db = firebase.firestore();
       var senderID = '<%= id %>';
-        db.collection('Booking').doc('Car Wash Booking').add({
+        db.collection('Booking').doc('Car Wash Booking').set({
             customerID:'<%= id %>',
             name: '<%= name%>',
             WashType:'<%= washtype%>', 
