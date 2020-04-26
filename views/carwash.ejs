@@ -310,15 +310,11 @@ function price() {
               "text": "Your booking has been is submitted.Thank you for choosing our serice. We'll contact you soon"
             }
           }
-
           var xhr = new XMLHttpRequest();
             xhr.open("POST", `https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(textMessage));
-            popup("Thank you. Please close this window if you are not returned to the previous page.");
             }, function error(err) {
-              // an error occurred
-              popup(message);
             });
        
         }).catch(error => {
