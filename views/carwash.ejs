@@ -131,28 +131,64 @@
                     </td>
                     <td>
                      
-                      <input type="radio" name="carsize" onchange="price()" value="small">
+                      <input type="radio" name="carsize" onchange="price(),addtotal()" value="small">
                       <label>Small</label>
                     
                     
-                      <input type="radio" name="carsize" onchange="price()" value="medium">
+                      <input type="radio" name="carsize" onchange="price(),addtotal()" value="medium">
                       <label>Medium</label>
                     
                     
-                      <input type="radio" name="carsize"  onchange="price()" value="large">
+                      <input type="radio" name="carsize"  onchange="price(),addtotal()" value="large">
                       <label>Large</label>
                     
                     </td>
                     </tr>
-                    
-                     <tr>
-                          <td>
-                           <b>Price:</b> 
-                          </td>
-                          <td>
-                            <p id="price"></p>
-                          </td>
-                        </tr>
+                    <tr>
+                      <td>
+                       <b>Normal Price:</b> 
+                      </td>
+                      <td>
+                        <p id="price"></p> Ks
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Add-Ons Services
+                      </td>
+                      <td> 
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="addon0" value="2000" onclick="UpdateCost(),addtotal()">
+                          <label class="custom-control-label" for="addon0">Pet Hair Removal</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="addon1" value="3000" onclick="UpdateCost(),addtotal()">
+                          <label class="custom-control-label" for="addon1">Wax</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="addon2" value="4000" onclick="UpdateCost(),addtotal()">
+                          <label class="custom-control-label" for="addon2">Sratch Removal</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="addon3" value="5000" onclick="UpdateCost(),addtotal()">
+                          <label class="custom-control-label" for="addon3">Clay Bar Treatment</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="addon4" value="6000" onclick="UpdateCost(),addtotal()">
+                          <label class="custom-control-label" for="addon4">Tire and alloy cleaning</label>
+                        </div>
+                        
+                        <b>Addon Cost: Kyats</b><input class="form-control" type="text" readonly id="addoncost" value="0">
+                    </td>
+                    </tr>
+                    <tr>
+                      <td>
+                       <b>Total Price:</b> 
+                      </td>
+                      <td>
+                        <p id="total"></p> 
+                      </td>
+                    </tr>
                         
                       <tr>
                         <td><b>Date</b> </td>
@@ -194,6 +230,11 @@ function checkNumber() {
         document.getElementById('warningPhone').style.display = "none";
     }
 }
+function addtotal(){
+  var price= document.getElementById('price').value;
+  var addon_price= document.getElementById('addoncost'.value);
+  document.getElementById("total").innerHTML = price+addon_price+"Ks";
+}
 
 function price() {
   var value = document.querySelector('input[name="carsize"]:checked');
@@ -201,72 +242,84 @@ function price() {
   console.log(value);
  if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="int"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= "3000Ks"
+    document.getElementById("price").innerHTML= 3000
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML="4000Ks"
+    document.getElementById("price").innerHTML=4000
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML="5000Ks"
+    document.getElementById("price").innerHTML=5000
   }
  }
  else if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="ext"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= "3000Ks"
+    document.getElementById("price").innerHTML= 3000
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML="4000Ks"
+    document.getElementById("price").innerHTML=4000
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML="5000Ks"
+    document.getElementById("price").innerHTML=5000
   }
  }
  else if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="both"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= "5000Ks"
+    document.getElementById("price").innerHTML= 5000
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML="7000Ks"
+    document.getElementById("price").innerHTML=7000
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML="9000Ks"
+    document.getElementById("price").innerHTML=9000
   }
  }
  else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="int"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= "4000Ks"
+    document.getElementById("price").innerHTML= 4000
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML="5000Ks"
+    document.getElementById("price").innerHTML=5000
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML="6000Ks"
+    document.getElementById("price").innerHTML=6000
   }
  }
  else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="ext"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= "4000Ks"
+    document.getElementById("price").innerHTML= 4000
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML="5000Ks"
+    document.getElementById("price").innerHTML=5000
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML="6000Ks"
+    document.getElementById("price").innerHTML=6000
   }
  }
  else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="both"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= "7000Ks"
+    document.getElementById("price").innerHTML= 7000
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML="9000Ks"
+    document.getElementById("price").innerHTML=9000
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML="11000Ks"
+    document.getElementById("price").innerHTML=11000
   }
  }
 
 }
+
+function UpdateCost() {
+  var sum = 0;
+  var gn, elem;
+  for (i=0; i<5; i++) {
+    gn = 'addon'+i;
+    elem = document.getElementById(gn);
+    if (elem.checked == true) { sum += Number(elem.value); }
+  }
+  document.getElementById('addoncost').value = sum.toFixed(2);
+} 
+
 </script>
 
 
