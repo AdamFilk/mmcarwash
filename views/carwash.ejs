@@ -170,7 +170,7 @@
                           <label class="custom-control-label" for="addon4">Tire and alloy cleaning</label>
                         </div>
                         
-                     <p id="addoncost"></p>
+                     <input type="number" id="addoncost" value="0">
                     </td>
                     </tr>
                     <tr>
@@ -231,7 +231,7 @@ function price() {
   console.log(value);
  if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="int"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= "3000"+ addon_price;
+    document.getElementById("price").innerHTML= 3000+ addon_price;
   }
   else if(value=="medium"){
     document.getElementById("price").innerHTML="4000"
