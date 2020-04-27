@@ -149,7 +149,7 @@
                        <b>Normal Price:</b> 
                       </td>
                       <td>
-                        <p id="price"></p> Ks
+                        <input class="form-control" type="number" readonly id="price" value="0">
                       </td>
                     </tr>
                     <tr>
@@ -178,7 +178,7 @@
                           <label class="custom-control-label" for="addon4">Tire and alloy cleaning</label>
                         </div>
                         
-                        <b>Addon Cost: Kyats</b><input class="form-control" type="text" readonly id="addoncost" value="0">
+                        <b>Addon Cost: Kyats</b><input class="form-control" type="number" readonly id="addoncost" value="0">
                     </td>
                     </tr>
                     <tr>
@@ -186,10 +186,10 @@
                        <b>Total Price:</b> 
                       </td>
                       <td>
-                        <p id="total"></p> 
+                      
                       </td>
                     </tr>
-                        
+                    <input class="form-control" type="number" readonly id="total" value="0">
                       <tr>
                         <td><b>Date</b> </td>
                         <td>
@@ -242,68 +242,68 @@ function price() {
   console.log(value);
  if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="int"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= 3000
+    document.getElementById("price").innerHTML= "3000"
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML=4000
+    document.getElementById("price").innerHTML="4000"
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML=5000
+    document.getElementById("price").innerHTML="5000"
   }
  }
  else if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="ext"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= 3000
+    document.getElementById("price").innerHTML= "3000"
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML=4000
+    document.getElementById("price").innerHTML="4000"
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML=5000
+    document.getElementById("price").innerHTML="5000"
   }
  }
  else if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="both"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= 5000
+    document.getElementById("price").innerHTML= "5000"
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML=7000
+    document.getElementById("price").innerHTML="7000"
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML=9000
+    document.getElementById("price").innerHTML="9000"
   }
  }
  else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="int"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= 4000
+    document.getElementById("price").innerHTML= "4000"
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML=5000
+    document.getElementById("price").innerHTML="5000"
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML=6000
+    document.getElementById("price").innerHTML="6000"
   }
  }
  else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="ext"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= 4000
+    document.getElementById("price").innerHTML= "4000"
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML=5000
+    document.getElementById("price").innerHTML="5000"
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML=6000
+    document.getElementById("price").innerHTML="6000"
   }
  }
  else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="both"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= 7000
+    document.getElementById("price").innerHTML= "7000"
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML=9000
+    document.getElementById("price").innerHTML="9000"
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML=11000
+    document.getElementById("price").innerHTML="11000"
   }
  }
 
@@ -317,7 +317,7 @@ function UpdateCost() {
     elem = document.getElementById(gn);
     if (elem.checked == true) { sum += Number(elem.value); }
   }
-  document.getElementById('addoncost').value = sum.toFixed(2);
+  document.getElementById('addoncost').innerHTML = sum.toFixed(2);
 } 
 
 </script>
