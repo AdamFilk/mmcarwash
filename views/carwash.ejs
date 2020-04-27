@@ -195,7 +195,7 @@
                       </td>
                       <td>
                         <input type="text" id="price" value="0" hidden readonly>
-                        <p id="total"></p>
+                        The total price is <p id="total"></p> Ks
                       </td>
                     </tr>
                     
@@ -245,7 +245,7 @@ var p=document.getElementById('price').value;
 var a= document.getElementById('addoncost').value;
 var result =parseFloat(p)+parseFloat(a);
 if (!isNaN(result)){
-  document.getElementById('total').innerHTML= "The total cost is:"+ result;
+  document.getElementById('total').innerHTML= result;
 }
 }
 
@@ -344,35 +344,6 @@ function UpdateCost() {
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
 
 <script>
-  function postMessage(){
-            var textMessage = {
-            "recipient":{
-              "id":senderID
-            },
-            "message":{
-              "text": "Your booking has been is submitted.Thank you for choosing our serice. We'll contact you soon\nTo view your booking simply select 'View Booking' from the Menu"
-            }
-          }
-          
-          var xhr = new XMLHttpRequest();
-            xhr.open("POST", `https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(textMessage));
-          }
-
-          function windowShut(){
-            MessengerExtensions.requestCloseBrowser(function success() {
-              // webview closed
-            popup("Thank you. Please close this window if you are not returned to the previous page.");
-            }, function error(err) {
-              // an error occurred
-              popup(message);
-            });
-          }
-      function proceed(){
-        postMessage();
-        windowShut();
-      }  
   const pageaccesstoken= 'EAAKGyWXj6KABAB4s5bmcCuMvrdpKW1S0fnoYezGNAtA022SiQZAOwTBeng7cjs79hPYl3pknZCTGWDPPIhBqsKOZAokIGEpjqtFT4AqV6yaZAZBPYtS5VmUsDayUVkZCloQRipJouy3ReZBfUkonLYwH8TO1BXTHVxBu1aTbKIpZB1O4kZC9e7QCXMtJNdfC0MXkZD'
   // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -416,13 +387,31 @@ function UpdateCost() {
             time:document.getElementById('time-input').value,
            
         }).then(success => {
-          proceed();
-
+          MessengerExtensions.requestCloseBrowser(function success() {
+              // webview closed
+              var textMessage = {
+            "recipient":{
+              "id":senderID
+            },
+            "message":{
+              "text": "Your booking has been is submitted.Thank you for choosing our serice. We'll contact you soon\nTo view your booking simply select 'View Booking' from the Menu"
+            }
+          }
           
+          var xhr = new XMLHttpRequest();
+            xhr.open("POST", `https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify(textMessage));
+            popup("Thank you. Please close this window if you are not returned to the previous page.");
+            }, function error(err) {
+              // an error occurred
+              popup(message);
+            });
+       
         }).catch(error => {
           console.log(error);
         })
-        
+      
 });
   }
 </script>
