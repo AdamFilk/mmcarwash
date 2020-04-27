@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col-sm-4 w-100">
+                <table class="table table-bordered">
+                   
+                       <tr>
+                        <td>Phone</td>
+                        <td><p id="phone"></p></td>
+                       </tr>
+                        <tr>
+                            <td>City</td>
+                            <td><p id="city"></p></td>
+                        </tr>
+                        <tr>
+                            <td>Town</td>
+                            <td><p id="town"></p></td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td><p id="address"></p></td>
+                        </tr>
+                        <tr>
+                            <td>Car Plate</td>
+                            <td><p id="carplate"></p></td>
+                        </tr>
+                        <tr>
+                            <td>Car Brand</td>
+                            <td><p id="carbrand"></p></td>
+                        </tr>
+                        <tr>
+                            <td>Car Model</td>
+                            <td><p id="carmodel"></p></td>
+                        </tr>
+                        <tr>
+                                <td>Car-Size</td>
+                                <td><p id="carmodel"></p></td>
+                        </tr>
+                        <tr>
+                            <td>Add-ons:</td>
+                            <td>
+                                <ul>
+                                    <li id='addons'></li>
+                                </ul>
+                            </td>
+                           
+                        </tr>
+                         <tr>
+                            <td>Date</td>
+                            <td><p id="carmodel"></p></td>
+                         </tr>   
+                            <tr>
+                                <td>Time</td>
+                                <td><p id="carmodel"></p></td>
+                            </tr>
+                            <tr>
+                                <td>Total Price</td>
+                                <td><p id="carmodel"></p></td>
+                            </tr>
+                          
+                        
+
+                        
+
+                    
+                    
+
+                </table>  
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+  
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
+      authDomain: "mm-carwash.firebaseapp.com",
+      databaseURL: "https://mm-carwash.firebaseio.com",
+      projectId: "mm-carwash",
+      storageBucket: "mm-carwash.appspot.com",
+      messagingSenderId: "478002772636",
+      appId: "1:478002772636:web:f82fa2e926632accb10b59",
+      measurementId: "G-BFPKPTE060"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
+    console.log(success);
+    var db = firebase.firestore();
+    let bookingRef = db.collection('Car Wash Book');
+    let query = bookingRef.where('customerID', '==', '2934001399996860').get()
+  .then(snapshot => {
+    if (snapshot.empty) {
+      console.log('No matching documents.');
+      return;
+    }  
+
+    snapshot.forEach(doc => {
+      console.log(doc.id, '=>', doc.data());
+    });
+  })
+  .catch(err => {
+    console.log('Error getting documents', err);
+  });
+
+ 
+});
+  
+</script>
+</html>

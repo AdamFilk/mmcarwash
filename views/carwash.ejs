@@ -118,12 +118,28 @@
 
                     <tr>
                         <td>
-                          Car Info
+                          Car Plate
                         </td>
                         <td>
-                          <input type="text" class="form-control" id="car_info" placeholder="Example: Honda Fit">
+                          <input type="text" class="form-control" id="car_plate" placeholder="Example: Honda Fit">
                         </td>
                     </tr>
+                    <tr>
+                      <td>
+                        Car Brand
+                      </td>
+                      <td>
+                        <input type="text" class="form-control" id="car_brand" placeholder="Example: Toyota">
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Car Model
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" id="car_model" placeholder="Example: Mark 2">
+                    </td>
+                </tr>
                     
                     <tr>
                     <td>
@@ -150,27 +166,27 @@
                       </td>
                       <td> 
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="addon0" value="2000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon0" value="2000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon0">Pet Hair Removal</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="addon1" value="3000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon1" value="3000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon1">Wax</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="addon2" value="4000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon2" value="4000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon2">Sratch Removal</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="addon3" value="5000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon3" value="5000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon3">Clay Bar Treatment</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="addon4" value="6000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon4" value="6000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon4">Tire and alloy cleaning</label>
                         </div>
                         
-                     <input type="text" id="addoncost" value="0" readonly>
+                     <input class="form-control" type="text" id="addoncost" value="0" readonly>
                     </td>
                     </tr>
                     <tr>
@@ -178,7 +194,7 @@
                        <b>Total Price:</b> 
                       </td>
                       <td>
-                        <input type="text" id="price" value="0" readonly>
+                        <input type="text" id="price" value="0" hidden readonly>
                         <p id="total"></p>
                       </td>
                     </tr>
@@ -349,6 +365,7 @@ function UpdateCost() {
       var db = firebase.firestore();
       var senderID = '<%= id %>';
         db.collection('Car Wash Book').add({
+            
             customerID:'<%= id %>',
             name: '<%= name%>',
             WashType:'<%= washtype%>', 
@@ -356,9 +373,12 @@ function UpdateCost() {
             phone: document.getElementById('phone').value,
             town: document.getElementById('town').value,
             address:document.getElementById('address_info').value,
-            car: document.getElementById('car_info').value,
+            car_plate: document.getElementById('car_plate').value,
+            car_brand: document.getElementById('brand').value,
+            car_model: document.getElementById('car_model').value,
             carsize:document.querySelector('input[name="carsize"]:checked').value,
-            price:document.getElementById("price").innerHTML,
+            addon:document.querySelector('input[name="addon"]:checked').innerHTML,
+            price:document.getElementById("total").innerHTML,
             date:document.getElementById('date-input').value,
             time:document.getElementById('time-input').value,
            
