@@ -35,23 +35,8 @@ app.set('views', __dirname+'/views');
 
 
 
-app.get('/b_both/:package/:wtype/:name/:id', (req, res) => {
-  var name = req.params.name;
-  var washpackage=req.params.package;
-  var wtype=req.params.wtype;
-  var senderID=req.params.id;
-  res.render('b_both.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
-  
-})
 
-app.get('/s_both/:package/:wtype/:name/:id', (req, res) => {
-  var name = req.params.name;
-  var washpackage=req.params.package;
-  var wtype=req.params.wtype;
-  var senderID=req.params.id;
-  res.render('s_both.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
-  
-})
+
 
 app.get('/carwash/:washtype/:intorext/:name/:id', (req, res) => {
 
@@ -63,14 +48,7 @@ app.get('/carwash/:washtype/:intorext/:name/:id', (req, res) => {
   
 })
 
-app.get('/prm_both/:package/:wtype/:name/:id', (req, res) => {
-  var name = req.params.name;
-  var washpackage=req.params.package;
-  var wtype=req.params.wtype;
-  var senderID=req.params.id;
-  res.render('prm_both.ejs', {name:name, package:washpackage, wtype:wtype,id:senderID})
-  
-})
+
 
 app.get('/whitelists',function(req,res){    
   whitelistDomains(res);
@@ -231,7 +209,7 @@ app.post('/webhook', (req, res) => {
                       {
                       "type":"postback",
                       "title":"View Plans and Packages",
-                      "payload":"cwpkg"
+                      "payload":"plans"
                       }
                     ]
                   }
@@ -580,48 +558,8 @@ app.post('/webhook', (req, res) => {
      //end booking
        //end car wash
 //start plans
-if(userInput=="plans"){
-  
-  let genericMessage ={
-    "recipient":{
-      "id": webhook_event.sender.id
-    },
-    "message":{
-      "attachment":{
-        "type":"template",
-        "payload":{
-          "template_type":"generic",
-          "elements":[
-            {
-              "title":"These are plans we offer",
-              "buttons":[
-                {
-                "type":"postback",
-                "title":"Book Now",
-                "payload":"now"
-                },
-                {
-                "type":"postback",
-                "title":"View Plans and Packages",
-                "payload":"cwpkg"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    }
-  }
 
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-  genericMessage
-  ).then(response=>{
-    console.log(response)
-  }).fail(error=> {
-    console.log(error)
-  })
-}
-      //start basic interior
+//end plans
       
       
   //end basic ext
