@@ -186,10 +186,10 @@
                        <b>Total Price:</b> 
                       </td>
                       <td>
-                      
+                        <input class="form-control" type="number" readonly id="total" value="0">
                       </td>
                     </tr>
-                    <input class="form-control" type="number" readonly id="total" value="0">
+                    
                       <tr>
                         <td><b>Date</b> </td>
                         <td>
@@ -317,7 +317,7 @@ function UpdateCost() {
     elem = document.getElementById(gn);
     if (elem.checked == true) { sum += Number(elem.value); }
   }
-  document.getElementById('addoncost').innerHTML = sum.toFixed(2);
+  document.getElementById('addoncost').value = sum.toFixed(2);
 } 
 
 </script>
