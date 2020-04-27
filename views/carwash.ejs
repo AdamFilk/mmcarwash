@@ -146,14 +146,6 @@
                     </tr>
                     <tr>
                       <td>
-                       <b>Normal Price:</b> 
-                      </td>
-                      <td>
-                        <p id="price"></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
                         Add-Ons Services
                       </td>
                       <td> 
@@ -186,7 +178,7 @@
                        <b>Total Price:</b> 
                       </td>
                       <td>
-                       <p id="total"></p>
+                       <p id="price"></p>
                       </td>
                     </tr>
                     
@@ -231,19 +223,15 @@ function checkNumber() {
     }
 }
 
-  var normalprice= document.getElementById('price').innerHTML;
-  var addon_price= document.getElementById('addoncost').innerHTML;
-  var total =document.getElementById("total").innerHTML ;
-  total= normalprice+addon_price;
-
 
 function price() {
+  var addon_price= document.getElementById('addoncost').innerHTML;
   var value = document.querySelector('input[name="carsize"]:checked');
   value = value.value;
   console.log(value);
  if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="int"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= "3000"
+    document.getElementById("price").innerHTML= "3000"+ addon_price;
   }
   else if(value=="medium"){
     document.getElementById("price").innerHTML="4000"
