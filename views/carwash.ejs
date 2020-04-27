@@ -225,13 +225,13 @@ function checkNumber() {
 
 
 function price() {
-  var addon_price= document.getElementById('addoncost').value;
+  var addon = docuemnt.getElementById('addoncost').value
   var value = document.querySelector('input[name="carsize"]:checked');
   value = value.value;
   console.log(value);
  if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="int"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= 3000+ addon_price;
+    document.getElementById("price").innerHTML= 3000 + +addon
   }
   else if(value=="medium"){
     document.getElementById("price").innerHTML="4000"
