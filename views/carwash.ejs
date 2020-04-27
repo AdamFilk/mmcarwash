@@ -131,15 +131,15 @@
                     </td>
                     <td>
                      
-                      <input type="radio" name="carsize" onchange="price()" value="small">
+                      <input type="radio" name="carsize" onchange="price(),calculate()" value="small">
                       <label>Small</label>
                     
                     
-                      <input type="radio" name="carsize" onchange="price()" value="medium">
+                      <input type="radio" name="carsize" onchange="price(),calculate()" value="medium">
                       <label>Medium</label>
                     
                     
-                      <input type="radio" name="carsize"  onchange="price()" value="large">
+                      <input type="radio" name="carsize"  onchange="price(),calculate()" value="large">
                       <label>Large</label>
                     
                     </td>
@@ -150,23 +150,23 @@
                       </td>
                       <td> 
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="addon0" value="2000" onclick="UpdateCost()">
+                          <input type="checkbox" class="custom-control-input" id="addon0" value="2000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon0">Pet Hair Removal</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="addon1" value="3000" onclick="UpdateCost()">
+                          <input type="checkbox" class="custom-control-input" id="addon1" value="3000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon1">Wax</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="addon2" value="4000" onclick="UpdateCost()">
+                          <input type="checkbox" class="custom-control-input" id="addon2" value="4000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon2">Sratch Removal</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="addon3" value="5000" onclick="UpdateCost()">
+                          <input type="checkbox" class="custom-control-input" id="addon3" value="5000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon3">Clay Bar Treatment</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="addon4" value="6000" onclick="UpdateCost()">
+                          <input type="checkbox" class="custom-control-input" id="addon4" value="6000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon4">Tire and alloy cleaning</label>
                         </div>
                         
@@ -224,13 +224,15 @@ function checkNumber() {
     }
 }
 
-
+function calculate(){
 var p=document.getElementById('price').value;
 var a= document.getElementById('addoncost').value;
 var result =parseFloat(p)+parseFloat(a);
 if (!isNaN(result)){
   document.getElementById('total').innerHTML= "The total cost is:"+ result;
 }
+}
+
 
 function price() {
   
