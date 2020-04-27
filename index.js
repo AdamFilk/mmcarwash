@@ -33,8 +33,15 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname+'/views');
 
 
+app.get('/plans/:month/:plan/:name/:id', (req, res) => {
 
-
+  var name = req.params.name;
+  var month=req.params.month;
+  var plan=req.params.plan;
+  var senderID=req.params.id;
+  res.render('plans.ejs', {name:name, month:month,plan:plan, id:senderID})
+  
+})
 
 
 
@@ -558,6 +565,403 @@ app.post('/webhook', (req, res) => {
      //end booking
        //end car wash
 //start plans
+if(userInput=="plans"){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "If you subscribe to our plan, we will provide you with unlimited car wash for subscribed number of month/s"
+    }
+  };
+  let genericMessage ={
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+              "title":"Bronze plan",
+              "subtitle":"Available plans",
+              "buttons":[
+                {
+                "type":"postback",
+                "title":"Select",
+                "payload":"bronze"
+                }
+              ]
+            },
+            {
+              "title":"Silver plan",
+              "subtitle":"Available plans",
+              "buttons":[
+                {
+                "type":"postback",
+                "title":"Select",
+                "payload":"silver"
+                }
+              ]
+            },
+            {
+              "title":"Gold plan",
+              "subtitle":"Available plans",
+              "buttons":[
+                {
+                "type":"postback",
+                "title":"Gold",
+                "payload":"gold"
+                }
+              ]
+            },
+            {
+              "title":"Platinum Plan",
+              "subtitle":"Available plans",
+              "buttons":[
+                {
+                "type":"postback",
+                "title":"Select",
+                "payload":"platinum"
+                }
+              ]
+            },
+            {
+              "title":"Diamond Plans",
+              "buttons":[
+                {
+                "type":"postback",
+                "title":"Select",
+                "payload":"diamond"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}
+if(userInput=="bronze" ){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "What's in the plan:\nExterior body wash✔️\nRims & Tire Shine✔️"
+    }
+  };
+  let genericMessage ={
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+              "title":"Select how many months do you want to subscribe for this plan",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/plans/1"+userInput+"/"+udetails.name+"/"+senderID,
+                  "title":"Fill the Form",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
+                },
+                {
+                "type":"postback",
+                "title":"2 months",
+                "payload":userInput+"/2"
+                },
+                {
+                "type":"postback",
+                "title":"3 months",
+                "payload":userInput+"/3"
+                }
+              ]
+            },
+            
+          ]
+        }
+      }
+    }
+  }
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}
+if(userInput=="silver" ){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "What's in the plan:\nExterior body wash✔️Rims & Tire Shine✔️Interior Vacuum✔️Wipe all Surfaces✔️Interior Windows✔️"
+    }
+  };
+  let genericMessage ={
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+              "title":"Select how many months do you want to subscribe for this plan",
+              "buttons":[
+                {
+                "type":"postback",
+                "title":"1 month",
+                "payload":userInput+"/1"
+                },
+                {
+                "type":"postback",
+                "title":"2 months",
+                "payload":userInput+"/2"
+                },
+                {
+                "type":"postback",
+                "title":"3 months",
+                "payload":userInput+"/3"
+                }
+              ]
+            },
+            
+          ]
+        }
+      }
+    }
+  }
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}
+if(userInput=="gold" ){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️"
+    }
+  };
+  let genericMessage ={
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+              "title":"Select how many months do you want to subscribe for this plan",
+              "buttons":[
+                {
+                "type":"postback",
+                "title":"1 month",
+                "payload":userInput+"/1"
+                },
+                {
+                "type":"postback",
+                "title":"2 months",
+                "payload":userInput+"/2"
+                },
+                {
+                "type":"postback",
+                "title":"3 months",
+                "payload":userInput+"/3"
+                }
+              ]
+            },
+            
+          ]
+        }
+      }
+    }
+  }
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}
+if(userInput=="platinum" ){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\nClay bar polish✔️\nHard Coat Hand Wax✔️"
+    }
+  };
+  let genericMessage ={
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+              "title":"Select how many months do you want to subscribe for this plan",
+              "buttons":[
+                {
+                "type":"postback",
+                "title":"1 month",
+                "payload":userInput+"/1"
+                },
+                {
+                "type":"postback",
+                "title":"2 months",
+                "payload":userInput+"/2"
+                },
+                {
+                "type":"postback",
+                "title":"3 months",
+                "payload":userInput+"/3"
+                }
+              ]
+            },
+            
+          ]
+        }
+      }
+    }
+  }
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}
+if(userInput=="diamond" ){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\nClay bar polish✔️\nHard Coat Hand Wax✔️\nPaint Polish and Hybrid Ceramic Sealant✔️\nExterior Plastic Dressing w/ UV Protection✔️"
+    }
+  };
+  let genericMessage ={
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+              "title":"Select how many months do you want to subscribe for this plan",
+              "buttons":[
+                {
+                "type":"postback",
+                "title":"1 month",
+                "payload":userInput+"/1"
+                },
+                {
+                "type":"postback",
+                "title":"2 months",
+                "payload":userInput+"/2"
+                },
+                {
+                "type":"postback",
+                "title":"3 months",
+                "payload":userInput+"/3"
+                }
+              ]
+            },
+            
+          ]
+        }
+      }
+    }
+  }
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}
+
 
 //end plans
       

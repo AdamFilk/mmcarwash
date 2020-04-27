@@ -117,13 +117,29 @@
                     </tr>
 
                     <tr>
-                        <td>
-                          Car Info
-                        </td>
-                        <td>
-                          <input type="text" class="form-control" id="car_info" placeholder="Example: Honda Fit">
-                        </td>
-                    </tr>
+                      <td>
+                        Car Plate
+                      </td>
+                      <td>
+                        <input type="text" class="form-control" id="car_plate" placeholder="Example: Honda Fit">
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Car Brand
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" id="car_brand" placeholder="Example: Toyota">
+                    </td>
+                </tr>
+                <tr>
+                  <td>
+                    Car Model
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" id="car_model" placeholder="Example: Mark 2">
+                  </td>
+              </tr>
                     
                     <tr>
                     <td>
@@ -165,7 +181,7 @@
                     <tr>
                         <td><b>Period</b></td>
                         <td>
-                            Warranty period : <input id="period" value="4" readonly/>
+                            Warranty period : <input id="period" value='<%= month%>' readonly/>
                         </td>
                     </tr>
                     <tr>
@@ -179,7 +195,7 @@
                     
                     <tr>
                       <td>
-                        <b>Time</b> 
+                        <b>Regluar Time</b> 
                      </td>
                      <td>
                          <input class="form-control" type="time" value="13:45:00" id="time-input" required>
@@ -188,7 +204,7 @@
                     
                     <tr>
                     <td>
-                        <button type="button" onclick="submit()" class="btn btn-outline-light btn-primary btn-lg btn-block">Submit</button>
+                        <button type="button" onclick="submit()" class="btn btn-primary">Submit</button>
                     </td>
                     </tr>
 
@@ -258,73 +274,171 @@ function price() {
   var value = document.querySelector('input[name="carsize"]:checked');
   value = value.value;
   console.log(value);
- if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="int"){
+ if ( '<%= plan%>' =="bronze" && '<%= month%>'=="1"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= "3000Ks"
+    document.getElementById("price").innerHTML= "15000Ks"
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML="4000Ks"
+    document.getElementById("price").innerHTML="25000Ks"
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML="5000Ks"
+    document.getElementById("price").innerHTML="35000Ks"
   }
  }
- else if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="ext"){
+ else if ( '<%= plan%>' =="bronze" && '<%= month%>'=="2"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= "3000Ks"
+    document.getElementById("price").innerHTML= "25000Ks"
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML="4000Ks"
+    document.getElementById("price").innerHTML="35000Ks"
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML="5000Ks"
+    document.getElementById("price").innerHTML="45000Ks"
   }
  }
- else if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="both"){
+ else if ( '<%= plan%>' =="bronze" && '<%= month%>'=="3"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= "5000Ks"
+    document.getElementById("price").innerHTML= "35000Ks"
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML="7000Ks"
+    document.getElementById("price").innerHTML="45000Ks"
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML="9000Ks"
+    document.getElementById("price").innerHTML="55000Ks"
   }
  }
- else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="int"){
+ else if ( '<%= plan%>' =="silver" && '<%= intorext%>'=="1"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= "4000Ks"
+    document.getElementById("price").innerHTML= "25000Ks"
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML="5000Ks"
+    document.getElementById("price").innerHTML="35000Ks"
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML="6000Ks"
+    document.getElementById("price").innerHTML="45000Ks"
   }
  }
- else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="ext"){
+ else if ( '<%= plan%>' =="silver" && '<%= intorext%>'=="2"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= "4000Ks"
+    document.getElementById("price").innerHTML= "35000Ks"
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML="5000Ks"
+    document.getElementById("price").innerHTML="45000Ks"
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML="6000Ks"
+    document.getElementById("price").innerHTML="55000Ks"
   }
  }
- else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="both"){
+ else if ( '<%= plan%>' =="silver" && '<%= intorext%>'=="3"){
   if(value=="small"){
-    document.getElementById("price").innerHTML= "7000Ks"
+    document.getElementById("price").innerHTML= "45000Ks"
   }
   else if(value=="medium"){
-    document.getElementById("price").innerHTML="9000Ks"
+    document.getElementById("price").innerHTML="55000Ks"
   }
   else if(value=="large"){
-    document.getElementById("price").innerHTML="11000Ks"
+    document.getElementById("price").innerHTML="6500Ks"
   }
  }
-
+ else if ( '<%= plan%>' =="gold" && '<%= intorext%>'=="1"){
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "35000Ks"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").innerHTML="45000Ks"
+  }
+  else if(value=="large"){
+    document.getElementById("price").innerHTML="55000Ks"
+  }
+ }
+ else if ( '<%= plan%>' =="gold" && '<%= intorext%>'=="2"){
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "45000Ks"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").innerHTML="55000Ks"
+  }
+  else if(value=="large"){
+    document.getElementById("price").innerHTML="65000Ks"
+  }
+ }
+ else if ( '<%= plan%>' =="gold" && '<%= intorext%>'=="3"){
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "55000Ks"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").innerHTML="65000Ks"
+  }
+  else if(value=="large"){
+    document.getElementById("price").innerHTML="75000Ks"
+  }
+ }
+ else if ( '<%= plan%>' =="platinum" && '<%= intorext%>'=="1"){
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "45000Ks"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").innerHTML="55000Ks"
+  }
+  else if(value=="large"){
+    document.getElementById("price").innerHTML="65000Ks"
+  }
+ }
+ else if ( '<%= plan%>' =="platinum" && '<%= intorext%>'=="2"){
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "55000Ks"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").innerHTML="65000Ks"
+  }
+  else if(value=="large"){
+    document.getElementById("price").innerHTML="75000Ks"
+  }
+ }
+ else if ( '<%= plan%>' =="platinum" && '<%= intorext%>'=="3"){
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "65000Ks"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").innerHTML="75000Ks"
+  }
+  else if(value=="large"){
+    document.getElementById("price").innerHTML="85000Ks"
+  }
+ }
+ else if ( '<%= plan%>' =="diamond" && '<%= intorext%>'=="1"){
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "55000Ks"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").innerHTML="65000Ks"
+  }
+  else if(value=="large"){
+    document.getElementById("price").innerHTML="75000Ks"
+  }
+ }
+ else if ( '<%= plan%>' =="diamond" && '<%= intorext%>'=="2"){
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "65000Ks"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").innerHTML="75000Ks"
+  }
+  else if(value=="large"){
+    document.getElementById("price").innerHTML="85000Ks"
+  }
+ }
+ else if ( '<%= plan%>' =="diamond" && '<%= intorext%>'=="3"){
+  if(value=="small"){
+    document.getElementById("price").innerHTML= "75000Ks"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").innerHTML="85000Ks"
+  }
+  else if(value=="large"){
+    document.getElementById("price").innerHTML="95000Ks"
+  }
+ }
 }
 </script>
 
@@ -358,15 +472,18 @@ function price() {
         db.collection('Car Wash Book').add({
             customerID:'<%= id %>',
             name: '<%= name%>',
-            WashType:'<%= washtype%>', 
-            Interior_or_Exterior:'<%= intorext%>', 
+            Plan: '<%= plan%>',
+            Subscribed_Months:'<%= month%>',
             phone: document.getElementById('phone').value,
             town: document.getElementById('town').value,
             address:document.getElementById('address_info').value,
-            car: document.getElementById('car_info').value,
+            car_plate: document.getElementById('car_plate').value,
+            car_brand: document.getElementById('car_brand').value,
+            car_model: document.getElementById('car_model').value,
             carsize:document.querySelector('input[name="carsize"]:checked').value,
             price:document.getElementById("price").innerHTML,
-            date:document.getElementById('date-input').value,
+            start_date:document.getElementById('startdate').value,
+            end_date:document.getElementById('enddate').value,
             time:document.getElementById('time-input').value,
            
         }).then(success => {
