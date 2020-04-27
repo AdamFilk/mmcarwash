@@ -170,7 +170,7 @@
                           <label class="custom-control-label" for="addon4">Tire and alloy cleaning</label>
                         </div>
                         
-                     <input type="number" id="addoncost" value="0">
+                     <input type="text" id="addoncost" value="0" readonly>
                     </td>
                     </tr>
                     <tr>
@@ -178,8 +178,8 @@
                        <b>Total Price:</b> 
                       </td>
                       <td>
-                        <input type="text" id="price" value="0">
-                        <input type="text" id="total" value="0">
+                        <input type="text" id="price" value="0" readonly>
+                        <p id="total"></p>
                       </td>
                     </tr>
                     
@@ -224,10 +224,13 @@ function checkNumber() {
     }
 }
 
-var total= document.getElementById('total').value;
+
 var nprice=document.getElementById('price').value;
 var addon= document.getElementById('addoncost').value;
-total= +nprice + +addon
+result =parseFloat(nprice)+parseFloat(addon);
+if (isNaN(total)){
+  document.getElementById('total').innerHTML= "The total cost is:"+ result;
+}
 
 function price() {
   
