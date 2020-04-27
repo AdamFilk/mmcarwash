@@ -225,10 +225,10 @@ function checkNumber() {
 }
 
 
-var nprice=document.getElementById('price').value;
-var addon= document.getElementById('addoncost').value;
-result =parseFloat(nprice)+parseFloat(addon);
-if (isNaN(total)){
+var p=document.getElementById('price').value;
+var a= document.getElementById('addoncost').value;
+var result =parseFloat(p)+parseFloat(a);
+if (!isNaN(result)){
   document.getElementById('total').innerHTML= "The total cost is:"+ result;
 }
 
