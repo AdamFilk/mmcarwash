@@ -319,7 +319,7 @@ function price() {
             time:document.getElementById('time-input').value,
            
         }).then(success => {
-          MessengerExtensions.requestCloseBrowser(function success() {
+            MessengerExtensions.requestCloseBrowser(function success() {
               // webview closed
               let textMessage = {
             "recipient":{
