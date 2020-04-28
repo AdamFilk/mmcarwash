@@ -174,7 +174,7 @@
                         <td><b>Date</b> </td>
                         <td>
                                 
-                            <input class="form-control" type="date" value="yyyy-mm-dd" id="date-input" required>
+                            <input class="form-control" type="date" value="mm-dd-yyyy" id="date-input" required>
                               
                         </td>
                     </tr>
@@ -303,7 +303,7 @@ function price() {
     console.log(success);
       var db = firebase.firestore();
       var senderID = '<%= id %>';
-        db.collection('Plan Subcribers').add({
+        db.collection('Plan Book').add({
             customerID:'<%= id %>',
             name: '<%= name%>',
             Plan: '<%= plan%>',
@@ -315,7 +315,7 @@ function price() {
             car_model: document.getElementById('car_model').value,
             carsize:document.querySelector('input[name="carsize"]:checked').value,
             price:document.getElementById("price").innerHTML,
-            date:document.getElementById('startdate').value,
+            date:document.getElementById('date-input').value,
             time:document.getElementById('time-input').value,
            
         }).then(success => {
