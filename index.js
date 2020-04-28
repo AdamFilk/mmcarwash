@@ -3,7 +3,7 @@
 // Imports dependencies and set up http server
 const
   express = require('express'),
-  bodyParser = require('body-parser'),
+  body_parser = require('body-parser'),
   requestify = require('requestify'),
   app = express().use(bodyParser.json()), // creates express http server
   ejs = require("ejs");
