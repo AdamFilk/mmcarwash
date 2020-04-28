@@ -192,10 +192,26 @@
                             <input class="form-control" readonly type="date" id="enddate" required>
                         </td>
                     </tr>
-                    
+                    <tr>
+                      <td style="vertical-align: middle;"><b>Weekly Regular Check up day:</b> </td>
+                      <td>    
+                          <div class="form-group">
+                              <label for="day">Select Town</label>
+                              <select class="form-control" id="town" required>
+                                <option>Monday</option>
+                                <option>Tuesday</option>
+                                <option>Wednesday</option>
+                                <option>Thursday</option>
+                                <option>Friday</option>
+                                <option>Saturday</option>
+                                <option>Sunday</option>
+                              </select>
+                            </div>
+                      </td>
+                  </tr>   
                     <tr>
                       <td>
-                        <b>Regluar Time</b> 
+                        <b>Weekly Regular Check up Time</b> 
                      </td>
                      <td>
                          <input class="form-control" type="time" value="13:45:00" id="time-input" required>
@@ -484,6 +500,7 @@ function price() {
             price:document.getElementById("price").innerHTML,
             start_date:document.getElementById('startdate').value,
             end_date:document.getElementById('enddate').value,
+            day: document.getElementById('day').value,
             time:document.getElementById('time-input').value,
            
         }).then(success => {
