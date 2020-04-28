@@ -25,7 +25,7 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'Messenger'));
   const APP_ID = 711149509404832;    
-  var senderID = '<%= id %>';
+  var senderID = "";
   
   window.extAsyncInit = function() {
       MessengerExtensions.getContext(APP_ID, 
@@ -41,6 +41,7 @@
     <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col-sm-4 w-100">
+              <form id="form" method="post" action="https://mmcarwash.herokuapp.com/carwash/">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -57,7 +58,7 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text" id="basic-addon1">+95</span>
                                 </div>
-                                <input onkeyup="checkNumber()" type="text" class="form-control" placeholder="Enter Phone Number" id="phone" aria-label="phone_number" aria-describedby="basic-addon1" required>
+                                <input onkeyup="checkNumber()" type="text" class="form-control" placeholder="Enter Phone Number" name="phone" id="phone" aria-label="phone_number" aria-describedby="basic-addon1" required>
                               </div>
                         </td>
                     </tr>
@@ -76,7 +77,7 @@
                         <td>    
                             <div class="form-group">
                                 <label for="town">Select Town</label>
-                                <select class="form-control" id="town" required>
+                                <select class="form-control" name="town" id="town" required>
                                   <option>Ahlone</option>
                                   <option>Bahan</option>
                                   <option>Botahtaung</option>
@@ -112,7 +113,7 @@
                            <b>Address Information</b> 
                         </td>
                         <td>
-                          <textarea  placeholder="Street,Quarter,Hosuing,Condo,Building No.,Room No" id="address_info" required></textarea>
+                          <textarea  placeholder="Street,Quarter,Hosuing,Condo,Building No.,Room No" name="address_info" id="address_info" required></textarea>
                         </td>
                     </tr>
 
@@ -121,7 +122,7 @@
                           Car Plate
                         </td>
                         <td>
-                          <input type="text" class="form-control" id="car_plate" placeholder="Example: Honda Fit">
+                          <input type="text" class="form-control" name="car_plate" id="car_plate" placeholder="Example: Honda Fit">
                         </td>
                     </tr>
                     <tr>
@@ -129,7 +130,7 @@
                         Car Brand
                       </td>
                       <td>
-                        <input type="text" class="form-control" id="car_brand" placeholder="Example: Toyota">
+                        <input type="text" class="form-control" name="car_brand" id="car_brand" placeholder="Example: Toyota">
                       </td>
                   </tr>
                   <tr>
@@ -137,7 +138,7 @@
                       Car Model
                     </td>
                     <td>
-                      <input type="text" class="form-control" id="car_model" placeholder="Example: Mark 2">
+                      <input type="text" class="form-control" name="car_model" id="car_model" placeholder="Example: Mark 2">
                     </td>
                 </tr>
                     
@@ -166,27 +167,27 @@
                       </td>
                       <td> 
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon" id="addon0" value="2000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon0" id="addon0" value="2000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon0">Pet Hair Removal</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon" id="addon1" value="3000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon1" id="addon1" value="3000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon1">Wax</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon" id="addon2" value="4000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon2" id="addon2" value="4000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon2">Sratch Removal</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon" id="addon3" value="5000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon3" id="addon3" value="5000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon3">Clay Bar Treatment</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon" id="addon4" value="6000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon4" id="addon4" value="6000" onclick="UpdateCost(),calculate()">
                           <label class="custom-control-label" for="addon4">Tire and alloy cleaning</label>
                         </div>
                         
-                     <input class="form-control" type="text" id="addoncost" value="0" readonly>
+                     <input class="form-control" type="text" name="addoncost" id="addoncost" value="0" readonly>
                     </td>
                     </tr>
                     <tr>
@@ -194,7 +195,7 @@
                        <b>Total Price:</b> 
                       </td>
                       <td>
-                        <input type="text" id="price" value="0" hidden readonly>
+                        <input type="text" name="price" id="price" value="0" hidden readonly>
                         The total price is <p id="total"></p> Ks
                       </td>
                     </tr>
@@ -203,7 +204,7 @@
                         <td><b>Date</b> </td>
                         <td>
                                 
-                            <input class="form-control" type="date" value="2020-08-19" id="date-input" required>
+                            <input class="form-control" type="date" value="2020-08-19" id="date-input" name="date-input" required>
                               
                         </td>
                     </tr>
@@ -213,13 +214,17 @@
                         <b>Time</b> 
                      </td>
                      <td>
-                         <input class="form-control" type="time" value="13:45:00" id="time-input" required>
+                         <input class="form-control" type="time" value="13:45:00" id="time-input" name="time-input" required>
                      </td>
                     </tr>
                     
                     <tr>
                     <td>
-                        <button type="button" onclick="submit()" class="btn btn-outline-light btn-primary btn-lg btn-block">Submit</button>
+                      <input type="hidden"  id="sender" name="sender" value="<%= id %>">
+                      <input type="hidden"  id="Name" name="Name" value="<%= name %>">
+                      <input type="hidden"  id="wash_type" name="wash_type" value="<%= washtype %>">
+                      <input type="hidden"  id="int_ext" name="int_ext" value="<%= intorext %>">
+                      <button type="submit" class="btn btn-outline-light btn-primary btn-lg btn-block">Submit</button>
                     </td>
                     </tr>
 
@@ -336,82 +341,20 @@ function UpdateCost() {
 } 
 
 </script>
-
-
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
-
 <script>
-  const pageaccesstoken= 'EAAKGyWXj6KABAB4s5bmcCuMvrdpKW1S0fnoYezGNAtA022SiQZAOwTBeng7cjs79hPYl3pknZCTGWDPPIhBqsKOZAokIGEpjqtFT4AqV6yaZAZBPYtS5VmUsDayUVkZCloQRipJouy3ReZBfUkonLYwH8TO1BXTHVxBu1aTbKIpZB1O4kZC9e7QCXMtJNdfC0MXkZD'
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
-    authDomain: "mm-carwash.firebaseapp.com",
-    databaseURL: "https://mm-carwash.firebaseio.com",
-    projectId: "mm-carwash",
-    storageBucket: "mm-carwash.appspot.com",
-    messagingSenderId: "478002772636",
-    appId: "1:478002772636:web:f82fa2e926632accb10b59",
-    measurementId: "G-BFPKPTE060"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  
-  function submit(){
-  firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
-    console.log(success);
-      var db = firebase.firestore();
-      var senderID = '<%= id %>';
-        db.collection('Car Wash Book').add({
-            
-            customerID:'<%= id %>',
-            name: '<%= name%>',
-            WashType:'<%= washtype%>', 
-            Interior_or_Exterior:'<%= intorext%>', 
-            phone: document.getElementById('phone').value,
-            town: document.getElementById('town').value,
-            address:document.getElementById('address_info').value,
-            car_plate: document.getElementById('car_plate').value,
-            car_brand: document.getElementById('car_brand').value,
-            car_model: document.getElementById('car_model').value,
-            carsize:document.querySelector('input[name="carsize"]:checked').value,
-            pethair:document.getElementById('addon0').checked,
-            wax:document.getElementById('addon1').checked,
-            scratch:document.getElementById('addon2').checked,
-            claybar:document.getElementById('addon3').checked,
-            tireandalloy:document.getElementById('addon4').checked,
-            price:document.getElementById("total").innerHTML,
-            date:document.getElementById('date-input').value,
-            time:document.getElementById('time-input').value,
-           
-        }).then(success => {
-          MessengerExtensions.requestCloseBrowser(function success() {
-              // webview closed
-              let textMessage = {
-            "recipient":{
-              "id":senderID
-            },
-            "message":{
-              "text": "Your booking has been is submitted.Thank you for choosing our serice. We'll contact you soon"
-            }
-          }
-          
-          var xhr = new XMLHttpRequest();
-            xhr.open("POST", `https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(textMessage));
-            
-            }, function error(err) {
-              // an error occurred
-              
-            });
-        }).catch(error => {
-          console.log(error);
-        })
       
-});
+   
+  const windowShut = () => {
+    MessengerExtensions.requestCloseBrowser(function success() {
+      console.log("success");          
+    }, function error(err) {
+      console.log(err);
+    });
   }
+  
+  document.getElementById("form").addEventListener("submit", windowShut);       
+ 
 </script>
+
+
 </html>
