@@ -148,15 +148,15 @@
                     </td>
                     <td>
                      
-                      <input type="radio" name="carsize" onchange="price(),calculate()" value="small">
+                      <input type="radio" name="carsize" onchange="pricechange(),calculate()" value="small">
                       <label>Small</label>
                     
                     
-                      <input type="radio" name="carsize" onchange="price(),calculate()" value="medium">
+                      <input type="radio" name="carsize" onchange="pricechange(),calculate()" value="medium">
                       <label>Medium</label>
                     
                     
-                      <input type="radio" name="carsize"  onchange="price(),calculate()" value="large">
+                      <input type="radio" name="carsize"  onchange="pricechange(),calculate()" value="large">
                       <label>Large</label>
                     
                     </td>
@@ -255,7 +255,7 @@ if (!isNaN(result)){
 }
 
 
-function price() {
+function pricechange() {
   
   var value = document.querySelector('input[name="carsize"]:checked');
   value = value.value;
