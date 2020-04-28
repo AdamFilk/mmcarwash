@@ -729,6 +729,10 @@ if(userInput=="bronze" ){
 })
 }
 if(userInput=="silver" ){
+  requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+
+    var udetails = JSON.parse(success.body);
+    var senderID = webhook_event.sender.id;
   let textMessage = {
     "recipient":{
       "id":webhook_event.sender.id
@@ -793,8 +797,13 @@ if(userInput=="silver" ){
   }).fail(error=> {
     console.log(error)
   })
+})
 }
 if(userInput=="gold" ){
+  requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+
+    var udetails = JSON.parse(success.body);
+    var senderID = webhook_event.sender.id;
   let textMessage = {
     "recipient":{
       "id":webhook_event.sender.id
@@ -859,8 +868,13 @@ if(userInput=="gold" ){
   }).fail(error=> {
     console.log(error)
   })
+})
 }
 if(userInput=="platinum" ){
+  requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+
+    var udetails = JSON.parse(success.body);
+    var senderID = webhook_event.sender.id;
   let textMessage = {
     "recipient":{
       "id":webhook_event.sender.id
@@ -925,8 +939,13 @@ if(userInput=="platinum" ){
   }).fail(error=> {
     console.log(error)
   })
+})
 }
 if(userInput=="diamond" ){
+  requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
+
+    var udetails = JSON.parse(success.body);
+    var senderID = webhook_event.sender.id;
   let textMessage = {
     "recipient":{
       "id":webhook_event.sender.id
@@ -991,6 +1010,7 @@ if(userInput=="diamond" ){
   }).fail(error=> {
     console.log(error)
   })
+})
 }
 
 
