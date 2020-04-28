@@ -91,7 +91,7 @@ app.post('/carwash',function(req,res){
       
       
   let phone= req.body.phone;
-  console.log(req.body.phone);
+  console.log(req.body.add_on0);
   let town = req.body.town;
   let address = req.body.address_info;
   let carpalte = req.body.car_plate;
