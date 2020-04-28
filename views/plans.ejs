@@ -488,16 +488,15 @@ function price() {
            
         }).then(success => {
           function demoPromise() {
-          const p = new Promise((closeWindow, postMessage) => {
+          const p = new Promise((resolve, reject) => {
             setTimeout(() => {
-              closeWindow();
+              resolve();
               p.then(() => {
                 MessengerExtensions.requestCloseBrowser(function success() {
                           // webview closed
             
               }, function error(err) {
               // an error occurred
-            
               });
               }); // because I will be scheduled second
             }, 1000);
@@ -508,7 +507,7 @@ function price() {
         demoPromise().then(() => {
           var textMessage = {
             "recipient":{
-              "id":senderID
+              "id":'<%= id %>'
             },
             "message":{
               "text": "Your booking has been is submitted.Thank you for choosing our serice. We'll contact you soon\nTo view your booking simply select 'View Booking' from the Menu"
