@@ -29,6 +29,8 @@ const
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
+app.use(body_parser.json());
+app.use(body_parser.urlencoded());
 app.set('view engine', 'ejs');
 app.set('views', __dirname+'/views');
 
