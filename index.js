@@ -1,5 +1,6 @@
 'use strict';
-
+const pageaccesstoken = 'EAAKGyWXj6KABAB4s5bmcCuMvrdpKW1S0fnoYezGNAtA022SiQZAOwTBeng7cjs79hPYl3pknZCTGWDPPIhBqsKOZAokIGEpjqtFT4AqV6yaZAZBPYtS5VmUsDayUVkZCloQRipJouy3ReZBfUkonLYwH8TO1BXTHVxBu1aTbKIpZB1O4kZC9e7QCXMtJNdfC0MXkZD';
+const APP_URL = "https://mmcarwash.herokuapp.com";
 // Imports dependencies and set up http server
 const
   express = require('express'),
@@ -9,8 +10,12 @@ const
   ejs = require("ejs");
  const firebase = require("firebase-admin");
   
+ app.use(body_parser.json());
+  app.use(body_parser.urlencoded());
 
-  const pageaccesstoken = 'EAAKGyWXj6KABAB4s5bmcCuMvrdpKW1S0fnoYezGNAtA022SiQZAOwTBeng7cjs79hPYl3pknZCTGWDPPIhBqsKOZAokIGEpjqtFT4AqV6yaZAZBPYtS5VmUsDayUVkZCloQRipJouy3ReZBfUkonLYwH8TO1BXTHVxBu1aTbKIpZB1O4kZC9e7QCXMtJNdfC0MXkZD';
+  app.set('view engine', 'ejs');
+  app.set('views', __dirname+'/views');
+  
   var firebaseConfig = {
     credential: firebase.credential.cert({
    "private_key": process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
@@ -26,121 +31,11 @@ const
   
   const db = firebase.firestore();
 
+ 
+
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
-app.use(body_parser.json());
-app.use(body_parser.urlencoded());
-app.set('view engine', 'ejs');
-app.set('views', __dirname+'/views');
-
-const generateRandom = (length) => {
-  var result           = '';
-  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  var charactersLength = characters.length;
-  for ( var i = 0; i < length; i++ ) {
-     result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
-const showBookingNumber = (ref) => { 
-  let textMessage = {
-    "recipient":{
-      "id":webhook_event.sender.id
-    },
-    "message":{
-      "text": `Your data is saved. Please keep your booking reference ${ref}`
-    }
-  };
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-  textMessage
-  ).then(response=>{
-    console.log(response)
-  }).fail(error=> {
-    console.log(error)
-  })
-}
-
-app.get('/plans/:plan/:name/:id/:month', (req, res) => {
-
-  var name = req.params.name;
-  var month=req.params.month;
-  var plan=req.params.plan;
-  var senderID=req.params.id;
-  res.render('plans.ejs', {name:name, month:month,plan:plan, id:senderID})
-  
-})
-app.get('/plan_once/:plan/:name/:id', (req, res) => {
-
-  var name = req.params.name;
-  var plan=req.params.plan;
-  var senderID=req.params.id;
-  res.render('plan_once.ejs', {name:name,plan:plan, id:senderID})
-  
-})
-app.get('/carwash/:washtype/:intorext/:name/:id', (req, res) => {
-
-  var name = req.params.name;
-  var washType=req.params.washtype;
-  var intorext=req.params.intorext;
-  var senderID=req.params.id;
-  res.render('carwash.ejs', {name:name, washtype:washType,intorext:intorext, id:senderID})
-  
-})
-app.post('/carwash',function(req,res){
-      
-      
-  let phone= req.body.phone;
-  console.log(req.body.phone);
-  let town = req.body.town;
-  let address = req.body.address_info;
-  let carpalte = req.body.car_plate;
-  let carbrand = req.body.car_brand;
-  let carmodel = req.body.car_model;
-  let carsize= req.body.carsize;
-  let pethair  = req.body.addon0;
-  let wax = req.body.addon1;
-  let scratch = req.body.addon2;  
-  let claybar = req.body.addon3;  
-  let tire_alloy = req.body.addon4;
-  let id= req.body.sender;
-  let Name= req.body.Name;
-  let wash_type= req.body.wash_type;
-  let intor_ext= req.body.intor_ext;
-
-
-
- let booking_number = generateRandom(5);    
-
-  db.collection('Car Wash Booking').add({
-    phone:phone,
-    town:town,
-    address:address,
-    carpalte:carpalte,
-    carbrand:carbrand,
-    carmodel:carmodel,
-    carsize:carsize,            
-    pethair:pethair,
-    wax:wax,
-    scratch:scratch,
-    claybar:claybar,
-    tire_alloy:tire_alloy,
-    id:id,
-    Name:Name,
-    wash_type:wash_type,
-    intor_ext:intor_ext,
-    booking_number:booking_number,
-      }).then(success => {             
-         showBookingNumber(id, booking_number);   
-      }).catch(error => {
-        console.log(error);
-  });        
-});
-
-
-app.get('/whitelists',function(req,res){    
-  whitelistDomains(res);
-});
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
 
@@ -169,6 +64,114 @@ app.get('/webhook', (req, res) => {
     }
   });
 
+  
+  const generateRandom = (length) => {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+  const showBookingNumber = (ref) => { 
+    let textMessage = {
+      "recipient":{
+        "id":webhook_event.sender.id
+      },
+      "message":{
+        "text": `Your data is saved. Please keep your booking reference ${ref}`
+      }
+    };
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    textMessage
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+  }
+  
+  app.get('/plans/:plan/:name/:id/:month', (req, res) => {
+  
+    var name = req.params.name;
+    var month=req.params.month;
+    var plan=req.params.plan;
+    var senderID=req.params.id;
+    res.render('plans.ejs', {name:name, month:month,plan:plan, id:senderID})
+    
+  })
+  app.get('/plan_once/:plan/:name/:id', (req, res) => {
+  
+    var name = req.params.name;
+    var plan=req.params.plan;
+    var senderID=req.params.id;
+    res.render('plan_once.ejs', {name:name,plan:plan, id:senderID})
+    
+  })
+  app.get('/carwash/:washtype/:intorext/:name/:id', (req, res) => {
+  
+    var name = req.params.name;
+    var washType=req.params.washtype;
+    var intorext=req.params.intorext;
+    var senderID=req.params.id;
+    res.render('carwash.ejs', {name:name, washtype:washType,intorext:intorext, id:senderID})
+    
+  })
+  app.post('/carwash',function(req,res){
+        
+        
+    let phone= req.body.phone;
+    console.log(req.body.phone);
+    let town = req.body.town;
+    let address = req.body.address_info;
+    let carpalte = req.body.car_plate;
+    let carbrand = req.body.car_brand;
+    let carmodel = req.body.car_model;
+    let carsize= req.body.carsize;
+    let pethair  = req.body.addon0;
+    let wax = req.body.addon1;
+    let scratch = req.body.addon2;  
+    let claybar = req.body.addon3;  
+    let tire_alloy = req.body.addon4;
+    let id= req.body.sender;
+    let Name= req.body.Name;
+    let wash_type= req.body.wash_type;
+    let intor_ext= req.body.intor_ext;
+  
+  
+  
+   let booking_number = generateRandom(5);    
+  
+    db.collection('Car Wash Booking').add({
+      phone:phone,
+      town:town,
+      address:address,
+      carpalte:carpalte,
+      carbrand:carbrand,
+      carmodel:carmodel,
+      carsize:carsize,            
+      pethair:pethair,
+      wax:wax,
+      scratch:scratch,
+      claybar:claybar,
+      tire_alloy:tire_alloy,
+      id:id,
+      Name:Name,
+      wash_type:wash_type,
+      intor_ext:intor_ext,
+      booking_number:booking_number,
+        }).then(success => {             
+           showBookingNumber(id, booking_number);   
+        }).catch(error => {
+          console.log(error);
+    });        
+  });
+  
+  
+  app.get('/whitelists',function(req,res){    
+    whitelistDomains(res);
+  });
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
  
