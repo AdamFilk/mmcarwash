@@ -4,14 +4,14 @@ const APP_URL = "https://mmcarwash.herokuapp.com";
 // Imports dependencies and set up http server
 const
   express = require('express'),
-  body_parser = require('body-parser'),
+  bodyParser = require('body-parser'),
   requestify = require('requestify'),
   app = express().use(bodyParser.json()), // creates express http server
   ejs = require("ejs");
  const firebase = require("firebase-admin");
   
- app.use(body_parser.json());
-  app.use(body_parser.urlencoded());
+ app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded());
 
   app.set('view engine', 'ejs');
   app.set('views', __dirname+'/views');
@@ -64,7 +64,7 @@ app.get('/webhook', (req, res) => {
     }
   });
 
-  
+
   const generateRandom = (length) => {
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
