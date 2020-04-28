@@ -43,8 +43,6 @@ app.get('/plans/:month/:plan/:name/:id', (req, res) => {
   
 })
 
-
-
 app.get('/carwash/:washtype/:intorext/:name/:id', (req, res) => {
 
   var name = req.params.name;
@@ -687,7 +685,7 @@ if(userInput=="bronze" ){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/plans/1/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "url":`https://mmcarwash.herokuapp.com/plans/1/${userInput}/${udetails.name}/${senderID}`,
                   "title":"1 month",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
