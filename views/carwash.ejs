@@ -389,12 +389,12 @@ function UpdateCost() {
         }).then(success => {
           MessengerExtensions.requestCloseBrowser(function success() {
               // webview closed
-              var textMessage = {
+              let textMessage = {
             "recipient":{
               "id":senderID
             },
             "message":{
-              "text": "Your booking has been is submitted.Thank you for choosing our serice. We'll contact you soon\nTo view your booking simply select 'View Booking' from the Menu"
+              "text": "Your booking has been is submitted.Thank you for choosing our serice. We'll contact you soon"
             }
           }
           
@@ -402,12 +402,11 @@ function UpdateCost() {
             xhr.open("POST", `https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(textMessage));
-            popup("Thank you. Please close this window if you are not returned to the previous page.");
+            
             }, function error(err) {
               // an error occurred
-              popup(message);
+              
             });
-       
         }).catch(error => {
           console.log(error);
         })
