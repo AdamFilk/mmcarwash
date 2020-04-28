@@ -122,7 +122,7 @@ app.get('/webhook', (req, res) => {
         
         
     let phone= req.body.phone;
-    console.log(req.body.phone);
+    
     let town = req.body.town;
     let address = req.body.address_info;
     let carpalte = req.body.car_plate;
@@ -130,6 +130,7 @@ app.get('/webhook', (req, res) => {
     let carmodel = req.body.car_model;
     let carsize= req.body.carsize;
     let pethair  = req.body.addon0;
+    console.log(req.body.addon0);
     let wax = req.body.addon1;
     let scratch = req.body.addon2;  
     let claybar = req.body.addon3;  
