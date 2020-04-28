@@ -751,19 +751,25 @@ if(userInput=="silver" ){
               "title":"Select how many months do you want to subscribe for this plan",
               "buttons":[
                 {
-                "type":"postback",
-                "title":"1 month",
-                "payload":userInput+"/1"
+                  "type":"web_url",
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
+                  "title":"1 month",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
                 },
                 {
-                "type":"postback",
-                "title":"2 months",
-                "payload":userInput+"/2"
+                  "type":"web_url",
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
+                  "title":"2 months",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
                 },
                 {
-                "type":"postback",
-                "title":"3 months",
-                "payload":userInput+"/3"
+                  "type":"web_url",
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
+                  "title":"3 months",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
                 }
               ]
             },
@@ -811,19 +817,25 @@ if(userInput=="gold" ){
               "title":"Select how many months do you want to subscribe for this plan",
               "buttons":[
                 {
-                "type":"postback",
-                "title":"1 month",
-                "payload":userInput+"/1"
+                  "type":"web_url",
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
+                  "title":"1 month",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
                 },
                 {
-                "type":"postback",
-                "title":"2 months",
-                "payload":userInput+"/2"
+                  "type":"web_url",
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
+                  "title":"2 months",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
                 },
                 {
-                "type":"postback",
-                "title":"3 months",
-                "payload":userInput+"/3"
+                  "type":"web_url",
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
+                  "title":"3 months",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
                 }
               ]
             },
@@ -871,19 +883,25 @@ if(userInput=="platinum" ){
               "title":"Select how many months do you want to subscribe for this plan",
               "buttons":[
                 {
-                "type":"postback",
-                "title":"1 month",
-                "payload":userInput+"/1"
+                  "type":"web_url",
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
+                  "title":"1 month",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
                 },
                 {
-                "type":"postback",
-                "title":"2 months",
-                "payload":userInput+"/2"
+                  "type":"web_url",
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
+                  "title":"2 months",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
                 },
                 {
-                "type":"postback",
-                "title":"3 months",
-                "payload":userInput+"/3"
+                  "type":"web_url",
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
+                  "title":"3 months",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
                 }
               ]
             },
@@ -931,19 +949,25 @@ if(userInput=="diamond" ){
               "title":"Select how many months do you want to subscribe for this plan",
               "buttons":[
                 {
-                "type":"postback",
-                "title":"1 month",
-                "payload":userInput+"/1"
+                  "type":"web_url",
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
+                  "title":"1 month",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
                 },
                 {
-                "type":"postback",
-                "title":"2 months",
-                "payload":userInput+"/2"
+                  "type":"web_url",
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
+                  "title":"2 months",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
                 },
                 {
-                "type":"postback",
-                "title":"3 months",
-                "payload":userInput+"/3"
+                  "type":"web_url",
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
+                  "title":"3 months",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
                 }
               ]
             },
