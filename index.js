@@ -106,7 +106,7 @@ app.post('/carwash',function(req,res){
   let id= req.body.sender;
   let Name= req.body.Name;
   let wash_type= req.body.wash_type;
-  let intor_ext= req.body.intor_ext;
+  let int_ext= req.body.int_ext;
 
 
 
@@ -128,7 +128,7 @@ app.post('/carwash',function(req,res){
     id:id,
     Name:Name,
     wash_type:wash_type,
-    intor_ext:intor_ext,
+    Interior_or_Exterior:int_ext,
     booking_number:booking_number,
       }).then(success => {             
          showBookingNumber(id, booking_number);   
