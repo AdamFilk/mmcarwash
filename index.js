@@ -691,14 +691,18 @@ if(userInput=="bronze" ){
                   "webview_height_ratio": "full",
                 },
                 {
-                "type":"postback",
-                "title":"2 months",
-                "payload":userInput+"/2"
+                  "type":"web_url",
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
+                  "title":"2 months",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
                 },
                 {
-                "type":"postback",
-                "title":"3 months",
-                "payload":userInput+"/3"
+                  "type":"web_url",
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
+                  "title":"3 months",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
                 }
               ]
             },
