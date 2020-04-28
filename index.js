@@ -42,7 +42,14 @@ app.get('/plans/:plan/:name/:id/:month', (req, res) => {
   res.render('plans.ejs', {name:name, month:month,plan:plan, id:senderID})
   
 })
+app.get('/plan_once/:plan/:name/:id', (req, res) => {
 
+  var name = req.params.name;
+  var plan=req.params.plan;
+  var senderID=req.params.id;
+  res.render('plan_once.ejs', {name:name,plan:plan, id:senderID})
+  
+})
 app.get('/carwash/:washtype/:intorext/:name/:id', (req, res) => {
 
   var name = req.params.name;
@@ -145,11 +152,6 @@ app.post('/webhook', (req, res) => {
                         "type":"postback",
                         "title":"Prices",
                         "payload":"price"
-                      },
-                      {
-                        "type":"postback",
-                        "title":"View My Appointment",
-                        "payload":"view_apn"
                       },
 
                     ]
@@ -682,6 +684,8 @@ if(userInput=="bronze" ){
           "elements":[
             {
               "title":"Select how many months do you want to subscribe for this plan",
+              "subtitle":"subcribe to get weekly car wash",
+              "image_url":"https://i.pinimg.com/564x/4e/7a/79/4e7a79bc31c39cdc0ea944a6a618ac9b.jpg",
               "buttons":[
                 {
                   "type":"web_url",
@@ -705,6 +709,22 @@ if(userInput=="bronze" ){
                   "webview_height_ratio": "full",
                 }
               ]
+            },
+            {
+              "title":"Book plan for just this once",
+              "subtitle":"Book to get these services for once",
+              "image_url":"https://i.pinimg.com/564x/4e/7a/79/4e7a79bc31c39cdc0ea944a6a618ac9b.jpg",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "title":"Book",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
+                },
+                
+              ]
+
             },
             
           ]
@@ -753,6 +773,8 @@ if(userInput=="silver" ){
           "elements":[
             {
               "title":"Select how many months do you want to subscribe for this plan",
+              "subtitle":"subcribe to get weekly car wash",
+              "image_url":"https://i.pinimg.com/564x/2b/a4/c0/2ba4c00cb92f1b6b9e77ab9c84b77a1d.jpg",
               "buttons":[
                 {
                   "type":"web_url",
@@ -776,6 +798,22 @@ if(userInput=="silver" ){
                   "webview_height_ratio": "full",
                 }
               ]
+            },
+            {
+              "title":"Book plan for just this once",
+              "subtitle":"Book to get these services for once",
+              "image_url":"https://i.pinimg.com/564x/2b/a4/c0/2ba4c00cb92f1b6b9e77ab9c84b77a1d.jpg",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "title":"Book",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
+                },
+                
+              ]
+
             },
             
           ]
@@ -824,6 +862,8 @@ if(userInput=="gold" ){
           "elements":[
             {
               "title":"Select how many months do you want to subscribe for this plan",
+              "subtitle":"subcribe to get weekly car wash",
+              "image_url":"https://i.pinimg.com/564x/c9/25/62/c9256251709a5bbdf864f8243cdbec3d.jpg",
               "buttons":[
                 {
                   "type":"web_url",
@@ -847,6 +887,22 @@ if(userInput=="gold" ){
                   "webview_height_ratio": "full",
                 }
               ]
+            },
+            {
+              "title":"Book plan for just this once",
+              "subtitle":"Book to get these services for once",
+              "image_url":"https://i.pinimg.com/564x/c9/25/62/c9256251709a5bbdf864f8243cdbec3d.jpg",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "title":"Book",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
+                },
+                
+              ]
+
             },
             
           ]
@@ -895,6 +951,8 @@ if(userInput=="platinum" ){
           "elements":[
             {
               "title":"Select how many months do you want to subscribe for this plan",
+              "subtitle":"subcribe to get weekly car wash",
+              "image_url":"https://i.pinimg.com/564x/ec/2f/83/ec2f8388521c3f956a1379736c3fd08c.jpg",
               "buttons":[
                 {
                   "type":"web_url",
@@ -918,6 +976,22 @@ if(userInput=="platinum" ){
                   "webview_height_ratio": "full",
                 }
               ]
+            },
+            {
+              "title":"Book plan for just this once",
+              "subtitle":"Book to get these services for once",
+              "image_url":"https://i.pinimg.com/564x/ec/2f/83/ec2f8388521c3f956a1379736c3fd08c.jpg",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "title":"Book",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
+                },
+                
+              ]
+
             },
             
           ]
@@ -966,6 +1040,8 @@ if(userInput=="diamond" ){
           "elements":[
             {
               "title":"Select how many months do you want to subscribe for this plan",
+              "subtitle":"subcribe to get weekly car wash",
+              "image_url":"https://i.pinimg.com/564x/4a/37/83/4a378324e74f0196c76101ad37b90875.jpg",
               "buttons":[
                 {
                   "type":"web_url",
@@ -990,7 +1066,22 @@ if(userInput=="diamond" ){
                 }
               ]
             },
-            
+            {
+              "title":"Book plan for just this once",
+              "subtitle":"Book to get these services for once",
+              "image_url":"https://i.pinimg.com/564x/4a/37/83/4a378324e74f0196c76101ad37b90875.jpg",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "title":"Book",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
+                },
+                
+              ]
+
+            },
           ]
         }
       }
@@ -1013,224 +1104,6 @@ if(userInput=="diamond" ){
 })
 }
 
-
-//end plans
-      
-      
-  //end basic ext
-  //start basic both
-  
-  if(userInput.includes("b_both")){
-    requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
-      let textMessage = {
-        "recipient":{
-          "id":webhook_event.sender.id
-        },
-        "message":{
-          "text": "In the Package: \nBody Cleaning, Window Cleaning, Tire and Ally Cleaning, Dashboard Cleaning, Windows Cleaning, Vacuuming Interior"
-        }
-      };
-      var udetails = JSON.parse(success.body);
-      var senderID = webhook_event.sender.id;
-      let genericMessage = {
-        "recipient":{
-          "id": webhook_event.sender.id
-        },
-        "message":{
-          "attachment":{
-            "type":"template",
-            "payload":{
-              "template_type":"generic",
-              "elements":[
-                {
-                "title":"Do you want to choose Basic Both Package?:",
-                "buttons":[
-                  {
-                    "type":"web_url",
-                    "url":"https://mmcarwash.herokuapp.com/b_both/"+userInput+"/"+udetails.name+"/"+senderID,
-                    "title":"Yes",
-                    "webview_height_ratio": "full",
-                  },
-                  {
-                    "type":"postback",
-                    "title":"No",
-                    "payload":"n_b_ext"
-                  },
-                  
-                ]
-  
-              },
-            ],
-            
-            }
-          }
-  
-        }
-      }
-      
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-  textMessage
-  ).then(response=>{
-    console.log(response)
-  }).fail(error=> {
-    console.log(error)
-  })
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-  genericMessage
-  ).then(response=>{
-    console.log(response)
-  }).fail(error=> {
-    console.log(error)
-  })
-}).catch(error=>{
-console.log(error)
-})
-    
-}
-
-  //end basic both
-     
-
-  //end shining ext
-  //start shinging both
-  if(userInput.includes("s_both")){
-    requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
-      let textMessage = {
-        "recipient":{
-          "id":webhook_event.sender.id
-        },
-        "message":{
-          "text": "In the Package:\nDashboard Cleaning\nWindows Cleaning\nVacuuming Interior\nFloor mats cleaning\nSeat Cleaning\nStain Removing\nInstalling Air-fresher\nTrunk cleaning\nDetail Cleaning\nStain Removal\nWindows Cleaning\nTire and Alloy Cleaning\nAlloy Polishing\nWaxing or polishing"
-        }
-      };
-      var udetails = JSON.parse(success.body);
-      var senderID = webhook_event.sender.id;
-      let genericMessage = {
-        "recipient":{
-          "id": webhook_event.sender.id
-        },
-        "message":{
-          "attachment":{
-            "type":"template",
-            "payload":{
-              "template_type":"generic",
-              "elements":[
-                {
-                "title":"Do you want to choose Standard Both Package?:",
-                "buttons":[
-                  {
-                    "type":"web_url",
-                    "url":"https://mmcarwash.herokuapp.com/s_both/"+userInput+"/"+udetails.name+"/"+senderID,
-                    "title":"Yes",
-                    "webview_height_ratio": "full",
-                  },
-                  {
-                    "type":"postback",
-                    "title":"No",
-                    "payload":"n_b_ext"
-                  },
-                  
-                ]
-  
-              },
-            ],
-            
-            }
-          }
-  
-        }
-      }
-      
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-  textMessage
-  ).then(response=>{
-    console.log(response)
-  }).fail(error=> {
-    console.log(error)
-  })
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-  genericMessage
-  ).then(response=>{
-    console.log(response)
-  }).fail(error=> {
-    console.log(error)
-  })
-}).catch(error=>{
-console.log(error)
-})
-    
-}
-  //end shining both
-     
-  //start premium both
-  if(userInput.includes("prm_both")){
-    requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
-      let textMessage = {
-        "recipient":{
-          "id":webhook_event.sender.id
-        },
-        "message":{
-          "text": "In the Package:\n Dashboard Cleaning, Windows Cleaning, Vacuuming Interior,Floor mats cleaning, Seat Cleaning, Stain Removing, Installing Air-fresher, Trunk cleaning,Premium Dressing, Interior Sterilization Detail body cleaning, Stain Removal, Windows Cleaning and polishing,Tire and Alloy Cleaning, Tire protection Dressing, Alloy Detailing, Waxing,Polishing"
-        }
-      };
-      var udetails = JSON.parse(success.body);
-      var senderID = webhook_event.sender.id;
-      let genericMessage = {
-        "recipient":{
-          "id": webhook_event.sender.id
-        },
-        "message":{
-          "attachment":{
-            "type":"template",
-            "payload":{
-              "template_type":"generic",
-              "elements":[
-                {
-                "title":"Do you want to choose Premium Both Package?:",
-                "buttons":[
-                  {
-                    "type":"web_url",
-                    "url":"https://mmcarwash.herokuapp.com/prm_both/"+userInput+"/"+udetails.name+"/"+senderID,
-                    "title":"Yes",
-                    "webview_height_ratio": "full",
-                  },
-                  {
-                    "type":"postback",
-                    "title":"No",
-                    "payload":"n_b_ext"
-                  },
-                  
-                ]
-  
-              },
-            ],
-            
-            }
-          }
-  
-        }
-      }
-      
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-  textMessage
-  ).then(response=>{
-    console.log(response)
-  }).fail(error=> {
-    console.log(error)
-  })
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-  genericMessage
-  ).then(response=>{
-    console.log(response)
-  }).fail(error=> {
-    console.log(error)
-  })
-}).catch(error=>{
-console.log(error)
-})
-    
-}
-  //end premium both      
 //start price
 if (userInput == 'price'){
   let textMessage = {
