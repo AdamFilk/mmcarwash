@@ -487,27 +487,11 @@ function price() {
             time:document.getElementById('time-input').value,
            
         }).then(success => {
-          function demoPromise() {
-          const p = new Promise((resolve, reject) => {
-            setTimeout(() => {
-              resolve();
-              p.then(() => {
-                MessengerExtensions.requestCloseBrowser(function success() {
-                          // webview closed
-            
-              }, function error(err) {
-              // an error occurred
-              });
-              }); // because I will be scheduled second
-            }, 1000);
-          });
-          return p;
-        }
-
-        demoPromise().then(() => {
-          var textMessage = {
+          MessengerExtensions.requestCloseBrowser(function success() {
+              // webview closed
+              let textMessage = {
             "recipient":{
-              "id":'<%= id %>'
+              "id":senderID
             },
             "message":{
               "text": "Your booking has been is submitted.Thank you for choosing our serice. We'll contact you soon\nTo view your booking simply select 'View Booking' from the Menu"
@@ -518,8 +502,12 @@ function price() {
             xhr.open("POST", `https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(textMessage));
-        }); // because I was scheduled first
-
+            
+            }, function error(err) {
+              // an error occurred
+              
+            });
+       
         }).catch(error => {
           console.log(error);
         })
