@@ -33,7 +33,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname+'/views');
 
 
-app.get('/plans/:month/:plan/:name/:id', (req, res) => {
+app.get('/plans/:plan/:name/:id/:month', (req, res) => {
 
   var name = req.params.name;
   var month=req.params.month;
@@ -685,7 +685,7 @@ if(userInput=="bronze" ){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/1/${userInput}/${udetails.name}/${senderID}`,
+                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
                   "title":"1 month",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -1344,7 +1344,8 @@ const whitelistDomains = (res) => {
           "whitelisted_domains": [
            "https://mmcarwash.herokuapp.com/" , 
            "https://herokuapp.com/" ,
-           "https://mmcarwash.herokuapp.com/carwash/"                  
+           "https://mmcarwash.herokuapp.com/carwash/" ,
+           "https://mmcarwash.herokuapp.com/plans/"                  
           ]               
   };  
   request({
