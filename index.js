@@ -89,6 +89,7 @@ app.post('/carwash',function(req,res){
       
       
   let phone= req.body.phone;
+  console.log('phone');
   let town = req.body.town;
   let address = req.body.address_info;
   let carpalte = req.body.car_plate;
@@ -109,7 +110,7 @@ app.post('/carwash',function(req,res){
 
  let booking_number = generateRandom(5);    
 
-  db.collection('Pagodas Booking').add({
+  db.collection('Car Wash Booking').add({
     phone:phone,
     town:town,
     address:address,
