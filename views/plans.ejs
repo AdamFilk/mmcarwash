@@ -181,7 +181,7 @@
                     <tr>
                         <td><b>Period</b></td>
                         <td>
-                            Warranty period : <input id="period" value='<%= month%>' readonly/>
+                            Subscription period : <input id="period" class="form-control" value='<%= month%>' readonly/>
                         </td>
                     </tr>
                     <tr>
@@ -197,7 +197,7 @@
                       <td>    
                           <div class="form-group">
                               <label for="day">Select Town</label>
-                              <select class="form-control" id="town" required>
+                              <select class="form-control" id="day" required>
                                 <option>Monday</option>
                                 <option>Tuesday</option>
                                 <option>Wednesday</option>
@@ -499,6 +499,7 @@ function price() {
             carsize:document.querySelector('input[name="carsize"]:checked').value,
             price:document.getElementById("price").innerHTML,
             start_date:document.getElementById('startdate').value,
+            subscription_period:document.getElementById('period').value,
             end_date:document.getElementById('enddate').value,
             day: document.getElementById('day').value,
             time:document.getElementById('time-input').value,
