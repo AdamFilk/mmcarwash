@@ -129,12 +129,11 @@ app.get('/webhook', (req, res) => {
     let carbrand = req.body.car_brand;
     let carmodel = req.body.car_model;
     let carsize= req.body.carsize;
-    let pethair  = req.body.addon0;
-    console.log(req.body.addon0);
-    let wax = req.body.addon1;
-    let scratch = req.body.addon2;  
-    let claybar = req.body.addon3;  
-    let tire_alloy = req.body.addon4;
+    let pethair  = req.body.add_on0;
+    let wax = req.body.add_on1;
+    let scratch = req.body.add_on2;  
+    let claybar = req.body.add_on3;  
+    let tire_alloy = req.body.add_on4;
     let id= req.body.sender;
     let Name= req.body.Name;
     let wash_type= req.body.wash_type;

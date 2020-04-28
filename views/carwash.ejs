@@ -167,23 +167,23 @@
                       </td>
                       <td> 
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon0" id="addon0" value="2000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon0" value="2000" onclick="UpdateCost(),calculate(),myFunction()">
                           <label class="custom-control-label" for="addon0">Pet Hair Removal</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon1" id="addon1" value="3000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon1" value="3000" onclick="UpdateCost(),calculate(),myFunction()">
                           <label class="custom-control-label" for="addon1">Wax</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon2" id="addon2" value="4000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon2" value="4000" onclick="UpdateCost(),calculate(),myFunction()">
                           <label class="custom-control-label" for="addon2">Sratch Removal</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon3" id="addon3" value="5000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon3" value="5000" onclick="UpdateCost(),calculate(),myFunction()">
                           <label class="custom-control-label" for="addon3">Clay Bar Treatment</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon4" id="addon4" value="6000" onclick="UpdateCost(),calculate()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon4" value="6000" onclick="UpdateCost(),calculate(),myFunction()">
                           <label class="custom-control-label" for="addon4">Tire and alloy cleaning</label>
                         </div>
                         
@@ -220,11 +220,16 @@
                     
                     <tr>
                     <td>
-                      <input type="hidden"  id="sender" name="sender" value="<%= id %>">
-                      <input type="hidden"  id="Name" name="Name" value="<%= name %>">
-                      <input type="hidden"  id="wash_type" name="wash_type" value="<%= washtype %>">
-                      <input type="hidden"  id="int_ext" name="int_ext" value="<%= intorext %>">
-                      <button type="submit" class="btn btn-outline-light btn-primary btn-lg btn-block">Submit</button>
+                        <input type='text'id='add_on0' value="unincluded" hidden readonly>
+                        <input type='text' id='add_on1'value="unincluded"hidden readonly>
+                        <input type='text' id='add_on2'value="unincluded"hidden readonly>
+                        <input type='text' id='add_on3'value="unincluded"hidden readonly>
+                        <input type='text' id='add_on4'value="unincluded"hidden readonly>
+                        <input type="hidden"  id="sender" name="sender" value="<%= id %>">
+                        <input type="hidden"  id="Name" name="Name" value="<%= name %>">
+                        <input type="hidden"  id="wash_type" name="wash_type" value="<%= washtype %>">
+                        <input type="hidden"  id="int_ext" name="int_ext" value="<%= intorext %>">
+                        <button type="submit" class="btn btn-outline-light btn-primary btn-lg btn-block">Submit</button>
                     </td>
                     </tr>
 
@@ -235,6 +240,38 @@
     
 </body>
 <script>
+  function myFunction() {
+    var addon0 = document.getElementById('addon0');
+    var addon1 = document.getElementById('addon1');
+    var addon2 = document.getElementById('addon2');
+    var addon3 = document.getElementById('addon3');
+    var addon4 = document.getElementById('addon4');
+    if(addon0.checked==true){
+      document.getElementById('add_on0').value= 'include';
+    }else if(addon0.checked==false){
+      document.getElementById('add_on0').value='not included';
+    }
+    if(addon1.checked==true){
+      document.getElementById('add_on1').value='include';
+    }else if(addon1.checked==false){
+      document.getElementById('add_on1').value='not included';
+    }
+    if(addon2.checked==true){
+      document.getElementById('add_on2').value='include';
+    }else if(addon2.checked==false){
+      document.getElementById('add_on2').value='not included';
+    }
+    if(addon3.checked==true){
+      document.getElementById('add_on3').value='include';
+    }else if(addon3.checked==false){
+      document.getElementById('add_on3').value='not included';
+    }
+    if(addon4.checked==true){
+      document.getElementById('add_on4').value='include';
+    }else if(addon4.checked==false){
+      document.getElementById('add_on4').value='not included';
+    }
+}
 function checkNumber() {
     var phone = document.getElementById('phone').value;
     var relt = isNaN(phone)
