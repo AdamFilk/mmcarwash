@@ -487,9 +487,24 @@ function price() {
             time:document.getElementById('time-input').value,
            
         }).then(success => {
-          MessengerExtensions.requestCloseBrowser(function success() {
-              // webview closed
-              var textMessage = {
+          function demoPromise() {
+          const p = new Promise((closeWindow, postMessage) => {
+            setTimeout(() => {
+              closeWindow();
+              p.then(() => {
+                console.log("I execute second");
+              }); // because I will be scheduled second
+            }, 1000);
+          });
+          return p;
+        }
+
+        demoPromise().then(() => {
+          console.log("I execute first");
+        }); // because I was scheduled first
+
+          function postMessage(){
+            var textMessage = {
             "recipient":{
               "id":senderID
             },
@@ -502,11 +517,18 @@ function price() {
             xhr.open("POST", `https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(textMessage));
-            popup("Thank you. Please close this window if you are not returned to the previous page.");
-            }, function error(err) {
+          }
+         
+            function closeWindow(){
+              MessengerExtensions.requestCloseBrowser(function success() {
+                          // webview closed
+              popup("Thank you. Please close this window if you are not returned to the previous page.");
+              }, function error(err) {
               // an error occurred
-              popup(message);
-            });
+             popup(message);
+              });
+            }
+          
        
         }).catch(error => {
           console.log(error);
