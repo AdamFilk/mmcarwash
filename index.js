@@ -587,6 +587,7 @@ if(userInput=="plans"){
             {
               "title":"Bronze plan",
               "subtitle":"Available plans",
+              "image_url":"https://i.pinimg.com/564x/4e/7a/79/4e7a79bc31c39cdc0ea944a6a618ac9b.jpg",
               "buttons":[
                 {
                 "type":"postback",
@@ -597,6 +598,7 @@ if(userInput=="plans"){
             },
             {
               "title":"Silver plan",
+              "image_url":"https://i.pinimg.com/564x/2b/a4/c0/2ba4c00cb92f1b6b9e77ab9c84b77a1d.jpg",
               "subtitle":"Available plans",
               "buttons":[
                 {
@@ -608,6 +610,7 @@ if(userInput=="plans"){
             },
             {
               "title":"Gold plan",
+              "image_url":"https://i.pinimg.com/564x/c9/25/62/c9256251709a5bbdf864f8243cdbec3d.jpg",
               "subtitle":"Available plans",
               "buttons":[
                 {
@@ -620,6 +623,7 @@ if(userInput=="plans"){
             {
               "title":"Platinum Plan",
               "subtitle":"Available plans",
+              "image_url":"https://i.pinimg.com/564x/ec/2f/83/ec2f8388521c3f956a1379736c3fd08c.jpg",
               "buttons":[
                 {
                 "type":"postback",
@@ -630,6 +634,8 @@ if(userInput=="plans"){
             },
             {
               "title":"Diamond Plans",
+              "image_url":"https://i.pinimg.com/564x/4a/37/83/4a378324e74f0196c76101ad37b90875.jpg",
+              "subtitle":"Available plans",
               "buttons":[
                 {
                 "type":"postback",
