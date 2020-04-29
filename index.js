@@ -1225,10 +1225,13 @@ if(userInput=="diamond" ){
   })
 })
 }
+
 if(user_message.includes("View Booking:")){
   let ref_num = user_message.slice(15);
   ref_num = ref_num.trim(); 
+  console.log(ref_num);
   var senderID = webhook_event.sender.id;
+  console.log(senderID);
   let genericMessage ={
     "recipient":{
       "id": webhook_event.sender.id
@@ -1242,7 +1245,7 @@ if(user_message.includes("View Booking:")){
           "buttons": [              
             {
               "type": "web_url",
-              "title": "Update",
+              "title": "View",
               "url":"https://mmcarwash.herokuapp.com/view/"+ref_num+"/"+senderID,
                "webview_height_ratio": "full",
               "messenger_extensions": true,          
