@@ -1226,7 +1226,7 @@ if(userInput=="diamond" ){
 })
 }
 
-if(user_message.includes("View Booking:")){
+if(userInput.includes("View Booking:")){
   let ref_num = user_message.slice(15);
   ref_num = ref_num.trim(); 
   console.log(ref_num);
