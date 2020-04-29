@@ -6,7 +6,7 @@ const
   bodyParser = require('body-parser'),
   request = require('request'),
   requestify = require('requestify'),
-  app = express().use(bodyParser.json()), // creates express http server
+  app = express() , // creates express http server
   ejs = require("ejs");
  const firebase = require("firebase-admin");
   
@@ -17,6 +17,7 @@ const
 
   app.set('view engine', 'ejs');
   app.set('views', __dirname+'/views');
+
   var firebaseConfig = {
     credential: firebase.credential.cert({
    "private_key": process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
@@ -36,15 +37,7 @@ const
 
   const db = firebase.firestore();
 
-  const generateRandom = (length) => {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-       result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  }
+
   
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -1415,6 +1408,15 @@ textMessage
     }
   
   });
+  const generateRandom = (length) => {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
   const showBookingNumber = (sender_psid,ref) => { 
     let textMessage = {
       "recipient":{
