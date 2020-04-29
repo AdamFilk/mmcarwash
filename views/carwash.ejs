@@ -196,7 +196,7 @@
                       </td>
                       <td>
                         <input type="text" name="price" id="price" value="0" hidden readonly>
-                        <input type="text" name="total" id="total">
+                        <input type="text" name="total" id="total" value="0">
                       </td>
                     </tr>
                     
@@ -287,7 +287,7 @@ var p=document.getElementById('price').value;
 var a= document.getElementById('addoncost').value;
 var result =parseFloat(p)+parseFloat(a);
 if (!isNaN(result)){
-  document.getElementById('total').innerHTML= result;
+  document.getElementById('total').value= result;
 }
 }
 
