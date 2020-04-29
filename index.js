@@ -92,10 +92,13 @@ app.post('/carwash',function(req,res){
   let claybar = req.body.add_on3;  
   let tire_alloy = req.body.add_on4;
   let total_price=req.body.total;
+  let date= req.body.date_input;
+  let time= req.body.time_input;
   let id= req.body.sender;
   let Name= req.body.Name;
   let wash_type= req.body.wash_type;
   let int_ext= req.body.int_ext;
+ 
 
 
 
@@ -115,6 +118,8 @@ app.post('/carwash',function(req,res){
     claybar:claybar,
     tire_alloy:tire_alloy,
     total_price:total_price,
+    date:date,
+    time:time,
     id:id,
     Name:Name,
     wash_type:wash_type,
@@ -127,7 +132,51 @@ app.post('/carwash',function(req,res){
         console.log(error);
   });        
 });
+app.get('/view/:booking_number/:sender_id/',function(req,res){
+  const sender_id = req.params.sender_id;
+  const booking_number = req.params.booking_number;
 
+
+  db.collection("Car Wash Booking").where("booking_number", "==", booking_number)
+  .get()
+  .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+
+          let data = {
+            doc_id:doc.id,
+            phone:doc.data().phone,
+            town:doc.data().town,
+            address:doc.data().address,
+            carpalte:doc.data().carpalte,
+            carbrand:doc.data().carbrand,
+            carmodel:doc.data().carmodel,
+            carsize:doc.data().carsize,            
+            pethair:doc.data().pethair,
+            wax:doc.data().wax,
+            scratch:doc.data().scratch,
+            claybar:doc.data().claybar,
+            tire_alloy:doc.data().tire_alloy,
+            total_price:doc.data().total_price,
+            date:doc.data().date,
+            time:doc.data().time,
+            id:doc.data().id,
+            Name:doc.data().Name,
+            wash_type:doc.data().wash_type,
+            Interior_or_Exterior:doc.data().Interior_or_Exterior,
+            booking_number:doc.data().booking_number,
+          }   
+
+          console.log("BOOKING DATA", data);     
+
+         res.render('view.ejs',{data:data, sender_id:sender_id});
+          
+
+      });
+  })
+  .catch(function(error) {
+      console.log("Error getting documents: ", error);
+  });    
+});
 
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
@@ -1176,7 +1225,43 @@ if(userInput=="diamond" ){
   })
 })
 }
-
+if(user_message.includes("View Booking:")){
+  let ref_num = user_message.slice(15);
+  ref_num = ref_num.trim(); 
+  var senderID = webhook_event.sender.id;
+  let genericMessage ={
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [{
+          "title": "You are viewing your booking number: " + ref_num,                       
+          "buttons": [              
+            {
+              "type": "web_url",
+              "title": "Update",
+              "url":"https://mmcarwash.herokuapp.com/view/"+ref_num+"/"+senderID,
+               "webview_height_ratio": "full",
+              "messenger_extensions": true,          
+            },
+            
+          ],
+        }]
+      }
+    }
+  }
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}
+      
 //start price
 if (userInput == 'price'){
   let textMessage = {
