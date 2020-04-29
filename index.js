@@ -91,6 +91,7 @@ app.post('/carwash',function(req,res){
   let scratch = req.body.add_on2;  
   let claybar = req.body.add_on3;  
   let tire_alloy = req.body.add_on4;
+  let total_price=req.body.total;
   let id= req.body.sender;
   let Name= req.body.Name;
   let wash_type= req.body.wash_type;
@@ -113,6 +114,7 @@ app.post('/carwash',function(req,res){
     scratch:scratch,
     claybar:claybar,
     tire_alloy:tire_alloy,
+    total_price:total_price,
     id:id,
     Name:Name,
     wash_type:wash_type,
