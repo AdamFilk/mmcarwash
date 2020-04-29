@@ -37,139 +37,139 @@ const
 
   const db = firebase.firestore();
 
-
+  app.get('/plans/:plan/:name/:id/:month', (req, res) => {
+  
+    var name = req.params.name;
+    var month=req.params.month;
+    var plan=req.params.plan;
+    var senderID=req.params.id;
+    res.render('plans.ejs', {name:name, month:month,plan:plan, id:senderID})
+    
+  })
+  app.get('/plan_once/:plan/:name/:id', (req, res) => {
+  
+    var name = req.params.name;
+    var plan=req.params.plan;
+    var senderID=req.params.id;
+    res.render('plan_once.ejs', {name:name,plan:plan, id:senderID})
+    
+  })
+  app.get('/carwash/:washtype/:intorext/:name/:id', (req, res) => {
+  
+    var name = req.params.name;
+    var washType=req.params.washtype;
+    var intorext=req.params.intorext;
+    var senderID=req.params.id;
+    res.render('carwash.ejs', {name:name, washtype:washType,intorext:intorext, id:senderID})
+    
+  })
+  app.post('/carwash',function(req,res){
+        
+        
+    let phone= req.body.phone;
+    console.log(req.body.add_on0);
+    let town = req.body.town;
+    let address = req.body.address_info;
+    let carpalte = req.body.car_plate;
+    let carbrand = req.body.car_brand;
+    let carmodel = req.body.car_model;
+    let carsize= req.body.carsize;
+    let pethair  = req.body.add_on0;
+    let wax = req.body.add_on1;
+    let scratch = req.body.add_on2;  
+    let claybar = req.body.add_on3;  
+    let tire_alloy = req.body.add_on4;
+    let total_price=req.body.total;
+    let date= req.body.date_input;
+    let time= req.body.time_input;
+    let id= req.body.sender;
+    let Name= req.body.Name;
+    let wash_type= req.body.wash_type;
+    let int_ext= req.body.int_ext;
+   
+  
+  
+  
+   let booking_number = generateRandom(5);    
+  
+    db.collection('Car Wash Booking').add({
+      phone:phone,
+      town:town,
+      address:address,
+      carpalte:carpalte,
+      carbrand:carbrand,
+      carmodel:carmodel,
+      carsize:carsize,            
+      pethair:pethair,
+      wax:wax,
+      scratch:scratch,
+      claybar:claybar,
+      tire_alloy:tire_alloy,
+      total_price:total_price,
+      date:date,
+      time:time,
+      id:id,
+      Name:Name,
+      wash_type:wash_type,
+      Interior_or_Exterior:int_ext,
+      booking_number:booking_number,
+        }).then(success => {             
+          console.log("DATASAVESHOWBOOKINGNUMBER");     
+           showBookingNumber(id, booking_number);   
+        }).catch(error => {
+          console.log(error);
+    });        
+  });
+  app.get('/view/:booking_number/:sender_id/',function(req,res){
+    const sender_id = req.params.sender_id;
+    const booking_number = req.params.booking_number;
+  
+  
+    db.collection("Car Wash Booking").where("booking_number", "==", booking_number)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+  
+            let data = {
+              doc_id:doc.id,
+              phone:doc.data().phone,
+              town:doc.data().town,
+              address:doc.data().address,
+              carpalte:doc.data().carpalte,
+              carbrand:doc.data().carbrand,
+              carmodel:doc.data().carmodel,
+              carsize:doc.data().carsize,            
+              pethair:doc.data().pethair,
+              wax:doc.data().wax,
+              scratch:doc.data().scratch,
+              claybar:doc.data().claybar,
+              tire_alloy:doc.data().tire_alloy,
+              total_price:doc.data().total_price,
+              date:doc.data().date,
+              time:doc.data().time,
+              id:doc.data().id,
+              Name:doc.data().Name,
+              wash_type:doc.data().wash_type,
+              Interior_or_Exterior:doc.data().Interior_or_Exterior,
+              booking_number:doc.data().booking_number,
+            }   
+  
+            console.log("BOOKING DATA", data);     
+  
+           res.render('view.ejs',{data:data, sender_id:sender_id});
+            
+  
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });    
+  });
   
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
-app.get('/plans/:plan/:name/:id/:month', (req, res) => {
-  
-  var name = req.params.name;
-  var month=req.params.month;
-  var plan=req.params.plan;
-  var senderID=req.params.id;
-  res.render('plans.ejs', {name:name, month:month,plan:plan, id:senderID})
-  
-})
-app.get('/plan_once/:plan/:name/:id', (req, res) => {
 
-  var name = req.params.name;
-  var plan=req.params.plan;
-  var senderID=req.params.id;
-  res.render('plan_once.ejs', {name:name,plan:plan, id:senderID})
-  
-})
-app.get('/carwash/:washtype/:intorext/:name/:id', (req, res) => {
-
-  var name = req.params.name;
-  var washType=req.params.washtype;
-  var intorext=req.params.intorext;
-  var senderID=req.params.id;
-  res.render('carwash.ejs', {name:name, washtype:washType,intorext:intorext, id:senderID})
-  
-})
-app.post('/carwash',function(req,res){
-      
-      
-  let phone= req.body.phone;
-  console.log(req.body.add_on0);
-  let town = req.body.town;
-  let address = req.body.address_info;
-  let carpalte = req.body.car_plate;
-  let carbrand = req.body.car_brand;
-  let carmodel = req.body.car_model;
-  let carsize= req.body.carsize;
-  let pethair  = req.body.add_on0;
-  let wax = req.body.add_on1;
-  let scratch = req.body.add_on2;  
-  let claybar = req.body.add_on3;  
-  let tire_alloy = req.body.add_on4;
-  let total_price=req.body.total;
-  let date= req.body.date_input;
-  let time= req.body.time_input;
-  let id= req.body.sender;
-  let Name= req.body.Name;
-  let wash_type= req.body.wash_type;
-  let int_ext= req.body.int_ext;
- 
-
-
-
- let booking_number = generateRandom(5);    
-
-  db.collection('Car Wash Booking').add({
-    phone:phone,
-    town:town,
-    address:address,
-    carpalte:carpalte,
-    carbrand:carbrand,
-    carmodel:carmodel,
-    carsize:carsize,            
-    pethair:pethair,
-    wax:wax,
-    scratch:scratch,
-    claybar:claybar,
-    tire_alloy:tire_alloy,
-    total_price:total_price,
-    date:date,
-    time:time,
-    id:id,
-    Name:Name,
-    wash_type:wash_type,
-    Interior_or_Exterior:int_ext,
-    booking_number:booking_number,
-      }).then(success => {             
-        console.log("DATASAVESHOWBOOKINGNUMBER");     
-         showBookingNumber(id, booking_number);   
-      }).catch(error => {
-        console.log(error);
-  });        
-});
-app.get('/view/:booking_number/:sender_id/',function(req,res){
-  const sender_id = req.params.sender_id;
-  const booking_number = req.params.booking_number;
-
-
-  db.collection("Car Wash Booking").where("booking_number", "==", booking_number)
-  .get()
-  .then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-
-          let data = {
-            doc_id:doc.id,
-            phone:doc.data().phone,
-            town:doc.data().town,
-            address:doc.data().address,
-            carpalte:doc.data().carpalte,
-            carbrand:doc.data().carbrand,
-            carmodel:doc.data().carmodel,
-            carsize:doc.data().carsize,            
-            pethair:doc.data().pethair,
-            wax:doc.data().wax,
-            scratch:doc.data().scratch,
-            claybar:doc.data().claybar,
-            tire_alloy:doc.data().tire_alloy,
-            total_price:doc.data().total_price,
-            date:doc.data().date,
-            time:doc.data().time,
-            id:doc.data().id,
-            Name:doc.data().Name,
-            wash_type:doc.data().wash_type,
-            Interior_or_Exterior:doc.data().Interior_or_Exterior,
-            booking_number:doc.data().booking_number,
-          }   
-
-          console.log("BOOKING DATA", data);     
-
-         res.render('view.ejs',{data:data, sender_id:sender_id});
-          
-
-      });
-  })
-  .catch(function(error) {
-      console.log("Error getting documents: ", error);
-  });    
-});
 
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
