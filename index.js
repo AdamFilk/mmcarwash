@@ -4,6 +4,7 @@
 const
   express = require('express'),
   bodyParser = require('body-parser'),
+  request = require('request'),
   requestify = require('requestify'),
   app = express().use(bodyParser.json()), // creates express http server
   ejs = require("ejs");
@@ -11,6 +12,11 @@ const
   
 
   const pageaccesstoken = 'EAAKGyWXj6KABAB4s5bmcCuMvrdpKW1S0fnoYezGNAtA022SiQZAOwTBeng7cjs79hPYl3pknZCTGWDPPIhBqsKOZAokIGEpjqtFT4AqV6yaZAZBPYtS5VmUsDayUVkZCloQRipJouy3ReZBfUkonLYwH8TO1BXTHVxBu1aTbKIpZB1O4kZC9e7QCXMtJNdfC0MXkZD';
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded());
+
+  app.set('view engine', 'ejs');
+  app.set('views', __dirname+'/views');
   var firebaseConfig = {
     credential: firebase.credential.cert({
    "private_key": process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
@@ -23,46 +29,28 @@ const
  
   firebase.initializeApp(firebaseConfig);
 
-  
+    
+  app.get('/whitelists',function(req,res){    
+    whitelistDomains(res);
+  });
+
   const db = firebase.firestore();
 
+  const generateRandom = (length) => {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+  
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.set('view engine', 'ejs');
-app.set('views', __dirname+'/views');
-
-const generateRandom = (length) => {
-  var result           = '';
-  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  var charactersLength = characters.length;
-  for ( var i = 0; i < length; i++ ) {
-     result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
-const showBookingNumber = (ref) => { 
-  let textMessage = {
-    "recipient":{
-      "id":webhook_event.sender.id
-    },
-    "message":{
-      "text": `Your data is saved. Please keep your booking reference ${ref}`
-    }
-  };
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-  textMessage
-  ).then(response=>{
-    console.log(response)
-  }).fail(error=> {
-    console.log(error)
-  })
-}
-
 app.get('/plans/:plan/:name/:id/:month', (req, res) => {
-
+  
   var name = req.params.name;
   var month=req.params.month;
   var plan=req.params.plan;
@@ -131,6 +119,7 @@ app.post('/carwash',function(req,res){
     Interior_or_Exterior:int_ext,
     booking_number:booking_number,
       }).then(success => {             
+        console.log("DATASAVESHOWBOOKINGNUMBER");     
          showBookingNumber(id, booking_number);   
       }).catch(error => {
         console.log(error);
@@ -138,12 +127,9 @@ app.post('/carwash',function(req,res){
 });
 
 
-app.get('/whitelists',function(req,res){    
-  whitelistDomains(res);
-});
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
-
+    
     // Your verify token. Should be a random string.
     let VERIFY_TOKEN = "aungchanoo"
       
@@ -168,7 +154,6 @@ app.get('/webhook', (req, res) => {
       }
     }
   });
-
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
  
@@ -182,6 +167,7 @@ app.post('/webhook', (req, res) => {
         // Gets the message. entry.messaging is an array, but 
         // will only ever contain one message, so we get index 0
         let webhook_event = entry.messaging[0];
+        let sender_psid = webhook_event.sender.id;
         console.log("WEB HOOK EVENT", webhook_event);
 
 
@@ -193,6 +179,7 @@ app.post('/webhook', (req, res) => {
         if(webhook_event.postback){
           var userInput = webhook_event.postback.payload
         }
+
         if (userInput == 'Hi'){
           requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
             var udetails = JSON.parse(success.body)
@@ -1327,8 +1314,6 @@ textMessage
 }
 //end v_l_price
 
-
-
       });
   
       // Returns a '200 OK' response to all requests
@@ -1340,6 +1325,23 @@ textMessage
     }
   
   });
+  const showBookingNumber = (sender_psid,ref) => { 
+    let textMessage = {
+      "recipient":{
+        "id": sender_psid
+      },
+      "message":{
+        "text": `Your data is saved. Please keep your booking reference ${ref}`
+      }
+    };
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    textMessage
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+  }
   /***********************************
 FUNCTION TO ADD WHITELIST DOMAIN
 ************************************/
