@@ -1442,7 +1442,8 @@ const whitelistDomains = (res) => {
            "https://mmcarwash.herokuapp.com/" , 
            "https://herokuapp.com/" ,
            "https://mmcarwash.herokuapp.com/carwash/" ,
-           "https://mmcarwash.herokuapp.com/plans/"                  
+           "https://mmcarwash.herokuapp.com/plans/"   ,
+           "https://mmcarwash.herokuapp.com/view/"       
           ]               
   };  
   request({
