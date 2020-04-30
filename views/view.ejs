@@ -221,7 +221,10 @@
                     <tr>
                         <td>
                             <button type="button" class="btn btn-primary" onclick="myFunction()">Close</button>
-                            <button type="button" class="btn btn-danger" onclick="delete_booking()">Delete</button>
+                            
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-danger" onclick="delete_booking()">Delete</button>
                         </td>
                     </tr>
                 </table>  
@@ -262,21 +265,32 @@
     console.log(success);
       var db = firebase.firestore();
       db.collection("Car Wash Booking").doc("<%= data.doc_id %>").delete().then(success => {
-          MessengerExtensions.requestCloseBrowser(function success() {
-              // webview closed
-              let textMessage = {
+
+          let textMessage = {
             "recipient":{
-              "id":senderID
+              "id":'<%=sender_id %>'
             },
             "message":{
               "text": "Your booking has been Deleted"
             }
+            }
+            async function postData(url=`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`,data={textMessage}){
+            const response = await fetch(url, {
+            method: 'POST',
+            mode:'cors',
+            cache:'no-cache',
+            credentials:'same-origin',
+            headers:{
+              'Content-Type':'application/jason'
+              },
+            redirect:'follow',
+            referrerPolicy:'no-referrer',
+            body: JSON.stringify(data)
+            });
+            return await response.json();
           }
-          
-          var xhr = new XMLHttpRequest();
-            xhr.open("POST", `https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(textMessage));
+          MessengerExtensions.requestCloseBrowser(function success() {
+              // webview closed
             
             }, function error(err) {
               // an error occurred
