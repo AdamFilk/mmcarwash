@@ -240,7 +240,7 @@ const
   
     
   
-    db.collection('Car Wash Booking').add({
+    db.collection('Car Wash Booking').doc(doc_id).update({
       phone:phone,
       town:town,
       address:address,
