@@ -53,7 +53,7 @@
                           <b>Name:</b>
                         </td>
                         <td>
-                            <input type="text"  id="Name" name="Name" value="<%= Name %>">
+                            <input type="text"  id="Name" name="Name" value="<%= data.Name %>">
                                
                         </td>
                     </tr>
@@ -64,7 +64,7 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text" id="basic-addon1">+95</span>
                                 </div>
-                                <input  type="text" class="form-control" aria-label="phone_number" aria-describedby="basic-addon1" value="<%= phone %>">
+                                <input  type="text" class="form-control" aria-label="phone_number" aria-describedby="basic-addon1" value="<%= data.phone %>">
                               </div>
                         </td>
                     </tr>
@@ -81,7 +81,7 @@
                     <tr>
                         <td style="vertical-align: middle;"><b>Town:</b> </td>
                         <td>    
-                            <input type="text" class="form-control" value="<%= town %>">
+                            <input type="text" class="form-control" value="<%= data.town %>">
                         </td>
                     </tr>   
                     
@@ -90,7 +90,7 @@
                            <b>Address Information</b> 
                         </td>
                         <td>
-                          <textarea name="address" id="address" cols="30" rows="10"></textarea>
+                          <input type="text" class="form-control" value="<%= data.address %>">
                         </td>
                     </tr>
 
@@ -99,7 +99,7 @@
                           Car Plate
                         </td>
                         <td>
-                          <input type="text" class="form-control" name="car_plate" id="car_plate" value="<%= carpalte %>">
+                          <input type="text" class="form-control" name="car_plate" id="car_plate" value="<%= data.carpalte %>">
                         </td>
                     </tr>
                     <tr>
@@ -107,7 +107,7 @@
                         Car Brand
                       </td>
                       <td>
-                        <input type="text" class="form-control" name="car_brand" id="car_brand" value="<%= carbrand %>">
+                        <input type="text" class="form-control" name="car_brand" id="car_brand" value="<%= data.carbrand %>">
                       </td>
                   </tr>
                   <tr>
@@ -115,7 +115,7 @@
                       Car Model
                     </td>
                     <td>
-                        <input type="text" class="form-control" name="car_model" id="car_model" value="<%= carmodel %>">
+                        <input type="text" class="form-control" name="car_model" id="car_model" value="<%= data.carmodel %>">
                     </td>
                 </tr>
                     
@@ -124,7 +124,7 @@
                       <b>Car Size</b>
                     </td>
                     <td>
-                        <input type="text" class="form-control" name="carsize" id="carsize" value="<%= carsize %>">
+                        <input type="text" class="form-control" name="carsize" id="carsize" value="<%= data.carsize %>">
                     </td>
                     </tr>
                     <tr>
@@ -132,7 +132,7 @@
                         Pet Hair
                       </td>
                       <td> 
-                        <input type='text' name="add_on0" id='add_on0' value="<%= pethair %>"  > 
+                        <input type='text' name="add_on0" id='add_on0' value="<%= data.pethair %>"  > 
                     </td>
                     </tr>
                     <tr>
@@ -140,7 +140,7 @@
                           Wax
                         </td>
                         <td> 
-                          <input type='text' name="add_on1" id='add_on' value="<%= wax %>"  > 
+                          <input type='text' name="add_on1" id='add_on' value="<%= data.wax %>"  > 
                       </td>
                       </tr>
                       <tr>
@@ -148,7 +148,7 @@
                          Scratch Removal
                         </td>
                         <td> 
-                          <input type='text' name="add_on2" id='add_on2' value="<%= scratch %>"  > 
+                          <input type='text' name="add_on2" id='add_on2' value="<%= data.scratch %>"  > 
                       </td>
                       </tr>
                       <tr>
@@ -156,7 +156,7 @@
                          Clay Bar
                         </td>
                         <td> 
-                          <input type='text' name="add_on3" id='add_on3' value="<%= claybar %>"  > 
+                          <input type='text' name="add_on3" id='add_on3' value="<%= data.claybar %>"  > 
                       </td>
                       </tr>
                       <tr>
@@ -164,7 +164,7 @@
                          Tire and alloy cleaning
                         </td>
                         <td> 
-                          <input type='text' name="add_on4" id='add_on4' value="<%= tire_alloy %>"  > 
+                          <input type='text' name="add_on4" id='add_on4' value="<%= data.tire_alloy %>"  > 
                       </td>
                       </tr>
                     <tr>
@@ -173,7 +173,7 @@
                       </td>
                       <td>
 
-                        <input type="text" name="total" id="total" value="<%= total_price %>">
+                        <input type="text" name="total" id="total" value="<%= data.total_price %>">
                       </td>
                     </tr>
                     
@@ -181,7 +181,7 @@
                         <td><b>Date</b> </td>
                         <td>
                                 
-                            <input class="form-control" type="date" value="<%= date %>" id="date-input" name="date-input" required>
+                            <input class="form-control" type="date" value="<%= data.date %>" id="date-input" name="date-input" required>
                               
                         </td>
                     </tr>
@@ -191,12 +191,12 @@
                         <b>Time</b> 
                      </td>
                      <td>
-                         <input class="form-control" type="time" value="<%= time %>" id="time-input" name="time-input" required>
+                         <input class="form-control" type="time" value="<%= data.time %>" id="time-input" name="time-input" required>
                      </td>
                     </tr>
                     
                    
-                            <input type="hidden"  id="sender" name="sender" value="<%= id %>">
+                            <input type="hidden"  id="sender" name="sender" value="<%= data.id %>">
                           
                        
                     <tr>
@@ -207,7 +207,7 @@
                             Wash Type
                         </td>
                         <td>
-                            <input type="text"  id="wash_type" name="wash_type" value="<%= washtype %>">
+                            <input type="text"  id="wash_type" name="wash_type" value="<%= data.wash_type %>">
                         </td>
                     </tr>
                     <tr>
@@ -215,7 +215,7 @@
                             Interior or Exterior
                         </td>
                          <td>
-                             <input type="text"  id="int_ext" name="int_ext" value="<%= intorext %>">
+                             <input type="text"  id="int_ext" name="int_ext" value="<%= data.Interior_or_Exterior %>">
                          </td>
                     </tr>
                     <tr>
