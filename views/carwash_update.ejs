@@ -177,23 +177,23 @@
                       </td>
                       <td> 
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon" id="addon0" value="2000" onclick="UpdateCost(),calculate(),myFunction()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon0" value="2000" onclick="UpdateCost(),calculate(),addonFunction()">
                           <label class="custom-control-label" for="addon0">Pet Hair Removal</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon" id="addon1" value="3000" onclick="UpdateCost(),calculate(),myFunction()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon1" value="3000" onclick="UpdateCost(),calculate(),addonFunction()">
                           <label class="custom-control-label" for="addon1">Wax</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon" id="addon2" value="4000" onclick="UpdateCost(),calculate(),myFunction()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon2" value="4000" onclick="UpdateCost(),calculate(),addonFunction()">
                           <label class="custom-control-label" for="addon2">Sratch Removal</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon" id="addon3" value="5000" onclick="UpdateCost(),calculate(),myFunction()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon3" value="5000" onclick="UpdateCost(),calculate(),addonFunction()">
                           <label class="custom-control-label" for="addon3">Clay Bar Treatment</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon" id="addon4" value="6000" onclick="UpdateCost(),calculate(),myFunction()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon4" value="6000" onclick="UpdateCost(),calculate(),addonFunction()">
                           <label class="custom-control-label" for="addon4">Tire and alloy cleaning</label>
                         </div>
                         
@@ -266,7 +266,7 @@
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
 
 <script>
-   function myFunction() {
+   function addonFunction() {
     var addon0 = document.getElementById('addon0');
     var addon1 = document.getElementById('addon1');
     var addon2 = document.getElementById('addon2');
@@ -403,9 +403,6 @@ function UpdateCost() {
   document.getElementById('addoncost').value = sum.toFixed(2);
 } 
 
-</script>
-<script>
-
   var v_carsize= '<%= data.carsizse %>';
   if(v_carsize=='small'){
     docuemnt.getElementById('small').checked= true;
@@ -445,6 +442,7 @@ function UpdateCost() {
   }else if(v_pethair=='not included'){
     docuemnt.getElementById('addon4').checked= false;
   }
+  
     const pageaccesstoken= 'EAAKGyWXj6KABABtkTYLNOl1ZALlRZAgHOQs90hhI0B3RiEQOlx9H9SZAGOIqHD0n0hMvaRQ1F44sKoYbai1fJ3PE08WVlQxr7X52LRUr2svOVmpR2VFc9e9J4QTXYBSxarrtFMdbwr1YJ0XF8cKgDYoGx7BA4onhqLSCshIWVXvfNs5UqYh2SEZBoIWQO2IZD'
   // Your web app's Firebase configuration
   var firebaseConfig = {
