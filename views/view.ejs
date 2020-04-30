@@ -253,19 +253,7 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  function  myFunction(){
-    MessengerExtensions.requestCloseBrowser(function success() {
-      console.log("success");          
-    }, function error(err) {
-      console.log(err);
-    });
-    }
-    function delete_booking(){
-    firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
-    console.log(success);
-      var db = firebase.firestore();
-      db.collection("Car Wash Booking").doc("<%= data.doc_id %>").delete().then(success => {
-            async function postData(url='',data={}){
+  async function postData(url='',data={}){
             const response = await fetch(url, {
             method: 'POST',
             mode:'cors',
@@ -280,6 +268,19 @@
             });
             return await response.json();
           }
+  function  myFunction(){
+    MessengerExtensions.requestCloseBrowser(function success() {
+      console.log("success");          
+    }, function error(err) {
+      console.log(err);
+    });
+    }
+    function delete_booking(){
+    firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
+    console.log(success);
+      var db = firebase.firestore();
+      db.collection("Car Wash Booking").doc("<%= data.doc_id %>").delete().then(success => {
+            
           let textMessage = {
             "recipient":{
               "id":'<%=sender_id %>'
@@ -288,7 +289,7 @@
               "text": "Your booking has been Deleted"
             }
             }
-postData(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`,textMessage).then(success=>{}).catch(err=>{console.log(err)});
+postData(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`,textMessage).then(success=>{console.log(success)}).catch(err=>{console.log(err)});
           
        
         }).catch(error => {
