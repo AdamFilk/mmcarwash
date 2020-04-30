@@ -79,6 +79,7 @@ const
     let scratch = req.body.add_on2;  
     let claybar = req.body.add_on3;  
     let tire_alloy = req.body.add_on4;
+    let addoncost = req.body.addoncost;
     let total_price=req.body.total;
     let date= req.body.date_input;
     let time= req.body.time_input;
@@ -105,6 +106,7 @@ const
       scratch:scratch,
       claybar:claybar,
       tire_alloy:tire_alloy,
+      addoncost:addoncost,
       total_price:total_price,
       date:date,
       time:time,
@@ -174,7 +176,7 @@ const
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-          
+
             let data = {
               doc_id:doc.id,
               phone:doc.data().phone,
@@ -189,6 +191,7 @@ const
               scratch:doc.data().scratch,
               claybar:doc.data().claybar,
               tire_alloy:doc.data().tire_alloy,
+              addoncost:doc.data().addoncost,
               total_price:doc.data().total_price,
               date:doc.data().date,
               time:doc.data().time,
@@ -226,6 +229,7 @@ const
     let scratch = req.body.add_on2;  
     let claybar = req.body.add_on3;  
     let tire_alloy = req.body.add_on4;
+    let addoncost = req.body.addoncost;
     let total_price=req.body.total;
     let date= req.body.date_input;
     let time= req.body.time_input;
@@ -250,6 +254,7 @@ const
       scratch:scratch,
       claybar:claybar,
       tire_alloy:tire_alloy,
+      addoncost:addoncost,
       total_price:total_price,
       date:date,
       time:time,
