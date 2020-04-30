@@ -269,15 +269,8 @@
           
           MessengerExtensions.requestCloseBrowser(function success() {
               // webview closed
-              let textMessage = {
-            "recipient":{
-              "id":'<%=sender_id %>'
-            },
-            "message":{
-              "text": "Your booking has been Deleted"
-            }
-            }
-            async function postData(url=`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`,data={textMessage}){
+              
+            async function postData(url='',data={}){
             const response = await fetch(url, {
             method: 'POST',
             mode:'cors',
@@ -292,6 +285,15 @@
             });
             return await response.json();
           }
+          let textMessage = {
+            "recipient":{
+              "id":'<%=sender_id %>'
+            },
+            "message":{
+              "text": "Your booking has been Deleted"
+            }
+            }
+          postData(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`,textMessage);
             }, function error(err) {
               // an error occurred
               
