@@ -321,7 +321,7 @@ function pricechange() {
   var value = document.querySelector('input[name="carsize"]:checked');
   value = value.value;
   console.log(value);
- if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="int"){
+ if ( '<%= wash_type%>' =="regular" && '<%= Interior_or_Exterior%>'=="int"){
   if(value=="small"){
     document.getElementById("price").value= +"3000" 
   }
@@ -332,7 +332,7 @@ function pricechange() {
     document.getElementById("price").value="5000"
   }
  }
- else if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="ext"){
+ else if ( '<%= wash_type%>' =="regular" && '<%= Interior_or_Exterior%>'=="ext"){
   if(value=="small"){
     document.getElementById("price").value= "3000"
   }
@@ -343,7 +343,7 @@ function pricechange() {
     document.getElementById("price").value="5000"
   }
  }
- else if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="both"){
+ else if ( '<%= wash_type%>' =="regular" && '<%= Interior_or_Exterior%>'=="both"){
   if(value=="small"){
     document.getElementById("price").value= "5000"
   }
@@ -354,7 +354,7 @@ function pricechange() {
     document.getElementById("price").value="9000"
   }
  }
- else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="int"){
+ else if ( '<%= wash_type%>' =="waterless" && '<%= Interior_or_Exterior%>'=="int"){
   if(value=="small"){
     document.getElementById("price").value= "4000"
   }
@@ -365,7 +365,7 @@ function pricechange() {
     document.getElementById("price").value="6000"
   }
  }
- else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="ext"){
+ else if ( '<%= wash_type%>' =="waterless" && '<%= Interior_or_Exterior%>'=="ext"){
   if(value=="small"){
     document.getElementById("price").value= "4000"
   }
@@ -376,7 +376,7 @@ function pricechange() {
     document.getElementById("price").value="6000"
   }
  }
- else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="both"){
+ else if ( '<%= wash_type%>' =="waterless" && '<%= Interior_or_Exterior%>'=="both"){
   if(value=="small"){
     document.getElementById("price").value= "7000"
   }
