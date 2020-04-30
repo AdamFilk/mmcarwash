@@ -405,11 +405,11 @@ function UpdateCost() {
 
   var v_carsize= '<%= data.carsizse %>';
   if(v_carsize=='small'){
-    docuemnt.getElementById('small').checked= true;
+    document.getElementById('small').checked= true;
   }else if(v_carsize=='medium'){
-    docuemnt.getElementById('medium').checked= true;
+    document.getElementById('medium').checked= true;
   }else if(v_carsize=='large'){
-    docuemnt.getElementById('large').checked= true;
+    document.getElementById('large').checked= true;
   }
   
   var v_pethair= '<%= data.pethair %>';
@@ -418,31 +418,31 @@ function UpdateCost() {
   var v_claybar= '<%= data.claybar %>';
   var v_tire_alloy= '<%= data.tire_alloy %>';
   if(v_pethair=='include'){
-    docuemnt.getElementById('addon0').checked= true;
+    document.getElementById('addon0').checked= true;
   }else if(v_pethair=='not included'){
-    docuemnt.getElementById('addon0').checked= false;
+    document.getElementById('addon0').checked= false;
   }
   if(v_wax=='include'){
-    docuemnt.getElementById('addon1').checked= true;
+    document.getElementById('addon1').checked= true;
   }else if(v_pethair=='not included'){
-    docuemnt.getElementById('addon1').checked= false;
+    document.getElementById('addon1').checked= false;
   }
   if(v_scratch=='include'){
-    docuemnt.getElementById('addon2').checked= true;
+    document.getElementById('addon2').checked= true;
   }else if(v_pethair=='not included'){
-    docuemnt.getElementById('addon2').checked= false;
+    document.getElementById('addon2').checked= false;
   }
   if(v_claybar=='include'){
-    docuemnt.getElementById('addon3').checked= true;
+    document.getElementById('addon3').checked= true;
   }else if(v_pethair=='not included'){
-    docuemnt.getElementById('addon3').checked= false;
+    document.getElementById('addon3').checked= false;
   }
   if(v_tire_alloy=='include'){
-    docuemnt.getElementById('addon4').checked= true;
+    document.getElementById('addon4').checked= true;
   }else if(v_pethair=='not included'){
-    docuemnt.getElementById('addon4').checked= false;
+    document.getElementById('addon4').checked= false;
   }
-  
+
     const pageaccesstoken= 'EAAKGyWXj6KABABtkTYLNOl1ZALlRZAgHOQs90hhI0B3RiEQOlx9H9SZAGOIqHD0n0hMvaRQ1F44sKoYbai1fJ3PE08WVlQxr7X52LRUr2svOVmpR2VFc9e9J4QTXYBSxarrtFMdbwr1YJ0XF8cKgDYoGx7BA4onhqLSCshIWVXvfNs5UqYh2SEZBoIWQO2IZD'
   // Your web app's Firebase configuration
   var firebaseConfig = {
