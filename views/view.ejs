@@ -265,11 +265,6 @@
     console.log(success);
       var db = firebase.firestore();
       db.collection("Car Wash Booking").doc("<%= data.doc_id %>").delete().then(success => {
-
-          
-          MessengerExtensions.requestCloseBrowser(function success() {
-              // webview closed
-              
             async function postData(url='',data={}){
             const response = await fetch(url, {
             method: 'POST',
@@ -294,6 +289,11 @@
             }
             }
           postData(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`,textMessage);
+          
+          MessengerExtensions.requestCloseBrowser(function success() {
+              // webview closed
+              
+            
             }, function error(err) {
               // an error occurred
               
