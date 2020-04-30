@@ -156,7 +156,7 @@ const
   
             console.log("BOOKING DATA", data);     
   
-           res.render('view.ejs',{data:data, sender_id:sender_id});
+           res.render('carwashview.ejs',{data:data, sender_id:sender_id});
             
   
         });
@@ -236,9 +236,6 @@ const
     let booking_number = req.body.booking_number; 
     let doc_id = req.body.doc_id; 
    
-  
-  
-    
   
     db.collection('Car Wash Booking').doc(doc_id).update({
       phone:phone,
