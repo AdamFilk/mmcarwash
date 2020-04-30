@@ -405,11 +405,20 @@ function UpdateCost() {
 
   var v_carsize= '<%= data.carsizse %>';
   if(v_carsize=='small'){
-    document.getElementById('small').selected= true;
-  }else if(v_carsize=='medium'){
-    document.getElementById('medium').selected= true;
-  }else if(v_carsize=='large'){
-    document.getElementById('large').selected= true;
+    document.getElementById('small').checked= true;
+  }else{
+    document.getElementById('small').checked= false;
+  }
+  if(v_carsize=='medium'){
+    document.getElementById('medium').checked= true;
+  }else{
+    document.getElementById('medium').checked= false;
+  }
+  if(v_carsize=='large'){
+    document.getElementById('large').checked= true;
+  }
+  else{
+    document.getElementById('large').checked= false;
   }
   
   var v_pethair= '<%= data.pethair %>';
