@@ -266,7 +266,10 @@
       var db = firebase.firestore();
       db.collection("Car Wash Booking").doc("<%= data.doc_id %>").delete().then(success => {
 
-          let textMessage = {
+          
+          MessengerExtensions.requestCloseBrowser(function success() {
+              // webview closed
+              let textMessage = {
             "recipient":{
               "id":'<%=sender_id %>'
             },
@@ -289,9 +292,6 @@
             });
             return await response.json();
           }
-          MessengerExtensions.requestCloseBrowser(function success() {
-              // webview closed
-            
             }, function error(err) {
               // an error occurred
               
