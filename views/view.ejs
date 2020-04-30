@@ -290,14 +290,7 @@
             }
           postData(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`,textMessage);
           
-          MessengerExtensions.requestCloseBrowser(function success() {
-              // webview closed
-              
-            
-            }, function error(err) {
-              // an error occurred
-              
-            });
+          alert('Close the webview');
        
         }).catch(error => {
           console.log(error);
