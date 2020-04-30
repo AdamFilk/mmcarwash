@@ -1230,6 +1230,7 @@ if(userInput.includes("View Booking:")){
       "id": senderID
     },
     "message":{
+      "attachment":{
       "type": "template",
       "payload": {
         "template_type": "generic",
@@ -1249,6 +1250,7 @@ if(userInput.includes("View Booking:")){
       }
     }
   }
+}
   requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
   genericMessage
   ).then(response=>{
