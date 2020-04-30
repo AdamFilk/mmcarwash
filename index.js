@@ -120,7 +120,7 @@ const
           console.log(error);
     });        
   });
-  app.get('/view/:booking_number/:sender_id/',function(req,res){
+  app.get('/carwashview/:booking_number/:sender_id/',function(req,res){
     const sender_id = req.params.sender_id;
     const booking_number = req.params.booking_number;
   
@@ -164,6 +164,109 @@ const
     .catch(function(error) {
         console.log("Error getting documents: ", error);
     });    
+  });
+  app.get('/carwash_update/:booking_number/:sender_id/',function(req,res){
+    const sender_id = req.params.sender_id;
+    const booking_number = req.params.booking_number;
+  
+  
+    db.collection("Car Wash Booking").where("booking_number", "==", booking_number)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+  
+            let data = {
+              doc_id:doc.id,
+              phone:doc.data().phone,
+              town:doc.data().town,
+              address:doc.data().address,
+              carpalte:doc.data().carpalte,
+              carbrand:doc.data().carbrand,
+              carmodel:doc.data().carmodel,
+              carsize:doc.data().carsize,            
+              pethair:doc.data().pethair,
+              wax:doc.data().wax,
+              scratch:doc.data().scratch,
+              claybar:doc.data().claybar,
+              tire_alloy:doc.data().tire_alloy,
+              total_price:doc.data().total_price,
+              date:doc.data().date,
+              time:doc.data().time,
+              id:doc.data().id,
+              Name:doc.data().Name,
+              wash_type:doc.data().wash_type,
+              Interior_or_Exterior:doc.data().Interior_or_Exterior,
+              booking_number:doc.data().booking_number,
+            }   
+  
+            console.log("BOOKING DATA", data);     
+  
+           res.render('carwash_update.ejs',{data:data, sender_id:sender_id});
+            
+  
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });    
+  });
+  app.post('/carwash_update',function(req,res){
+        
+        
+    let phone= req.body.phone;
+    console.log(req.body.add_on0);
+    let town = req.body.town;
+    let address = req.body.address_info;
+    let carpalte = req.body.car_plate;
+    let carbrand = req.body.car_brand;
+    let carmodel = req.body.car_model;
+    let carsize= req.body.carsize;
+    let pethair  = req.body.add_on0;
+    let wax = req.body.add_on1;
+    let scratch = req.body.add_on2;  
+    let claybar = req.body.add_on3;  
+    let tire_alloy = req.body.add_on4;
+    let total_price=req.body.total;
+    let date= req.body.date_input;
+    let time= req.body.time_input;
+    let id= req.body.sender;
+    let Name= req.body.Name;
+    let wash_type= req.body.wash_type;
+    let int_ext= req.body.int_ext;
+    let booking_number = req.body.booking_number; 
+    let doc_id = req.body.doc_id; 
+   
+  
+  
+    
+  
+    db.collection('Car Wash Booking').add({
+      phone:phone,
+      town:town,
+      address:address,
+      carpalte:carpalte,
+      carbrand:carbrand,
+      carmodel:carmodel,
+      carsize:carsize,            
+      pethair:pethair,
+      wax:wax,
+      scratch:scratch,
+      claybar:claybar,
+      tire_alloy:tire_alloy,
+      total_price:total_price,
+      date:date,
+      time:time,
+      id:id,
+      Name:Name,
+      wash_type:wash_type,
+      Interior_or_Exterior:int_ext,
+      booking_number:booking_number,
+        }).then(success => {             
+          console.log("DATASAVESHOWBOOKINGNUMBER");     
+           showBookingNumber(id, booking_number);   
+        }).catch(error => {
+          console.log(error);
+    });        
   });
   
   // Sets server port and logs message on success
@@ -1219,8 +1322,8 @@ if(userInput=="diamond" ){
 })
 }
 
-if(userInput.includes("View Booking:")){
-  let ref_num = userInput.slice(13);
+if(userInput.includes("Booking:")){
+  let ref_num = userInput.slice(8);
   ref_num = ref_num.trim(); 
   console.log(ref_num);
   var senderID = webhook_event.sender.id;
@@ -1240,7 +1343,14 @@ if(userInput.includes("View Booking:")){
             {
               "type": "web_url",
               "title": "View",
-              "url":"https://mmcarwash.herokuapp.com/view/"+ref_num+"/"+senderID,
+              "url":"https://mmcarwash.herokuapp.com/carwashview/"+ref_num+"/"+senderID,
+               "webview_height_ratio": "full",
+              "messenger_extensions": true,          
+            },
+            {
+              "type": "web_url",
+              "title": "Update",
+              "url":"https://mmcarwash.herokuapp.com/carwash_update/"+ref_num+"/"+senderID,
                "webview_height_ratio": "full",
               "messenger_extensions": true,          
             },

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <title>View Booking </title>
+
+</head>
+<body>
+  <script>
+    (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'Messenger'));
+  const APP_ID = 711149509404832;    
+  var senderID = "";
+  
+  window.extAsyncInit = function() {
+      MessengerExtensions.getContext(APP_ID, 
+        function success(thread_context){
+         senderID = thread_context.psid;
+        },
+        function error(err){
+          console.log(err);
+        }
+      );        
+  };
+</script>
+    <div class="container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col-sm-4 w-100">
+              <form id="form" method="post" action="https://mmcarwash.herokuapp.com/carwash_update/">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td colspan="2" class="text-center"><h2>Booking Review</h2></td>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>
+                          <b>Name:</b>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control"  id="Name" name="Name" value="<%= data.Name %>">
+                               
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: middle;"><b>Phone:</b> </td>
+                        <td>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1">+95</span>
+                                </div>
+                                <input  type="text" class="form-control" name="phone" id="phone" aria-label="phone_number" aria-describedby="basic-addon1" value="<%= data.phone %>">
+                              </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                      <td>
+                        <b>City:</b>
+                      </td>
+                      <td>
+                        <input class="form-control" type="text" placeholder="Only in Yangon for now" id="city" readonly>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                        <td style="vertical-align: middle;"><b>Town:</b> </td>
+                        <td>    
+                          <td>    
+                            <div class="form-group">
+                                <label for="town">Select Town</label>
+                                <select class="form-control" name="town" id="town">
+                                  <option ><%= data.town %></option>
+                                  <option>Ahlone</option>
+                                  <option>Bahan</option>
+                                  <option>Botahtaung</option>
+                                  <option>Dagon</option>
+                                  <option>Dawbon</option>
+                                  <option>Hlaing</option>
+                                  <option>Kamaryurt</option>
+                                  <option>Kyauktadar</option>
+                                  <option>Kyeemyintdine</option>
+                                  <option>Lanmadaw</option>
+                                  <option>Mayangon</option>
+                                  <option>Mingalar</option>
+                                  <option>Pabedan</option>
+                                  <option>Pazundaung</option>
+                                  <option>Sanchaung</option>
+                                  <option>South Okalapa</option>
+                                  <option>Tamwe</option>
+                                  <option>Thaketa</option>
+                                  <option>Thingankyun</option>
+                                  <option>Yankin</option>
+                                  <option>Yangon Airport</option>
+                                  <option>FMI and Pun Hlaing</option>
+                                  <option>MICT</option>
+                                  <option>Hlaingtharyar(FMI,Nawaday,Industry)</option>
+                                  <option>Gyo Gone(Insein)</option>
+                                </select>
+                              </div>
+                        </td>
+                        </td>
+                    </tr>   
+                    
+                    <tr>
+                        <td>
+                           <b>Address Information</b> 
+                        </td>
+                        <td>
+                          <textarea  placeholder="Street,Quarter,Hosuing,Condo,Building No.,Room No" name="address_info" id="address_info" required><%= data.address %></textarea> 
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                          Car Plate
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" name="car_plate" id="car_plate" value="<%= data.carpalte %>">
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Car Brand
+                      </td>
+                      <td>
+                        <input type="text" class="form-control" name="car_brand" id="car_brand" value="<%= data.carbrand %>">
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Car Model
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="car_model" id="car_model" value="<%= data.carmodel %>">
+                    </td>
+                </tr>
+                    
+                    <tr>
+                    <td>
+                      <b>Car Size</b>
+                    </td>
+                    <td>
+                      <td>
+                     
+                        <input type="radio" name="carsize" id='small'onchange="pricechange(),calculate()" value="small">
+                        <label>Small</label>
+                      
+                      
+                        <input type="radio" name="carsize" id='medium'onchange="pricechange(),calculate()" value="medium">
+                        <label>Medium</label>
+                      
+                      
+                        <input type="radio" name="carsize"  id='large' onchange="pricechange(),calculate()" value="large">
+                        <label>Large</label>
+                      
+                      </td>
+                    </td>
+                    </tr>
+                    <tr>
+                      <td> 
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon0" value="2000" onclick="UpdateCost(),calculate(),myFunction()">
+                          <label class="custom-control-label" for="addon0">Pet Hair Removal</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon1" value="3000" onclick="UpdateCost(),calculate(),myFunction()">
+                          <label class="custom-control-label" for="addon1">Wax</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon2" value="4000" onclick="UpdateCost(),calculate(),myFunction()">
+                          <label class="custom-control-label" for="addon2">Sratch Removal</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon3" value="5000" onclick="UpdateCost(),calculate(),myFunction()">
+                          <label class="custom-control-label" for="addon3">Clay Bar Treatment</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon4" value="6000" onclick="UpdateCost(),calculate(),myFunction()">
+                          <label class="custom-control-label" for="addon4">Tire and alloy cleaning</label>
+                        </div>
+                        
+                     <input class="form-control" type="text" name="addoncost" id="addoncost" value="0" readonly>
+                    </td>
+                    </tr>
+                    <tr>
+                      <td>
+                       <b>Total Price:</b> 
+                      </td>
+                      <td>
+                        <input type="text" name="price" id="price" value="0" hidden readonly>
+                        <input type="text" class="form-control"  name="total" id="total" value="<%= data.total_price %>" readonly>
+                      </td>
+                    </tr>
+                    
+                      <tr>
+                        <td><b>Date</b> </td>
+                        <td>
+                                
+                            <input class="form-control" type="date" value="<%= data.date %>" id="date-input" name="date-input" required >
+                              
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                      <td>
+                        <b>Time</b> 
+                     </td>
+                     <td>
+                         <input class="form-control" type="time" value="<%= data.time %>" id="time-input" name="time-input" required >
+                     </td>
+                    </tr>
+                    
+                   
+                            <input type="hidden"  id="sender" name="sender" value="<%= data.id %>">
+                          
+                   
+                    <tr>
+                        <td>
+                            <button type="button" class="btn btn-primary" onclick="myFunction()">Close</button>
+                            
+                        </td>
+                        <input type='hidden' name="add_on0" id='add_on0' value="<%= data.pethair %>"  >
+                        <input type='hidden' name="add_on1" id='add_on1'value="<%= data.wax %>" >
+                        <input type='hidden' name="add_on2" id='add_on2'value="<%= data.scratch %>" >
+                        <input type='hidden' name="add_on3" id='add_on3'value="<%= data.claybar %>" >
+                        <input type='hidden' name="add_on4" id='add_on4'value="<%= data.tire_alloy %>">
+                        <input type='hidden' name="doc_id" id='doc_id' value="<%= data.doc_id %>"  >
+                        <input type='hidden' name="booking_number" id='booking_number' value="<%= data.booking_number %>"  >
+                        
+                        <input type="hidden"  id="wash_type" name="wash_type" value="<%= data.wash_type %>">
+                        <input type="hidden"  id="int_ext" name="int_ext" value="<%= data.Interior_or_Exterior %>">
+                        
+                        <td>
+                          <button type="submit" class="btn btn-light btn-outline-primary">Update</button>
+                          <button type="button" class="btn btn-danger" onclick="delete_booking()">Delete</button>
+                        </td>
+                    </tr>
+                </table>  
+              </form>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
+
+<script>
+   function myFunction() {
+    var addon0 = document.getElementById('addon0');
+    var addon1 = document.getElementById('addon1');
+    var addon2 = document.getElementById('addon2');
+    var addon3 = document.getElementById('addon3');
+    var addon4 = document.getElementById('addon4');
+    if(addon0.checked==true){
+      document.getElementById('add_on0').value= 'include';
+    }else if(addon0.checked==false){
+      document.getElementById('add_on0').value='not included';
+    }
+    if(addon1.checked==true){
+      document.getElementById('add_on1').value='include';
+    }else if(addon1.checked==false){
+      document.getElementById('add_on1').value='not included';
+    }
+    if(addon2.checked==true){
+      document.getElementById('add_on2').value='include';
+    }else if(addon2.checked==false){
+      document.getElementById('add_on2').value='not included';
+    }
+    if(addon3.checked==true){
+      document.getElementById('add_on3').value='include';
+    }else if(addon3.checked==false){
+      document.getElementById('add_on3').value='not included';
+    }
+    if(addon4.checked==true){
+      document.getElementById('add_on4').value='include';
+    }else if(addon4.checked==false){
+      document.getElementById('add_on4').value='not included';
+    }
+}
+function checkNumber() {
+    var phone = document.getElementById('phone').value;
+    var relt = isNaN(phone)
+    if (relt == true){
+        document.getElementById('warningPhone').style.display = "";
+    }else{
+        document.getElementById('warningPhone').style.display = "none";
+    }
+}
+
+function calculate(){
+var p=document.getElementById('price').value;
+var a= document.getElementById('addoncost').value;
+var result =parseFloat(p)+parseFloat(a);
+if (!isNaN(result)){
+  document.getElementById('total').value= result;
+}
+}
+
+
+function pricechange() {
+  
+  var value = document.querySelector('input[name="carsize"]:checked');
+  value = value.value;
+  console.log(value);
+ if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="int"){
+  if(value=="small"){
+    document.getElementById("price").value= +"3000" 
+  }
+  else if(value=="medium"){
+    document.getElementById("price").value="4000"
+  }
+  else if(value=="large"){
+    document.getElementById("price").value="5000"
+  }
+ }
+ else if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="ext"){
+  if(value=="small"){
+    document.getElementById("price").value= "3000"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").value="4000"
+  }
+  else if(value=="large"){
+    document.getElementById("price").value="5000"
+  }
+ }
+ else if ( '<%= washtype%>' =="regular" && '<%= intorext%>'=="both"){
+  if(value=="small"){
+    document.getElementById("price").value= "5000"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").value="7000"
+  }
+  else if(value=="large"){
+    document.getElementById("price").value="9000"
+  }
+ }
+ else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="int"){
+  if(value=="small"){
+    document.getElementById("price").value= "4000"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").value="5000"
+  }
+  else if(value=="large"){
+    document.getElementById("price").value="6000"
+  }
+ }
+ else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="ext"){
+  if(value=="small"){
+    document.getElementById("price").value= "4000"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").value="5000"
+  }
+  else if(value=="large"){
+    document.getElementById("price").value="6000"
+  }
+ }
+ else if ( '<%= washtype%>' =="waterless" && '<%= intorext%>'=="both"){
+  if(value=="small"){
+    document.getElementById("price").value= "7000"
+  }
+  else if(value=="medium"){
+    document.getElementById("price").value="9000"
+  }
+  else if(value=="large"){
+    document.getElementById("price").value="11000"
+  }
+ }
+
+}
+
+function UpdateCost() {
+  var sum = 0;
+  var gn, elem;
+  for (i=0; i<5; i++) {
+    gn = 'addon'+i;
+    elem = document.getElementById(gn);
+    if (elem.checked == true) { sum += Number(elem.value); }
+  }
+  document.getElementById('addoncost').value = sum.toFixed(2);
+} 
+
+</script>
+<script>
+
+  var v_carsize= '<%= data.carsizse %>';
+  if(v_carsize=='small'){
+    docuemnt.getElementById('small').checked= true;
+  }else if(v_carsize=='medium'){
+    docuemnt.getElementById('medium').checked= true;
+  }else if(v_carsize=='large'){
+    docuemnt.getElementById('large').checked= true;
+  }
+  
+  var v_pethair= '<%= data.pethair %>';
+  var v_wax= '<%= data.wax %>';
+  var v_scratch= '<%= data.scratch %>';
+  var v_claybar= '<%= data.claybar %>';
+  var v_tire_alloy= '<%= data.tire_alloy %>';
+  if(v_pethair=='include'){
+    docuemnt.getElementById('addon0').checked= true;
+  }else if(v_pethair=='not included'){
+    docuemnt.getElementById('addon0').checked= false;
+  }
+  if(v_wax=='include'){
+    docuemnt.getElementById('addon1').checked= true;
+  }else if(v_pethair=='not included'){
+    docuemnt.getElementById('addon1').checked= false;
+  }
+  if(v_scratch=='include'){
+    docuemnt.getElementById('addon2').checked= true;
+  }else if(v_pethair=='not included'){
+    docuemnt.getElementById('addon2').checked= false;
+  }
+  if(v_claybar=='include'){
+    docuemnt.getElementById('addon3').checked= true;
+  }else if(v_pethair=='not included'){
+    docuemnt.getElementById('addon3').checked= false;
+  }
+  if(v_tire_alloy=='include'){
+    docuemnt.getElementById('addon4').checked= true;
+  }else if(v_pethair=='not included'){
+    docuemnt.getElementById('addon4').checked= false;
+  }
+    const pageaccesstoken= 'EAAKGyWXj6KABABtkTYLNOl1ZALlRZAgHOQs90hhI0B3RiEQOlx9H9SZAGOIqHD0n0hMvaRQ1F44sKoYbai1fJ3PE08WVlQxr7X52LRUr2svOVmpR2VFc9e9J4QTXYBSxarrtFMdbwr1YJ0XF8cKgDYoGx7BA4onhqLSCshIWVXvfNs5UqYh2SEZBoIWQO2IZD'
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
+    authDomain: "mm-carwash.firebaseapp.com",
+    databaseURL: "https://mm-carwash.firebaseio.com",
+    projectId: "mm-carwash",
+    storageBucket: "mm-carwash.appspot.com",
+    messagingSenderId: "478002772636",
+    appId: "1:478002772636:web:f82fa2e926632accb10b59",
+    measurementId: "G-BFPKPTE060"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  async function postData(url='',data={}){
+            const response = await fetch(url, {
+            method: 'POST',
+            mode:'cors',
+            cache:'no-cache',
+            credentials:'same-origin',
+            headers:{
+              'Content-Type':'application/jason'
+              },
+            redirect:'follow',
+            referrerPolicy:'no-referrer',
+            body: JSON.stringify(data)
+            });
+            return await response.json();
+          }
+  function  myFunction(){
+    MessengerExtensions.requestCloseBrowser(function success() {
+      console.log("success");          
+    }, function error(err) {
+      console.log(err);
+    });
+    }
+    function delete_booking(){
+    firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
+    console.log(success);
+      var db = firebase.firestore();
+      db.collection("Car Wash Booking").doc("<%= data.doc_id %>").delete().then(success => {
+            
+          let textMessage = {
+            "recipient":{
+              "id":'<%=sender_id %>'
+            },
+            "message":{
+              "text": "Your booking has been Deleted"
+            }
+            }
+postData(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`,textMessage).then(success=>{console.log(success)}).catch(err=>{console.log(err)});
+          
+       
+        }).catch(error => {
+          console.log(error);
+        })
+      
+});
+  }
+ 
+</script>
+<script>
+
+  const windowShut = () => {
+    MessengerExtensions.requestCloseBrowser(function success() {
+      console.log("success");          
+    }, function error(err) {
+      console.log(err);
+    });
+  }
+  
+  document.getElementById("form").addEventListener("submit", windowShut);       
+ 
+</script>
+</html>
