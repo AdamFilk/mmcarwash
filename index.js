@@ -1220,7 +1220,7 @@ if(userInput=="diamond" ){
 }
 
 if(userInput.includes("View Booking:")){
-  let ref_num = user_message.slice(15);
+  let ref_num = userInput.slice(15);
   ref_num = ref_num.trim(); 
   console.log(ref_num);
   var senderID = webhook_event.sender.id;
