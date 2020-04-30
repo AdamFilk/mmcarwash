@@ -288,9 +288,8 @@
               "text": "Your booking has been Deleted"
             }
             }
-          postData(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`,textMessage);
+postData(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`,textMessage).then(success=>{}).catch(err=>{console.log(err)});
           
-          alert('Close the webview');
        
         }).catch(error => {
           console.log(error);
