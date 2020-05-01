@@ -78,7 +78,7 @@
                             <div class="form-group">
                                 <label for="town">Select Town</label>
                                 <select class="form-control" name='town' id="town" required>
-                                    <option><%= data.phone %></option>
+                                    <option><%= data.town %></option>
                                   <option>Ahlone</option>
                                   <option>Bahan</option>
                                   <option>Botahtaung</option>
@@ -149,15 +149,15 @@
                     </td>
                     <td>
                      
-                      <input type="radio" name="carsize" onchange="priceChange()" value="small">
+                      <input type="radio" name="carsize" id='small' onchange="priceChange()" value="small" required>
                       <label>Small</label>
                     
                     
-                      <input type="radio" name="carsize" onchange="priceChange()" value="medium">
+                      <input type="radio" name="carsize" id='medium' onchange="priceChange()" value="medium">
                       <label>Medium</label>
                     
                     
-                      <input type="radio" name="carsize"  onchange="priceChange()" value="large">
+                      <input type="radio" name="carsize" id='large'  onchange="priceChange()" value="large">
                       <label>Large</label>
                     
                     </td>
