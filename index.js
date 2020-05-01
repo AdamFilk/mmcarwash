@@ -304,6 +304,7 @@ const
               carsize:doc.data().carsize,            
               date:doc.data().date,
               time:doc.data().time,
+              price:doc.data().price,
               id:doc.data().id,
               Name:doc.data().Name,
               plan:doc.data().plan,
