@@ -451,7 +451,7 @@ const
       booking_number:booking_number,
         }).then(success => {             
           console.log("DATASAVESHOWBOOKINGNUMBER");     
-           showBookingNumber(id, booking_number);   
+           Update_Complete1(id, booking_number);   
         }).catch(error => {
           console.log(error);
     });        
@@ -1773,7 +1773,7 @@ textMessage
         "text": `Your data is saved. Please keep your booking reference ID ${ref}.`
       }
     };
-    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}\nCar Wash Booking:${ref} to view or update your car wash booking`, 
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}\nCar Wash Booking: ${ref} to view or update your car wash booking`, 
     textMessage
     ).then(response=>{
       console.log(response)
@@ -1787,7 +1787,7 @@ textMessage
         "id": sender_psid
       },
       "message":{
-        "text": `Your data is saved. Please keep your subscription reference ID is ${ref}\nSender us "Subscribed Plan:${ref}" to view or update your subscription`
+        "text": `Your data is saved. Please keep your subscription reference ID is ${ref}\nSender us "Subscribed Plan: ${ref}" to view or update your subscription`
       }
     };
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
@@ -1805,6 +1805,23 @@ textMessage
       },
       "message":{
         "text": `Your data is updated. Please keep your subscription reference ID is ${ref}\nSender us "Subscribed Plan: ${ref}" to view or update your subscription`
+      }
+    };
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    textMessage
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+  }
+  const Update_Complete1 = (sender_psid,ref) => { 
+    let textMessage = {
+      "recipient":{
+        "id": sender_psid
+      },
+      "message":{
+        "text": `Your data is updated. Please keep your subscription reference ID is ${ref}\nSender us "Car Wash Booking: ${ref}" to view or update your subscription`
       }
     };
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
