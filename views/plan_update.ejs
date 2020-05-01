@@ -319,7 +319,7 @@ function priceChange() {
   var value = document.querySelector('input[name="carsize"]:checked');
   value = value.value;
   console.log(value);
- if ( '<%= plan%>' =="bronze" && '<%= month%>'=="1"){
+ if ( '<%= data.plan%>' =="bronze" && '<%= data.period%>'=="1"){
   if(value=="small"){
     document.getElementById("price").value= "15000Ks"
   }
@@ -330,7 +330,7 @@ function priceChange() {
     document.getElementById("price").value="35000Ks"
   }
  }
- else if ( '<%= plan%>' =="bronze" && '<%= month%>'=="2"){
+ else if ( '<%= data.plan%>' =="bronze" && '<%= data.period%>'=="2"){
   if(value=="small"){
     document.getElementById("price").value= "25000Ks"
   }
@@ -341,7 +341,7 @@ function priceChange() {
     document.getElementById("price").value="45000Ks"
   }
  }
- else if ( '<%= plan%>' =="bronze" && '<%= month%>'=="3"){
+ else if ( '<%= data.plan%>' =="bronze" && '<%= data.period%>'=="3"){
   if(value=="small"){
     document.getElementById("price").value= "35000Ks"
   }
@@ -352,7 +352,7 @@ function priceChange() {
     document.getElementById("price").value="55000Ks"
   }
  }
- else if ( '<%= plan%>' =="silver" && '<%= month%>'=="1"){
+ else if ( '<%= data.plan%>' =="silver" && '<%= data.period%>'=="1"){
   if(value=="small"){
     document.getElementById("price").value= "25000Ks"
   }
@@ -363,7 +363,7 @@ function priceChange() {
     document.getElementById("price").value="45000Ks"
   }
  }
- else if ( '<%= plan%>' =="silver" && '<%= month%>'=="2"){
+ else if ( '<%= data.plan%>' =="silver" && '<%= data.period%>'=="2"){
   if(value=="small"){
     document.getElementById("price").value= "35000Ks"
   }
@@ -374,7 +374,7 @@ function priceChange() {
     document.getElementById("price").value="55000Ks"
   }
  }
- else if ( '<%= plan%>' =="silver" && '<%= month%>'=="3"){
+ else if ( '<%= data.plan%>' =="silver" && '<%= data.period%>'=="3"){
   if(value=="small"){
     document.getElementById("price").value= "45000Ks"
   }
@@ -385,7 +385,7 @@ function priceChange() {
     document.getElementById("price").value="6500Ks"
   }
  }
- else if ( '<%= plan%>' =="gold" && '<%= month%>'=="1"){
+ else if ( '<%= data.plan%>' =="gold" && '<%= data.period%>'=="1"){
   if(value=="small"){
     document.getElementById("price").value= "35000Ks"
   }
@@ -396,7 +396,7 @@ function priceChange() {
     document.getElementById("price").value="55000Ks"
   }
  }
- else if ( '<%= plan%>' =="gold" && '<%= month%>'=="2"){
+ else if ( '<%= data.plan%>' =="gold" && '<%= data.period%>'=="2"){
   if(value=="small"){
     document.getElementById("price").value= "45000Ks"
   }
@@ -407,7 +407,7 @@ function priceChange() {
     document.getElementById("price").value="65000Ks"
   }
  }
- else if ( '<%= plan%>' =="gold" && '<%= month%>'=="3"){
+ else if ( '<%= data.plan%>' =="gold" && '<%= data.period%>'=="3"){
   if(value=="small"){
     document.getElementById("price").value= "55000Ks"
   }
@@ -418,7 +418,7 @@ function priceChange() {
     document.getElementById("price").value="75000Ks"
   }
  }
- else if ( '<%= plan%>' =="platinum" && '<%= month%>'=="1"){
+ else if ( '<%= data.plan%>' =="platinum" && '<%= data.period%>'=="1"){
   if(value=="small"){
     document.getElementById("price").value= "45000Ks"
   }
@@ -429,7 +429,7 @@ function priceChange() {
     document.getElementById("price").value="65000Ks"
   }
  }
- else if ( '<%= plan%>' =="platinum" && '<%= month%>'=="2"){
+ else if ( '<%= data.plan%>' =="platinum" && '<%= data.period%>'=="2"){
   if(value=="small"){
     document.getElementById("price").value= "55000Ks"
   }
@@ -440,7 +440,7 @@ function priceChange() {
     document.getElementById("price").value="75000Ks"
   }
  }
- else if ( '<%= plan%>' =="platinum" && '<%= month%>'=="3"){
+ else if ( '<%= data.plan%>' =="platinum" && '<%= data.period%>'=="3"){
   if(value=="small"){
     document.getElementById("price").value= "65000Ks"
   }
@@ -451,7 +451,7 @@ function priceChange() {
     document.getElementById("price").value="85000Ks"
   }
  }
- else if ( '<%= plan%>' =="diamond" && '<%= month%>'=="1"){
+ else if ( '<%= data.plan%>' =="diamond" && '<%= data.period%>'=="1"){
   if(value=="small"){
     document.getElementById("price").value= "55000Ks"
   }
@@ -462,7 +462,7 @@ function priceChange() {
     document.getElementById("price").value="75000Ks"
   }
  }
- else if ( '<%= plan%>' =="diamond" && '<%= month%>'=="2"){
+ else if ( '<%= data.plan%>' =="diamond" && '<%= data.period%>'=="2"){
   if(value=="small"){
     document.getElementById("price").value= "65000Ks"
   }
@@ -473,7 +473,7 @@ function priceChange() {
     document.getElementById("price").value="85000Ks"
   }
  }
- else if ( '<%= plan%>' =="diamond" && '<%= month%>'=="3"){
+ else if ( '<%= data.plan%>' =="diamond" && '<%= data.period%>'=="3"){
   if(value=="small"){
     document.getElementById("price").value= "75000Ks"
   }
@@ -489,7 +489,6 @@ function priceChange() {
 
 <script>
       
-   
   const windowShut = () => {
     MessengerExtensions.requestCloseBrowser(function success() {
       console.log("success");          

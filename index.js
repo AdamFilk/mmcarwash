@@ -194,6 +194,7 @@ const
     let carmodel = req.body.car_model;
     let carsize= req.body.carsize;
     let price=req.body.price;
+    let period=req.body.period;
     let start_date= req.body.startdate;
     let time= req.body.time_input;
     let day= req.body.day;
@@ -215,6 +216,7 @@ const
       carsize:carsize,            
       price:price,
       start_date:start_date,
+      period:period,
       time:time,
       day:day,
       end_date:end_date,
@@ -224,7 +226,7 @@ const
       booking_number:booking_number,
         }).then(success => {             
           console.log("DATASAVESHOWBOOKINGNUMBER");     
-          showSubscriptionNumber(id, booking_number);s   
+          showSubscriptionNumber(id, booking_number);
         }).catch(error => {
           console.log(error);
     });        
