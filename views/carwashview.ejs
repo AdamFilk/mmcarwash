@@ -239,7 +239,7 @@
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
 
 <script>
-    const pageaccesstoken= 'EAAKGyWXj6KABABtkTYLNOl1ZALlRZAgHOQs90hhI0B3RiEQOlx9H9SZAGOIqHD0n0hMvaRQ1F44sKoYbai1fJ3PE08WVlQxr7X52LRUr2svOVmpR2VFc9e9J4QTXYBSxarrtFMdbwr1YJ0XF8cKgDYoGx7BA4onhqLSCshIWVXvfNs5UqYh2SEZBoIWQO2IZD'
+  const pageaccesstoken= 'EAAKGyWXj6KABABtkTYLNOl1ZALlRZAgHOQs90hhI0B3RiEQOlx9H9SZAGOIqHD0n0hMvaRQ1F44sKoYbai1fJ3PE08WVlQxr7X52LRUr2svOVmpR2VFc9e9J4QTXYBSxarrtFMdbwr1YJ0XF8cKgDYoGx7BA4onhqLSCshIWVXvfNs5UqYh2SEZBoIWQO2IZD'
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
@@ -251,43 +251,48 @@
     appId: "1:478002772636:web:f82fa2e926632accb10b59",
     measurementId: "G-BFPKPTE060"
   };
+
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+
   async function postData(url='',data={}){
-            const response = await fetch(url, {
-            method: 'POST',
-            mode:'cors',
-            cache:'no-cache',
-            credentials:'same-origin',
-            headers:{
-              'Content-Type':'application/jason'
-              },
-            redirect:'follow',
-            referrerPolicy:'no-referrer',
-            body: JSON.stringify(data)
-            });
-            return await response.json();
-          }
+    const response = await fetch(url, {
+      method: 'POST',
+      mode:'cors',
+      cache:'no-cache',
+      credentials:'same-origin',
+      headers:{
+        'Content-Type':'application/jason'
+      },
+      redirect:'follow',
+      referrerPolicy:'no-referrer',
+      body: JSON.stringify(data)
+    });
+    return await response.json();
+  }
+
   function  myFunction(){
     MessengerExtensions.requestCloseBrowser(function success() {
       console.log("success");          
     }, function error(err) {
       console.log(err);
     });
-    }
-    function delete_booking(){
-          var senderID= '<%=sender_id %>'
-          console.log(senderID);
-          var textMessage = {
-            "recipient":{
-              "id":senderID
-            },
-            "message":{
-              "text": "Your booking has been Deleted"
-            }
-            }
-postData('https://graph.facebook.com/v6.0/me/messages?access_token=EAAKGyWXj6KABABtkTYLNOl1ZALlRZAgHOQs90hhI0B3RiEQOlx9H9SZAGOIqHD0n0hMvaRQ1F44sKoYbai1fJ3PE08WVlQxr7X52LRUr2svOVmpR2VFc9e9J4QTXYBSxarrtFMdbwr1YJ0XF8cKgDYoGx7BA4onhqLSCshIWVXvfNs5UqYh2SEZBoIWQO2IZD',textMessage).then(success=>{console.log(success)}).catch(err=>{console.log(err)});
+  }
+  
+  function delete_booking(){
+    var senderID= '<%=sender_id%>'
       
+    var textMessage = {
+      recipient:{
+        id:senderID
+      },
+      message:{
+        text: "Your booking has been Deleted"
+      }
+    }
+    console.log(textMessage)
+
+    postData('https://graph.facebook.com/v6.0/me/messages?access_token='+pageaccesstoken,textMessage).then(success=>{console.log(success)}).catch(err=>{console.log(err)});
   }
 
     
