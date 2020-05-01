@@ -276,27 +276,18 @@
     });
     }
     function delete_booking(){
-    firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
-    console.log(success);
-      var db = firebase.firestore();
-      db.collection("Car Wash Booking").doc("<%= data.doc_id %>").delete().then(success => {
-            
+          var senderID= '<%=sender_id %>'
+          console.log(senderID);
           let textMessage = {
             "recipient":{
-              "id":'<%=sender_id %>'
+              "id":senderID
             },
             "message":{
               "text": "Your booking has been Deleted"
             }
             }
 postData(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`,textMessage).then(success=>{console.log(success)}).catch(err=>{console.log(err)});
-          
-       
-        }).catch(error => {
-          console.log(error);
-        })
       
-});
   }
 
     
