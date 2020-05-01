@@ -261,7 +261,7 @@ const
   
    let booking_number = generateRandom(5);    
   
-    db.collection('Car Wash Booking').add({
+    db.collection('Plan Booking').add({
       phone:phone,
       town:town,
       address:address,
@@ -283,7 +283,44 @@ const
           console.log(error);
     });        
   });
-
+  app.get('/plan_once_view/:booking_number/:sender_id/',function(req,res){
+    const sender_id = req.params.sender_id;
+    const booking_number = req.params.booking_number;
+  
+  
+    db.collection("Plan Booking").where("booking_number", "==", booking_number)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+  
+            let data = {
+              doc_id:doc.id,
+              phone:doc.data().phone,
+              town:doc.data().town,
+              address:doc.data().address,
+              carplate:doc.data().carplate,
+              carbrand:doc.data().carbrand,
+              carmodel:doc.data().carmodel,
+              carsize:doc.data().carsize,            
+              date:doc.data().date,
+              time:doc.data().time,
+              id:doc.data().id,
+              Name:doc.data().Name,
+              plan:doc.data().plan,
+              booking_number:doc.data().booking_number,
+            }   
+  
+            console.log("BOOKING DATA", data);     
+  
+           res.render('plan_once_view.ejs',{data:data, sender_id:sender_id});
+            
+  
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });    
+  });
 
 
   app.get('/carwash/:washtype/:intorext/:name/:id', (req, res) => {
