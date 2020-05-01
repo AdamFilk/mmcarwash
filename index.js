@@ -46,6 +46,58 @@ const
     res.render('plans.ejs', {name:name, month:month,plan:plan, id:senderID})
     
   })
+  app.post('/plans',function(req,res){
+        
+        
+    let phone= req.body.phone;
+    console.log(req.body.add_on0);
+    let town = req.body.town;
+    let address = req.body.address_info;
+    let carpalte = req.body.car_plate;
+    let carbrand = req.body.car_brand;
+    let carmodel = req.body.car_model;
+    let carsize= req.body.carsize;
+    let price=req.body.price;
+    let start_date= req.body.startdate;
+    let period=req.body.period;
+    let end_date= req.body.enddate;
+    let time= req.body.time_input;
+    let id= req.body.sender;
+    let Name= req.body.name;
+    let plan= req.body.plan;
+    
+   
+  
+  
+  
+   let booking_number = generateRandom(5);    
+  
+    db.collection('Plan Subscriptions').add({
+      phone:phone,
+      town:town,
+      address:address,
+      carpalte:carpalte,
+      carbrand:carbrand,
+      carmodel:carmodel,
+      carsize:carsize,            
+      start_date:start_date,
+      period:period,
+      end_date:end_date,
+      price:price,
+      date:date,
+      time:time,
+      id:id,
+      Name:Name,
+      plan:plan,
+      booking_number:booking_number,
+        }).then(success => {             
+          console.log("DATASAVESHOWBOOKINGNUMBER");     
+          showSubscriptionNumber(id, booking_number);   
+        }).catch(error => {
+          console.log(error);
+    });        
+  });
+
   app.get('/plan_once/:plan/:name/:id', (req, res) => {
   
     var name = req.params.name;
@@ -1538,6 +1590,23 @@ textMessage
       },
       "message":{
         "text": `Your data is saved. Please keep your booking reference ${ref}`
+      }
+    };
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    textMessage
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+  }
+  const showSubscriptionNumber = (sender_psid,ref) => { 
+    let textMessage = {
+      "recipient":{
+        "id": sender_psid
+      },
+      "message":{
+        "text": `Your data is saved. Please keep your subscription reference ${ref}`
       }
     };
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
