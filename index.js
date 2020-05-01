@@ -253,7 +253,7 @@ const
     let date= req.body.date_input;
     let time= req.body.time_input;
     let id= req.body.sender;
-    let Name= req.body.Name;
+    let name= req.body.name;
     let plan= req.body.plan
    
   
@@ -273,7 +273,7 @@ const
       date:date,
       time:time,
       id:id,
-      Name:Name,
+      Name:name,
       plan:plan,
       booking_number:booking_number,
         }).then(success => {             
