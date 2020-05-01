@@ -268,7 +268,7 @@
     firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
     console.log(success);
       var db = firebase.firestore();
-      var senderID = '<%= id %>';
+      
         db.collection('Car Wash Booking').doc('<%= data.doc_id %>').delete().then(success => {
           window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://i.pinimg.com/564x/66/f0/61/66f061dba8ad67d0be35ceb7dd648e6d.jpg&display_text=Your Data Has Been Successfully Deleted')
         }).catch(error => {
