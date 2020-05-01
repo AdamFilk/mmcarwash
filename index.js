@@ -226,7 +226,7 @@ const
       booking_number:booking_number,
         }).then(success => {             
           console.log("DATASAVESHOWBOOKINGNUMBER");     
-          showSubscriptionNumber(id, booking_number);
+          Update_Complete(id, booking_number);
         }).catch(error => {
           console.log(error);
     });        
@@ -1787,7 +1787,24 @@ textMessage
         "id": sender_psid
       },
       "message":{
-        "text": `Your data is saved. Please keep your subscription reference ID is ${ref}\nSender us Subscribed Plan:${ref} to view or update your subscription`
+        "text": `Your data is saved. Please keep your subscription reference ID is ${ref}\nSender us "Subscribed Plan:${ref}" to view or update your subscription`
+      }
+    };
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    textMessage
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+  }
+  const Update_Complete = (sender_psid,ref) => { 
+    let textMessage = {
+      "recipient":{
+        "id": sender_psid
+      },
+      "message":{
+        "text": `Your data is updated. Please keep your subscription reference ID is ${ref}\nSender us "Subscribed Plan: ${ref}" to view or update your subscription`
       }
     };
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
