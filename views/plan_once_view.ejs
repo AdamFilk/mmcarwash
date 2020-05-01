@@ -235,21 +235,8 @@
   }
   
   function delete_booking(){
-    var senderID= '<%=sender_id%>'
-      
-    var textMessage = {
-      recipient:{
-        id:senderID
-      },
-      message:{
-        text: "Your booking has been Deleted"
-      }
-    }
-    console.log(textMessage)
-
-    postData('https://graph.facebook.com/v6.0/me/messages?access_token='+pageaccesstoken,textMessage).then(success=>{console.log(success)}).catch(err=>{console.log(err)});
+    
   }
-
     
 </script>
 </html>
