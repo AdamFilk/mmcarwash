@@ -53,7 +53,7 @@ const
     console.log(req.body.add_on0);
     let town = req.body.town;
     let address = req.body.address_info;
-    let carpalte = req.body.car_plate;
+    let carplate = req.body.car_plate;
     let carbrand = req.body.car_brand;
     let carmodel = req.body.car_model;
     let carsize= req.body.carsize;
@@ -76,7 +76,7 @@ const
       phone:phone,
       town:town,
       address:address,
-      carplate:carpalte,
+      carplate:carplate,
       carbrand:carbrand,
       carmodel:carmodel,
       carsize:carsize,            
@@ -111,7 +111,7 @@ const
               phone:doc.data().phone,
               town:doc.data().town,
               address:doc.data().address,
-              carplate:doc.data().carpalte,
+              carplate:doc.data().carplate,
               carbrand:doc.data().carbrand,
               carmodel:doc.data().carmodel,
               carsize:doc.data().carsize,            
