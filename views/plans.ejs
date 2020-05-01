@@ -148,15 +148,15 @@
                     </td>
                     <td>
                      
-                      <input type="radio" name="carsize" onchange="price()" value="small">
+                      <input type="radio" name="carsize" onchange="priceChange()" value="small">
                       <label>Small</label>
                     
                     
-                      <input type="radio" name="carsize" onchange="price()" value="medium">
+                      <input type="radio" name="carsize" onchange="priceChange()" value="medium">
                       <label>Medium</label>
                     
                     
-                      <input type="radio" name="carsize"  onchange="price()" value="large">
+                      <input type="radio" name="carsize"  onchange="priceChange()" value="large">
                       <label>Large</label>
                     
                     </td>
@@ -291,7 +291,7 @@ function checkNumber() {
     }
 }
 
-function price() {
+function priceChange() {
   var value = document.querySelector('input[name="carsize"]:checked');
   value = value.value;
   console.log(value);
