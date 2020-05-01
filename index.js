@@ -173,7 +173,7 @@ const
   
             console.log("BOOKING DATA", data);     
   
-           res.render('carwash_update.ejs',{data:data, sender_id:sender_id});
+           res.render('plan_update.ejs',{data:data, sender_id:sender_id});
             
   
         });
