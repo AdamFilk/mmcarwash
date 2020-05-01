@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <title>View Booking </title>
+
+</head>
+<body>
+  <script>
+    (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'Messenger'));
+  const APP_ID = 711149509404832;    
+  var senderID = "";
+  
+  window.extAsyncInit = function() {
+      MessengerExtensions.getContext(APP_ID, 
+        function success(thread_context){
+         senderID = thread_context.psid;
+        },
+        function error(err){
+          console.log(err);
+        }
+      );        
+  };
+</script>
+    <div class="container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col-sm-4 w-100">
+              
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td colspan="2" class="text-center"><h2>Booking Review</h2></td>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>
+                          <b>Name:</b>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control"  id="Name" name="Name" value="<%= data.Name %>"readonly>
+                               
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: middle;"><b>Phone:</b> </td>
+                        <td>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1">+95</span>
+                                </div>
+                                <input  type="text" class="form-control" aria-label="phone_number" aria-describedby="basic-addon1" value="<%= data.phone %>" readonly>
+                              </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                      <td>
+                        <b>City:</b>
+                      </td>
+                      <td>
+                        <input class="form-control" type="text" placeholder="Only in Yangon for now" id="city" readonly>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                        <td style="vertical-align: middle;"><b>Town:</b> </td>
+                        <td>    
+                            <input type="text" class="form-control" value="<%= data.town %>"readonly>
+                        </td>
+                    </tr>   
+                    
+                    <tr>
+                        <td>
+                           <b>Address Information</b> 
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" value="<%= data.address %>"readonly>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                          Car Plate
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" name="car_plate" id="car_plate" value="<%= data.carpalte %>"readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Car Brand
+                      </td>
+                      <td>
+                        <input type="text" class="form-control" name="car_brand" id="car_brand" value="<%= data.carbrand %>"readonly>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Car Model
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="car_model" id="car_model" value="<%= data.carmodel %>"readonly>
+                    </td>
+                </tr>
+                    
+                    <tr>
+                    <td>
+                      <b>Car Size</b>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="carsize" id="carsize" value="<%= data.carsize %>"readonly>
+                    </td>
+                    </tr>
+                    
+                    <tr>
+                      <td>
+                       <b>Price:</b> 
+                      </td>
+                      <td>
+
+                        <input type="text" class="form-control"  name="total" id="total" value="<%= data.price %>" readonly>
+                      </td>
+                    </tr>
+                    
+                      <tr>
+                        <td><b>Start Date</b> </td>
+                        <td>
+                                
+                            <input class="form-control" type="date" value="<%= data.start_date %>" id="startdate" name='startdate' required readonly>
+                              
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                         <b>Period:</b> 
+                        </td>
+                        <td>
+  
+                          <input type="text" class="form-control"  name="period" id="period" value="<%= data.period %>" readonly>
+                        </td>
+                      </tr>
+                    <tr>
+                        <td><b>End Date</b> </td>
+                        <td>
+                                
+                            <input class="form-control" type="date" value="<%= data.end_date %>" id="enddate" name='enddate' required readonly>
+                              
+                        </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <b>Regular Time</b> 
+                     </td>
+                     <td>
+                         <input class="form-control" type="time" value="<%= data.time %>" id="time_input" name="time_input" required readonly>
+                     </td>
+                    </tr>
+                    
+                   
+                            <input type="hidden"  id="sender" name="sender" value="<%= data.id %>">
+                          
+                       
+                    <tr>
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                            Plan
+                        </td>
+                        <td>
+                            <input type="text"  class="form-control" id="plan" name="plan" value="<%= data.plan %>"readonly>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <button type="button" class="btn btn-primary" onclick="myFunction()">Close</button>
+                            
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-danger" onclick="delete_booking()">Delete</button>
+                        </td>
+                    </tr>
+                </table>  
+            </div>
+        </div>
+    </div>
+    
+</body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
+
+<script>
+  const pageaccesstoken= 'EAAKGyWXj6KABABtkTYLNOl1ZALlRZAgHOQs90hhI0B3RiEQOlx9H9SZAGOIqHD0n0hMvaRQ1F44sKoYbai1fJ3PE08WVlQxr7X52LRUr2svOVmpR2VFc9e9J4QTXYBSxarrtFMdbwr1YJ0XF8cKgDYoGx7BA4onhqLSCshIWVXvfNs5UqYh2SEZBoIWQO2IZD'
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
+    authDomain: "mm-carwash.firebaseapp.com",
+    databaseURL: "https://mm-carwash.firebaseio.com",
+    projectId: "mm-carwash",
+    storageBucket: "mm-carwash.appspot.com",
+    messagingSenderId: "478002772636",
+    appId: "1:478002772636:web:f82fa2e926632accb10b59",
+    measurementId: "G-BFPKPTE060"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  async function postData(url='',data={}){
+    const response = await fetch(url, {
+      method: 'POST',
+      mode:'cors',
+      cache:'no-cache',
+      credentials:'same-origin',
+      headers:{
+        'Content-Type':'application/jason'
+      },
+      redirect:'follow',
+      referrerPolicy:'no-referrer',
+      body: JSON.stringify(data)
+    });
+    return await response.json();
+  }
+
+  function  myFunction(){
+    MessengerExtensions.requestCloseBrowser(function success() {
+      console.log("success");          
+    }, function error(err) {
+      console.log(err);
+    });
+  }
+  
+  function delete_booking(){
+    var senderID= '<%=sender_id%>'
+      
+    var textMessage = {
+      recipient:{
+        id:senderID
+      },
+      message:{
+        text: "Your booking has been Deleted"
+      }
+    }
+    console.log(textMessage)
+
+    postData('https://graph.facebook.com/v6.0/me/messages?access_token='+pageaccesstoken,textMessage).then(success=>{console.log(success)}).catch(err=>{console.log(err)});
+  }
+
+    
+</script>
+</html>

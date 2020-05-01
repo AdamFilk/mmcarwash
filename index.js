@@ -96,7 +96,47 @@ const
           console.log(error);
     });        
   });
-
+  app.get('/plan_view/:booking_number/:sender_id/',function(req,res){
+    const sender_id = req.params.sender_id;
+    const booking_number = req.params.booking_number;
+  
+  
+    db.collection("Plan Subscriptions").where("booking_number", "==", booking_number)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+  
+            let data = {
+              doc_id:doc.id,
+              phone:doc.data().phone,
+              town:doc.data().town,
+              address:doc.data().address,
+              carplate:doc.data().carpalte,
+              carbrand:doc.data().carbrand,
+              carmodel:doc.data().carmodel,
+              carsize:doc.data().carsize,            
+              start_date:doc.data().start_date,
+              period:doc.data().period,
+              end_date:doc.data().end_date,
+              price:doc.data().price,
+              time:doc.data().time,
+              id:doc.data().id,
+              Name:doc.data().Name,
+              plan:doc.data().plan,
+              booking_number:doc.data().booking_number,
+            }   
+  
+            console.log("BOOKING DATA", data);     
+  
+           res.render('plan_view.ejs',{data:data, sender_id:sender_id});
+            
+  
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });    
+  });
   app.get('/plan_once/:plan/:name/:id', (req, res) => {
   
     var name = req.params.name;
@@ -218,6 +258,7 @@ const
         console.log("Error getting documents: ", error);
     });    
   });
+
   app.get('/carwash_update/:booking_number/:sender_id/',function(req,res){
     const sender_id = req.params.sender_id;
     const booking_number = req.params.booking_number;
@@ -1375,8 +1416,8 @@ if(userInput=="diamond" ){
 })
 }
 
-if(userInput.includes("Booking:")){
-  let ref_num = userInput.slice(8);
+if(userInput.includes("Car Wash Booking:")){
+  let ref_num = userInput.slice(17);
   ref_num = ref_num.trim(); 
   console.log(ref_num);
   var senderID = webhook_event.sender.id;
@@ -1422,7 +1463,53 @@ if(userInput.includes("Booking:")){
     console.log(error)
   })
 }
-      
+if(userInput.includes("Subscribed Plan:")){
+  let ref_num = userInput.slice(16);
+  ref_num = ref_num.trim(); 
+  console.log(ref_num);
+  var senderID = webhook_event.sender.id;
+  console.log(senderID);
+  let genericMessage ={
+    "recipient":{
+      "id": senderID
+    },
+    "message":{
+      "attachment":{
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [{
+          "title": "You are viewing your booking number: " + ref_num,                       
+          "buttons": [              
+            {
+              "type": "web_url",
+              "title": "View",
+              "url":"https://mmcarwash.herokuapp.com/plan_view/"+ref_num+"/"+senderID,
+               "webview_height_ratio": "full",
+              "messenger_extensions": true,          
+            },
+            {
+              "type": "web_url",
+              "title": "Update",
+              "url":"https://mmcarwash.herokuapp.com/plan_update/"+ref_num+"/"+senderID,
+               "webview_height_ratio": "full",
+              "messenger_extensions": true,          
+            },
+            
+          ],
+        }]
+      }
+    }
+  }
+}
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}
 //start price
 if (userInput == 'price'){
   let textMessage = {
