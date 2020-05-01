@@ -66,11 +66,6 @@ const
     let id= req.body.sender;
     let Name= req.body.name;
     let plan= req.body.plan;
-    
-   
-  
-  
-  
    let booking_number = generateRandom(5);    
   
     db.collection('Plan Subscriptions').add({
@@ -1983,10 +1978,10 @@ textMessage
         "id": sender_psid
       },
       "message":{
-        "text": `Your data is saved. Please keep your booking reference ID ${ref}.`
+        "text": `Your data is saved. Please keep your booking reference ID ${ref}.\nCar Wash Booking:${ref} to view or update your car wash booking`
       }
     };
-    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}\nCar Wash Booking:${ref} to view or update your car wash booking`, 
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
     textMessage
     ).then(response=>{
       console.log(response)
