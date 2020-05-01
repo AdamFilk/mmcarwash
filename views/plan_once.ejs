@@ -41,6 +41,7 @@
     <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col-sm-4 w-100">
+              <form id="form" method="post" action="https://mmcarwash.herokuapp.com/plan_once/">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -57,7 +58,7 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text" id="basic-addon1">+95</span>
                                 </div>
-                                <input onkeyup="checkNumber()" type="text" class="form-control" placeholder="Enter Phone Number" id="phone" aria-label="phone_number" aria-describedby="basic-addon1" required>
+                                <input onkeyup="checkNumber()" type="text" class="form-control" placeholder="Enter Phone Number" name="phone" id="phone" aria-label="phone_number" aria-describedby="basic-addon1" required>
                               </div>
                         </td>
                     </tr>
@@ -76,7 +77,7 @@
                         <td>    
                             <div class="form-group">
                                 <label for="town">Select Town</label>
-                                <select class="form-control" id="town" required>
+                                <select class="form-control" name="town" id="town" required>
                                   <option>Ahlone</option>
                                   <option>Bahan</option>
                                   <option>Botahtaung</option>
@@ -112,7 +113,7 @@
                            <b>Address Information</b> 
                         </td>
                         <td>
-                          <textarea  placeholder="Street,Quarter,Hosuing,Condo,Building No.,Room No" id="address_info" required></textarea>
+                          <textarea  placeholder="Street,Quarter,Hosuing,Condo,Building No.,Room No" name="address_info" id="address_info" required></textarea>
                         </td>
                     </tr>
 
@@ -121,7 +122,7 @@
                         Car Plate
                       </td>
                       <td>
-                        <input type="text" class="form-control" id="car_plate" placeholder="Example: Honda Fit">
+                        <input type="text" class="form-control" name="car_plate" id="car_plate" placeholder="Example: Honda Fit">
                       </td>
                   </tr>
                   <tr>
@@ -129,7 +130,7 @@
                       Car Brand
                     </td>
                     <td>
-                      <input type="text" class="form-control" id="car_brand" placeholder="Example: Toyota">
+                      <input type="text" class="form-control" name="car_brand" id="car_brand" placeholder="Example: Toyota">
                     </td>
                 </tr>
                 <tr>
@@ -137,7 +138,7 @@
                     Car Model
                   </td>
                   <td>
-                    <input type="text" class="form-control" id="car_model" placeholder="Example: Mark 2">
+                    <input type="text" class="form-control" name="car_model" id="car_model" placeholder="Example: Mark 2">
                   </td>
               </tr>
                     
@@ -166,7 +167,7 @@
                            <b>Price:</b> 
                           </td>
                           <td>
-                            <p id="price"></p>
+                            <input type="text" class="form-control" name="price" id="price" value="0Ks">
                           </td>
                         </tr>
                         
@@ -174,7 +175,7 @@
                         <td><b>Date</b> </td>
                         <td>
                                 
-                            <input class="form-control" type="date" value="mm-dd-yyyy" id="date-input" required>
+                            <input class="form-control" type="date" name="date-input" value="mm-dd-yyyy" id="date-input" required>
                               
                         </td>
                     </tr>
@@ -184,17 +185,21 @@
                         <b>Time</b> 
                      </td>
                      <td>
-                         <input class="form-control" type="time" value="00:00:00" id="time-input" required>
+                         <input class="form-control" type="time" value="00:00:00" name="time-input" id="time-input" required>
                      </td>
                     </tr>
                     
                     <tr>
                     <td>
-                        <button type="button" onclick="submit()" class="btn btn-primary">Submit</button>
+                      <input type="hidden"  id="sender" name="sender" value="<%= id %>">
+                      <input type="hidden"  id="name" name="name" value="<%= name %>">
+                      <input type="hidden"  id="plan" name="plan" value="<%= plan %>">
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </td>
                     </tr>
 
                 </table>  
+                </form>
             </div>
         </div>
     </div>
@@ -275,76 +280,21 @@ function price() {
  
 }
 </script>
-
-
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
-
 <script>
-  const pageaccesstoken= 'EAAKGyWXj6KABAB4s5bmcCuMvrdpKW1S0fnoYezGNAtA022SiQZAOwTBeng7cjs79hPYl3pknZCTGWDPPIhBqsKOZAokIGEpjqtFT4AqV6yaZAZBPYtS5VmUsDayUVkZCloQRipJouy3ReZBfUkonLYwH8TO1BXTHVxBu1aTbKIpZB1O4kZC9e7QCXMtJNdfC0MXkZD'
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
-    authDomain: "mm-carwash.firebaseapp.com",
-    databaseURL: "https://mm-carwash.firebaseio.com",
-    projectId: "mm-carwash",
-    storageBucket: "mm-carwash.appspot.com",
-    messagingSenderId: "478002772636",
-    appId: "1:478002772636:web:f82fa2e926632accb10b59",
-    measurementId: "G-BFPKPTE060"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  
-  function submit(){
-  firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
-    console.log(success);
-      var db = firebase.firestore();
-      var senderID = '<%= id %>';
-        db.collection('Plan Book').add({
-            customerID:'<%= id %>',
-            name: '<%= name%>',
-            Plan: '<%= plan%>',
-            phone: document.getElementById('phone').value,
-            town: document.getElementById('town').value,
-            address:document.getElementById('address_info').value,
-            car_plate: document.getElementById('car_plate').value,
-            car_brand: document.getElementById('car_brand').value,
-            car_model: document.getElementById('car_model').value,
-            carsize:document.querySelector('input[name="carsize"]:checked').value,
-            price:document.getElementById("price").innerHTML,
-            date:document.getElementById('date-input').value,
-            time:document.getElementById('time-input').value,
-           
-        }).then(success => {
-            MessengerExtensions.requestCloseBrowser(function success() {
-              // webview closed
-              let textMessage = {
-            "recipient":{
-              "id":senderID
-            },
-            "message":{
-              "text": "Your booking has been is submitted.Thank you for choosing our serice. We'll contact you soon"
-            }
-          }
-          
-          var xhr = new XMLHttpRequest();
-            xhr.open("POST", `https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(textMessage));
-            
-            }, function error(err) {
-              // an error occurred
-              
-            });
-       
-        }).catch(error => {
-          console.log(error);
-        })
       
-});
+   
+  const windowShut = () => {
+    MessengerExtensions.requestCloseBrowser(function success() {
+      console.log("success");          
+    }, function error(err) {
+      console.log(err);
+    });
   }
+  
+  document.getElementById("form").addEventListener("submit", windowShut);       
+ 
 </script>
+
+
+
 </html>

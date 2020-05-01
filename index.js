@@ -239,6 +239,53 @@ const
     res.render('plan_once.ejs', {name:name,plan:plan, id:senderID})
     
   })
+  app.post('/plan_once',function(req,res){
+        
+        
+    let phone= req.body.phone;
+    let town = req.body.town;
+    let address = req.body.address_info;
+    let carplate = req.body.car_plate;
+    let carbrand = req.body.car_brand;
+    let carmodel = req.body.car_model;
+    let carsize= req.body.carsize;
+    let price=req.body.price;
+    let date= req.body.date_input;
+    let time= req.body.time_input;
+    let id= req.body.sender;
+    let Name= req.body.Name;
+    let plan= req.body.plan
+   
+  
+  
+  
+   let booking_number = generateRandom(5);    
+  
+    db.collection('Car Wash Booking').add({
+      phone:phone,
+      town:town,
+      address:address,
+      carplate:carplate,
+      carbrand:carbrand,
+      carmodel:carmodel,
+      carsize:carsize,            
+      price:price,
+      date:date,
+      time:time,
+      id:id,
+      Name:Name,
+      plan:plan,
+      booking_number:booking_number,
+        }).then(success => {             
+          console.log("DATASAVESHOWBOOKINGNUMBER");     
+           showPlanBooking(id, booking_number);   
+        }).catch(error => {
+          console.log(error);
+    });        
+  });
+
+
+
   app.get('/carwash/:washtype/:intorext/:name/:id', (req, res) => {
   
     var name = req.params.name;
@@ -255,7 +302,7 @@ const
     console.log(req.body.add_on0);
     let town = req.body.town;
     let address = req.body.address_info;
-    let carpalte = req.body.car_plate;
+    let carplate = req.body.car_plate;
     let carbrand = req.body.car_brand;
     let carmodel = req.body.car_model;
     let carsize= req.body.carsize;
@@ -282,7 +329,7 @@ const
       phone:phone,
       town:town,
       address:address,
-      carpalte:carpalte,
+      carplate:carplate,
       carbrand:carbrand,
       carmodel:carmodel,
       carsize:carsize,            
@@ -1773,7 +1820,7 @@ textMessage
         "text": `Your data is saved. Please keep your booking reference ID ${ref}.`
       }
     };
-    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}\nCar Wash Booking: ${ref} to view or update your car wash booking`, 
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}\nCar Wash Booking:${ref} to view or update your car wash booking`, 
     textMessage
     ).then(response=>{
       console.log(response)
@@ -1788,6 +1835,23 @@ textMessage
       },
       "message":{
         "text": `Your data is saved. Please keep your subscription reference ID is ${ref}\nSender us "Subscribed Plan: ${ref}" to view or update your subscription`
+      }
+    };
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    textMessage
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+  }
+  const showPlanBooking = (sender_psid,ref) => { 
+    let textMessage = {
+      "recipient":{
+        "id": sender_psid
+      },
+      "message":{
+        "text": `Your data is saved. Please keep your subscription reference, ID is ${ref}\nSender us "Booked Plan: ${ref}" to view or update your subscription`
       }
     };
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
