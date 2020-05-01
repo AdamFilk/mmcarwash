@@ -61,6 +61,7 @@ const
     let start_date= req.body.startdate;
     let period=req.body.period;
     let end_date= req.body.enddate;
+    let day= req.body.day;
     let time= req.body.time_input;
     let id= req.body.sender;
     let Name= req.body.name;
@@ -84,6 +85,7 @@ const
       period:period,
       end_date:end_date,
       price:price,
+      day:day,
       time:time,
       id:id,
       Name:Name,
@@ -119,6 +121,7 @@ const
               period:doc.data().period,
               end_date:doc.data().end_date,
               price:doc.data().price,
+              day:doc.data().day,
               time:doc.data().time,
               id:doc.data().id,
               Name:doc.data().Name,
@@ -136,6 +139,95 @@ const
     .catch(function(error) {
         console.log("Error getting documents: ", error);
     });    
+  });
+  app.get('/plan_update/:booking_number/:sender_id/',function(req,res){
+    const sender_id = req.params.sender_id;
+    const booking_number = req.params.booking_number;
+  
+  
+    db.collection("Plan Subscriptions").where("booking_number", "==", booking_number)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+
+          let data = {
+            doc_id:doc.id,
+            phone:doc.data().phone,
+            town:doc.data().town,
+            address:doc.data().address,
+            carplate:doc.data().carplate,
+            carbrand:doc.data().carbrand,
+            carmodel:doc.data().carmodel,
+            carsize:doc.data().carsize,            
+            start_date:doc.data().start_date,
+            period:doc.data().period,
+            end_date:doc.data().end_date,
+            price:doc.data().price,
+            day:doc.data().day,
+            time:doc.data().time,
+            id:doc.data().id,
+            Name:doc.data().Name,
+            plan:doc.data().plan,
+            booking_number:doc.data().booking_number,
+          }   
+  
+            console.log("BOOKING DATA", data);     
+  
+           res.render('carwash_update.ejs',{data:data, sender_id:sender_id});
+            
+  
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });    
+  });
+  app.post('/plan_update',function(req,res){
+        
+        
+    let phone= req.body.phone;
+    console.log(req.body.date_input);
+    let town = req.body.town;
+    let address = req.body.address_info;
+    let carplate = req.body.car_plate;
+    let carbrand = req.body.car_brand;
+    let carmodel = req.body.car_model;
+    let carsize= req.body.carsize;
+    let price=req.body.price;
+    let start_date= req.body.startdate;
+    let time= req.body.time_input;
+    let day= req.body.day;
+    let end_date= req.body.enddate;
+    let id= req.body.sender;
+    let Name= req.body.Name;
+    let plan= req.body.plan;
+    let booking_number = req.body.booking_number; 
+    let doc_id = req.body.doc_id; 
+    
+  
+    db.collection('Plan Subscriptions').doc(doc_id).update({
+      phone:phone,
+      town:town,
+      address:address,
+      carplate:carplate,
+      carbrand:carbrand,
+      carmodel:carmodel,
+      carsize:carsize,            
+      price:price,
+      start_date:start_date,
+      time:time,
+      day:day,
+      end_date:end_date,
+      id:id,
+      Name:Name,
+      plan:plan,
+      booking_number:booking_number,
+        }).then(success => {             
+          console.log("DATASAVESHOWBOOKINGNUMBER");     
+          showSubscriptionNumber(id, booking_number);s   
+        }).catch(error => {
+          console.log(error);
+    });        
   });
   app.get('/plan_once/:plan/:name/:id', (req, res) => {
   
@@ -362,6 +454,7 @@ const
           console.log(error);
     });        
   });
+  
   
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -1479,7 +1572,7 @@ if(userInput.includes("Subscribed Plan:")){
       "payload": {
         "template_type": "generic",
         "elements": [{
-          "title": "You are viewing your booking number: " + ref_num,                       
+          "title": "You are viewing your Subscription ID: " + ref_num,                       
           "buttons": [              
             {
               "type": "web_url",
@@ -1675,10 +1768,10 @@ textMessage
         "id": sender_psid
       },
       "message":{
-        "text": `Your data is saved. Please keep your booking reference ${ref}`
+        "text": `Your data is saved. Please keep your booking reference ID ${ref}.`
       }
     };
-    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}\nCar Wash Booking:${ref} to view or update your car wash booking`, 
     textMessage
     ).then(response=>{
       console.log(response)
@@ -1692,7 +1785,7 @@ textMessage
         "id": sender_psid
       },
       "message":{
-        "text": `Your data is saved. Please keep your subscription reference ${ref}`
+        "text": `Your data is saved. Please keep your subscription reference ID is ${ref}\nSender us Subscribed Plan:${ref} to view or update your subscription`
       }
     };
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
