@@ -1689,6 +1689,53 @@ if(userInput.includes("Subscribed Plan:")){
     console.log(error)
   })
 }
+if(userInput.includes("Booked Plan:")){
+  let ref_num = userInput.slice(12);
+  ref_num = ref_num.trim(); 
+  console.log(ref_num);
+  var senderID = webhook_event.sender.id;
+  console.log(senderID);
+  let genericMessage ={
+    "recipient":{
+      "id": senderID
+    },
+    "message":{
+      "attachment":{
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [{
+          "title": "You are viewing your Booked Plan ID: " + ref_num,                       
+          "buttons": [              
+            {
+              "type": "web_url",
+              "title": "View",
+              "url":"https://mmcarwash.herokuapp.com/plan_once_view/"+ref_num+"/"+senderID,
+               "webview_height_ratio": "full",
+              "messenger_extensions": true,          
+            },
+            {
+              "type": "web_url",
+              "title": "Update",
+              "url":"https://mmcarwash.herokuapp.com/plan_once_update/"+ref_num+"/"+senderID,
+               "webview_height_ratio": "full",
+              "messenger_extensions": true,          
+            },
+            
+          ],
+        }]
+      }
+    }
+  }
+}
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}
 //start price
 if (userInput == 'price'){
   let textMessage = {
