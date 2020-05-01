@@ -217,7 +217,7 @@ const
         
         
     let phone= req.body.phone;
-    console.log(req.body.add_on0);
+    console.log(req.body.date_input);
     let town = req.body.town;
     let address = req.body.address_info;
     let carpalte = req.body.car_plate;
