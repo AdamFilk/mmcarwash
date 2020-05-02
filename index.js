@@ -2253,7 +2253,7 @@ if(userInput=="adprice"){
         "id": sender_psid
       },
       "message":{
-        "text": `Your data is saved. Please keep your booking reference ID ${ref}.\nCar Wash Booking:${ref} to view or update your car wash booking`
+        "text": `Your data is saved. Please keep your booking reference ID ${ref}.\nSend us "Car Wash Booking:${ref}" to view or update your car wash booking`
       }
     };
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
@@ -2355,7 +2355,7 @@ if(userInput=="adprice"){
         "id": sender_psid
       },
       "message":{
-        "text": `${name}Your report has been submitted`
+        "text": `${name} Your report has been submitted`
       }
     };
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 

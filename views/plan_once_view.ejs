@@ -235,7 +235,21 @@
   }
   
   function delete_booking(){
-    
+    firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
+    console.log(success);
+      var db = firebase.firestore();
+      
+        db.collection('Plan Booking').doc('<%= data.doc_id %>').delete().then(success => {
+          MessengerExtensions.requestCloseBrowser(function success() {
+      console.log("success");          
+    }, function error(err) {
+      console.log(err);
+    });
+        }).catch(error => {
+          console.log(error);
+        })
+      
+});
   }
     
 </script>

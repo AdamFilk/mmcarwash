@@ -250,20 +250,35 @@
     });
   }
   
-  function delete_booking(){
-    var senderID= '<%=sender_id%>'
-      
-    var textMessage = {
-      recipient:{
-        id:senderID
-      },
-      message:{
-        text: "Your booking has been Deleted"
-      }
-    }
-    console.log(textMessage)
+  var firebaseConfig = {
+    apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
+    authDomain: "mm-carwash.firebaseapp.com",
+    databaseURL: "https://mm-carwash.firebaseio.com",
+    projectId: "mm-carwash",
+    storageBucket: "mm-carwash.appspot.com",
+    messagingSenderId: "478002772636",
+    appId: "1:478002772636:web:f82fa2e926632accb10b59",
+    measurementId: "G-BFPKPTE060"
+  };
 
-    postData('https://graph.facebook.com/v6.0/me/messages?access_token='+pageaccesstoken,textMessage).then(success=>{console.log(success)}).catch(err=>{console.log(err)});
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  function delete_booking(){
+    firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
+    console.log(success);
+      var db = firebase.firestore();
+      
+        db.collection('Plan Subscriptions').doc('<%= data.doc_id %>').delete().then(success => {
+          MessengerExtensions.requestCloseBrowser(function success() {
+      console.log("success");          
+    }, function error(err) {
+      console.log(err);
+    });
+        }).catch(error => {
+          console.log(error);
+        })
+      
+});
   }
 
     

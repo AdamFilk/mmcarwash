@@ -492,19 +492,13 @@ function UpdateCost() {
     firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
     console.log(success);
       var db = firebase.firestore();
-      db.collection("Car Wash Booking").doc("<%= data.doc_id %>").delete().then(success => {
-            
-          let textMessage = {
-            "recipient":{
-              "id":'<%=sender_id %>'
-            },
-            "message":{
-              "text": "Your booking has been Deleted"
-            }
-            }
-postData(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`,textMessage).then(success=>{console.log(success)}).catch(err=>{console.log(err)});
-          
-       
+      
+        db.collection('Car Wash Booking').doc('<%= data.doc_id %>').delete().then(success => {
+          MessengerExtensions.requestCloseBrowser(function success() {
+      console.log("success");          
+    }, function error(err) {
+      console.log(err);
+    });
         }).catch(error => {
           console.log(error);
         })
