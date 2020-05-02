@@ -736,7 +736,7 @@ app.post('/webhook', (req, res) => {
         requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
         PersistentMenu
         ).then(response=>{
-          console.log(response)
+          res.send(response)
         }).fail(error=> {
           console.log(error)
         }) 
