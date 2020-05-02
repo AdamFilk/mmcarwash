@@ -639,7 +639,7 @@ const
       report
         }).then(success => {             
           console.log("DATASAVESHOWBOOKINGNUMBER");     
-          ReportComplete(id,name);   
+          ReportComplete(id,Name);   
         }).catch(error => {
           console.log(error);
     });        
