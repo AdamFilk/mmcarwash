@@ -17,7 +17,7 @@
 </head>
 <body>
   <script>
-  /*  (function(d, s, id){
+   (function(d, s, id){
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {return;}
     js = d.createElement(s); js.id = id;
@@ -36,7 +36,7 @@
           console.log(err);
         }
       );        
-  };*/
+  };
 </script>
     <div class="container-fluid">
         <div class="row justify-content-md-center">
@@ -270,7 +270,11 @@
       var db = firebase.firestore();
       
         db.collection('Car Wash Booking').doc('<%= data.doc_id %>').delete().then(success => {
-          window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://mmcarwash.herokuapp.com/img/thank-you.jpg&display_text=Deleted')
+          MessengerExtensions.requestCloseBrowser(function success() {
+      console.log("success");          
+    }, function error(err) {
+      console.log(err);
+    });
         }).catch(error => {
           console.log(error);
         })
