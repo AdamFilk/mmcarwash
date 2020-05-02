@@ -1238,7 +1238,7 @@ if(userInput=="bronze" ){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "What's in the plan:\nExterior body wash✔️\nRims & Tire Shine✔️\n Price:\n1Month-Small-15000Ks,Medium-25000Ks,Large-35000Ks\n2Month-Small-25000Ks,Medium-35000Ks,Large-45000Ks\n3Month-Small-35000Ks,Medium-45000Ks,Large-55000Ks"
+      "text": "What's in the plan🧐🧐:\nExterior body wash✔️\nRims & Tire Shine✔️\n Price:\n💵💵1Month💵💵\nSmall-15000Ks\nMedium-25000Ks\nLarge-35000Ks\n💵💵2Month💵💵\nSmall-25000Ks\nMedium-35000Ks\nLarge-45000Ks\n💵💵3Month💵💵Small-35000Ks\nMedium-45000Ks\nLarge-55000Ks"
     }
   };
   let genericMessage ={
