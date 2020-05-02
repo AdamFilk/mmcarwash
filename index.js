@@ -34,7 +34,9 @@ const
   app.get('/whitelists',function(req,res){    
     whitelistDomains(res);
   });
-
+  app.get('/setpersistentmenu',function(req,res){
+    setupPersistentMenu(res);    
+});
   const db = firebase.firestore();
 
   app.get('/plans/:plan/:name/:id/:month', (req, res) => {
@@ -2365,6 +2367,37 @@ if(userInput=="adprice"){
     }).fail(error=> {
       console.log(error)
     })
+  }
+  const setupPersistentMenu=(res)=>{
+    var messageData={
+      "persistent_menu": [
+        {
+            "locale": "default",
+            "composer_input_disabled": false,
+            "call_to_actions": [
+                {
+                    "type": "postback",
+                    "title": "Get Started",
+                    "payload": "Hi"
+                },
+                {
+                    "type": "postback",
+                    "title": "Start Booking",
+                    "payload": "book"
+                },
+                {
+                  "type": "postback",
+                  "title": "Prices",
+                  "payload": "price"
+                }
+            ]
+        },
+        {
+          "locale":"default",
+          "composer_input_disabled":false
+        }
+    ]
+    }
   }
   /***********************************
 FUNCTION TO ADD WHITELIST DOMAIN
