@@ -1980,9 +1980,122 @@ if(userInput=="ncw"){
   })
 })
 }
+if(userInput=="psp"){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "Here are our availiable plans and their subscription prices:"
+    }
+  };
+  requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
 
+  var udetails = JSON.parse(success.body);
+  var senderID = webhook_event.sender.id;
+  let genericMessage ={
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+              "title":"Bronze Plan",
+              "subtitle":"1Month-Small-15000Ks,Medium-25000Ks,Large-35000Ks\n2Month-Small-25000Ks,Medium-35000Ks,Large-45000Ks\n3Month-Small-35000Ks,Medium-45000Ks,Large-55000Ks",
+              "buttons":[
+                {
+                  "type":"postback",
+                  "title":"View detail or Subscribe",
+                  "payload":"bronze"
+                  },
+              ]
+            },
+            {
+              "title":"Silver Plan",
+              "subtitle":"1Month-Small-25000Ks,Medium-35000Ks,Large-45000Ks\n2Month-Small-35000Ks,Medium-45000Ks,Large-55000Ks\n3Month-Small-45000Ks,Medium-55000Ks,Large-65000Ks",
+              "buttons":[
+                {
+                  "type":"postback",
+                  "title":"View detail or Subscribe",
+                  "payload":"silver"
+                  },
+              ]
+            },
+            {
+              "title":"Gold Plan",
+              "subtitle":"1Month-Small-35000Ks,Medium-45000Ks,Large-55000Ks\n2Month-Small-45000Ks,Medium-55000Ks,Large-65000Ks\n3Month-Small-55000Ks,Medium-65000Ks,Large-75000Ks",
+              "buttons":[
+                {
+                  "type":"postback",
+                  "title":"View detail or Subscribe",
+                  "payload":"gold"
+                  },
+              ]
+            },
+            {
+              "title":"Platinum Plan",
+              "subtitle":"1Month-Small-35000Ks,Medium-45000Ks,Large-55000Ks\n2Month-Small-45000Ks,Medium-55000Ks,Large-65000Ks\n3Month-Small-55000Ks,Medium-65000Ks,Large-75000Ks",
+              "buttons":[
+                {
+                  "type":"postback",
+                  "title":"View detail or Subscribe",
+                  "payload":"gold"
+                  },
+              ]
+            },
+            {
+              "title":"Normal Waterless Wash-Exterior",
+              "subtitle":"Small-4000Ks\nMedium-5000Ks\nLarge-6000Ks",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/carwash/waterless/ext/"+udetails.name+"/"+senderID,
+                  "title":"Book this",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
+                },
+              ]
+            },
+            {
+              "title":"Normal Waterless Wash-Both",
+              "subtitle":"Small-7000Ks\nMedium-9000Ks\nLarge-11000Ks",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/carwash/waterless/both/"+udetails.name+"/"+senderID,
+                  "title":"Book this",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
+                },
+              ]
+            },
+          ]
+        }
+      }
+    }
+  }
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+})
+}
       });
-  
+
       // Returns a '200 OK' response to all requests
       res.status(200).send('EVENT_RECEIVED');
       
@@ -2114,7 +2227,8 @@ const whitelistDomains = (res) => {
            "https://herokuapp.com/" ,
            "https://mmcarwash.herokuapp.com/carwash/" ,
            "https://mmcarwash.herokuapp.com/plans/"   ,
-           "https://mmcarwash.herokuapp.com/view/"       
+           "https://mmcarwash.herokuapp.com/view/"  ,
+           "https://i.pinimg.com/"    
           ]               
   };  
   request({
