@@ -617,7 +617,33 @@ const
           console.log(error);
     });        
   });
+  app.get('/report/:name/:id', (req, res) => {
   
+    var name = req.params.name;
+    var senderID=req.params.id;
+    res.render('report.ejs', {name:name, id:senderID})
+    
+  })
+  app.post('/report',function(req,res){
+        
+        
+    let phone= req.body.phone;
+    let Name= req.body.Name;
+    let id=req.body.sender;
+    let report= req.body.report; 
+  
+    db.collection('Reports').add({
+      phone:phone,
+     
+      Name:Name,
+      report
+        }).then(success => {             
+          console.log("DATASAVESHOWBOOKINGNUMBER");     
+          ReportComplete(id,name);   
+        }).catch(error => {
+          console.log(error);
+    });        
+  });
   
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -679,7 +705,8 @@ app.post('/webhook', (req, res) => {
 
         if (userInput == 'Hi'){
           requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
-            var udetails = JSON.parse(success.body)
+            var udetails = JSON.parse(success.body);
+            var senderID = webhook_event.sender.id;
           let welcomeMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -730,17 +757,17 @@ app.post('/webhook', (req, res) => {
                       {
                         "type":"web_url",
                         "url":'https://www.facebook.com/pg/MM-Carwash-103319597841207/about/',
-                        "title":"about",
+                        "title":"About",
+                      },
+                      {
+                        "type":"web_url",
+                        "url":'https://www.facebook.com/pg/MM-Carwash-103319597841207/reviews/',
+                        "title":"Review",
                       },
                       {
                         "type":"postback",
-                        "title":"Prices",
-                        "payload":"price"
-                      },
-                      {
-                        "type":"postback",
-                        "title":"Contact Us",
-                        "payload":"contact"
+                        "title":"https://mmcarwash.herokuapp.com/report"+"/"+udetails.name+"/"+senderID,
+                        "payload":"Report"
                       },
 
                     ]
@@ -2310,6 +2337,23 @@ if(userInput=="adprice"){
       },
       "message":{
         "text": `Your data is updated. Please keep your subscription reference ID is ${ref}\nSender us "Booked Plan: ${ref}" to view or update your subscription`
+      }
+    };
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    textMessage
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+  }
+  const ReportComplete = (sender_psid,name) => { 
+    let textMessage = {
+      "recipient":{
+        "id": sender_psid
+      },
+      "message":{
+        "text": `${name}Your report has been submitted`
       }
     };
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
