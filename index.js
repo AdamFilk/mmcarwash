@@ -35,8 +35,43 @@ const
     whitelistDomains(res);
   });
   app.get('/setpersistentmenu',function(req,res){
-    setupPersistentMenu(res);    
-}).then(success=>{console.log(success)}).catch(err=>{console.log(err)});
+      let PersistentMenu={
+        "persistent_menu": [
+            {
+                "locale": "default",
+                "composer_input_disabled": false,
+                "call_to_actions": [
+                  {
+                    "type": "postback",
+                    "title": "Get Started",
+                    "payload": "Hi"
+                },
+                {
+                    "type": "postback",
+                    "title": "Start Booking",
+                    "payload": "book"
+                },
+                {
+                  "type": "postback",
+                  "title": "Prices",
+                  "payload": "price"
+                }
+                ]
+            }
+        ]
+    }
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    PersistentMenu
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    }) 
+    }
+      
+)
+
+
   const db = firebase.firestore();
 
   app.get('/plans/:plan/:name/:id/:month', (req, res) => {
@@ -2368,37 +2403,7 @@ if(userInput=="adprice"){
       console.log(error)
     })
   }
-  const setupPersistentMenu=(res)=>{
-    var messageData={
-      "persistent_menu": [
-        {
-            "locale": "default",
-            "composer_input_disabled": false,
-            "call_to_actions": [
-                {
-                    "type": "postback",
-                    "title": "Get Started",
-                    "payload": "Hi"
-                },
-                {
-                    "type": "postback",
-                    "title": "Start Booking",
-                    "payload": "book"
-                },
-                {
-                  "type": "postback",
-                  "title": "Prices",
-                  "payload": "price"
-                }
-            ]
-        },
-        {
-          "locale":"default",
-          "composer_input_disabled":false
-        }
-    ]
-    }
-  }
+
   /***********************************
 FUNCTION TO ADD WHITELIST DOMAIN
 ************************************/
