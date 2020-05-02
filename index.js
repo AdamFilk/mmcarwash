@@ -706,9 +706,7 @@ app.post('/webhook', (req, res) => {
         }
         app.get('/setpersistentmenu',function(req,res){
           let PersistentMenu={
-            "recipient":{
-              "id": webhook_event.sender.id
-            },
+            
             "persistent_menu": [
                 {
                     "locale": "default",
