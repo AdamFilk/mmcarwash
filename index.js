@@ -943,8 +943,9 @@ app.post('/webhook', (req, res) => {
       }
       //end choose int or ext
       //start booking form
+      console.log(userInput);
       if(userInput.includes("/int")){
-        console.log(userInput);
+        
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
 
           var udetails = JSON.parse(success.body);
@@ -2038,7 +2039,7 @@ if(userInput=="psp"){
             },
             {
               "title":"Platinum Plan",
-              "subtitle":"1Month-Small-35000Ks,Medium-45000Ks,Large-55000Ks\n2Month-Small-45000Ks,Medium-55000Ks,Large-65000Ks\n3Month-Small-55000Ks,Medium-65000Ks,Large-75000Ks",
+              "subtitle":"1Month-Small-45000Ks,Medium-55000Ks,Large-65000Ks\n2Month-Small-55000Ks,Medium-65000Ks,Large-75000Ks\n3Month-Small-55000Ks,Medium-65000Ks,Large-75000Ks",
               "buttons":[
                 {
                   "type":"postback",
