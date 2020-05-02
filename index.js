@@ -30,7 +30,7 @@ const
  
   firebase.initializeApp(firebaseConfig);
 
-  app.use('img',express.static('img'));  
+  app.use('/img',express.static('img'));  
   app.get('/whitelists',function(req,res){    
     whitelistDomains(res);
   });
