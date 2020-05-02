@@ -35,8 +35,8 @@ const
     whitelistDomains(res);
   });
   app.get('/setpersistentmenu',function(req,res){
-    setupPersistentMenu(res).then(success=>{console.log(success)}).catch(err=>{console.log(err)});   
-});
+    setupPersistentMenu(res);    
+}).then(success=>{console.log(success)}).catch(err=>{console.log(err)});
   const db = firebase.firestore();
 
   app.get('/plans/:plan/:name/:id/:month', (req, res) => {
