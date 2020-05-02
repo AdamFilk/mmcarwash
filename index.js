@@ -2006,7 +2006,7 @@ if(userInput=="psp"){
           "elements":[
             {
               "title":"Bronze Plan",
-              "subtitle":"1Month-Small-15000Ks,Medium-25000Ks,Large-35000Ks\n2Month-Small-25000Ks,Medium-35000Ks,Large-45000Ks\n3Month-Small-35000Ks,Medium-45000Ks,Large-55000Ks",
+              "subtitle":"1Month-S-15000Ks,M-25000Ks,L-35000Ks\n2Month-S-25000Ks,M-35000Ks,L-45000Ks\n3Months-S-35000Ks,M-45000Ks,L-55000Ks",
               "buttons":[
                 {
                   "type":"postback",
