@@ -1238,7 +1238,7 @@ if(userInput=="bronze" ){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "What's in the plan:\nExterior body wash✔️\nRims & Tire Shine✔️"
+      "text": "What's in the plan:\nExterior body wash✔️\nRims & Tire Shine✔️\n Price:\n1Month-Small-15000Ks,Medium-25000Ks,Large-35000Ks\n2Month-Small-25000Ks,Medium-35000Ks,Large-45000Ks\n3Month-Small-35000Ks,Medium-45000Ks,Large-55000Ks"
     }
   };
   let genericMessage ={
@@ -1990,10 +1990,7 @@ if(userInput=="psp"){
       "text": "Here are our availiable plans and their subscription prices:"
     }
   };
-  requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
 
-  var udetails = JSON.parse(success.body);
-  var senderID = webhook_event.sender.id;
   let genericMessage ={
     "recipient":{
       "id": webhook_event.sender.id
@@ -2006,55 +2003,60 @@ if(userInput=="psp"){
           "elements":[
             {
               "title":"Bronze Plan",
-              "subtitle":"1Month-S-15000Ks,M-25000Ks,L-35000Ks\n2Month-S-25000Ks,M-35000Ks,L-45000Ks\n3Months-S-35000Ks,M-45000Ks,L-55000Ks",
+              "image_url":"https://i.pinimg.com/564x/4e/7a/79/4e7a79bc31c39cdc0ea944a6a618ac9b.jpg",
+              "subtitle":"View Details to check out the prices and more.",
               "buttons":[
                 {
                   "type":"postback",
-                  "title":"View detail or Subscribe",
+                  "title":"View Detail",
                   "payload":"bronze"
                   },
               ]
             },
             {
               "title":"Silver Plan",
-              "subtitle":"1Month-Small-25000Ks,Medium-35000Ks,Large-45000Ks\n2Month-Small-35000Ks,Medium-45000Ks,Large-55000Ks\n3Month-Small-45000Ks,Medium-55000Ks,Large-65000Ks",
+              "image_url":"https://i.pinimg.com/564x/2b/a4/c0/2ba4c00cb92f1b6b9e77ab9c84b77a1d.jpg",
+              "subtitle":"View Details to check out the prices and more.",
               "buttons":[
                 {
                   "type":"postback",
-                  "title":"View detail or Subscribe",
+                  "title":"View detail",
                   "payload":"silver"
                   },
               ]
             },
             {
               "title":"Gold Plan",
-              "subtitle":"1Month-Small-35000Ks,Medium-45000Ks,Large-55000Ks\n2Month-Small-45000Ks,Medium-55000Ks,Large-65000Ks\n3Month-Small-55000Ks,Medium-65000Ks,Large-75000Ks",
+              "image_url":"https://i.pinimg.com/564x/c9/25/62/c9256251709a5bbdf864f8243cdbec3d.jpg",
+              "subtitle":"View Details to check out the prices and more.",
               "buttons":[
                 {
                   "type":"postback",
-                  "title":"View detail or Subscribe",
+                  "title":"View detail",
                   "payload":"gold"
                   },
               ]
             },
             {
               "title":"Platinum Plan",
-              "subtitle":"1Month-Small-45000Ks,Medium-55000Ks,Large-65000Ks\n2Month-Small-55000Ks,Medium-65000Ks,Large-75000Ks\n3Month-Small-65000Ks,Medium-75000Ks,Large-85000Ks",
+              "image_url":"https://i.pinimg.com/564x/ec/2f/83/ec2f8388521c3f956a1379736c3fd08c.jpg",
+              "subtitle":"View Details to check out the prices and more.",
               "buttons":[
                 {
                   "type":"postback",
-                  "title":"View detail or Subscribe",
+                  "title":"View detail",
                   "payload":"platinum"
                   },
               ]
             },
             {
               "title":"Diamond Plan",
-              "subtitle":"1Month-Small-55000Ks,Medium-65000Ks,Large-75000Ks\n2Month-Small-65000Ks,Medium-75000Ks,Large-85000Ks\n3Month-Small-75000Ks,Medium-85000Ks,Large-95000Ks",
+              "image_url":"https://i.pinimg.com/564x/4a/37/83/4a378324e74f0196c76101ad37b90875.jpg",
+              "subtitle":"View Details to check out the prices and more.",
               "buttons":[
                 {
                   "type":"postback",
-                  "title":"View detail or Subscribe",
+                  "title":"View detail",
                   "payload":"diamond"
                 },
               ]
@@ -2078,8 +2080,8 @@ if(userInput=="psp"){
   }).fail(error=> {
     console.log(error)
   })
-})
 }
+
       });
 
       // Returns a '200 OK' response to all requests
