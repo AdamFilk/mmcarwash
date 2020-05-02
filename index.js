@@ -1238,7 +1238,7 @@ if(userInput=="bronze" ){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "What's in the plan🧐:\nExterior body wash✔️\nRims & Tire Shine✔️\nPrice:\n💵💵1Month💵💵\n🚗Small-15000Ks\n🚗Medium-25000Ks\n🚗Large-35000Ks\n💵💵2Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵3Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks"
+      "text": "What's in the plan🧐:\nExterior body wash✔️\nRims & Tire Shine✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-15000Ks\n🚗Medium-25000Ks\n🚗Large-35000Ks\n💵💵2Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵3Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks"
     }
   };
   let genericMessage ={
@@ -1327,7 +1327,7 @@ if(userInput=="silver" ){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "What's in the plan:\nExterior body wash✔️Rims & Tire Shine✔️Interior Vacuum✔️Wipe all Surfaces✔️Interior Windows✔️\nPrice:\n💵💵1Month💵💵\n🚗Small-15000Ks\n🚗Medium-25000Ks\n🚗Large-35000Ks\n💵💵2Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵3Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks"
+      "text": "What's in the plan:\nExterior body wash✔️Rims & Tire Shine✔️Interior Vacuum✔️Wipe all Surfaces✔️Interior Windows✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-15000Ks\n🚗Medium-25000Ks\n🚗Large-35000Ks\n💵💵2Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵3Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks"
     }
   };
   let genericMessage ={
@@ -1416,7 +1416,7 @@ if(userInput=="gold" ){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\nPrice:\n💵💵1Month💵💵\n🚗Small-15000Ks\n🚗Medium-25000Ks\n🚗Large-35000Ks\n💵💵2Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵3Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks"
+      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-15000Ks\n🚗Medium-25000Ks\n🚗Large-35000Ks\n💵💵2Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵3Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks"
     }
   };
   let genericMessage ={
@@ -1505,7 +1505,7 @@ if(userInput=="platinum" ){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\nClay bar polish✔️\nHard Coat Hand Wax✔️\nPrice:\n💵💵1Month💵💵\n🚗Small-15000Ks\n🚗Medium-25000Ks\n🚗Large-35000Ks\n💵💵2Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵3Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks"
+      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\nClay bar polish✔️\nHard Coat Hand Wax✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-15000Ks\n🚗Medium-25000Ks\n🚗Large-35000Ks\n💵💵2Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵3Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks"
     }
   };
   let genericMessage ={
@@ -1594,7 +1594,7 @@ if(userInput=="diamond" ){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\nClay bar polish✔️\nHard Coat Hand Wax✔️\nPaint Polish and Hybrid Ceramic Sealant✔️\nExterior Plastic Dressing w/ UV Protection✔️\nPrice:\n💵💵1Month💵💵\n🚗Small-15000Ks\n🚗Medium-25000Ks\n🚗Large-35000Ks\n💵💵2Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵3Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks"
+      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\nClay bar polish✔️\nHard Coat Hand Wax✔️\nPaint Polish and Hybrid Ceramic Sealant✔️\nExterior Plastic Dressing w/ UV Protection✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-15000Ks\n🚗Medium-25000Ks\n🚗Large-35000Ks\n💵💵2Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵3Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks"
     }
   };
   let genericMessage ={
