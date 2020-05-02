@@ -713,6 +713,35 @@ app.post('/webhook', (req, res) => {
                         "title":"Prices",
                         "payload":"price"
                       },
+                      {
+                        "type":"postback",
+                        "title":"Contact Us",
+                        "payload":"contact"
+                      },
+
+                    ]
+  
+                  },
+                  {
+                    "title":"MM Carwash's Chatbot",
+                    "subtitle":"Enjoy our fast and reliable service!",
+                    "image_url":"https://i.pinimg.com/originals/8e/ae/4e/8eae4e9c738013ac5bef63b8cbf9a328.jpg",
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url":'https://www.facebook.com/pg/MM-Carwash-103319597841207/about/',
+                        "title":"about",
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Prices",
+                        "payload":"price"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Contact Us",
+                        "payload":"contact"
+                      },
 
                     ]
   
@@ -770,7 +799,7 @@ app.post('/webhook', (req, res) => {
                     "buttons":[
                       {
                       "type":"postback",
-                      "title":"Book Now",
+                      "title":"Book Normal Wash",
                       "payload":"now"
                       },
                       {
@@ -1281,7 +1310,7 @@ if(userInput=="bronze" ){
             },
             {
               "title":"Book plan for just this once",
-              "subtitle":"Book to get these services for once",
+              "subtitle":"Book to get these services for once\n🚗Small-4000Ks\n🚗Medium-5000Ks\n🚗Large-6000Ks",
               "image_url":"https://i.pinimg.com/564x/4e/7a/79/4e7a79bc31c39cdc0ea944a6a618ac9b.jpg",
               "buttons":[
                 {
@@ -1327,7 +1356,7 @@ if(userInput=="silver" ){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "What's in the plan:\nExterior body wash✔️Rims & Tire Shine✔️Interior Vacuum✔️Wipe all Surfaces✔️Interior Windows✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-15000Ks\n🚗Medium-25000Ks\n🚗Large-35000Ks\n💵💵2Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵3Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks"
+      "text": "What's in the plan:\nExterior body wash✔️Rims & Tire Shine✔️Interior Vacuum✔️Wipe all Surfaces✔️Interior Windows✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵2Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks\n💵💵3Month💵💵\n🚗Small-45000Ks\n🚗Medium-55000Ks\n🚗Large-65000Ks"
     }
   };
   let genericMessage ={
@@ -1370,7 +1399,7 @@ if(userInput=="silver" ){
             },
             {
               "title":"Book plan for just this once",
-              "subtitle":"Book to get these services for once",
+              "subtitle":"Book to get these services for once\n🚗Small-5000Ks\n🚗Medium-6000Ks\n🚗Large-7000Ks",
               "image_url":"https://i.pinimg.com/564x/2b/a4/c0/2ba4c00cb92f1b6b9e77ab9c84b77a1d.jpg",
               "buttons":[
                 {
@@ -1416,7 +1445,7 @@ if(userInput=="gold" ){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-15000Ks\n🚗Medium-25000Ks\n🚗Large-35000Ks\n💵💵2Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵3Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks"
+      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks\n💵💵2Month💵💵\n🚗Small-45000Ks\n🚗Medium-55000Ks\n🚗Large-65000Ks\n💵💵3Month💵💵\n🚗Small-55000Ks\n🚗Medium-65000Ks\n🚗Large-75000Ks"
     }
   };
   let genericMessage ={
@@ -1459,7 +1488,7 @@ if(userInput=="gold" ){
             },
             {
               "title":"Book plan for just this once",
-              "subtitle":"Book to get these services for once",
+              "subtitle":"Book to get these services for once\n🚗Small-6000Ks\n🚗Medium-7000Ks\n🚗Large-8000Ks",
               "image_url":"https://i.pinimg.com/564x/c9/25/62/c9256251709a5bbdf864f8243cdbec3d.jpg",
               "buttons":[
                 {
@@ -1505,7 +1534,7 @@ if(userInput=="platinum" ){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\nClay bar polish✔️\nHard Coat Hand Wax✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-15000Ks\n🚗Medium-25000Ks\n🚗Large-35000Ks\n💵💵2Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵3Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks"
+      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\nClay bar polish✔️\nHard Coat Hand Wax✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-45000Ks\n🚗Medium-55000Ks\n🚗Large-65000Ks\n💵💵2Month💵💵\n🚗Small-55000Ks\n🚗Medium-65000Ks\n🚗Large-75000Ks\n💵💵3Month💵💵\n🚗Small-65000Ks\n🚗Medium-75000Ks\n🚗Large-85000Ks"
     }
   };
   let genericMessage ={
@@ -1548,7 +1577,7 @@ if(userInput=="platinum" ){
             },
             {
               "title":"Book plan for just this once",
-              "subtitle":"Book to get these services for once",
+              "subtitle":"Book to get these services for once\n🚗Small-8000Ks\n🚗Medium-10000Ks\n🚗Large-15000Ks",
               "image_url":"https://i.pinimg.com/564x/ec/2f/83/ec2f8388521c3f956a1379736c3fd08c.jpg",
               "buttons":[
                 {
@@ -1594,7 +1623,7 @@ if(userInput=="diamond" ){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\nClay bar polish✔️\nHard Coat Hand Wax✔️\nPaint Polish and Hybrid Ceramic Sealant✔️\nExterior Plastic Dressing w/ UV Protection✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-15000Ks\n🚗Medium-25000Ks\n🚗Large-35000Ks\n💵💵2Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵3Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks"
+      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\nClay bar polish✔️\nHard Coat Hand Wax✔️\nPaint Polish and Hybrid Ceramic Sealant✔️\nExterior Plastic Dressing w/ UV Protection✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-55000Ks\n🚗Medium-65000Ks\n🚗Large-75000Ks\n💵💵2Month💵💵\n🚗Small-65000Ks\n🚗Medium-75000Ks\n🚗Large-85000Ks\n💵💵3Month💵💵\n🚗Small-75000Ks\n🚗Medium-85000Ks\n🚗Large-95000Ks"
     }
   };
   let genericMessage ={
@@ -1637,7 +1666,7 @@ if(userInput=="diamond" ){
             },
             {
               "title":"Book plan for just this once",
-              "subtitle":"Book to get these services for once",
+              "subtitle":"Book to get these services for once\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks",
               "image_url":"https://i.pinimg.com/564x/4a/37/83/4a378324e74f0196c76101ad37b90875.jpg",
               "buttons":[
                 {
@@ -1836,14 +1865,14 @@ if(userInput=="price"){
                 },
                 {
                   "type":"postback",
-                  "title":"Plan Subscription Price",
+                  "title":"Plan Sub/Book Price",
                   "payload":"psp"
                 },
                 {
                   "type":"postback",
-                  "title":"Plan Booking",
-                  "payload":"pb"
-                  },
+                  "title":"Add-on Prices",
+                  "payload":"adprice"
+                },
               ]
             },
           ]
@@ -1901,7 +1930,7 @@ if(userInput=="ncw"){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/carwash/regular/int/"+udetails.name+"/"+senderID,
+                  "url":"https://mmcarwash.herokuapp.com/carwash/regular/ext/"+udetails.name+"/"+senderID,
                   "title":"Book this",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -1914,7 +1943,7 @@ if(userInput=="ncw"){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/carwash/regular/int/"+udetails.name+"/"+senderID,
+                  "url":"https://mmcarwash.herokuapp.com/carwash/regular/both/"+udetails.name+"/"+senderID,
                   "title":"Book this",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -2081,6 +2110,93 @@ if(userInput=="psp"){
     console.log(error)
   })
 }
+if(userInput=="adprice"){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "You can add-on services for your normal wash"
+    }
+  };
+  let genericMessage ={
+    "recipient":{
+      "id": webhook_event.sender.id
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+              "title":"Add-on Price",
+              "image_url":"https://i.pinimg.com/564x/4e/7a/79/4e7a79bc31c39cdc0ea944a6a618ac9b.jpg",
+              "subtitle":"Pet Hair Remova:2000Ks\nWax:3000Ks\nScratch Removal:4000Ks\nClay Bar Treatment:5000Ks\nTire and Alloy Cleaning:6000Ks",
+              "buttons":[
+                {
+                  "type":"postback",
+                  "title":"Book Normal Wash?",
+                  "payload":"now"
+                  },
+                  {
+                    "type":"postback",
+                    "title":"No",
+                    "payload":"Hi"
+                    },
+              ]
+            },
+          ]
+        }
+      }
+    }
+  }
+
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    textMessage
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+    genericMessage
+    ).then(response=>{
+      console.log(response)
+    }).fail(error=> {
+      console.log(error)
+    })
+  }
+  if(userInput=="contact"){
+    let genericMessage ={
+      "recipient":{
+        "id": webhook_event.sender.id
+      },
+      "message":{
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"button",
+            "text":"E-mail:adsltheprescence@gmail.com\nSecond E-mail:imsup8rman@gmail.comNeed further assistance or Info? Talk to a representative",
+            "buttons":[
+              {
+                "type":"phone_number",
+                "title":"Call Representative",
+                "payload":"+95 9765333508"
+              }
+            ]
+          }
+        }
+      }
+    }
+      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+      genericMessage
+      ).then(response=>{
+        console.log(response)
+      }).fail(error=> {
+        console.log(error)
+      })
+    }
 
       });
 
