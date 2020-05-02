@@ -766,8 +766,8 @@ app.post('/webhook', (req, res) => {
                       },
                       {
                         "type":"postback",
-                        "title":"https://mmcarwash.herokuapp.com/report"+"/"+udetails.name+"/"+senderID,
-                        "payload":"Report"
+                        "url":"https://mmcarwash.herokuapp.com/report"+"/"+udetails.name+"/"+senderID,
+                        "title":"Report"
                       },
 
                     ]
