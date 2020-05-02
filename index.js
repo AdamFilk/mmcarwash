@@ -1814,16 +1814,8 @@ if(userInput.includes("Booked Plan:")){
   })
 }
 //start price
-if (userInput == 'price'){
-  let textMessage = {
-    "recipient":{
-      "id":webhook_event.sender.id
-    },
-    "message":{
-      "text": "Prices for each package is vary according to the size of the car.\nYou can find the prices for each car below"
-    }
-  };
-  let genericMessage = {
+if(userInput=="price"){
+  let genericMessage ={
     "recipient":{
       "id": webhook_event.sender.id
     },
@@ -1834,123 +1826,160 @@ if (userInput == 'price'){
           "template_type":"generic",
           "elements":[
             {
-            "title":"Small",
-            "subtitle":"Prices for small-sized car such as hetchbacks, popular(Honda Fit, Suzuki Swift)",
-            "image_url":"https://i.pinimg.com/originals/79/45/76/794576dd184a34f479d8e503b0edc4af.jpg",
-            "buttons":[
-              {
+              "title":"Which Prices do you want to know",
+              "buttons":[
+                {
                 "type":"postback",
-                "title":"View Prices",
-                "payload":"v_s_price"
-              },
-            ]
-          },
-          {
-            "title":"Medium",
-            "subtitle":"Prices for medium-sized car such as sedan, station wagons\nPopular(Toyota Bela, Mark 2,Crown, Suzuki Ciaz)",
-            "image_url":"https://www.pinterest.com/pin/772719248552614734",
-            "buttons":[
-              {
-                "type":"postback",
-                "title":"View Prices",
-                "payload":"v_m_price"
-              },
-            ]
-          },
-          {
-            "title":"Large",
-            "subtitle":"Prices for large-sized car such as suv,mini vans, Light Truck\n Popular(Toyota Harrier, Landcruser,Alphard)",
-            "image_url":"https://i.pinimg.com/originals/74/27/c3/7427c35ae87f01fd89bf50f1b2a2c4f4.jpg",
-            "buttons":[
-              {
-                "type":"postback",
-                "title":"View Prices",
-                "payload":"v_l_price"
-              },
-            ]
-          },
-
-        ],
-        
+                "title":"Normal Car Wash",
+                "payload":"ncw"
+                },
+                {
+                  "type":"postback",
+                  "title":"Plan Subscription Price",
+                  "payload":"psp"
+                },
+                {
+                  "type":"postback",
+                  "title":"Plan Booking",
+                  "payload":"pb"
+                  },
+              ]
+            },
+          ]
         }
       }
-
     }
   }
   requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-textMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-genericMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+}
+if(userInput=="ncw"){
+  let textMessage = {
+    "recipient":{
+      "id":webhook_event.sender.id
+    },
+    "message":{
+      "text": "Here are our availiable car washes and their prices:"
+    }
+  };
+  requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
 
-}
-//end price
-//start s_v_price
-if (userInput == 'v_s_price'){
-  let textMessage = {
+  var udetails = JSON.parse(success.body);
+  var senderID = webhook_event.sender.id;
+  let genericMessage ={
     "recipient":{
-      "id":webhook_event.sender.id
+      "id": webhook_event.sender.id
     },
     "message":{
-      "text": "Interior\nBasic-3000ks\nShining-6000ks\nPremium-9000ks\n\nExterior\n\nBasic-3000ks\nShining-6000ks\nPremium-9000ks\n\nBoth\n\nBaisc-5000ks\nShining-11000ks\nPremium-16000ks"
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+              "title":"Normal Regular Handwash-Interior",
+              "subtitle":"Require to provide water!\nSmall-3000Ks\nMedium-4000Ks\nLarge-5000Ks",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/carwash/regular/int/"+udetails.name+"/"+senderID,
+                  "title":"Book this",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
+                },
+              ]
+            },
+            {
+              "title":"Normal Regular Handwash-Exterior",
+              "subtitle":"Require to provide water!\nSmall-3000Ks\nMedium-4000Ks\nLarge-5000Ks",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/carwash/regular/int/"+udetails.name+"/"+senderID,
+                  "title":"Book this",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
+                },
+              ]
+            },
+            {
+              "title":"Normal Regular Handwash-Both",
+              "subtitle":"Require to provide water!\nSmall-5000Ks\nMedium-7000Ks\nLarge-9000Ks",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/carwash/regular/int/"+udetails.name+"/"+senderID,
+                  "title":"Book this",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
+                },
+              ]
+            },
+            {
+              "title":"Normal Waterless Wash-Interior",
+              "subtitle":"Small-4000Ks\nMedium-5000Ks\nLarge-6000Ks",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/carwash/waterless/int/"+udetails.name+"/"+senderID,
+                  "title":"Book this",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
+                },
+              ]
+            },
+            {
+              "title":"Normal Waterless Wash-Exterior",
+              "subtitle":"Small-4000Ks\nMedium-5000Ks\nLarge-6000Ks",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/carwash/waterless/ext/"+udetails.name+"/"+senderID,
+                  "title":"Book this",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
+                },
+              ]
+            },
+            {
+              "title":"Normal Waterless Wash-Both",
+              "subtitle":"Small-7000Ks\nMedium-9000Ks\nLarge-11000Ks",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://mmcarwash.herokuapp.com/carwash/waterless/both/"+udetails.name+"/"+senderID,
+                  "title":"Book this",
+                  "messenger_extensions":true,
+                  "webview_height_ratio": "full",
+                },
+              ]
+            },
+          ]
+        }
+      }
     }
-  };
+  }
   requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-textMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
+  textMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
+  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+  genericMessage
+  ).then(response=>{
+    console.log(response)
+  }).fail(error=> {
+    console.log(error)
+  })
 })
 }
-//end s_v_price
-//start m_v_price
-if (userInput == 'v_m_price'){
-  let textMessage = {
-    "recipient":{
-      "id":webhook_event.sender.id
-    },
-    "message":{
-      "text": "Interior\n\nBasic-4000ks\nShining-8000ks\nPremium-12000ks\n\nExterior\n\nBasic-4000ks\nShining-8000ks\nPremium-12000ks\n\nBoth\n\nBaisc-7500ks, Shining-14000ks, Premium-20000ks"
-    }
-  };
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-textMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
-}
-//end m_v_price
-//start v_l_price
-if (userInput == 'v_l_price'){
-  let textMessage = {
-    "recipient":{
-      "id":webhook_event.sender.id
-    },
-    "message":{
-      "text": "Interior\n\nBasic-5000ks\nShining-9000ks\nPremium-15000ks\n\nExterior\n\nBasic-5000ks\nShining-9000ks\nPremium-15000ks\n\nBoth\n\nBaisc-9000ks\nShining-16000ks\nPremium-25000ks"
-    }
-  };
-  requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-textMessage
-).then(response=>{
-  console.log(response)
-}).fail(error=> {
-  console.log(error)
-})
-}
-//end v_l_price
 
       });
   
