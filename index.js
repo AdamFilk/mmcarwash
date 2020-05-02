@@ -2039,38 +2039,23 @@ if(userInput=="psp"){
             },
             {
               "title":"Platinum Plan",
-              "subtitle":"1Month-Small-45000Ks,Medium-55000Ks,Large-65000Ks\n2Month-Small-55000Ks,Medium-65000Ks,Large-75000Ks\n3Month-Small-55000Ks,Medium-65000Ks,Large-75000Ks",
+              "subtitle":"1Month-Small-45000Ks,Medium-55000Ks,Large-65000Ks\n2Month-Small-55000Ks,Medium-65000Ks,Large-75000Ks\n3Month-Small-65000Ks,Medium-75000Ks,Large-85000Ks",
               "buttons":[
                 {
                   "type":"postback",
                   "title":"View detail or Subscribe",
-                  "payload":"gold"
+                  "payload":"platinum"
                   },
               ]
             },
             {
-              "title":"Normal Waterless Wash-Exterior",
-              "subtitle":"Small-4000Ks\nMedium-5000Ks\nLarge-6000Ks",
+              "title":"Diamond Plan",
+              "subtitle":"1Month-Small-55000Ks,Medium-65000Ks,Large-75000Ks\n2Month-Small-65000Ks,Medium-75000Ks,Large-85000Ks\n3Month-Small-75000Ks,Medium-85000Ks,Large-95000Ks",
               "buttons":[
                 {
-                  "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/carwash/waterless/ext/"+udetails.name+"/"+senderID,
-                  "title":"Book this",
-                  "messenger_extensions":true,
-                  "webview_height_ratio": "full",
-                },
-              ]
-            },
-            {
-              "title":"Normal Waterless Wash-Both",
-              "subtitle":"Small-7000Ks\nMedium-9000Ks\nLarge-11000Ks",
-              "buttons":[
-                {
-                  "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/carwash/waterless/both/"+udetails.name+"/"+senderID,
-                  "title":"Book this",
-                  "messenger_extensions":true,
-                  "webview_height_ratio": "full",
+                  "type":"postback",
+                  "title":"View detail or Subscribe",
+                  "payload":"diamond"
                 },
               ]
             },
