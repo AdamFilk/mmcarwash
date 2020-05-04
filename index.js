@@ -2289,7 +2289,7 @@ if(userInput=="adprice"){
           "type":"template",
           "payload":{
             "template_type":"button",
-            "text":"E-mail:adsltheprescence@gmail.com\nSecond E-mail:imsup8rman@gmail.comNeed further assistance or Info? Talk to a representative",
+            "text":"E-mail:adsltheprescence@gmail.com\nSecond E-mail:imsup8rman@gmail.com\nNeed further assistance or Info? Talk to a representative",
             "buttons":[
               {
                 "type":"phone_number",
