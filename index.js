@@ -39,6 +39,52 @@ const
 
   const db = firebase.firestore();
 
+  requestify.post(`https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageaccesstoken}`, 
+        {
+          "get_started": {
+            "payload": "Hi"
+          },
+          "greeting": [
+            {
+              "locale":"default",
+              "text":"Hello {{user_first_name}}!" 
+            }, {
+              "locale":"en_US",
+              "text":"Timeless apparel for the masses."
+            }
+          ]
+        }
+      ).then( response => {
+        console.log(response)
+      }).fail( error => {
+        console.log(error)
+      })
+        requestify.post('https://graph.facebook.com/v6.0/me/messenger_profile?access_token='+pageaccesstoken, {
+            "persistent_menu": [
+                {
+                    "locale": "default",
+                    "composer_input_disabled": false,
+                    "call_to_actions": [
+                        {
+                            "type": "postback",
+                            "title": "Get Started",
+                            "payload": "Hi"
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Start Booking",
+                            "payload": "book"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "Prices",
+                          "payload": "price"
+                         }
+                        
+                    ]
+                }
+            ]
+        }).then(success=>{console.log(success)});
   app.get('/plans/:plan/:name/:id/:month', (req, res) => {
   
     var name = req.params.name;
@@ -704,32 +750,6 @@ app.post('/webhook', (req, res) => {
         if(webhook_event.postback){
           var userInput = webhook_event.postback.payload
         }
-        requestify.post('https://graph.facebook.com/v6.0/me/messenger_profile?access_token='+pageaccesstoken, {
-            "persistent_menu": [
-                {
-                    "locale": "default",
-                    "composer_input_disabled": false,
-                    "call_to_actions": [
-                        {
-                            "type": "postback",
-                            "title": "Get Started",
-                            "payload": "Hi"
-                        },
-                        {
-                            "type": "postback",
-                            "title": "Start Booking",
-                            "payload": "book"
-                        },
-                        {
-                          "type": "postback",
-                          "title": "Prices",
-                          "payload": "price"
-                         }
-                        
-                    ]
-                }
-            ]
-        }).then(success=>{console.log(success)});
        
         if (userInput == 'Hi'){
           requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
