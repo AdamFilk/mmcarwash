@@ -704,37 +704,32 @@ app.post('/webhook', (req, res) => {
         if(webhook_event.postback){
           var userInput = webhook_event.postback.payload
         }
-        app.get('/setpersistentmenu',function(req,res){
-          requestify.post('https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+pageaccesstoken,{
+        requestify.post('https://graph.facebook.com/v6.0/me/messenger_profile?access_token='+pageaccesstoken, {
             "persistent_menu": [
-              {
-                  "locale": "default",
-                  "composer_input_disabled": false,
-                  "call_to_actions": [
-                    {
-                      "type": "postback",
-                      "title": "Get Started",
-                      "payload": "Hi"
-                  },
-                  {
-                      "type": "postback",
-                      "title": "Start Booking",
-                      "payload": "book"
-                  },
-                  {
-                    "type": "postback",
-                    "title": "Prices",
-                    "payload": "price"
-                  }
-                  ]
-              }
-          ]
-          }).then(success=>{
-            res.send(JSON.stringify(success))
-          }).fail(err=>{
-            res.send(JSON.stringify(err))
-          })
-        });
+                {
+                    "locale": "default",
+                    "composer_input_disabled": false,
+                    "call_to_actions": [
+                        {
+                            "type": "postback",
+                            "title": "Get Started",
+                            "payload": "Hi"
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Start Booking",
+                            "payload": "book"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "Prices",
+                          "payload": "price"
+                         }
+                        
+                    ]
+                }
+            ]
+        }).then(success=>{console.log(success)});
        
         if (userInput == 'Hi'){
           requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
