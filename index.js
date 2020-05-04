@@ -38,7 +38,7 @@ const
 
 
   const db = firebase.firestore();
-
+  var feedback = [];
   requestify.post(`https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageaccesstoken}`, 
         {
           "get_started": {
