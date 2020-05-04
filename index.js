@@ -831,11 +831,6 @@ app.post('/webhook', (req, res) => {
                         "title":"About",
                       },
                       {
-                        "type":"postback",
-                        "title":"Feedback",
-                        "payload":"makeFeedback"
-                      },
-                      {
                         "type":"web_url",
                         "url":"https://mmcarwash.herokuapp.com/report"+"/"+udetails.name+"/"+senderID,
                         "title":"Report",
