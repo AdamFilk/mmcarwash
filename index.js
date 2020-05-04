@@ -72,13 +72,13 @@ const
                         },
                         {
                             "type": "postback",
-                            "title": "Start Booking",
-                            "payload": "book"
+                            "title": "Prices",
+                            "payload": "price"
                         },
                         {
                           "type": "postback",
-                          "title": "Prices",
-                          "payload": "price"
+                          "title": "Feedback",
+                          "payload": "makeFeedback"
                          }
                         
                     ]
@@ -750,7 +750,30 @@ app.post('/webhook', (req, res) => {
         if(webhook_event.postback){
           var userInput = webhook_event.postback.payload
         }
-       
+        if(feedback.includes(`${webhook_event.sender.id}`)){
+          db.collection('User Feedback').add({
+            sender: webhook_event.sender.id,
+            feedback: userInput
+          }).then(success => {
+            var num = feedback.indexOf(`${webhook_event.sender.id}`)
+            feedback.splice(num, 1);
+            let replyMessage = {
+              "recipient":{
+                "id":webhook_event.sender.id
+              },
+              "message":{
+                "text":"Thank you for your feedback!"
+              }
+            };
+            requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+              replyMessage
+            ).then( response => {
+              console.log(response)
+            }).fail( error => {
+              console.log(error)
+            })
+          })
+        }
         if (userInput == 'Hi'){
           requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
             var udetails = JSON.parse(success.body);
@@ -808,9 +831,9 @@ app.post('/webhook', (req, res) => {
                         "title":"About",
                       },
                       {
-                        "type":"web_url",
-                        "url":'https://www.facebook.com/pg/MM-Carwash-103319597841207/reviews/',
-                        "title":"Review",
+                        "type":"postback",
+                        "title":"Feedback",
+                        "payload":"makeFeedback"
                       },
                       {
                         "type":"web_url",
@@ -850,6 +873,23 @@ app.post('/webhook', (req, res) => {
         
         }
         //end of select
+        if(userInput == 'makeFeedback'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text": "Please type anything and send us we will check your feedback regularly!"
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            feedback.push(webhook_event.sender.id);
+          }).fail( error => {
+            console.log(error)
+          })
+        }
 
      //start booking
       if(userInput=="book"){
