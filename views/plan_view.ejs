@@ -212,35 +212,7 @@
 <script>
   const pageaccesstoken= 'EAAKGyWXj6KABABtkTYLNOl1ZALlRZAgHOQs90hhI0B3RiEQOlx9H9SZAGOIqHD0n0hMvaRQ1F44sKoYbai1fJ3PE08WVlQxr7X52LRUr2svOVmpR2VFc9e9J4QTXYBSxarrtFMdbwr1YJ0XF8cKgDYoGx7BA4onhqLSCshIWVXvfNs5UqYh2SEZBoIWQO2IZD'
   // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyDA9mcBjwJzpCpYZGGWLseBZ6A3QLlSxAk",
-    authDomain: "mm-carwash.firebaseapp.com",
-    databaseURL: "https://mm-carwash.firebaseio.com",
-    projectId: "mm-carwash",
-    storageBucket: "mm-carwash.appspot.com",
-    messagingSenderId: "478002772636",
-    appId: "1:478002772636:web:f82fa2e926632accb10b59",
-    measurementId: "G-BFPKPTE060"
-  };
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-  async function postData(url='',data={}){
-    const response = await fetch(url, {
-      method: 'POST',
-      mode:'cors',
-      cache:'no-cache',
-      credentials:'same-origin',
-      headers:{
-        'Content-Type':'application/jason'
-      },
-      redirect:'follow',
-      referrerPolicy:'no-referrer',
-      body: JSON.stringify(data)
-    });
-    return await response.json();
-  }
 
   function  myFunction(){
     MessengerExtensions.requestCloseBrowser(function success() {
