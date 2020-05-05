@@ -288,7 +288,6 @@
       
         db.collection('Car Wash Booking').doc('<%= data.doc_id %>').delete().then(success => {
           MessengerExtensions.requestCloseBrowser(function success() {
-          console.log("success");  
           send();        
         }, function error(err) {
           console.log(err);
