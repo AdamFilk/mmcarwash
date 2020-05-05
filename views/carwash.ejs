@@ -150,11 +150,11 @@
                      
                       <input type="radio" name="carsize" onchange="pricechange(),calculate()" value="small">
                       <label>Small</label>
-                    
+                      <br>
                     
                       <input type="radio" name="carsize" onchange="pricechange(),calculate()" value="medium">
                       <label>Medium</label>
-                    
+                      <br>
                     
                       <input type="radio" name="carsize"  onchange="pricechange(),calculate()" value="large">
                       <label>Large</label>
@@ -288,7 +288,7 @@ var p=document.getElementById('price').value;
 var a= document.getElementById('addoncost').value;
 var result =parseFloat(p)+parseFloat(a);
 if (!isNaN(result)){
-  document.getElementById('total').value= result;
+  document.getElementById('total').value= result + "Ks";
 }
 }
 
