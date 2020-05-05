@@ -178,23 +178,23 @@
                       <td> 
                         <div class="custom-control custom-checkbox">
                           <input type="checkbox" class="custom-control-input" name="addon" id="addon0" value="2000" onclick="UpdateCost(),calculate(),addonFunction()">
-                          <label class="custom-control-label" for="addon0">Pet Hair Removal</label>
+                          <label class="custom-control-label" for="addon0">Pet Hair Removal(2000Ks)</label>
                         </div>
                         <div class="custom-control custom-checkbox">
                           <input type="checkbox" class="custom-control-input" name="addon" id="addon1" value="3000" onclick="UpdateCost(),calculate(),addonFunction()">
-                          <label class="custom-control-label" for="addon1">Wax</label>
+                          <label class="custom-control-label" for="addon1">Wax(3000Ks)</label>
                         </div>
                         <div class="custom-control custom-checkbox">
                           <input type="checkbox" class="custom-control-input" name="addon" id="addon2" value="4000" onclick="UpdateCost(),calculate(),addonFunction()">
-                          <label class="custom-control-label" for="addon2">Sratch Removal</label>
+                          <label class="custom-control-label" for="addon2">Sratch Removal(4000Ks)</label>
                         </div>
                         <div class="custom-control custom-checkbox">
                           <input type="checkbox" class="custom-control-input" name="addon" id="addon3" value="5000" onclick="UpdateCost(),calculate(),addonFunction()">
-                          <label class="custom-control-label" for="addon3">Clay Bar Treatment</label>
+                          <label class="custom-control-label" for="addon3">Clay Bar Treatment(5000Ks)</label>
                         </div>
                         <div class="custom-control custom-checkbox">
                           <input type="checkbox" class="custom-control-input" name="addon" id="addon4" value="6000" onclick="UpdateCost(),calculate(),addonFunction()">
-                          <label class="custom-control-label" for="addon4">Tire and alloy cleaning</label>
+                          <label class="custom-control-label" for="addon4">Tire and alloy cleaning(6000Ks)</label>
                         </div>
                         
                      <input class="form-control" type="text" name="addoncost" id="addoncost" value="<%= data.addoncost %>" readonly>
@@ -313,7 +313,7 @@ var p=document.getElementById('price').value;
 var a= document.getElementById('addoncost').value;
 var result =parseFloat(p)+parseFloat(a);
 if (!isNaN(result)){
-  document.getElementById('total').value= result;
+  document.getElementById('total').value= result+ "Ks";
 }
 }
 
