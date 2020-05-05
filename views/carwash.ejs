@@ -122,7 +122,7 @@
                           Car Plate
                         </td>
                         <td>
-                          <input type="text" class="form-control" name="car_plate" id="car_plate" placeholder="Example: Honda Fit">
+                          <input type="text" class="form-control" name="car_plate" id="car_plate" placeholder="Example: Honda Fit" required>
                         </td>
                     </tr>
                     <tr>
@@ -130,7 +130,7 @@
                         Car Brand
                       </td>
                       <td>
-                        <input type="text" class="form-control" name="car_brand" id="car_brand" placeholder="Example: Toyota">
+                        <input type="text" class="form-control" name="car_brand" id="car_brand" placeholder="Example: Toyota" required>
                       </td>
                   </tr>
                   <tr>
@@ -138,7 +138,7 @@
                       Car Model
                     </td>
                     <td>
-                      <input type="text" class="form-control" name="car_model" id="car_model" placeholder="Example: Mark 2">
+                      <input type="text" class="form-control" name="car_model" id="car_model" placeholder="Example: Mark 2" required>
                     </td>
                 </tr>
                     
@@ -148,7 +148,7 @@
                     </td>
                     <td>
                      
-                      <input type="radio" name="carsize" onchange="pricechange(),calculate()" value="small">
+                      <input type="radio" name="carsize" onchange="pricechange(),calculate()" value="small" required>
                       <label>Small</label>
                       <br>
                     
@@ -167,7 +167,7 @@
                       </td>
                       <td> 
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="addon" id="addon0" value="2000" onclick="UpdateCost(),calculate(),myFunction()">
+                          <input type="checkbox" class="custom-control-input" name="addon" id="addon0" value="2000" onclick="UpdateCost(),calculate(),myFunction()" required>
                           <label class="custom-control-label" for="addon0">Pet Hair Removal</label>
                         </div>
                         <div class="custom-control custom-checkbox">
@@ -196,7 +196,7 @@
                       </td>
                       <td>
                         <input type="text" name="price" id="price" value="0" hidden readonly>
-                        <input type="text" name="total" id="total" value="0" readonly>
+                        <input type="text" name="total" id="total" value="0" readonly required>
                       </td>
                     </tr>
                     
