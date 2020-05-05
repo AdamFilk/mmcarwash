@@ -525,7 +525,21 @@ function priceChange() {
     appId: "1:478002772636:web:f82fa2e926632accb10b59",
     measurementId: "G-BFPKPTE060"
   };
-
+  const send=()=>{
+    let xhr;
+    if (window.XMLHttpRequest){
+      xhr=new XMLHttpRequest();
+    }else{
+      xhr= new ActiveXObject("Mircrosoft.XMLHTTP");
+    }
+    const data={
+    "sender_id" : senderID,
+  }
+    const url="https://mmcarwash.herokuapp.com/delete/";
+    xhr.open("POST", url , true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data)); 
+  }
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   function delete_booking(){
@@ -536,6 +550,7 @@ function priceChange() {
         db.collection('Plan Subscriptions').doc('<%= data.doc_id %>').delete().then(success => {
           MessengerExtensions.requestCloseBrowser(function success() {
       console.log("success");          
+      send(); 
     }, function error(err) {
       console.log(err);
     });

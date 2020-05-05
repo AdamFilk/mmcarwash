@@ -263,14 +263,30 @@
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  const send=()=>{
+    let xhr;
+    if (window.XMLHttpRequest){
+      xhr=new XMLHttpRequest();
+    }else{
+      xhr= new ActiveXObject("Mircrosoft.XMLHTTP");
+    }
+    const data={
+    "sender_id" : senderID,
+  }
+    const url="https://mmcarwash.herokuapp.com/delete/";
+    xhr.open("POST", url , true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data)); 
+  }
   function delete_booking(){
     firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
     console.log(success);
       var db = firebase.firestore();
       
         db.collection('Plan Subscriptions').doc('<%= data.doc_id %>').delete().then(success => {
-          MessengerExtensions.requestCloseBrowser(function success() {
-      console.log("success");          
+        MessengerExtensions.requestCloseBrowser(function success() {
+      console.log("success");   
+      send(); 
     }, function error(err) {
       console.log(err);
     });
