@@ -278,21 +278,22 @@
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(data)); 
   }
+  
+
   function delete_booking(){
     firebase.auth().signInWithEmailAndPassword('mmcarwash@gmail.com', '123456').then(function(success) {
     console.log(success);
       var db = firebase.firestore();
       
         db.collection('Plan Subscriptions').doc('<%= data.doc_id %>').delete().then(success => {
-        MessengerExtensions.requestCloseBrowser(function success() {
-      console.log("success");   
-      send(); 
-    }, function error(err) {
-      console.log(err);
-    });
-        }).catch(error => {
-          console.log(error);
-        })
+          MessengerExtensions.requestCloseBrowser(function success() {
+          send();        
+        }, function error(err) {
+          console.log(err);
+        });
+            }).catch(error => {
+              console.log(error);
+            })
       
 });
   }
