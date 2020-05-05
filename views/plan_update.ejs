@@ -525,6 +525,7 @@ function priceChange() {
     appId: "1:478002772636:web:f82fa2e926632accb10b59",
     measurementId: "G-BFPKPTE060"
   };
+  firebase.initializeApp(firebaseConfig);
   const send=()=>{
     let xhr;
     if (window.XMLHttpRequest){
