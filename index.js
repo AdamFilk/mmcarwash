@@ -85,9 +85,11 @@ const
                 }
             ]
         }).then(success=>{console.log(success)});
+
   app.post('/delete',function(req,res){
     const sender_psid= req.body.sender_id;
-    requestify.post('https://graph.facebook.com/v6.0/me/messenger_profile?access_token='+pageaccesstoken, {
+    console.log(sender_psid);
+    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, {
       "recipient":{
         "id":sender_psid
       },
@@ -96,7 +98,7 @@ const
       }
     })
   });
-  
+
   app.get('/plans/:plan/:name/:id/:month', (req, res) => {
   
     var name = req.params.name;
