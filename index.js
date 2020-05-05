@@ -87,8 +87,8 @@ const
         }).then(success=>{console.log(success)});
 
   app.post('/delete',function(req,res){
-    console.log(sender_psid);
     const sender_psid= req.body.sender_id;
+    console.log(sender_psid);
    
     requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, {
       "recipient":{
