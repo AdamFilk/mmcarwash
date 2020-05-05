@@ -630,7 +630,7 @@ const
     console.log(req.body.date_input);
     let town = req.body.town;
     let address = req.body.address_info;
-    let carpalte = req.body.car_plate;
+    let carplate = req.body.car_plate;
     let carbrand = req.body.car_brand;
     let carmodel = req.body.car_model;
     let carsize= req.body.carsize;
@@ -655,7 +655,7 @@ const
       phone:phone,
       town:town,
       address:address,
-      carpalte:carpalte,
+      carplate:carplate,
       carbrand:carbrand,
       carmodel:carmodel,
       carsize:carsize,            
