@@ -500,7 +500,8 @@ const
   
   
   
-   let booking_number = generateRandom();    
+   let booking_number = generateRandom();   
+   console.log(booking_number) 
   
     db.collection('Car Wash Booking').add({
       phone:phone,
