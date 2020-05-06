@@ -129,7 +129,7 @@ const
     let id= req.body.sender;
     let Name= req.body.name;
     let plan= req.body.plan;
-   let booking_number = generateRandom(5);    
+   let booking_number = generateRandom();    
   
     db.collection('Plan Subscriptions').add({
       phone:phone,
@@ -317,7 +317,7 @@ const
   
   
   
-   let booking_number = generateRandom(5);    
+   let booking_number = generateRandom();    
   
     db.collection('Plan Booking').add({
       phone:phone,
@@ -500,7 +500,7 @@ const
   
   
   
-   let booking_number = generateRandom(5);    
+   let booking_number = generateRandom();    
   
     db.collection('Car Wash Booking').add({
       phone:phone,
