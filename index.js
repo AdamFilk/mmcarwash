@@ -2342,10 +2342,10 @@ if(userInput=="adprice"){
    var d= new Date();
    var date = d.getDate();
 
-   date= `0${date}`;
-   e= date.length;
-   f= e;
-   g= e-2;
+   var date= `0${date}`;
+   var e= date.length;
+   var f= e;
+   var g= e-2;
    date= date.slice(g,f);
 
    var month= d.getMonth();
