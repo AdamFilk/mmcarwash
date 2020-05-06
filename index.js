@@ -2336,14 +2336,61 @@ if(userInput=="adprice"){
     }
   
   });
-  const generateRandom = (length) => {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-       result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
+  const generateRandom = () => {
+   var alphabetsArray=[['A','a','B','b'],['C','c','D','d'],['E','e','F','f'],['G','g','H','h'],['I','i','J','j'],['K','k','L','l'],['M','m','N','n'],['O','o','P','p'],['Q','q','R','r'],['S','s','T','t']];
+   var d= new Date();
+   var date = d.getDate();
+
+   date= `0${date}`;
+   e= date.length;
+   f= e;
+   g= e-2
+   date= date.slice(g,f);
+
+   var month= d.getMonth();
+   month= `0${month}`;
+   e= month.length;
+   f= e;
+   g= e-2;
+   month= month.slice(g,f);
+
+   var year= d.getFullYear();
+   year= `0${year}`;
+   e= year.length;
+   f= e;
+   g= e-2;
+   year= year.slice(g,f);
+
+   var hour= d.getHours();
+   hour= `0${hour}`;
+   e= hour.length;
+   f= e;
+   g= e-2;
+   hour= hour.slice(g,f);
+
+   var minute= d.getMinutes();
+   minute= `0${minute}`;
+   e= minute.length;
+   f= e;
+   g= e-2;
+   minute= minute.slice(g,f);
+
+   var second= d.getSeconds();
+   second= `0${second}`;
+   e= second.length;
+   f= e;
+   g= e-2;
+   second= second.slice(g,f);
+
+   var numString = `${date}${month}${year}${hour}${minute}${second}`;
+   for(var i=0;i<numString.length;i++){
+     var rng= Math.floor(Math.random()*Math.floor(4));
+     var index =numString[i];
+     index= parseInt(index);
+     var newAlphabet=alphabetsArray[index][rng]
+     numString = numString.replace(numString[i], newAlphabet);
+   }
+   return numString
   }
   const showBookingNumber = (sender_psid,ref) => { 
     let textMessage = {
