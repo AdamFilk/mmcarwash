@@ -2345,7 +2345,7 @@ if(userInput=="adprice"){
    date= `0${date}`;
    e= date.length;
    f= e;
-   g= e-2
+   g= e-2;
    date= date.slice(g,f);
 
    var month= d.getMonth();
@@ -2384,14 +2384,14 @@ if(userInput=="adprice"){
    second= second.slice(g,f);
 
    var numString = `${date}${month}${year}${hour}${minute}${second}`;
-   for(var i=0;i<numString.length;i++){
+   for(var i = 0;i < numString.length;i++){
      var rng= Math.floor(Math.random()*Math.floor(4));
      var index =numString[i];
      index= parseInt(index);
      var newAlphabet=alphabetsArray[index][rng]
      numString = numString.replace(numString[i], newAlphabet);
    }
-   return numString
+   return numString;
   }
   const showBookingNumber = (sender_psid,ref) => { 
     let textMessage = {
