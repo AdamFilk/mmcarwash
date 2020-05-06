@@ -2342,7 +2342,7 @@ if(userInput=="adprice"){
    var d= new Date();
    var date = d.getDate();
 
-   var date= `0${date}`;
+    date= `0${date}`;
    var e= date.length;
    var f= e;
    var g= e-2;
