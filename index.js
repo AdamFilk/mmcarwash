@@ -1453,7 +1453,7 @@ if(userInput=="silver" ){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "What's in the plan:\nExterior body wash✔️Rims & Tire Shine✔️Interior Vacuum✔️Wipe all Surfaces✔️Interior Windows✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵2Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks\n💵💵3Month💵💵\n🚗Small-45000Ks\n🚗Medium-55000Ks\n🚗Large-65000Ks"
+      "text": "What's in the plan:\nExterior body wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-25000Ks\n🚗Medium-35000Ks\n🚗Large-45000Ks\n💵💵2Month💵💵\n🚗Small-35000Ks\n🚗Medium-45000Ks\n🚗Large-55000Ks\n💵💵3Month💵💵\n🚗Small-45000Ks\n🚗Medium-55000Ks\n🚗Large-65000Ks"
     }
   };
   let genericMessage ={
