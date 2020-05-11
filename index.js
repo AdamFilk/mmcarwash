@@ -1631,7 +1631,7 @@ if(userInput=="platinum" ){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "What's in the plan:\nExterior Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\nClay bar polish✔️\nHard Coat Hand Wax✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-45000Ks\n🚗Medium-55000Ks\n🚗Large-65000Ks\n💵💵2Month💵💵\n🚗Small-55000Ks\n🚗Medium-65000Ks\n🚗Large-75000Ks\n💵💵3Month💵💵\n🚗Small-65000Ks\n🚗Medium-75000Ks\n🚗Large-85000Ks"
+      "text": "What's in the plan:\nExterior  Hand Wash✔️\nRims & Tire Shine✔️\nInterior Vacuum✔️\nWipe all Surfaces✔️\nInterior Windows✔️\nLeather Clean & Condition✔️\nLight Carpet Clean & Stain Removal✔️\nDashboard Condition✔️\nClay bar polish✔️\nHard Coat Hand Wax✔️\n💰Price💰:\n💵💵1Month💵💵\n🚗Small-45000Ks\n🚗Medium-55000Ks\n🚗Large-65000Ks\n💵💵2Month💵💵\n🚗Small-55000Ks\n🚗Medium-65000Ks\n🚗Large-75000Ks\n💵💵3Month💵💵\n🚗Small-65000Ks\n🚗Medium-75000Ks\n🚗Large-85000Ks"
     }
   };
   let genericMessage ={
