@@ -95,7 +95,7 @@ const
         "id":sender_psid
       },
       "message":{
-        "text": "Your data has been deleted"
+        "text": "Your data has been deleted. You cannot check that booking ID anymore.\nYou can start booking again from 'Get started' in the menu."
       }
     })
   });
@@ -681,33 +681,7 @@ const
           console.log(error);
     });        
   });
-  app.get('/report/:name/:id', (req, res) => {
-  
-    var name = req.params.name;
-    var senderID=req.params.id;
-    res.render('report.ejs', {name:name, id:senderID})
-    
-  })
-  app.post('/report',function(req,res){
-        
-        
-    let phone= req.body.phone;
-    let Name= req.body.Name;
-    let id=req.body.sender;
-    let report= req.body.report; 
-  
-    db.collection('Reports').add({
-      phone:phone,
-     
-      Name:Name,
-      report
-        }).then(success => {             
-          console.log("DATASAVESHOWBOOKINGNUMBER");     
-          ReportComplete(id,Name);   
-        }).catch(error => {
-          console.log(error);
-    });        
-  });
+
   
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -827,11 +801,7 @@ app.post('/webhook', (req, res) => {
                         "title":"Prices",
                         "payload":"price"
                       },
-                      {
-                        "type":"postback",
-                        "title":"Contact Us",
-                        "payload":"contact"
-                      },
+                      
 
                     ]
   
@@ -842,17 +812,16 @@ app.post('/webhook', (req, res) => {
                     "image_url":"https://i.pinimg.com/originals/8e/ae/4e/8eae4e9c738013ac5bef63b8cbf9a328.jpg",
                     "buttons":[
                       {
+                        "type":"postback",
+                        "title":"Contact Us",
+                        "payload":"contact"
+                      },
+                      {
                         "type":"web_url",
                         "url":'https://www.facebook.com/pg/MM-Carwash-103319597841207/about/',
                         "title":"About",
                       },
-                      {
-                        "type":"web_url",
-                        "url":"https://mmcarwash.herokuapp.com/report"+"/"+udetails.name+"/"+senderID,
-                        "title":"Report",
-                        "messenger_extensions":true,
-                        "webview_height_ratio": "full",
-                      },
+                      
 
                     ]
   
@@ -2495,23 +2464,7 @@ if(userInput=="adprice"){
       console.log(error)
     })
   }
-  const ReportComplete = (sender_psid,name) => { 
-    let textMessage = {
-      "recipient":{
-        "id": sender_psid
-      },
-      "message":{
-        "text": `${name} Your report has been submitted`
-      }
-    };
-    requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-    textMessage
-    ).then(response=>{
-      console.log(response)
-    }).fail(error=> {
-      console.log(error)
-    })
-  }
+
 
   /***********************************
 FUNCTION TO ADD WHITELIST DOMAIN
