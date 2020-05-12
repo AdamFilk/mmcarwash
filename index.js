@@ -885,7 +885,7 @@ app.post('/webhook', (req, res) => {
         
         }
         //end of select
-        console.log(webhhook_event.message.attachment)
+       
         if(userInput == 'makeFeedback'){
           let genericMessage = {
             "recipient":{
@@ -905,7 +905,7 @@ app.post('/webhook', (req, res) => {
         }
 
      //start booking
-     console.log(webhhook_event.message.attachment)
+   
       if(userInput=="book"){
         let textMessage = {
           "recipient":{
@@ -961,7 +961,7 @@ app.post('/webhook', (req, res) => {
         })
       }
       //start provide water?
-      console.log(webhhook_event.message.attachment)
+    
       if(userInput=="now"){
 
         let genericMessage ={
@@ -1005,7 +1005,7 @@ app.post('/webhook', (req, res) => {
       }
       //end provide water?
       //start choose wash type
-      console.log(webhhook_event.message.attachment)
+  
       if(userInput=="y_w"){
 
         let genericMessage ={
@@ -1057,7 +1057,7 @@ app.post('/webhook', (req, res) => {
       }
       //end choose wash type
       //start choose int or ext
-      console.log(webhhook_event.message.attachment)
+    
       if(userInput=="regular" || userInput=="waterless"){
 
         let genericMessage ={
@@ -1106,7 +1106,7 @@ app.post('/webhook', (req, res) => {
       }
       //end choose int or ext
       //start booking form
-      console.log(webhhook_event.message.attachment)
+  
       if(userInput.includes("/int")){
         
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
@@ -1155,7 +1155,7 @@ app.post('/webhook', (req, res) => {
   })
         
       }
-      console.log(webhhook_event.message.attachment)
+    
       if(userInput.includes("/ext")){
         console.log(userInput);
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
@@ -1204,7 +1204,7 @@ app.post('/webhook', (req, res) => {
   })
         
       }
-      console.log(webhhook_event.message.attachment)
+    
       if(userInput.includes("/both")){
         console.log(userInput);
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
@@ -1253,7 +1253,7 @@ app.post('/webhook', (req, res) => {
   })
         
       }
-      console.log(webhhook_event.message.attachment)
+    
       //end booking form
       if(userInput=="n_w"){
 
@@ -1294,7 +1294,7 @@ app.post('/webhook', (req, res) => {
      //end booking
        //end car wash
 //start plans
-console.log(webhhook_event.message.attachment)
+
 if(userInput=="plans"){
   let textMessage = {
     "recipient":{
@@ -1395,7 +1395,7 @@ if(userInput=="plans"){
     console.log(error)
   })
 }
-console.log(webhhook_event.message.attachment)
+
 if(userInput=="bronze" ){
   requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
 
@@ -1485,7 +1485,7 @@ if(userInput=="bronze" ){
   })
 })
 }
-console.log(webhhook_event.message.attachment)
+
 if(userInput=="silver" ){
   requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
 
@@ -1575,7 +1575,7 @@ if(userInput=="silver" ){
   })
 })
 }
-console.log(webhhook_event.message.attachment)
+
 if(userInput=="gold" ){
   requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
 
@@ -1665,7 +1665,7 @@ if(userInput=="gold" ){
   })
 })
 }
-console.log(webhhook_event.message.attachment)
+
 if(userInput=="platinum" ){
   requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
 
@@ -1755,7 +1755,7 @@ if(userInput=="platinum" ){
   })
 })
 }
-console.log(webhhook_event.message.attachment)
+
 if(userInput=="diamond" ){
   requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
 
@@ -1844,7 +1844,7 @@ if(userInput=="diamond" ){
   })
 })
 }
-console.log(webhhook_event.message.attachment)
+
 if(userInput.includes("Car Wash Booking:")){
   let ref_num = userInput.slice(17);
   ref_num = ref_num.trim(); 
@@ -1892,7 +1892,7 @@ if(userInput.includes("Car Wash Booking:")){
     console.log(error)
   })
 }
-console.log(webhhook_event.message.attachment)
+
 if(userInput.includes("Subscribed Plan:")){
   let ref_num = userInput.slice(16);
   ref_num = ref_num.trim(); 
@@ -1940,7 +1940,7 @@ if(userInput.includes("Subscribed Plan:")){
     console.log(error)
   })
 }
-console.log(webhhook_event.message.attachment)
+
 if(userInput.includes("Booked Plan:")){
   let ref_num = userInput.slice(12);
   ref_num = ref_num.trim(); 
@@ -1989,7 +1989,7 @@ if(userInput.includes("Booked Plan:")){
   })
 }
 //start price
-console.log(webhhook_event.message.attachment)
+
 if(userInput=="price"){
   let genericMessage ={
     "recipient":{
@@ -2034,7 +2034,7 @@ if(userInput=="price"){
     console.log(error)
   })
 }
-console.log(webhhook_event.message.attachment)
+
 if(userInput=="ncw"){
   let textMessage = {
     "recipient":{
@@ -2157,7 +2157,7 @@ if(userInput=="ncw"){
   })
 })
 }
-console.log(webhhook_event.message.attachment)
+
 if(userInput=="psp"){
   let textMessage = {
     "recipient":{
@@ -2258,7 +2258,7 @@ if(userInput=="psp"){
     console.log(error)
   })
 }
-console.log(webhhook_event.message.attachment)
+
 if(userInput=="adprice"){
   let textMessage = {
     "recipient":{
@@ -2316,7 +2316,7 @@ if(userInput=="adprice"){
       console.log(error)
     })
   }
-  console.log(webhhook_event.message.attachment)
+  
   if(userInput=="contact"){
     let genericMessage ={
       "recipient":{
