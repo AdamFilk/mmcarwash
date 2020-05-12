@@ -85,8 +85,9 @@ const
                 }
             ]
         }).then(success=>{console.log(success)});
-  app.get('/', (res,req)=>{ res.send('hello world')});
-  
+
+  app.get('/', (req,res)=>{ res.send('This Works')});
+
   app.post('/delete',function(req,res){
     const sender_psid= req.body.sender_id;
     console.log(sender_psid);
