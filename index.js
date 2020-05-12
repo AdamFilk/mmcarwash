@@ -849,7 +849,7 @@ app.post('/webhook', (req, res) => {
                       },
                       {
                         "type":"web_url",
-                        "url":"https://mmcarwash.herokuapp.com/report"+"/"+udetails.name+"/"+senderID,
+                        "url":"https://mmcarwashlate.herokuapp.com/report"+"/"+udetails.name+"/"+senderID,
                         "title":"Report",
                         "messenger_extensions":true,
                         "webview_height_ratio": "full",
@@ -1128,7 +1128,7 @@ app.post('/webhook', (req, res) => {
                     "buttons":[
                       {
                         "type":"web_url",
-                        "url":"https://mmcarwash.herokuapp.com/carwash/"+userInput+"/"+udetails.name+"/"+senderID,
+                        "url":"https://mmcarwashlate.herokuapp.com/carwash/"+userInput+"/"+udetails.name+"/"+senderID,
                         "title":"Fill the Form",
                         "messenger_extensions":true,
                         "webview_height_ratio": "full",
@@ -1177,7 +1177,7 @@ app.post('/webhook', (req, res) => {
                     "buttons":[
                       {
                         "type":"web_url",
-                        "url":"https://mmcarwash.herokuapp.com/carwash/"+userInput+"/"+udetails.name+"/"+senderID,
+                        "url":"https://mmcarwashlate.herokuapp.com/carwash/"+userInput+"/"+udetails.name+"/"+senderID,
                         "title":"Fill the Form",
                         "messenger_extensions":true,
                         "webview_height_ratio": "full",
@@ -1226,7 +1226,7 @@ app.post('/webhook', (req, res) => {
                     "buttons":[
                       {
                         "type":"web_url",
-                        "url":"https://mmcarwash.herokuapp.com/carwash/"+userInput+"/"+udetails.name+"/"+senderID,
+                        "url":"https://mmcarwashlate.herokuapp.com/carwash/"+userInput+"/"+udetails.name+"/"+senderID,
                         "title":"Fill the Form",
                         "messenger_extensions":true,
                         "webview_height_ratio": "full",
@@ -1426,21 +1426,21 @@ if(userInput=="bronze" ){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
                   "title":"1 month",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
                 },
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
                   "title":"2 months",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
                 },
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
                   "title":"3 months",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -1454,7 +1454,7 @@ if(userInput=="bronze" ){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "url":"https://mmcarwashlate.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
                   "title":"Book",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -1516,21 +1516,21 @@ if(userInput=="silver" ){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
                   "title":"1 month",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
                 },
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
                   "title":"2 months",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
                 },
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
                   "title":"3 months",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -1544,7 +1544,7 @@ if(userInput=="silver" ){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "url":"https://mmcarwashlate.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
                   "title":"Book",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -1606,21 +1606,21 @@ if(userInput=="gold" ){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
                   "title":"1 month",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
                 },
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
                   "title":"2 months",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
                 },
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
                   "title":"3 months",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -1634,7 +1634,7 @@ if(userInput=="gold" ){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "url":"https://mmcarwashlate.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
                   "title":"Book",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -1696,21 +1696,21 @@ if(userInput=="platinum" ){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
                   "title":"1 month",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
                 },
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
                   "title":"2 months",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
                 },
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
                   "title":"3 months",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -1724,7 +1724,7 @@ if(userInput=="platinum" ){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "url":"https://mmcarwashlate.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
                   "title":"Book",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -1786,21 +1786,21 @@ if(userInput=="diamond" ){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/1`,
                   "title":"1 month",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
                 },
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/2`,
                   "title":"2 months",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
                 },
                 {
                   "type":"web_url",
-                  "url":`https://mmcarwash.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
+                  "url":`https://mmcarwashlate.herokuapp.com/plans/${userInput}/${udetails.name}/${senderID}/3`,
                   "title":"3 months",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -1814,7 +1814,7 @@ if(userInput=="diamond" ){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
+                  "url":"https://mmcarwashlate.herokuapp.com/plan_once/"+userInput+"/"+udetails.name+"/"+senderID,
                   "title":"Book",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -1866,14 +1866,14 @@ if(userInput.includes("Car Wash Booking:")){
             {
               "type": "web_url",
               "title": "View",
-              "url":"https://mmcarwash.herokuapp.com/carwashview/"+ref_num+"/"+senderID,
+              "url":"https://mmcarwashlate.herokuapp.com/carwashview/"+ref_num+"/"+senderID,
                "webview_height_ratio": "full",
               "messenger_extensions": true,          
             },
             {
               "type": "web_url",
               "title": "Update",
-              "url":"https://mmcarwash.herokuapp.com/carwash_update/"+ref_num+"/"+senderID,
+              "url":"https://mmcarwashlalte.herokuapp.com/carwash_update/"+ref_num+"/"+senderID,
                "webview_height_ratio": "full",
               "messenger_extensions": true,          
             },
@@ -1914,14 +1914,14 @@ if(userInput.includes("Subscribed Plan:")){
             {
               "type": "web_url",
               "title": "View",
-              "url":"https://mmcarwash.herokuapp.com/plan_view/"+ref_num+"/"+senderID,
+              "url":"https://mmcarwashlate.herokuapp.com/plan_view/"+ref_num+"/"+senderID,
                "webview_height_ratio": "full",
               "messenger_extensions": true,          
             },
             {
               "type": "web_url",
               "title": "Update",
-              "url":"https://mmcarwash.herokuapp.com/plan_update/"+ref_num+"/"+senderID,
+              "url":"https://mmcarwashlate.herokuapp.com/plan_update/"+ref_num+"/"+senderID,
                "webview_height_ratio": "full",
               "messenger_extensions": true,          
             },
@@ -1962,14 +1962,14 @@ if(userInput.includes("Booked Plan:")){
             {
               "type": "web_url",
               "title": "View",
-              "url":"https://mmcarwash.herokuapp.com/plan_once_view/"+ref_num+"/"+senderID,
+              "url":"https://mmcarwashlate.herokuapp.com/plan_once_view/"+ref_num+"/"+senderID,
                "webview_height_ratio": "full",
               "messenger_extensions": true,          
             },
             {
               "type": "web_url",
               "title": "Update",
-              "url":"https://mmcarwash.herokuapp.com/plan_once_update/"+ref_num+"/"+senderID,
+              "url":"https://mmcarwashlate.herokuapp.com/plan_once_update/"+ref_num+"/"+senderID,
                "webview_height_ratio": "full",
               "messenger_extensions": true,          
             },
@@ -2064,7 +2064,7 @@ if(userInput=="ncw"){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/carwash/regular/int/"+udetails.name+"/"+senderID,
+                  "url":"https://mmcarwashlate.herokuapp.com/carwash/regular/int/"+udetails.name+"/"+senderID,
                   "title":"Book this",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -2077,7 +2077,7 @@ if(userInput=="ncw"){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/carwash/regular/ext/"+udetails.name+"/"+senderID,
+                  "url":"https://mmcarwashlate.herokuapp.com/carwash/regular/ext/"+udetails.name+"/"+senderID,
                   "title":"Book this",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -2090,7 +2090,7 @@ if(userInput=="ncw"){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/carwash/regular/both/"+udetails.name+"/"+senderID,
+                  "url":"https://mmcarwashlate.herokuapp.com/carwash/regular/both/"+udetails.name+"/"+senderID,
                   "title":"Book this",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -2103,7 +2103,7 @@ if(userInput=="ncw"){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/carwash/waterless/int/"+udetails.name+"/"+senderID,
+                  "url":"https://mmcarwashlate.herokuapp.com/carwash/waterless/int/"+udetails.name+"/"+senderID,
                   "title":"Book this",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -2116,7 +2116,7 @@ if(userInput=="ncw"){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/carwash/waterless/ext/"+udetails.name+"/"+senderID,
+                  "url":"https://mmcarwashlate.herokuapp.com/carwash/waterless/ext/"+udetails.name+"/"+senderID,
                   "title":"Book this",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -2129,7 +2129,7 @@ if(userInput=="ncw"){
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://mmcarwash.herokuapp.com/carwash/waterless/both/"+udetails.name+"/"+senderID,
+                  "url":"https://mmcarwashlate.herokuapp.com/carwash/waterless/both/"+udetails.name+"/"+senderID,
                   "title":"Book this",
                   "messenger_extensions":true,
                   "webview_height_ratio": "full",
@@ -2542,11 +2542,11 @@ FUNCTION TO ADD WHITELIST DOMAIN
 const whitelistDomains = (res) => {
   var messageData = {
           "whitelisted_domains": [
-           "https://mmcarwash.herokuapp.com/" , 
+           "https://mmcarwashlate.herokuapp.com/" , 
            "https://herokuapp.com/" ,
-           "https://mmcarwash.herokuapp.com/carwash/" ,
-           "https://mmcarwash.herokuapp.com/plans/"   ,
-           "https://mmcarwash.herokuapp.com/view/"  ,
+           "https://mmcarwashlate.herokuapp.com/carwash/" ,
+           "https://mmcarwashlate.herokuapp.com/plans/"   ,
+           "https://mmcarwashlate.herokuapp.com/view/"  ,
            "https://i.pinimg.com/"    
           ]               
   };  

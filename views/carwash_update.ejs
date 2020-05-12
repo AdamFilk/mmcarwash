@@ -41,7 +41,7 @@
     <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col-sm-4 w-100">
-              <form id="form" method="post" action="https://mmcarwash.herokuapp.com/carwash_update/">
+              <form id="form" method="post" action="https://mmcarwashlate.herokuapp.com/carwash_update/">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -498,7 +498,7 @@ function UpdateCost() {
     const data={
     "sender_id" : senderID,
   }
-    const url="https://mmcarwash.herokuapp.com/delete/";
+    const url="https://mmcarwashlate.herokuapp.com/delete/";
     xhr.open("POST", url , true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(data)); 
