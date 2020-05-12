@@ -791,7 +791,7 @@ app.post('/webhook', (req, res) => {
             })
           })
         }
-        
+        if(userInput){
         if (userInput == 'Hi'){
 
           requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
@@ -2349,8 +2349,10 @@ if(userInput=="adprice"){
         console.log(error)
       })
     }
+  }
 
       });
+    
 
       // Returns a '200 OK' response to all requests
       res.status(200).send('EVENT_RECEIVED');
@@ -2548,7 +2550,6 @@ const whitelistDomains = (res) => {
            "https://herokuapp.com/" ,
            "https://mmcarwashlate.herokuapp.com/carwash/" ,
            "https://mmcarwashlate.herokuapp.com/carwashview/",
-           "https://mmcarwashlalte.herokuapp.com/carwash_update/",
            "https://mmcarwashlate.herokuapp.com/plans/"   ,
            "https://mmcarwashlate.herokuapp.com/view/"  ,
            "https://i.pinimg.com/"    
