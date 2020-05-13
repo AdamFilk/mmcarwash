@@ -1875,7 +1875,7 @@ if(userInput.includes("Car Wash Booking:")){
             {
               "type": "web_url",
               "title": "Update",
-              "url":"https://mmcarwashlalte.herokuapp.com/carwash_update/"+ref_num+"/"+senderID,
+              "url":"https://mmcarwashlate.herokuapp.com/carwash_update/"+ref_num+"/"+senderID,
                "webview_height_ratio": "full",
               "messenger_extensions": true,          
             },
