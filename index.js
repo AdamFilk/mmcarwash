@@ -1272,7 +1272,7 @@ if(userInput=="plans"){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "Plan Information:\nDuring the subscribed number of month customers will get weekly car wash services to maintain the good looks of the car according to the quality of the service "
+      "text": "Plan Information:\nDuring the subscribed number of month customers will get weekly car wash services to maintain the good looks of the car according to the quality of the service\n You can also book the plan for just once if you want."
     }
   };
   let genericMessage ={
