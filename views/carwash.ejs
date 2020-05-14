@@ -229,7 +229,7 @@
                         <input type="hidden"  id="Name" name="Name" value="<%= name %>">
                         <input type="hidden"  id="wash_type" name="wash_type" value="<%= washtype %>">
                         <input type="hidden"  id="int_ext" name="int_ext" value="<%= intorext %>">
-                        <button type="submit" class="btn btn-outline-light btn-primary btn-lg btn-block">Submit</button>
+                        <button type="submit" onclick="windowShut()" class="btn btn-outline-light btn-primary btn-lg btn-block">Submit</button>
                     </td>
                     </tr>
 
@@ -382,11 +382,12 @@ function UpdateCost() {
 <script>
       
    
-  const windowShut = () => {
-    window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://www.reedpublicrelations.com/wp-content/uploads/2019/11/Reed-blog-post-image.jpg&display_text=ContactYouSoon')
+  function windowShut(){
+    document.getElementById("form").addEventListener("submit").then(success => {
+      location.replace('https://www.messenger.com/closeWindow/?image_url=https://www.reedpublicrelations.com/wp-content/uploads/2019/11/Reed-blog-post-image.jpg&display_text=ContactYouSoon')
+    })   
   }
   
-  document.getElementById("form").addEventListener("submit",windowShut);       
  
 </script>
 
