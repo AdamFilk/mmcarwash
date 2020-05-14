@@ -528,10 +528,10 @@ const
       Interior_or_Exterior:int_ext,
       booking_number:booking_number,
         }).then(success => {             
-          console.log("DATASAVESHOWBOOKINGNUMBER");     
+          console.log("DATASAVESHOWBOOKINGNUMBER");   
+          res.render('close.ejs');  
            showBookingNumber(id, booking_number);   
-        }).then(added => { res.render('close.ejs')})
-        .catch(error => {
+        }).catch(error => {
           console.log(error);
     });        
   });
