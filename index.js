@@ -154,6 +154,7 @@ const
         }).then(success => {             
           console.log("DATASAVESHOWBOOKINGNUMBER");     
           showSubscriptionNumber(id, booking_number);   
+          res.render('close.ejs');
         }).catch(error => {
           console.log(error);
     });        
@@ -232,7 +233,7 @@ const
           }   
   
             console.log("BOOKING DATA", data);     
-  
+
            res.render('plan_update.ejs',{data:data, sender_id:sender_id});
             
   
@@ -287,6 +288,7 @@ const
         }).then(success => {             
           console.log("DATASAVESHOWBOOKINGNUMBER");     
           Update_Complete(id, booking_number);
+          res.render('close.ejs');
         }).catch(error => {
           console.log(error);
     });        
@@ -338,7 +340,8 @@ const
       booking_number:booking_number,
         }).then(success => {             
           console.log("DATASAVESHOWBOOKINGNUMBER");     
-           showPlanBooking(id, booking_number);   
+           showPlanBooking(id, booking_number); 
+           res.render('close.ejs');  
         }).catch(error => {
           console.log(error);
     });        
@@ -460,6 +463,7 @@ const
         }).then(success => {             
           console.log("DATASAVESHOWBOOKINGNUMBER");     
            Update_Complete2(id, booking_number);   
+           res.render('close.ejs');
         }).catch(error => {
           console.log(error);
     });        
@@ -679,7 +683,8 @@ const
       booking_number:booking_number,
         }).then(success => {             
           console.log("DATASAVESHOWBOOKINGNUMBER");     
-           Update_Complete1(id, booking_number);   
+           Update_Complete1(id, booking_number);  
+           res.render('close.ejs'); 
         }).catch(error => {
           console.log(error);
     });        
