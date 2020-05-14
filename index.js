@@ -529,8 +529,8 @@ const
       booking_number:booking_number,
         }).then(success => {             
           console.log("DATASAVESHOWBOOKINGNUMBER");   
-          res.render('close.ejs');  
            showBookingNumber(id, booking_number);   
+           res.render('close.ejs');  
         }).catch(error => {
           console.log(error);
     });        
