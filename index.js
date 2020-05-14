@@ -530,7 +530,8 @@ const
         }).then(success => {             
           console.log("DATASAVESHOWBOOKINGNUMBER");     
            showBookingNumber(id, booking_number);   
-        }).catch(error => {
+        }).then(added => { res.render('close.ejs')})
+        .catch(error => {
           console.log(error);
     });        
   });
