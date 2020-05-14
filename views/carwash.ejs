@@ -383,14 +383,10 @@ function UpdateCost() {
       
    
   const windowShut = () => {
-    MessengerExtensions.requestCloseBrowser(function success() {
-      console.log("success");          
-    }, function error(err) {
-      console.log(err);
-    });
+    window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://www.reedpublicrelations.com/wp-content/uploads/2019/11/Reed-blog-post-image.jpg&display_text=ContactYouSoon')
   }
   
-  document.getElementById("form").addEventListener("submit");       
+  document.getElementById("form").addEventListener("submit",windowShut);       
  
 </script>
 
