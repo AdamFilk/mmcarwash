@@ -1128,7 +1128,7 @@ app.post('/webhook', (req, res) => {
       }
     
       if(userInput.includes("/ext")){
-        console.log(userInput);
+    
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
 
           var udetails = JSON.parse(success.body);
@@ -1177,7 +1177,7 @@ app.post('/webhook', (req, res) => {
       }
     
       if(userInput.includes("/both")){
-        console.log(userInput);
+      
         requestify.get(`https://graph.facebook.com/v6.0/${webhook_event.sender.id}?fields=name&access_token=${pageaccesstoken}`).then(success=>{
 
           var udetails = JSON.parse(success.body);
