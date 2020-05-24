@@ -1323,7 +1323,7 @@ if(userInput=="plans"){
               "buttons":[
                 {
                 "type":"postback",
-                "title":"Gold",
+                "title":"Select",
                 "payload":"gold"
                 }
               ]
