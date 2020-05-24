@@ -153,17 +153,8 @@ const
       booking_number:booking_number,
         }).then(success => {             
           console.log("DATASAVESHOWBOOKINGNUMBER");     
-          showSubscriptionNumber(id, booking_number); 
-          let referer = req.get('Referer');
-          if (referer) {
-              if (referer.indexOf('www.messenger.com') >= 0) {
-                  res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
-              } else if (referer.indexOf('www.facebook.com') >= 0) {
-                  res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
-              }
-            
+          showSubscriptionNumber(id, booking_number);   
           res.render('close.ejs');
-            }
         }).catch(error => {
           console.log(error);
     });        
