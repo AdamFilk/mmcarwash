@@ -2249,7 +2249,7 @@ if(userInput=="adprice"){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "You can add-on services for your normal wash"
+      "text": "You can add-on services for your normal wash\nPet-Hair Removal:2000Ks\nWax:3000Ks\nScratch Removal:4000Ks\nClay Bar Treatment:5000Ks\nTire &Alloy Cleaning:6000Ks"
     }
   };
   let genericMessage ={
@@ -2263,9 +2263,9 @@ if(userInput=="adprice"){
           "template_type":"generic",
           "elements":[
             {
-              "title":"Add-on Price",
+              "title":"Add-on Prices",
               "image_url":"https://www.conciergeinrome.com/wp-content/uploads/2018/02/Additional-Services-Rome-1.jpg",
-              "subtitle":"Pet Hair Remova:2000Ks\nWax:3000Ks\nScratch Removal:4000Ks\nClay Bar Treatment:5000Ks\nTire and Alloy Cleaning:6000Ks",
+              "subtitle":"Add-ons can be included in normal car wash",
               "buttons":[
                 {
                   "type":"postback",
