@@ -2249,7 +2249,7 @@ if(userInput=="adprice"){
       "id":webhook_event.sender.id
     },
     "message":{
-      "text": "You can add-on services for your normal wash\nPet-Hair Removal:2000Ks\nWax:3000Ks\nScratch Removal:4000Ks\nClay Bar Treatment:5000Ks\nTire &Alloy Cleaning:6000Ks"
+      "text": "You can add-on services for your normal wash\nThese are the prices for Add-ons:\n💰Pet-Hair Removal:2000Ks💰\n💰Wax:3000Ks💰\n💰Scratch Removal:4000Ks💰\n💰Clay Bar Treatment:5000Ks💰\n💰Tire &Alloy Cleaning:6000Ks💰"
     }
   };
   let genericMessage ={
