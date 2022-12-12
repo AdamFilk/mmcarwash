@@ -19,7 +19,7 @@
   "homepage": "https://github.com/AdamFilk/mmcarwash#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "ejs": "^3.0.2",
+    "ejs": "^3.1.7",
     "express": "^4.17.3",
     "firebase-admin": "^8.10.0",
     "jquery": "^3.5.0",
